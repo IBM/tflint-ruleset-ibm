@@ -1,0 +1,255 @@
+{
+  "package": "registry",
+  "resources": [
+    {
+      "name": "ibm_cr_namespace",
+      "function": "ResourceIBMCrNamespace",
+      "package": "registry",
+      "kind": "resource",
+      "description": "Manages ibm_cr_namespace. The name of the namespace.",
+      "attributes": {
+        "account": {
+          "name": "account",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IBM Cloud account that owns the namespace."
+        },
+        "created_date": {
+          "name": "created_date",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "When the namespace was created."
+        },
+        "created_on": {
+          "name": "created_on",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "When the namespace was created."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "If the namespace has been assigned to a resource group, this is the IBM Cloud CRN representing the namespace.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The name of the namespace.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 4,
+            "max_len": 30,
+            "regexp": "^[a-z0-9]+[a-z0-9_-]+[a-z0-9]+$"
+          }
+        },
+        "resource_created_date": {
+          "name": "resource_created_date",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "When the namespace was assigned to a resource group."
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The ID of the resource group that the namespace will be created within."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "List of tags",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "updated_date": {
+          "name": "updated_date",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "When the namespace was last updated."
+        },
+        "updated_on": {
+          "name": "updated_on",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "When the namespace was last updated."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-z0-9]+[a-z0-9_-]+[a-z0-9]+$",
+          "min_len": 4,
+          "max_len": 30
+        }
+      ]
+    },
+    {
+      "name": "ibm_cr_retention_policy",
+      "function": "ResourceIBMCrRetentionPolicy",
+      "package": "registry",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_cr_retention_policy resource.",
+      "attributes": {
+        "images_per_repo": {
+          "name": "images_per_repo",
+          "type": "int",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Determines how many images will be retained for each repository when the retention policy is executed. The value -1 denotes 'Unlimited' (all images are retained)."
+        },
+        "namespace": {
+          "name": "namespace",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The namespace to which the retention policy is attached."
+        },
+        "retain_untagged": {
+          "name": "retain_untagged",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Determines if untagged images are retained when executing the retention policy. This is false by default meaning untagged images will be deleted when the policy is executed.",
+          "default": "false"
+        }
+      }
+    },
+    {
+      "name": "ibm_cr_namespaces",
+      "function": "DataIBMContainerRegistryNamespaces",
+      "package": "registry",
+      "kind": "data",
+      "description": "Schema validation for the ibm_cr_namespaces data source.",
+      "attributes": {
+        "namespaces": {
+          "name": "namespaces",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Container Registry Namespaces",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "account": {
+                "name": "account",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The IBM Cloud account that owns the namespace."
+              },
+              "created_date": {
+                "name": "created_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Created Date"
+              },
+              "created_on": {
+                "name": "created_on",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Created Date"
+              },
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "CRN of the Namespace",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Container Registry Namespace name"
+              },
+              "resource_created_date": {
+                "name": "resource_created_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "When the namespace was assigned to a resource group."
+              },
+              "resource_group_id": {
+                "name": "resource_group_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Resource Group to which namespace has to be assigned"
+              },
+              "updated_date": {
+                "name": "updated_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Updated Date"
+              },
+              "updated_on": {
+                "name": "updated_on",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Updated Date"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 3,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package registry"
+}

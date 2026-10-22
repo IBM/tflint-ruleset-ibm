@@ -1,0 +1,434 @@
+{
+  "package": "iamaccessgroup",
+  "specs": [
+    {
+      "slug": "iam-access-groups",
+      "title": "IAM Access Groups",
+      "schema_count": 72,
+      "path_count": 16
+    }
+  ],
+  "matched": 10,
+  "resource_count": 10,
+  "overlay_attrs": 46,
+  "resources": [
+    {
+      "name": "ibm_iam_access_group",
+      "kind": "resource",
+      "schema": "/v2/groups/{access_group_id}:patch",
+      "spec": "iam-access-groups",
+      "score": 0.6667,
+      "attrs": {
+        "description": {
+          "description": "Assign an optional description for the access group. This field has a limit of 250 characters.",
+          "source": "iam-access-groups",
+          "schema": "/v2/groups/{access_group_id}:patch"
+        },
+        "name": {
+          "description": "Give the access group a unique name that doesn't conflict with an existing access group in the account. This field is case-insensitive and has a limit of 100 characters.",
+          "source": "iam-access-groups",
+          "schema": "/v2/groups/{access_group_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_access_group_account_settings",
+      "kind": "resource",
+      "schema": "/v2/groups/settings:patch",
+      "spec": "iam-access-groups",
+      "score": 0.83,
+      "attrs": {
+        "public_access_enabled": {
+          "description": "This flag controls the public access feature within the account. It is set to true by default. Note: When this flag is set to false, all policies within the account attached to the Public Access group will be deleted.",
+          "source": "iam-access-groups",
+          "schema": "/v2/groups/settings:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_access_group_dynamic_rule",
+      "kind": "resource",
+      "schema": "Rule",
+      "spec": "iam-access-groups",
+      "score": 0.35,
+      "attrs": {
+        "access_group_id": {
+          "description": "The group id that the dynamic rule is assigned to.",
+          "source": "iam-access-groups",
+          "schema": "Rule"
+        },
+        "conditions.claim": {
+          "description": "The claim to evaluate against. This will be found in the `ext` claims of a user's login request.",
+          "api_required": true,
+          "source": "iam-access-groups",
+          "schema": "Rule"
+        },
+        "conditions.operator": {
+          "enum": [
+            "EQUALS",
+            "EQUALS_IGNORE_CASE",
+            "IN",
+            "NOT_EQUALS_IGNORE_CASE",
+            "NOT_EQUALS",
+            "CONTAINS"
+          ],
+          "description": "The operation to perform on the claim.",
+          "api_required": true,
+          "source": "iam-access-groups",
+          "schema": "Rule"
+        },
+        "conditions.value": {
+          "description": "The stringified JSON value that the claim is compared to using the operator.",
+          "api_required": true,
+          "source": "iam-access-groups",
+          "schema": "Rule"
+        },
+        "expiration": {
+          "description": "Session duration in hours. Access group membership is revoked after this time period expires. Users must log back in to refresh their access group membership. Must be \u2265 1.",
+          "source": "iam-access-groups",
+          "schema": "Rule"
+        },
+        "name": {
+          "description": "The name of the rule.",
+          "source": "iam-access-groups",
+          "schema": "Rule"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_access_group_members",
+      "kind": "resource",
+      "schema": "Group",
+      "spec": "iam-access-groups",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_iam_access_group_template",
+      "kind": "resource",
+      "schema": "Group",
+      "spec": "iam-access-groups",
+      "score": 0.3013,
+      "attrs": {
+        "description": {
+          "description": "The group's description - if defined.",
+          "source": "iam-access-groups",
+          "schema": "Group"
+        },
+        "group.assertions.rules.name": {
+          "description": "The group's name.",
+          "source": "iam-access-groups",
+          "schema": "Group"
+        },
+        "group.description": {
+          "description": "The group's description - if defined.",
+          "source": "iam-access-groups",
+          "schema": "Group"
+        },
+        "group.name": {
+          "description": "The group's name.",
+          "source": "iam-access-groups",
+          "schema": "Group"
+        },
+        "name": {
+          "description": "The group's name.",
+          "source": "iam-access-groups",
+          "schema": "Group"
+        },
+        "policy_template_references.id": {
+          "description": "The group's access group ID.",
+          "source": "iam-access-groups",
+          "schema": "Group"
+        },
+        "group.assertions.rules.conditions.claim": {
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "The key in the key:value pair",
+          "source": "iam-access-groups",
+          "schema": "/v1/group_templates:post"
+        },
+        "group.assertions.rules.conditions.value": {
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "The value in the key:value pair",
+          "source": "iam-access-groups",
+          "schema": "/v1/group_templates:post"
+        },
+        "group.assertions.rules.expiration": {
+          "min": 1,
+          "description": "Session duration in hours. Access group membership is revoked after this time period expires. Users must log back in to refresh their access group membership.",
+          "api_required": true,
+          "source": "iam-access-groups",
+          "schema": "RuleRequest"
+        },
+        "group.assertions.rules.realm_name": {
+          "pattern": "^[a-zA-Z0-9!@#$%^&*()_+{}:;\"'<>,.?/|\\-\\s]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "The identity provider (IdP) URL",
+          "source": "iam-access-groups",
+          "schema": "/v1/group_templates:post"
+        },
+        "group.members.services": {
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Array of service IDs to add to the template",
+          "source": "iam-access-groups",
+          "schema": "/v1/group_templates:post"
+        },
+        "group.members.users": {
+          "pattern": "^[a-zA-Z0-9!@#$%^&*()_+{}:;\"'<>,.?/|\\-\\s]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Array of enterprise users to add to the template. All enterprise users that you add to the template must be invited to the child accounts where the template is assigned.",
+          "source": "iam-access-groups",
+          "schema": "/v1/group_templates:post"
+        },
+        "policy_template_references.version": {
+          "pattern": "^[0-9]+$",
+          "min_len": 1,
+          "max_len": 2,
+          "description": "Policy template version",
+          "source": "iam-access-groups",
+          "schema": "/v1/group_templates:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_access_group_template_assignment",
+      "kind": "resource",
+      "schema": "TemplateAssignmentRequest",
+      "spec": "iam-access-groups",
+      "score": 0.64,
+      "attrs": {
+        "target": {
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "The unique identifier of the entity to which the template should be assigned.",
+          "api_required": true,
+          "source": "iam-access-groups",
+          "schema": "TemplateAssignmentRequest"
+        },
+        "target_type": {
+          "enum": [
+            "Account",
+            "AccountGroup"
+          ],
+          "pattern": "^[a-zA-Z-]+$",
+          "min_len": 7,
+          "max_len": 12,
+          "description": "The type of the entity to which the template should be assigned, e.g. 'Account', 'AccountGroup', etc.",
+          "api_required": true,
+          "source": "iam-access-groups",
+          "schema": "TemplateAssignmentRequest"
+        },
+        "template_id": {
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "The unique identifier of the template to be assigned.",
+          "api_required": true,
+          "source": "iam-access-groups",
+          "schema": "TemplateAssignmentRequest"
+        },
+        "template_version": {
+          "pattern": "^[0-9]+$",
+          "min_len": 1,
+          "max_len": 2,
+          "description": "The version number of the template to be assigned.",
+          "api_required": true,
+          "source": "iam-access-groups",
+          "schema": "TemplateAssignmentRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_access_group_template_version",
+      "kind": "resource",
+      "schema": "Group",
+      "spec": "iam-access-groups",
+      "score": 0.2975,
+      "attrs": {
+        "description": {
+          "description": "The group's description - if defined.",
+          "source": "iam-access-groups",
+          "schema": "Group"
+        },
+        "group.assertions.rules.name": {
+          "description": "The group's name.",
+          "source": "iam-access-groups",
+          "schema": "Group"
+        },
+        "group.description": {
+          "description": "The group's description - if defined.",
+          "source": "iam-access-groups",
+          "schema": "Group"
+        },
+        "group.name": {
+          "description": "The group's name.",
+          "source": "iam-access-groups",
+          "schema": "Group"
+        },
+        "name": {
+          "description": "The group's name.",
+          "source": "iam-access-groups",
+          "schema": "Group"
+        },
+        "policy_template_references.id": {
+          "description": "The group's access group ID.",
+          "source": "iam-access-groups",
+          "schema": "Group"
+        },
+        "group.assertions.rules.conditions.claim": {
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "The key in the key:value pair",
+          "source": "iam-access-groups",
+          "schema": "/v1/group_templates:post"
+        },
+        "group.assertions.rules.conditions.value": {
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "The value in the key:value pair",
+          "source": "iam-access-groups",
+          "schema": "/v1/group_templates:post"
+        },
+        "group.assertions.rules.expiration": {
+          "min": 1,
+          "description": "Session duration in hours. Access group membership is revoked after this time period expires. Users must log back in to refresh their access group membership.",
+          "api_required": true,
+          "source": "iam-access-groups",
+          "schema": "RuleRequest"
+        },
+        "group.assertions.rules.realm_name": {
+          "pattern": "^[a-zA-Z0-9!@#$%^&*()_+{}:;\"'<>,.?/|\\-\\s]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "The identity provider (IdP) URL",
+          "source": "iam-access-groups",
+          "schema": "/v1/group_templates:post"
+        },
+        "group.members.services": {
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Array of service IDs to add to the template",
+          "source": "iam-access-groups",
+          "schema": "/v1/group_templates:post"
+        },
+        "group.members.users": {
+          "pattern": "^[a-zA-Z0-9!@#$%^&*()_+{}:;\"'<>,.?/|\\-\\s]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Array of enterprise users to add to the template. All enterprise users that you add to the template must be invited to the child accounts where the template is assigned.",
+          "source": "iam-access-groups",
+          "schema": "/v1/group_templates:post"
+        },
+        "policy_template_references.version": {
+          "pattern": "^[0-9]+$",
+          "min_len": 1,
+          "max_len": 2,
+          "description": "Policy template version",
+          "source": "iam-access-groups",
+          "schema": "/v1/group_templates:post"
+        },
+        "template_id": {
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "template id schema",
+          "api_required": true,
+          "source": "iam-access-groups",
+          "schema": "params:post:/v1/group_templates/{template_id}/versions"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_access_group",
+      "kind": "data",
+      "schema": "/v2/groups/{access_group_id}:patch",
+      "spec": "iam-access-groups",
+      "score": 0.4333,
+      "attrs": {
+        "groups.description": {
+          "description": "Assign an optional description for the access group. This field has a limit of 250 characters.",
+          "source": "iam-access-groups",
+          "schema": "/v2/groups/{access_group_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_access_group_template_assignment",
+      "kind": "data",
+      "schema": "TemplateAssignmentRequest",
+      "spec": "iam-access-groups",
+      "score": 0.43,
+      "attrs": {
+        "target": {
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "The unique identifier of the entity to which the template should be assigned.",
+          "api_required": true,
+          "source": "iam-access-groups",
+          "schema": "TemplateAssignmentRequest"
+        },
+        "template_id": {
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "The unique identifier of the template to be assigned.",
+          "api_required": true,
+          "source": "iam-access-groups",
+          "schema": "TemplateAssignmentRequest"
+        },
+        "template_version": {
+          "pattern": "^[0-9]+$",
+          "min_len": 1,
+          "max_len": 2,
+          "description": "The version number of the template to be assigned.",
+          "api_required": true,
+          "source": "iam-access-groups",
+          "schema": "TemplateAssignmentRequest"
+        },
+        "status": {
+          "enum": [
+            "accepted",
+            "in_progress",
+            "succeeded",
+            "failed",
+            "superseded"
+          ],
+          "description": "The status of the assignment (e.g. 'accepted', 'in_progress', 'succeeded', 'failed', 'superseded')",
+          "api_required": true,
+          "source": "iam-access-groups",
+          "schema": "ListTemplateAssignmentResponse"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_access_group_template_versions",
+      "kind": "data",
+      "schema": "params:post:/v1/group_templates/{template_id}/versions",
+      "spec": "iam-access-groups",
+      "score": 0.4357,
+      "attrs": {
+        "template_id": {
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "template id schema",
+          "api_required": true,
+          "source": "iam-access-groups",
+          "schema": "params:post:/v1/group_templates/{template_id}/versions"
+        }
+      }
+    }
+  ]
+}

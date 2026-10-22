@@ -1,0 +1,3947 @@
+{
+  "package": "satellite",
+  "resources": [
+    {
+      "name": "ibm_satellite_cluster",
+      "function": "ResourceIBMSatelliteCluster",
+      "package": "satellite",
+      "kind": "resource",
+      "description": "Manages ibm_satellite_cluster. The unique name for the new IBM Cloud Satellite cluster",
+      "attributes": {
+        "calico_ip_autodetection": {
+          "name": "calico_ip_autodetection",
+          "type": "map",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Set IP autodetection to use correct interface for Calico",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "CRN of resource instance",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "crn_token": {
+          "name": "crn_token",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "sensitive": true,
+          "description": "The IBM Cloud Identity and Access Management (IAM) service CRN token for the service that creates the cluster."
+        },
+        "default_worker_pool_labels": {
+          "name": "default_worker_pool_labels",
+          "type": "map",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Labels on the default worker pool",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "disable_public_service_endpoint": {
+          "name": "disable_public_service_endpoint",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Boolean value true if Public service endpoint to be disabled",
+          "default": "false"
+        },
+        "enable_config_admin": {
+          "name": "enable_config_admin",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Grant cluster admin access to Satellite Config to manage Kubernetes resources."
+        },
+        "entitlement": {
+          "name": "entitlement",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Entitlement option reduces additional OCP Licence cost in Openshift Clusters"
+        },
+        "host_labels": {
+          "name": "host_labels",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Labels that describe a Satellite host for default workerpool",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "infrastructure_topology": {
+          "name": "infrastructure_topology",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "String value for single node cluster option. Available options: single-replica, highly-available (default: highly-available)",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "single-replica",
+              "highly-available"
+            ]
+          }
+        },
+        "ingress_hostname": {
+          "name": "ingress_hostname",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "ingress_secret": {
+          "name": "ingress_secret",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true
+        },
+        "kube_version": {
+          "name": "kube_version",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The OpenShift Container Platform version"
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name or ID of the Satellite location"
+        },
+        "master_status": {
+          "name": "master_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "master_url": {
+          "name": "master_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The unique name for the new IBM Cloud Satellite cluster"
+        },
+        "operating_system": {
+          "name": "operating_system",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Operating system of the default worker pool. Options are REDHAT_7_64, REDHAT_8_64, or RHCOS."
+        },
+        "patch_version": {
+          "name": "patch_version",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Kubernetes patch version"
+        },
+        "pod_subnet": {
+          "name": "pod_subnet",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "User provided value for the pod subnet"
+        },
+        "private_service_endpoint_enabled": {
+          "name": "private_service_endpoint_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "private_service_endpoint_url": {
+          "name": "private_service_endpoint_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "public_service_endpoint_enabled": {
+          "name": "public_service_endpoint_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "public_service_endpoint_url": {
+          "name": "public_service_endpoint_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "pull_secret": {
+          "name": "pull_secret",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The RedHat pull secret to create the OpenShift cluster"
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "ID of the resource group."
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group name in which resource is provisioned"
+        },
+        "retry_patch_version": {
+          "name": "retry_patch_version",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Argument which helps to retry the patch version updates on worker nodes. Increment the value to retry the patch updates if the previous apply fails"
+        },
+        "service_subnet": {
+          "name": "service_subnet",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "User provided value for service subnet"
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The lifecycle state of the cluster."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "List of tags for the resources",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^[A-Za-z0-9:_ .-]+$"
+          },
+          "elem": {
+            "kind": "schema",
+            "type": "string",
+            "validate": {
+              "kind": "invoke",
+              "func_name": "tags"
+            }
+          }
+        },
+        "wait_for_worker_update": {
+          "name": "wait_for_worker_update",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Wait for worker node to update during kube version update.",
+          "default": "true"
+        },
+        "worker_count": {
+          "name": "worker_count",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The number of worker nodes per zone in the default worker pool. Required when '--host-label' is specified. (default: 0)"
+        },
+        "zones": {
+          "name": "zones",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Zone info for worker pool",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Zone for the worker pool in a multizone cluster"
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9:_ .-]+$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_satellite_cluster_worker_pool",
+      "function": "ResourceIBMSatelliteClusterWorkerPool",
+      "package": "satellite",
+      "kind": "resource",
+      "description": "Manages ibm_satellite_cluster_worker_pool. The name for the worker pool",
+      "attributes": {
+        "cluster": {
+          "name": "cluster",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The unique name for the new IBM Cloud Satellite cluster"
+        },
+        "disk_encryption": {
+          "name": "disk_encryption",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Disk encryption for worker node"
+        },
+        "entitlement": {
+          "name": "entitlement",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Entitlement option reduces additional OCP Licence cost in Openshift Clusters"
+        },
+        "flavor": {
+          "name": "flavor",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The flavor defines the amount of virtual CPU, memory, and disk space that is set up in each worker node"
+        },
+        "host_labels": {
+          "name": "host_labels",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "Labels that describe a Satellite host",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "isolation": {
+          "name": "isolation",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name for the worker pool"
+        },
+        "operating_system": {
+          "name": "operating_system",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Operating system of the worker pool. Options are REDHAT_7_64, REDHAT_8_64, or RHCOS."
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "ID of the resource group."
+        },
+        "worker_count": {
+          "name": "worker_count",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Specify the desired number of workers per zone in this worker pool"
+        },
+        "worker_pool_labels": {
+          "name": "worker_pool_labels",
+          "type": "map",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Labels on all the workers in the worker pool",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "zones": {
+          "name": "zones",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Zone info for worker pool",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Zone for the worker pool in a multizone cluster"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_satellite_cluster_worker_pool_zone_attachment",
+      "function": "ResourceIbmSatelliteClusterWorkerPoolZoneAttachment",
+      "package": "satellite",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_satellite_cluster_worker_pool_zone_attachment resource.",
+      "attributes": {
+        "autobalance_enabled": {
+          "name": "autobalance_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "cluster": {
+          "name": "cluster",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true
+        },
+        "messages": {
+          "name": "messages",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Filter features by a list of comma separated collections.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The ID of the resource group that the Satellite location is in. To list the resource group ID of the location, use the `GET /v2/satellite/getController` API method."
+        },
+        "worker_count": {
+          "name": "worker_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Number of workers"
+        },
+        "worker_pool": {
+          "name": "worker_pool",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true
+        },
+        "zone": {
+          "name": "zone",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "validate": {
+            "kind": "zone",
+            "func_name": "name_heuristic"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_satellite_endpoint",
+      "function": "ResourceIBMSatelliteEndpoint",
+      "package": "satellite",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_satellite_endpoint resource.",
+      "attributes": {
+        "certs": {
+          "name": "certs",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "The certs.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "client": {
+                "name": "client",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "description": "The CA which Satellite Link trust when receiving the connection from the client application.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "cert": {
+                      "name": "cert",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "max_items": 1,
+                      "description": "The root cert or the self-signed cert of the client application.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "file_contents": {
+                            "name": "file_contents",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "The content of the cert. The certificate file must be in Privacy-enhanced Electronic Mail (PEM) format."
+                          },
+                          "filename": {
+                            "name": "filename",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "The filename of the cert."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "connector": {
+                "name": "connector",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "description": "The cert which Satellite Link connector provide to identify itself for connecting to the client/server application.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "cert": {
+                      "name": "cert",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "max_items": 1,
+                      "description": "The end-entity cert. This is required when the key is defined.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "file_contents": {
+                            "name": "file_contents",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "The content of the cert. The certificate file must be in Privacy-enhanced Electronic Mail (PEM) format."
+                          },
+                          "filename": {
+                            "name": "filename",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "The filename of the cert."
+                          }
+                        }
+                      }
+                    },
+                    "key": {
+                      "name": "key",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "max_items": 1,
+                      "description": "The private key of the end-entity certificate. This is required when the cert is defined.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "file_contents": {
+                            "name": "file_contents",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "The content of the key. The private key file must be in Privacy-enhanced Electronic Mail (PEM) format."
+                          },
+                          "filename": {
+                            "name": "filename",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "The name of the key."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "server": {
+                "name": "server",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "description": "The CA which Satellite Link trust when sending the connection to server application.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "cert": {
+                      "name": "cert",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "max_items": 1,
+                      "description": "The root cert or the self-signed cert of the server application.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "file_contents": {
+                            "name": "file_contents",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "The content of the cert. The certificate file must be in Privacy-enhanced Electronic Mail (PEM) format."
+                          },
+                          "filename": {
+                            "name": "filename",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "The filename of the cert."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "client_host": {
+          "name": "client_host",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The hostname which Satellite Link server listen on for the on-location endpoint, or the hostname which the connector server listen on for the on-cloud endpoint destiantion."
+        },
+        "client_mutual_auth": {
+          "name": "client_mutual_auth",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Whether enable mutual auth in the client application side, when client_protocol is 'tls' or 'https', this field is required.",
+          "default": "false"
+        },
+        "client_port": {
+          "name": "client_port",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The port which Satellite Link server listen on for the on-location, or the port which the connector server listen on for the on-cloud endpoint destiantion.",
+          "validate": {
+            "kind": "port",
+            "func_name": "name_heuristic",
+            "min": 1,
+            "max": 65535
+          }
+        },
+        "client_protocol": {
+          "name": "client_protocol",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The protocol in the client application side.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "http",
+              "http-tunnel",
+              "https",
+              "tcp",
+              "tls",
+              "udp"
+            ]
+          }
+        },
+        "connection_type": {
+          "name": "connection_type",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The type of the endpoint.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "cloud",
+              "location"
+            ]
+          }
+        },
+        "connector_port": {
+          "name": "connector_port",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The connector port.",
+          "validate": {
+            "kind": "port",
+            "func_name": "name_heuristic",
+            "min": 1,
+            "max": 65535
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The time when the Endpoint is created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The service or person who created the endpoint. Must be 1000 characters or fewer."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Service instance associated with this location.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "display_name": {
+          "name": "display_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The display name of the endpoint. Endpoint names must start with a letter and end with an alphanumeric character, can contain letters, numbers, and hyphen (-), and must be 63 characters or fewer."
+        },
+        "endpoint_id": {
+          "name": "endpoint_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Endpoint ID."
+        },
+        "last_change": {
+          "name": "last_change",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The last time modify the Endpoint configurations."
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Location ID."
+        },
+        "performance": {
+          "name": "performance",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The last performance data of the endpoint.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "bandwidth": {
+                "name": "bandwidth",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Average Tatal Bandwidth of last two minutes, unit is Byte/s."
+              },
+              "connection": {
+                "name": "connection",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Concurrent connections number of moment when probe read the data."
+              },
+              "connectors": {
+                "name": "connectors",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The last performance data of the endpoint from each Connector.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "connections": {
+                      "name": "connections",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "Concurrent connections number of moment when probe read the data from the Connector."
+                    },
+                    "connector": {
+                      "name": "connector",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The name of the connector reported the performance data."
+                    },
+                    "rx_bw": {
+                      "name": "rx_bw",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "Average Transmitted (to Location) Bandwidth of last two minutes read from the Connector, unit is Byte/s."
+                    },
+                    "tx_bw": {
+                      "name": "tx_bw",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "Average Transmitted (to Location) Bandwidth of last two minutes read from the Connector, unit is Byte/s."
+                    }
+                  }
+                }
+              },
+              "rx_bandwidth": {
+                "name": "rx_bandwidth",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Average Receive (to Cloud) Bandwidth of last two minutes, unit is Byte/s."
+              },
+              "tx_bandwidth": {
+                "name": "tx_bandwidth",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Average Transmitted (to Location) Bandwidth of last two minutes, unit is Byte/s."
+              }
+            }
+          }
+        },
+        "reject_unauth": {
+          "name": "reject_unauth",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Whether reject any connection to the server application which is not authorized with the list of supplied CAs in the fields certs.server_cert.",
+          "default": "false"
+        },
+        "server_host": {
+          "name": "server_host",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The host name or IP address of the server endpoint. For 'http-tunnel' protocol, server_host can start with '*.' , which means a wildcard to it's sub domains. Such as '*.example.com' can accept request to 'api.example.com' and 'www.example.com'."
+        },
+        "server_mutual_auth": {
+          "name": "server_mutual_auth",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Whether enable mutual auth in the server application side, when client_protocol is 'tls', this field is required.",
+          "default": "false"
+        },
+        "server_port": {
+          "name": "server_port",
+          "type": "int",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The port number of the server endpoint. For 'http-tunnel' protocol, server_port can be 0, which means any port. Such as 0 is good for 80 (http) and 443 (https).",
+          "validate": {
+            "kind": "port",
+            "func_name": "name_heuristic",
+            "min": 1,
+            "max": 65535
+          }
+        },
+        "server_protocol": {
+          "name": "server_protocol",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The protocol in the server application side. This parameter will change to default value if it is omitted even when using PATCH API. If client_protocol is 'udp', server_protocol must be 'udp'. If client_protocol is 'tcp'/'http', server_protocol could be 'tcp'/'tls' and default to 'tcp'. If client_protocol is 'tls'/'https', server_protocol could be 'tcp'/'tls' and default to 'tls'. If client_protocol is 'http-tunnel', server_protocol must be 'tcp'.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "tcp",
+              "tls",
+              "udp"
+            ]
+          }
+        },
+        "service_name": {
+          "name": "service_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The service name of the endpoint."
+        },
+        "sni": {
+          "name": "sni",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The server name indicator (SNI) which used to connect to the server endpoint. Only useful if server side requires SNI."
+        },
+        "sources": {
+          "name": "sources",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Whether the source is enabled for the endpoint."
+              },
+              "last_change": {
+                "name": "last_change",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The last time modify the Endpoint configurations."
+              },
+              "pending": {
+                "name": "pending",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Whether the source has been enabled on this endpoint."
+              },
+              "source_id": {
+                "name": "source_id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The Source ID."
+              }
+            }
+          }
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Whether the Endpoint is active or not."
+        },
+        "timeout": {
+          "name": "timeout",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The inactivity timeout in the Endpoint side.",
+          "validate": {
+            "kind": "int_range",
+            "func_name": "IntBetween",
+            "min": 1,
+            "max": 180
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "client_protocol",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "http, http-tunnel, https, tcp, tls, udp"
+        },
+        {
+          "identifier": "connection_type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "cloud, location"
+        },
+        {
+          "identifier": "server_protocol",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "tcp, tls, udp"
+        },
+        {
+          "identifier": "timeout",
+          "kind": "IntBetween",
+          "min": "1",
+          "max": "180"
+        }
+      ]
+    },
+    {
+      "name": "ibm_satellite_host",
+      "function": "ResourceIBMSatelliteHost",
+      "package": "satellite",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_satellite_host resource.",
+      "attributes": {
+        "cluster": {
+          "name": "cluster",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The name or ID of a Satellite location or cluster to assign the host to"
+        },
+        "host_id": {
+          "name": "host_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The specific host ID to assign to a Satellite location or cluster"
+        },
+        "host_provider": {
+          "name": "host_provider",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Host Provider"
+        },
+        "host_state": {
+          "name": "host_state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Health status of the host"
+        },
+        "labels": {
+          "name": "labels",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "List of labels for the host",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name or ID of the Satellite location"
+        },
+        "wait_till": {
+          "name": "wait_till",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Wait until location is normal",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "location_normal"
+            ]
+          }
+        },
+        "worker_pool": {
+          "name": "worker_pool",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The name or ID of the worker pool within the cluster to assign the host to"
+        },
+        "zone": {
+          "name": "zone",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The zone within the cluster to assign the host to",
+          "validate": {
+            "kind": "zone",
+            "func_name": "name_heuristic"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "wait_till",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "location_normal"
+        }
+      ]
+    },
+    {
+      "name": "ibm_satellite_link",
+      "function": "ResourceIBMSatelliteLink",
+      "package": "satellite",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_satellite_link resource.",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Timestamp of creation of location."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "CRN of the Location.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Description of the location."
+        },
+        "last_change": {
+          "name": "last_change",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Timestamp of latest modification of location."
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Location ID."
+        },
+        "performance": {
+          "name": "performance",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The last performance data of the Location.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "avg_latency": {
+                "name": "avg_latency",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Average latency calculated form latency of each Connector between Tunnel Server, unit is ms. -1 means no Connector established Tunnel."
+              },
+              "bandwidth": {
+                "name": "bandwidth",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Average Tatal Bandwidth of last two minutes, unit is Byte/s."
+              },
+              "connectors": {
+                "name": "connectors",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The last performance data of the Location read from each Connector.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "connector": {
+                      "name": "connector",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The name of the connector reported the performance data."
+                    },
+                    "latency": {
+                      "name": "latency",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "Latency between Connector and the Tunnel Server it connected."
+                    },
+                    "rx_bw": {
+                      "name": "rx_bw",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "Average Transmitted (to Location) Bandwidth of last two minutes read from the Connector, unit is Byte/s."
+                    },
+                    "tx_bw": {
+                      "name": "tx_bw",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "Average Transmitted (to Location) Bandwidth of last two minutes read from the Connector, unit is Byte/s."
+                    }
+                  }
+                }
+              },
+              "health_status": {
+                "name": "health_status",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Tunnels health status based on the Tunnels number established. Down(0)/Critical(1)/Up(\u003e=2)."
+              },
+              "rx_bandwidth": {
+                "name": "rx_bandwidth",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Average Receive (to Cloud) Bandwidth of last two minutes, unit is Byte/s."
+              },
+              "tunnels": {
+                "name": "tunnels",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Tunnels number estbalished from the Location."
+              },
+              "tx_bandwidth": {
+                "name": "tx_bandwidth",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Average Transmitted (to Location) Bandwidth of last two minutes, unit is Byte/s."
+              }
+            }
+          }
+        },
+        "satellite_link_host": {
+          "name": "satellite_link_host",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Satellite Link hostname of the location."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Enabled/Disabled."
+        },
+        "ws_endpoint": {
+          "name": "ws_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The ws endpoint of the location."
+        }
+      }
+    },
+    {
+      "name": "ibm_satellite_location",
+      "function": "ResourceIBMSatelliteLocation",
+      "package": "satellite",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_satellite_location resource.",
+      "attributes": {
+        "capabilities": {
+          "name": "capabilities",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The satellite capabilities attached to the location",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "on-prem"
+            ]
+          },
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "coreos_enabled": {
+          "name": "coreos_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Enable Red Hat CoreOS features within the Satellite location"
+        },
+        "cos_config": {
+          "name": "cos_config",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "COSBucket - IBM Cloud Object Storage bucket configuration details",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "bucket": {
+                "name": "bucket",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false
+              },
+              "endpoint": {
+                "name": "endpoint",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false
+              },
+              "region": {
+                "name": "region",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false
+              }
+            }
+          }
+        },
+        "cos_credentials": {
+          "name": "cos_credentials",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "COSAuthorization - IBM Cloud Object Storage authorization keys",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "access_key_id": {
+                "name": "access_key_id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The HMAC secret access key ID"
+              },
+              "secret_access_key": {
+                "name": "secret_access_key",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The HMAC secret access key"
+              }
+            }
+          }
+        },
+        "created_on": {
+          "name": "created_on",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Created Date"
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Location CRN",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "A description of the new Satellite location"
+        },
+        "host_attached_count": {
+          "name": "host_attached_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The total number of hosts that are attached to the Satellite location.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "host_available_count": {
+          "name": "host_available_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The available number of hosts that can be assigned to a cluster resource in the Satellite location.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "ingress_hostname": {
+          "name": "ingress_hostname",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "ingress_secret": {
+          "name": "ingress_secret",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "A unique name for the new Satellite location"
+        },
+        "logging_account_id": {
+          "name": "logging_account_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The account ID for IBM Log Analysis with LogDNA log forwarding"
+        },
+        "managed_from": {
+          "name": "managed_from",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The IBM Cloud metro from which the Satellite location is managed"
+        },
+        "physical_address": {
+          "name": "physical_address",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "An optional physical address of the new Satellite location which is deployed on premise",
+          "validate": {
+            "kind": "string_len",
+            "func_name": "StringLenBetween",
+            "max_len": 400
+          }
+        },
+        "pod_subnet": {
+          "name": "pod_subnet",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Custom subnet CIDR to provide private IP addresses for pods"
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "ID of the resource group."
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of the resource group"
+        },
+        "service_subnet": {
+          "name": "service_subnet",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Custom subnet CIDR to provide private IP addresses for services"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "List of tags associated with resource instance",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^[A-Za-z0-9:_ .-]+$"
+          },
+          "elem": {
+            "kind": "schema",
+            "type": "string",
+            "validate": {
+              "kind": "invoke",
+              "func_name": "tags"
+            }
+          }
+        },
+        "zones": {
+          "name": "zones",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The names of at least three high availability zones to use for the location",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "capabilities",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "on-prem"
+        },
+        {
+          "identifier": "physical_address",
+          "kind": "StringLenBetween",
+          "max_len": 400
+        },
+        {
+          "identifier": "tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9:_ .-]+$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_satellite_location_nlb_dns",
+      "function": "ResourceIBMSatelliteLocationNlbDns",
+      "package": "satellite",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_satellite_location_nlb_dns resource.",
+      "attributes": {
+        "ips": {
+          "name": "ips",
+          "type": "set",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true
+        }
+      }
+    },
+    {
+      "name": "ibm_satellite_storage_assignment",
+      "function": "ResourceIBMSatelliteStorageAssignment",
+      "package": "satellite",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_satellite_storage_assignment resource.",
+      "attributes": {
+        "assignment_name": {
+          "name": "assignment_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of the Assignment."
+        },
+        "assignment_type": {
+          "name": "assignment_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Type of Assignment."
+        },
+        "cluster": {
+          "name": "cluster",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "ID of the Satellite cluster or Service Cluster that you want to apply the configuration to."
+        },
+        "config": {
+          "name": "config",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Storage Configuration Name or ID."
+        },
+        "config_uuid": {
+          "name": "config_uuid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Universally Unique IDentifier (UUID) of the Storage Configuration."
+        },
+        "config_version": {
+          "name": "config_version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Storage Configuration Version."
+        },
+        "config_version_uuid": {
+          "name": "config_version_uuid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Universally Unique IDentifier (UUID) of the Storage Configuration Version."
+        },
+        "controller": {
+          "name": "controller",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The Name or ID of the Satellite Location."
+        },
+        "created": {
+          "name": "created",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Time of Creation of the Assignment."
+        },
+        "groups": {
+          "name": "groups",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "One or more cluster groups on which you want to apply the configuration. Note that at least one cluster group is required. ",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          },
+          "conflicts_with": [
+            "cluster"
+          ]
+        },
+        "is_assignment_upgrade_available": {
+          "name": "is_assignment_upgrade_available",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Whether an Upgrade is Available for the Assignment."
+        },
+        "owner": {
+          "name": "owner",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Owner of the Assignment."
+        },
+        "rollout_error_count": {
+          "name": "rollout_error_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Rollout Error Count of the Assignment."
+        },
+        "rollout_success_count": {
+          "name": "rollout_success_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Rollout Success Count of the Assignment."
+        },
+        "sat_cluster": {
+          "name": "sat_cluster",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the Satellite cluster that you applied the configuration to."
+        },
+        "svc_cluster": {
+          "name": "svc_cluster",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the Service Cluster that you applied the configuration to."
+        },
+        "update_config_revision": {
+          "name": "update_config_revision",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Updating an assignment to the latest available storage configuration version.",
+          "default": "false"
+        },
+        "uuid": {
+          "name": "uuid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "force_new": true,
+          "description": "The Universally Unique IDentifier (UUID) of the Assignment."
+        }
+      }
+    },
+    {
+      "name": "ibm_satellite_storage_configuration",
+      "function": "ResourceIBMSatelliteStorageConfiguration",
+      "package": "satellite",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_satellite_storage_configuration resource.",
+      "attributes": {
+        "config_name": {
+          "name": "config_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Name of the Storage Configuration."
+        },
+        "config_version": {
+          "name": "config_version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Version of the Storage Configuration."
+        },
+        "delete_assignments": {
+          "name": "delete_assignments",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Set to delete all assignments during a configuration destroy.",
+          "default": "false"
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Location ID."
+        },
+        "storage_class_parameters": {
+          "name": "storage_class_parameters",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "schema",
+            "type": "map"
+          }
+        },
+        "storage_template_name": {
+          "name": "storage_template_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Storage Template Name."
+        },
+        "storage_template_version": {
+          "name": "storage_template_version",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Storage Template Version."
+        },
+        "update_assignments": {
+          "name": "update_assignments",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Set to update all assignments during a configuration update.",
+          "default": "false"
+        },
+        "user_config_parameters": {
+          "name": "user_config_parameters",
+          "type": "map",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "User Config Parameters to pass as a Map of string key-value.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "user_secret_parameters": {
+          "name": "user_secret_parameters",
+          "type": "map",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "sensitive": true,
+          "description": "User Secret Parameters to pass as a Map of string key-value.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "uuid": {
+          "name": "uuid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "force_new": true,
+          "description": "The Universally Unique IDentifier (UUID) of the Storage Configuration."
+        }
+      }
+    },
+    {
+      "name": "ibm_satellite_attach_host_script",
+      "function": "DataSourceIBMSatelliteAttachHostScript",
+      "package": "satellite",
+      "kind": "data",
+      "description": "Schema validation for the ibm_satellite_attach_host_script data source.",
+      "attributes": {
+        "coreos_host": {
+          "name": "coreos_host",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "If true, returns a CoreOS ignition file for the host. Otherwise, returns a RHEL attach script"
+        },
+        "custom_script": {
+          "name": "custom_script",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The custom script that has to be appended to generated host script file"
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A unique name for the new Satellite location"
+        },
+        "host_link_agent_endpoint": {
+          "name": "host_link_agent_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The satellite link agent endpoint, required for reduced firewall attach script"
+        },
+        "host_provider": {
+          "name": "host_provider",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false
+        },
+        "host_script": {
+          "name": "host_script",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Attach host script content"
+        },
+        "labels": {
+          "name": "labels",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "List of labels for the attach host",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "A unique name for the new Satellite location"
+        },
+        "script_dir": {
+          "name": "script_dir",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The directory where the satellite attach host script to be downloaded. Default is home directory"
+        },
+        "script_path": {
+          "name": "script_path",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The absolute path to the generated host script file"
+        }
+      }
+    },
+    {
+      "name": "ibm_satellite_cluster",
+      "function": "DataSourceIBMSatelliteCluster",
+      "package": "satellite",
+      "kind": "data",
+      "description": "Reads ibm_satellite_cluster. Name or id of the cluster",
+      "attributes": {
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "CRN of resource instance",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "health": {
+          "name": "health",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "infrastructure_topology": {
+          "name": "infrastructure_topology",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "String value for single node cluster option."
+        },
+        "ingress_hostname": {
+          "name": "ingress_hostname",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "ingress_secret": {
+          "name": "ingress_secret",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true
+        },
+        "kube_version": {
+          "name": "kube_version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Kubernetes version"
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name or id of the location"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name or id of the cluster"
+        },
+        "private_service_endpoint": {
+          "name": "private_service_endpoint",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "private_service_endpoint_url": {
+          "name": "private_service_endpoint_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "public_service_endpoint": {
+          "name": "public_service_endpoint",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "public_service_endpoint_url": {
+          "name": "public_service_endpoint_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "ID of the resource group."
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group name in which resource is provisioned"
+        },
+        "server_url": {
+          "name": "server_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The server URL"
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The lifecycle state of the cluster"
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the cluster"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^[A-Za-z0-9:_ .-]+$"
+          },
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "worker_count": {
+          "name": "worker_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Number of workers"
+        },
+        "worker_pools": {
+          "name": "worker_pools",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "default_worker_pool_labels": {
+                "name": "default_worker_pool_labels",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "flavour": {
+                "name": "flavour",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "host_labels": {
+                "name": "host_labels",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "isolation": {
+                "name": "isolation",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "size_per_zone": {
+                "name": "size_per_zone",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "validate": {
+                  "kind": "zone",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "zones": {
+                "name": "zones",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "worker_count": {
+                      "name": "worker_count",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    },
+                    "zone": {
+                      "name": "zone",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "validate": {
+                        "kind": "zone",
+                        "func_name": "name_heuristic"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "workers": {
+          "name": "workers",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9:_ .-]+$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_satellite_cluster_worker_pool",
+      "function": "DataSourceIBMSatelliteClusterWorkerPool",
+      "package": "satellite",
+      "kind": "data",
+      "description": "Reads ibm_satellite_cluster_worker_pool. worker pool name",
+      "attributes": {
+        "auto_scale_enabled": {
+          "name": "auto_scale_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Enable auto scalling for worker pool"
+        },
+        "cluster": {
+          "name": "cluster",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Cluster name"
+        },
+        "flavor": {
+          "name": "flavor",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The flavor of the satellite worker node"
+        },
+        "host_labels": {
+          "name": "host_labels",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Host labels on the workers",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "isolation": {
+          "name": "isolation",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Isolation of the worker node"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "worker pool name"
+        },
+        "openshift_license_source": {
+          "name": "openshift_license_source",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "License source for Openshift"
+        },
+        "operating_system": {
+          "name": "operating_system",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The operating system of the hosts in the worker pool"
+        },
+        "region": {
+          "name": "region",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Name of the region"
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "ID of the resource group"
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The state of the worker pool"
+        },
+        "worker_count": {
+          "name": "worker_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The number of workers that are attached"
+        },
+        "worker_pool_labels": {
+          "name": "worker_pool_labels",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Labels on all the workers in the worker pool",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "zones": {
+          "name": "zones",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "worker_count": {
+                "name": "worker_count",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "zone": {
+                "name": "zone",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "validate": {
+                  "kind": "zone",
+                  "func_name": "name_heuristic"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_satellite_cluster_worker_pool_zone_attachment",
+      "function": "DataSourceIBMSatelliteClusterWorkerPoolAttachment",
+      "package": "satellite",
+      "kind": "data",
+      "description": "Schema validation for the ibm_satellite_cluster_worker_pool_zone_attachment data source.",
+      "attributes": {
+        "autobalance_enabled": {
+          "name": "autobalance_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Auto enabled status"
+        },
+        "cluster": {
+          "name": "cluster",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name or id of the cluster"
+        },
+        "messages": {
+          "name": "messages",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Filter features by a list of comma separated collections.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The ID of the resource group that the Satellite location is in. To list the resource group ID of the location, use the `GET /v2/satellite/getController` API method."
+        },
+        "worker_count": {
+          "name": "worker_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Number of workers"
+        },
+        "worker_pool": {
+          "name": "worker_pool",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "worker pool name"
+        },
+        "zone": {
+          "name": "zone",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "worker pool zone name",
+          "validate": {
+            "kind": "zone",
+            "func_name": "name_heuristic"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_satellite_endpoint",
+      "function": "DataSourceIBMSatelliteEndpoint",
+      "package": "satellite",
+      "kind": "data",
+      "description": "Schema validation for the ibm_satellite_endpoint data source.",
+      "attributes": {
+        "certs": {
+          "name": "certs",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The certs. Once it is generated, this field will always be defined even it is unused until the cert/key is deleted.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "client": {
+                "name": "client",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The CA which Satellite Link trust when receiving the connection from the client application.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "cert": {
+                      "name": "cert",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The root cert or the self-signed cert of the client application.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "filename": {
+                            "name": "filename",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The filename of the cert."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "connector": {
+                "name": "connector",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The cert which Satellite Link connector provide to identify itself for connecting to the client/server application.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "cert": {
+                      "name": "cert",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The end-entity cert of the connector.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "filename": {
+                            "name": "filename",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The filename of the cert."
+                          }
+                        }
+                      }
+                    },
+                    "key": {
+                      "name": "key",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The private key of the connector.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "filename": {
+                            "name": "filename",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The name of the key."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "server": {
+                "name": "server",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The CA which Satellite Link trust when sending the connection to server application.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "cert": {
+                      "name": "cert",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The root cert or the self-signed cert of the server application.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "filename": {
+                            "name": "filename",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The filename of the cert."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "client_host": {
+          "name": "client_host",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The hostname which Satellite Link server listen on for the on-location endpoint, or the hostname which the connector server listen on for the on-cloud endpoint destiantion."
+        },
+        "client_mutual_auth": {
+          "name": "client_mutual_auth",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Whether enable mutual auth in the client application side, when client_protocol is 'tls' or 'https', this field is required."
+        },
+        "client_port": {
+          "name": "client_port",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The port which Satellite Link server listen on for the on-location, or the port which the connector server listen on for the on-cloud endpoint destiantion.",
+          "validate": {
+            "kind": "port",
+            "func_name": "name_heuristic",
+            "min": 1,
+            "max": 65535
+          }
+        },
+        "client_protocol": {
+          "name": "client_protocol",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The protocol in the client application side.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "http",
+              "http-tunnel",
+              "https",
+              "tcp",
+              "tls",
+              "udp"
+            ]
+          }
+        },
+        "connection_type": {
+          "name": "connection_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The type of the endpoint.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "cloud",
+              "location"
+            ]
+          }
+        },
+        "connector_port": {
+          "name": "connector_port",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The connector port.",
+          "validate": {
+            "kind": "port",
+            "func_name": "name_heuristic",
+            "min": 1,
+            "max": 65535
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The time when the Endpoint is created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The service or person who created the endpoint. Must be 1000 characters or fewer."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Service instance associated with this location.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "display_name": {
+          "name": "display_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The display name of the endpoint. Endpoint names must start with a letter and end with an alphanumeric character, can contain letters, numbers, and hyphen (-), and must be 63 characters or fewer."
+        },
+        "endpoint_id": {
+          "name": "endpoint_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Endpoint ID."
+        },
+        "last_change": {
+          "name": "last_change",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The last time modify the Endpoint configurations."
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Location ID."
+        },
+        "performance": {
+          "name": "performance",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The last performance data of the endpoint.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "bandwidth": {
+                "name": "bandwidth",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Average Tatal Bandwidth of last two minutes, unit is Byte/s."
+              },
+              "connection": {
+                "name": "connection",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Concurrent connections number of moment when probe read the data."
+              },
+              "connectors": {
+                "name": "connectors",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The last performance data of the endpoint from each Connector.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "connections": {
+                      "name": "connections",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Concurrent connections number of moment when probe read the data from the Connector."
+                    },
+                    "connector": {
+                      "name": "connector",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name of the connector reported the performance data."
+                    },
+                    "rx_bw": {
+                      "name": "rx_bw",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Average Transmitted (to Location) Bandwidth of last two minutes read from the Connector, unit is Byte/s."
+                    },
+                    "tx_bw": {
+                      "name": "tx_bw",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Average Transmitted (to Location) Bandwidth of last two minutes read from the Connector, unit is Byte/s."
+                    }
+                  }
+                }
+              },
+              "rx_bandwidth": {
+                "name": "rx_bandwidth",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Average Receive (to Cloud) Bandwidth of last two minutes, unit is Byte/s."
+              },
+              "tx_bandwidth": {
+                "name": "tx_bandwidth",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Average Transmitted (to Location) Bandwidth of last two minutes, unit is Byte/s."
+              }
+            }
+          }
+        },
+        "reject_unauth": {
+          "name": "reject_unauth",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Whether reject any connection to the server application which is not authorized with the list of supplied CAs in the fields certs.server_cert."
+        },
+        "server_host": {
+          "name": "server_host",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The host name or IP address of the server endpoint. For 'http-tunnel' protocol, server_host can start with '*.' , which means a wildcard to it's sub domains. Such as '*.example.com' can accept request to 'api.example.com' and 'www.example.com'."
+        },
+        "server_mutual_auth": {
+          "name": "server_mutual_auth",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Whether enable mutual auth in the server application side, when client_protocol is 'tls', this field is required."
+        },
+        "server_port": {
+          "name": "server_port",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The port number of the server endpoint. For 'http-tunnel' protocol, server_port can be 0, which means any port. Such as 0 is good for 80 (http) and 443 (https).",
+          "validate": {
+            "kind": "port",
+            "func_name": "name_heuristic",
+            "min": 1,
+            "max": 65535
+          }
+        },
+        "server_protocol": {
+          "name": "server_protocol",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The protocol in the server application side. This parameter will change to default value if it is omitted even when using PATCH API. If client_protocol is 'udp', server_protocol must be 'udp'. If client_protocol is 'tcp'/'http', server_protocol could be 'tcp'/'tls' and default to 'tcp'. If client_protocol is 'tls'/'https', server_protocol could be 'tcp'/'tls' and default to 'tls'. If client_protocol is 'http-tunnel', server_protocol must be 'tcp'.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "tcp",
+              "tls",
+              "udp"
+            ]
+          }
+        },
+        "service_name": {
+          "name": "service_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The service name of the endpoint."
+        },
+        "sni": {
+          "name": "sni",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The server name indicator (SNI) which used to connect to the server endpoint. Only useful if server side requires SNI."
+        },
+        "sources": {
+          "name": "sources",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Whether the source is enabled for the endpoint."
+              },
+              "last_change": {
+                "name": "last_change",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The last time modify the Endpoint configurations."
+              },
+              "pending": {
+                "name": "pending",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Whether the source has been enabled on this endpoint."
+              },
+              "source_id": {
+                "name": "source_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Source ID."
+              }
+            }
+          }
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Whether the Endpoint is active or not."
+        },
+        "timeout": {
+          "name": "timeout",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The inactivity timeout in the Endpoint side.",
+          "validate": {
+            "kind": "int_range",
+            "func_name": "IntBetween",
+            "min": 1,
+            "max": 180
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "client_protocol",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "http, http-tunnel, https, tcp, tls, udp"
+        },
+        {
+          "identifier": "connection_type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "cloud, location"
+        },
+        {
+          "identifier": "server_protocol",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "tcp, tls, udp"
+        },
+        {
+          "identifier": "timeout",
+          "kind": "IntBetween",
+          "min": "1",
+          "max": "180"
+        }
+      ]
+    },
+    {
+      "name": "ibm_satellite_link",
+      "function": "DataSourceIBMSatelliteLink",
+      "package": "satellite",
+      "kind": "data",
+      "description": "Schema validation for the ibm_satellite_link data source.",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Timestamp of creation of location."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Service instance associated with this location.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Description of the location."
+        },
+        "last_change": {
+          "name": "last_change",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Timestamp of latest modification of location."
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Location ID."
+        },
+        "performance": {
+          "name": "performance",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The last performance data of the Location.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "avg_latency": {
+                "name": "avg_latency",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Average latency calculated form latency of each Connector between Tunnel Server, unit is ms. -1 means no Connector established Tunnel."
+              },
+              "bandwidth": {
+                "name": "bandwidth",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Average Tatal Bandwidth of last two minutes, unit is Byte/s."
+              },
+              "connectors": {
+                "name": "connectors",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The last performance data of the Location read from each Connector.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "connector": {
+                      "name": "connector",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name of the connector reported the performance data."
+                    },
+                    "latency": {
+                      "name": "latency",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Latency between Connector and the Tunnel Server it connected."
+                    },
+                    "rx_bw": {
+                      "name": "rx_bw",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Average Transmitted (to Location) Bandwidth of last two minutes read from the Connector, unit is Byte/s."
+                    },
+                    "tx_bw": {
+                      "name": "tx_bw",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Average Transmitted (to Location) Bandwidth of last two minutes read from the Connector, unit is Byte/s."
+                    }
+                  }
+                }
+              },
+              "health_status": {
+                "name": "health_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Tunnels health status based on the Tunnels number established. Down(0)/Critical(1)/Up(\u003e=2)."
+              },
+              "rx_bandwidth": {
+                "name": "rx_bandwidth",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Average Receive (to Cloud) Bandwidth of last two minutes, unit is Byte/s."
+              },
+              "tunnels": {
+                "name": "tunnels",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Tunnels number estbalished from the Location."
+              },
+              "tx_bandwidth": {
+                "name": "tx_bandwidth",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Average Transmitted (to Location) Bandwidth of last two minutes, unit is Byte/s."
+              }
+            }
+          }
+        },
+        "satellite_link_host": {
+          "name": "satellite_link_host",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Satellite Link hostname of the location."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Enabled/Disabled."
+        },
+        "ws_endpoint": {
+          "name": "ws_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ws endpoint of the location."
+        }
+      }
+    },
+    {
+      "name": "ibm_satellite_location",
+      "function": "DataSourceIBMSatelliteLocation",
+      "package": "satellite",
+      "kind": "data",
+      "description": "Schema validation for the ibm_satellite_location data source.",
+      "attributes": {
+        "capabilities": {
+          "name": "capabilities",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The satellite capabilities attached to the location",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "on-prem"
+            ]
+          },
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "coreos_enabled": {
+          "name": "coreos_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "If Red Hat CoreOS features are enabled within the Satellite location"
+        },
+        "created_on": {
+          "name": "created_on",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Created Date"
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Location CRN",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A description of the new Satellite location"
+        },
+        "host_attached_count": {
+          "name": "host_attached_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The total number of hosts that are attached to the Satellite location.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "host_available_count": {
+          "name": "host_available_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The available number of hosts that can be assigned to a cluster resource in the Satellite location.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "hosts": {
+          "name": "hosts",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "cluster_name": {
+                "name": "cluster_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "host_id": {
+                "name": "host_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "host_labels": {
+                "name": "host_labels",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "host_name": {
+                "name": "host_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "ip_address": {
+                "name": "ip_address",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "validate": {
+                  "kind": "ipv4",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "zone": {
+                "name": "zone",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "validate": {
+                  "kind": "zone",
+                  "func_name": "name_heuristic"
+                }
+              }
+            }
+          }
+        },
+        "ingress_hostname": {
+          "name": "ingress_hostname",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "ingress_secret": {
+          "name": "ingress_secret",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "A unique name for the new Satellite location"
+        },
+        "logging_account_id": {
+          "name": "logging_account_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The account ID for IBM Log Analysis with LogDNA log forwarding"
+        },
+        "managed_from": {
+          "name": "managed_from",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IBM Cloud metro from which the Satellite location is managed"
+        },
+        "physical_address": {
+          "name": "physical_address",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An optional physical address of the new Satellite location which is deployed on premise",
+          "validate": {
+            "kind": "string_len",
+            "func_name": "StringLenBetween",
+            "max_len": 400
+          }
+        },
+        "pod_subnet": {
+          "name": "pod_subnet",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Custom subnet CIDR to provide private IP addresses for pods"
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the resource group"
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of the resource group"
+        },
+        "service_subnet": {
+          "name": "service_subnet",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Custom subnet CIDR to provide private IP addresses for services"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^[A-Za-z0-9:_ .-]+$"
+          },
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "zones": {
+          "name": "zones",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The names of at least three high availability zones to use for the location",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "capabilities",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "on-prem"
+        },
+        {
+          "identifier": "physical_address",
+          "kind": "StringLenBetween",
+          "max_len": 400
+        },
+        {
+          "identifier": "tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9:_ .-]+$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_satellite_location_nlb_dns",
+      "function": "DataSourceIBMSatelliteLocationNLBDNS",
+      "package": "satellite",
+      "kind": "data",
+      "description": "Schema validation for the ibm_satellite_location_nlb_dns data source.",
+      "attributes": {
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "A unique name of the Location"
+        },
+        "nlb_config": {
+          "name": "nlb_config",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of nlb config of Location",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "cluster": {
+                "name": "cluster",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Cluster Id."
+              },
+              "dns_type": {
+                "name": "dns_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of DNS."
+              },
+              "lb_hostname": {
+                "name": "lb_hostname",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Host Name of load Balancer."
+              },
+              "nlb_ips": {
+                "name": "nlb_ips",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": " NLB IPs.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "nlb_sub_domain": {
+                "name": "nlb_sub_domain",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "NLB Sub-Domain."
+              },
+              "secret_name": {
+                "name": "secret_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the secret."
+              },
+              "secret_namespace": {
+                "name": "secret_namespace",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Namespace of Secret."
+              },
+              "secret_status": {
+                "name": "secret_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Status of Secret."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": " Nlb Type."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_satellite_storage_assignment",
+      "function": "DataSourceIBMSatelliteStorageAssignment",
+      "package": "satellite",
+      "kind": "data",
+      "description": "Schema validation for the ibm_satellite_storage_assignment data source.",
+      "attributes": {
+        "assignment_name": {
+          "name": "assignment_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of the Assignment."
+        },
+        "assignment_type": {
+          "name": "assignment_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Type of Assignment."
+        },
+        "cluster": {
+          "name": "cluster",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the Satellite cluster or Service Cluster that you want to apply the configuration to."
+        },
+        "config": {
+          "name": "config",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Storage Configuration Name or ID."
+        },
+        "config_uuid": {
+          "name": "config_uuid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Universally Unique IDentifier (UUID) of the Storage Configuration."
+        },
+        "config_version": {
+          "name": "config_version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Storage Configuration Version."
+        },
+        "config_version_uuid": {
+          "name": "config_version_uuid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Universally Unique IDentifier (UUID) of the Storage Configuration Version."
+        },
+        "created": {
+          "name": "created",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Time of Creation of the Assignment."
+        },
+        "groups": {
+          "name": "groups",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "One or more cluster groups on which you want to apply the configuration. Note that at least one cluster group is required. ",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "is_assignment_upgrade_available": {
+          "name": "is_assignment_upgrade_available",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Whether an Upgrade is Available for the Assignment."
+        },
+        "owner": {
+          "name": "owner",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Owner of the Assignment."
+        },
+        "rollout_error_count": {
+          "name": "rollout_error_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Rollout Error Count of the Assignment."
+        },
+        "rollout_success_count": {
+          "name": "rollout_success_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Rollout Success Count of the Assignment."
+        },
+        "sat_cluster": {
+          "name": "sat_cluster",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the Satellite cluster that you applied the configuration to."
+        },
+        "svc_cluster": {
+          "name": "svc_cluster",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the Service Cluster that you applied the configuration to."
+        },
+        "uuid": {
+          "name": "uuid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Universally Unique IDentifier (UUID) of the Assignment."
+        }
+      }
+    },
+    {
+      "name": "ibm_satellite_storage_configuration",
+      "function": "DataSourceIBMSatelliteStorageConfiguration",
+      "package": "satellite",
+      "kind": "data",
+      "description": "Schema validation for the ibm_satellite_storage_configuration data source.",
+      "attributes": {
+        "config_name": {
+          "name": "config_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of the Storage Configuration."
+        },
+        "config_version": {
+          "name": "config_version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Version of the Storage Configuration."
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Location Name."
+        },
+        "storage_class_parameters": {
+          "name": "storage_class_parameters",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "schema",
+            "type": "map"
+          }
+        },
+        "storage_template_name": {
+          "name": "storage_template_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Storage Template Name."
+        },
+        "storage_template_version": {
+          "name": "storage_template_version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Storage Template Version."
+        },
+        "user_config_parameters": {
+          "name": "user_config_parameters",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The storage configuration parameters depending on the storage template."
+        },
+        "uuid": {
+          "name": "uuid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Universally Unique IDentifier (UUID) of the Storage Configuration."
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 20,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package satellite"
+}

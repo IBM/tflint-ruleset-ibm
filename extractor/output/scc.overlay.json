@@ -1,0 +1,1187 @@
+{
+  "package": "scc",
+  "specs": [
+    {
+      "slug": "security-compliance",
+      "title": "Security and Compliance Center",
+      "schema_count": 150,
+      "path_count": 41
+    },
+    {
+      "slug": "workload-protection",
+      "title": "Workload Protection API",
+      "schema_count": 318,
+      "path_count": 198
+    }
+  ],
+  "matched": 35,
+  "resource_count": 37,
+  "overlay_attrs": 103,
+  "resources": [
+    {
+      "name": "ibm_scc_account_settings",
+      "kind": "resource",
+      "schema": "Settings",
+      "spec": "security-compliance",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_scc_control_library",
+      "kind": "resource",
+      "schema": "ControlPrototype",
+      "spec": "security-compliance",
+      "score": 0.2155,
+      "attrs": {
+        "controls.control_category": {
+          "min_len": 2,
+          "max_len": 256,
+          "description": "The association of the control",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        },
+        "controls.control_description": {
+          "min_len": 2,
+          "max_len": 1024,
+          "description": "The control description.",
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        },
+        "controls.control_docs.control_docs_id": {
+          "description": "The ID of the control doc",
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        },
+        "controls.control_docs.control_docs_type": {
+          "description": "The type of the control doc",
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        },
+        "controls.control_name": {
+          "min_len": 2,
+          "max_len": 64,
+          "description": "The ID of the control library that contains the profile.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        },
+        "controls.control_parent": {
+          "min_len": 0,
+          "max_len": 256,
+          "description": "The ID of the parent control",
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        },
+        "controls.control_requirement": {
+          "description": "true if the control can be automated, false if the control cannot.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        },
+        "controls.control_specifications.assessments.assessment_description": {
+          "min_len": 2,
+          "max_len": 512,
+          "description": "Details on the intent of the rule for an assessment.",
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        },
+        "controls.control_specifications.assessments.assessment_id": {
+          "format": "identifier",
+          "description": "The ID of the rule to target. A list of rules can be obtained from the list_rules method.",
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        },
+        "controls.control_specifications.component_id": {
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The ID of the component. The component_id can be found from the 'service_name' using the Get Services method.",
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        },
+        "controls.control_specifications.control_specification_description": {
+          "min_len": 2,
+          "max_len": 1024,
+          "description": "Information about the Control Specification",
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        },
+        "controls.control_specifications.environment": {
+          "enum": [
+            "ibm-cloud"
+          ],
+          "description": "The cloud provider the specification is targeting.",
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        },
+        "controls.status": {
+          "description": "Details if a control library can be used or not.",
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        },
+        "controls.control_specifications.assessments.assessment_type": {
+          "min_len": 0,
+          "max_len": 256,
+          "description": "The type of evaluation.",
+          "source": "security-compliance",
+          "schema": "/instances/{instance_id}/v3/profiles/{profile_id}/attachments:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_instance_settings",
+      "kind": "resource",
+      "schema": "EventNotificationsPrototype",
+      "spec": "security-compliance",
+      "score": 0.5,
+      "attrs": {
+        "event_notifications.instance_crn": {
+          "pattern": "^crn:v[0-9](:([A-Za-z0-9-._~!$&'()*+,;=@/]|%[0-9A-Z]{2})*){8}|$",
+          "min_len": 0,
+          "max_len": 512,
+          "description": "The CRN of the Event Notification instance to connect.",
+          "source": "security-compliance",
+          "schema": "EventNotificationsPrototype"
+        },
+        "event_notifications.source_description": {
+          "min_len": 1,
+          "max_len": 512,
+          "description": "The description of the source of the Event Notifications.",
+          "source": "security-compliance",
+          "schema": "EventNotificationsPrototype"
+        },
+        "event_notifications.source_name": {
+          "min_len": 1,
+          "max_len": 512,
+          "description": "The name of the source of the Event Notifications.",
+          "source": "security-compliance",
+          "schema": "EventNotificationsPrototype"
+        },
+        "object_storage.instance_crn": {
+          "pattern": "^crn:v[0-9](:([A-Za-z0-9-._~!$&'()*+,;=@/]|%[0-9A-Z]{2})*){8}|$",
+          "min_len": 0,
+          "max_len": 512,
+          "description": "The CRN of the Event Notification instance to connect.",
+          "source": "security-compliance",
+          "schema": "EventNotificationsPrototype"
+        },
+        "object_storage.bucket": {
+          "pattern": "^[A-Za-z]+|$",
+          "min_len": 0,
+          "max_len": 64,
+          "description": "The connected Cloud Object Storage bucket name.",
+          "source": "security-compliance",
+          "schema": "/instances/{instance_id}/v3/settings:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_profile",
+      "kind": "resource",
+      "schema": "Profile",
+      "spec": "security-compliance",
+      "score": 0.3177,
+      "attrs": {
+        "controls.control_docs.control_docs_id": {
+          "description": "The ID of the control doc",
+          "source": "security-compliance",
+          "schema": "Profile"
+        },
+        "controls.control_docs.control_docs_type": {
+          "description": "The type of the control doc",
+          "source": "security-compliance",
+          "schema": "Profile"
+        },
+        "controls.control_id": {
+          "description": "The control ID.",
+          "source": "security-compliance",
+          "schema": "Profile"
+        },
+        "controls.control_library_id": {
+          "description": "The ID of the control library that contains a profile.",
+          "source": "security-compliance",
+          "schema": "Profile"
+        },
+        "default_parameters.assessment_id": {
+          "description": "The implementation ID of the parameter.",
+          "source": "security-compliance",
+          "schema": "Profile"
+        },
+        "default_parameters.assessment_type": {
+          "description": "The type of the implementation.",
+          "source": "security-compliance",
+          "schema": "Profile"
+        },
+        "default_parameters.parameter_default_value": {
+          "description": "The default value of the parameter.",
+          "source": "security-compliance",
+          "schema": "Profile"
+        },
+        "default_parameters.parameter_display_name": {
+          "description": "The parameter display name.",
+          "source": "security-compliance",
+          "schema": "Profile"
+        },
+        "default_parameters.parameter_name": {
+          "description": "The parameter's name.",
+          "source": "security-compliance",
+          "schema": "Profile"
+        },
+        "default_parameters.parameter_type": {
+          "description": "The parameter type.",
+          "source": "security-compliance",
+          "schema": "Profile"
+        },
+        "profile_description": {
+          "min_len": 1,
+          "description": "A description of what the profile should represent",
+          "source": "security-compliance",
+          "schema": "Profile"
+        },
+        "profile_name": {
+          "min_len": 1,
+          "description": "The name of the profile",
+          "source": "security-compliance",
+          "schema": "Profile"
+        },
+        "profile_type": {
+          "enum": [
+            "custom",
+            "predefined"
+          ],
+          "description": "The type of profile, either predefined or custom",
+          "source": "security-compliance",
+          "schema": "Profile"
+        },
+        "profile_version": {
+          "pattern": "^\\d.\\d.\\d$",
+          "description": "The version of the profile",
+          "source": "security-compliance",
+          "schema": "Profile"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_profile_attachment",
+      "kind": "resource",
+      "schema": "Attachment",
+      "spec": "security-compliance",
+      "score": 0.3967,
+      "attrs": {
+        "description": {
+          "description": "The description of the attachment.",
+          "source": "security-compliance",
+          "schema": "Attachment"
+        },
+        "instance_id": {
+          "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-4[0-9A-Fa-f]{3}-[89ABab][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12}$|^$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The ID of the instance associated with the scope",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Attachment"
+        },
+        "last_scan.id": {
+          "description": "The attachment ID.",
+          "source": "security-compliance",
+          "schema": "Attachment"
+        },
+        "name": {
+          "description": "The name of the attachment.",
+          "source": "security-compliance",
+          "schema": "Attachment"
+        },
+        "notifications.controls.failed_control_ids": {
+          "description": "List of controls that triggers a notification should a scan fail.",
+          "source": "security-compliance",
+          "schema": "Attachment"
+        },
+        "notifications.controls.threshold_limit": {
+          "description": "The maximum number of not compliant controls before a notification is triggered.",
+          "source": "security-compliance",
+          "schema": "Attachment"
+        },
+        "notifications.enabled": {
+          "description": "Shows if the notification is enabled or disabled.",
+          "source": "security-compliance",
+          "schema": "Attachment"
+        },
+        "schedule": {
+          "description": "The attachment schedule.",
+          "source": "security-compliance",
+          "schema": "Attachment"
+        },
+        "last_scan.time": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "The last time the scan ran",
+          "source": "security-compliance",
+          "schema": "ProfileAttachment"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_provider_type_instance",
+      "kind": "resource",
+      "schema": "/instances/{instance_id}/v3/provider_types/{provider_type_id}/provider_type_instances/{provider_type_instance_id}:patch",
+      "spec": "security-compliance",
+      "score": 0.5586,
+      "attrs": {
+        "attributes": {
+          "description": "The attributes for connecting to the provider type instance.",
+          "source": "security-compliance",
+          "schema": "/instances/{instance_id}/v3/provider_types/{provider_type_id}/provider_type_instances/{provider_type_instance_id}:patch"
+        },
+        "name": {
+          "pattern": "^[A-Za-z0-9-]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The provider type instance name.",
+          "source": "security-compliance",
+          "schema": "/instances/{instance_id}/v3/provider_types/{provider_type_id}/provider_type_instances/{provider_type_instance_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_rule",
+      "kind": "resource",
+      "schema": "Rule",
+      "spec": "security-compliance",
+      "score": 0.3267,
+      "attrs": {
+        "description": {
+          "pattern": "^[A-Za-z0-9]+$",
+          "min_len": 0,
+          "max_len": 512,
+          "description": "The details of a rule's response.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Rule"
+        },
+        "import.parameters.description": {
+          "pattern": "^[A-Za-z0-9]+$",
+          "min_len": 0,
+          "max_len": 256,
+          "description": "The propery description.",
+          "source": "security-compliance",
+          "schema": "Rule"
+        },
+        "import.parameters.display_name": {
+          "pattern": "^[A-Za-z0-9]+$",
+          "min_len": 0,
+          "max_len": 64,
+          "description": "The display name of the property.",
+          "source": "security-compliance",
+          "schema": "Rule"
+        },
+        "import.parameters.name": {
+          "pattern": "^[A-Za-z0-9]+$",
+          "min_len": 0,
+          "max_len": 64,
+          "description": "The import parameter name.",
+          "source": "security-compliance",
+          "schema": "Rule"
+        },
+        "import.parameters.type": {
+          "enum": [
+            "string",
+            "numeric",
+            "general",
+            "boolean",
+            "string_list",
+            "ip_list",
+            "timestamp"
+          ],
+          "pattern": "^[A-Za-z]+$",
+          "min_len": 6,
+          "max_len": 11,
+          "description": "The property type.",
+          "source": "security-compliance",
+          "schema": "Rule"
+        },
+        "labels": {
+          "pattern": "^[A-Za-z0-9]+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "The list of labels.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Rule"
+        },
+        "name": {
+          "pattern": "^[A-Za-z0-9]+$",
+          "min_len": 0,
+          "max_len": 64,
+          "description": "The import parameter name.",
+          "source": "security-compliance",
+          "schema": "Rule"
+        },
+        "required_config.description": {
+          "pattern": "^[A-Za-z0-9]+$",
+          "min_len": 0,
+          "max_len": 512,
+          "description": "The required config description.",
+          "source": "security-compliance",
+          "schema": "Rule"
+        },
+        "required_config.operator": {
+          "enum": [
+            "string_equals",
+            "string_not_equals",
+            "string_match",
+            "string_not_match",
+            "string_contains",
+            "string_not_contains",
+            "num_equals",
+            "num_not_equals",
+            "num_less_than",
+            "num_less_than_equals",
+            "num_greater_than",
+            "num_greater_than_equals",
+            "is_empty",
+            "is_not_empty",
+            "is_true",
+            "is_false",
+            "strings_in_list",
+            "strings_allowed",
+            "strings_required",
+            "ips_in_range",
+            "ips_equals",
+            "ips_not_equals",
+            "days_less_than"
+          ],
+          "min_len": 7,
+          "max_len": 23,
+          "description": "The operator.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Rule"
+        },
+        "required_config.property": {
+          "pattern": "^[A-Za-z0-9]+$",
+          "min_len": 0,
+          "max_len": 256,
+          "description": "The property.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Rule"
+        },
+        "target.additional_target_attributes.name": {
+          "pattern": "^[_\\-A-Za-z0-9]+$",
+          "min_len": 0,
+          "max_len": 256,
+          "description": "The additional target attribute name.",
+          "source": "security-compliance",
+          "schema": "Rule"
+        },
+        "target.additional_target_attributes.operator": {
+          "enum": [
+            "string_equals",
+            "string_not_equals",
+            "string_match",
+            "string_not_match",
+            "string_contains",
+            "string_not_contains",
+            "num_equals",
+            "num_not_equals",
+            "num_less_than",
+            "num_less_than_equals",
+            "num_greater_than",
+            "num_greater_than_equals",
+            "is_empty",
+            "is_not_empty",
+            "is_true",
+            "is_false",
+            "strings_in_list",
+            "strings_allowed",
+            "strings_required",
+            "ips_in_range",
+            "ips_equals",
+            "ips_not_equals",
+            "days_less_than"
+          ],
+          "description": "The operator.",
+          "source": "security-compliance",
+          "schema": "Rule"
+        },
+        "target.resource_kind": {
+          "pattern": "^[A-Za-z0-9]+$",
+          "min_len": 0,
+          "max_len": 64,
+          "description": "The target resource kind.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Rule"
+        },
+        "target.service_display_name": {
+          "min_len": 0,
+          "max_len": 64,
+          "description": "The display name of the target service.",
+          "source": "security-compliance",
+          "schema": "Rule"
+        },
+        "target.service_name": {
+          "min_len": 0,
+          "max_len": 64,
+          "description": "The target service name.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Rule"
+        },
+        "version": {
+          "pattern": "^[0-9][0-9.]*$",
+          "min_len": 5,
+          "max_len": 10,
+          "description": "The version number of a rule.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Rule"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_rule_attachment",
+      "kind": "resource",
+      "schema": "Attachment",
+      "spec": "security-compliance",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_scc_scope",
+      "kind": "resource",
+      "schema": "ScopePrototype",
+      "spec": "security-compliance",
+      "score": 0.48,
+      "attrs": {
+        "description": {
+          "pattern": "^[a-zA-Z0-9_,'\\s\\-\\.]*$",
+          "min_len": 0,
+          "max_len": 512,
+          "description": "The scope description.",
+          "source": "security-compliance",
+          "schema": "ScopePrototype"
+        },
+        "environment": {
+          "pattern": "^[a-zA-Z0-9_,'\\s\\-\\.]*$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "The scope environment.",
+          "source": "security-compliance",
+          "schema": "ScopePrototype"
+        },
+        "exclusions.scope_id": {
+          "format": "identifier",
+          "source": "security-compliance",
+          "schema": "ScopePrototype"
+        },
+        "exclusions.scope_type": {
+          "enum": [
+            "enterprise",
+            "enterprise.account_group",
+            "enterprise.account",
+            "account",
+            "account.resource_group"
+          ],
+          "description": "The type of scope it targets The scope values are as followed: - enterprise: The scope targets an enterprise account - enterprise.account_group: The scope targets an account group within an enterprise - enterprise.account: The scope targets an account within an enterprise - account: The scope targets an account not tied to an enterprise - account.resource_group: The scope targets a resource group ",
+          "source": "security-compliance",
+          "schema": "ScopePrototype"
+        },
+        "name": {
+          "pattern": "^[a-zA-Z0-9_,'\\s\\-\\.]*$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "The scope name.",
+          "source": "security-compliance",
+          "schema": "ScopePrototype"
+        },
+        "properties": {
+          "description": "Attribute that details what kind of type of scope",
+          "source": "security-compliance",
+          "schema": "ScopePrototype"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_template",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_scc_template_attachment",
+      "kind": "resource",
+      "schema": "Attachment",
+      "spec": "security-compliance",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_scc_account_location",
+      "kind": "data",
+      "schema": "Account",
+      "spec": "security-compliance",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_scc_account_location_settings",
+      "kind": "data",
+      "schema": "Settings",
+      "spec": "security-compliance",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_scc_account_locations",
+      "kind": "data",
+      "schema": "Account",
+      "spec": "security-compliance",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_scc_account_notification_settings",
+      "kind": "data",
+      "schema": "Settings",
+      "spec": "security-compliance",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_scc_control_libraries",
+      "kind": "data",
+      "schema": "/instances/{instance_id}/v3/control_libraries:post",
+      "spec": "security-compliance",
+      "score": 0.2024,
+      "attrs": {
+        "control_library_type": {
+          "enum": [
+            "custom"
+          ],
+          "description": "Details that the control library is a user made(custom) or Security Compliance Center(predefined)",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "/instances/{instance_id}/v3/control_libraries:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_control_library",
+      "kind": "data",
+      "schema": "ProfileControlsPrototype",
+      "spec": "security-compliance",
+      "score": 0.3133,
+      "attrs": {
+        "control_library_id": {
+          "description": "The ID of the control library that contains the profile.",
+          "source": "security-compliance",
+          "schema": "ProfileControlsPrototype"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_instance_settings",
+      "kind": "data",
+      "schema": "Settings",
+      "spec": "security-compliance",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_scc_latest_reports",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_scc_profile",
+      "kind": "data",
+      "schema": "ProfileAttachmentResponse",
+      "spec": "security-compliance",
+      "score": 0.2333,
+      "attrs": {
+        "instance_id": {
+          "min_len": 1,
+          "description": "The ID of the associated Security and Compliance Center instance",
+          "source": "security-compliance",
+          "schema": "ProfileAttachmentResponse"
+        },
+        "profile_id": {
+          "description": "The ID of the profile",
+          "source": "security-compliance",
+          "schema": "ProfileAttachmentResponse"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_profile_attachment",
+      "kind": "data",
+      "schema": "ScanRequest",
+      "spec": "security-compliance",
+      "score": 0.3133,
+      "attrs": {
+        "attachment_id": {
+          "format": "identifier",
+          "description": "The ID of the profile attachment",
+          "source": "security-compliance",
+          "schema": "ScanRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_profiles",
+      "kind": "data",
+      "schema": "leaf-unique",
+      "spec": "security-compliance",
+      "score": 0.08,
+      "attrs": {
+        "profile_type": {
+          "enum": [
+            "custom",
+            "predefined"
+          ],
+          "description": "The type of profile, either predefined or custom",
+          "source": "security-compliance",
+          "schema": "ProfileCollection"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_provider_type",
+      "kind": "data",
+      "schema": "/instances/{instance_id}/v3/provider_types/{provider_type_id}/provider_type_instances/{provider_type_instance_id}:patch",
+      "spec": "security-compliance",
+      "score": 0.1657,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_scc_provider_type_collection",
+      "kind": "data",
+      "schema": "/instances/{instance_id}/v3/provider_types/{provider_type_id}/provider_type_instances/{provider_type_instance_id}:patch",
+      "spec": "security-compliance",
+      "score": 0.1657,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_scc_provider_type_instance",
+      "kind": "data",
+      "schema": "/instances/{instance_id}/v3/provider_types/{provider_type_id}/provider_type_instances/{provider_type_instance_id}:patch",
+      "spec": "security-compliance",
+      "score": 0.2086,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_scc_provider_types",
+      "kind": "data",
+      "schema": "/instances/{instance_id}/v3/provider_types/{provider_type_id}/provider_type_instances/{provider_type_instance_id}:patch",
+      "spec": "security-compliance",
+      "score": 0.1657,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_scc_report",
+      "kind": "data",
+      "schema": "Report",
+      "spec": "security-compliance",
+      "score": 0.2537,
+      "attrs": {
+        "instance_id": {
+          "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The ID of the Security and Compliance Center instance.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Report"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_report_controls",
+      "kind": "data",
+      "schema": "ControlPrototype",
+      "spec": "security-compliance",
+      "score": 0.3133,
+      "attrs": {
+        "control_category": {
+          "min_len": 2,
+          "max_len": 256,
+          "description": "The association of the control",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        },
+        "control_description": {
+          "min_len": 2,
+          "max_len": 1024,
+          "description": "The control description.",
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        },
+        "control_name": {
+          "min_len": 2,
+          "max_len": 64,
+          "description": "The ID of the control library that contains the profile.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        },
+        "status": {
+          "description": "Details if a control library can be used or not.",
+          "source": "security-compliance",
+          "schema": "ControlPrototype"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_report_evaluations",
+      "kind": "data",
+      "schema": "Report",
+      "spec": "security-compliance",
+      "score": 0.2418,
+      "attrs": {
+        "instance_id": {
+          "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The ID of the Security and Compliance Center instance.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Report"
+        },
+        "status": {
+          "enum": [
+            "compliant",
+            "not_compliant",
+            "unable_to_perform",
+            "user_evaluation_required",
+            "not_applicable"
+          ],
+          "description": "The allowed values of an aggregated status for controls, specifications, assessments, and resources.",
+          "source": "security-compliance",
+          "schema": "Report"
+        },
+        "assessment_id": {
+          "format": "identifier",
+          "description": "The ID of the rule to target. A list of rules can be obtained from the list_rules method.",
+          "source": "security-compliance",
+          "schema": "/instances/{instance_id}/v3/control_libraries:post"
+        },
+        "component_id": {
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The ID of the component. The component_id can be found from the 'service_name' using the Get Services method.",
+          "source": "security-compliance",
+          "schema": "/instances/{instance_id}/v3/control_libraries:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_report_resources",
+      "kind": "data",
+      "schema": "Report",
+      "spec": "security-compliance",
+      "score": 0.2767,
+      "attrs": {
+        "account_id": {
+          "pattern": "^[a-zA-Z0-9_\\-.]*$",
+          "min_len": 32,
+          "max_len": 32,
+          "description": "The ID of the account associated with the scope",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Report"
+        },
+        "id": {
+          "description": "The ID of the report.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Report"
+        },
+        "instance_id": {
+          "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The ID of the Security and Compliance Center instance.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Report"
+        },
+        "status": {
+          "enum": [
+            "compliant",
+            "not_compliant",
+            "unable_to_perform",
+            "user_evaluation_required",
+            "not_applicable"
+          ],
+          "description": "The allowed values of an aggregated status for controls, specifications, assessments, and resources.",
+          "source": "security-compliance",
+          "schema": "Report"
+        },
+        "component_id": {
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The ID of the component. The component_id can be found from the 'service_name' using the Get Services method.",
+          "source": "security-compliance",
+          "schema": "/instances/{instance_id}/v3/control_libraries:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_report_rule",
+      "kind": "data",
+      "schema": "Report",
+      "spec": "security-compliance",
+      "score": 0.2512,
+      "attrs": {
+        "instance_id": {
+          "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The ID of the Security and Compliance Center instance.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Report"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_report_summary",
+      "kind": "data",
+      "schema": "Report",
+      "spec": "security-compliance",
+      "score": 0.2537,
+      "attrs": {
+        "instance_id": {
+          "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The ID of the Security and Compliance Center instance.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Report"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_report_tags",
+      "kind": "data",
+      "schema": "Report",
+      "spec": "security-compliance",
+      "score": 0.2537,
+      "attrs": {
+        "instance_id": {
+          "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The ID of the Security and Compliance Center instance.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Report"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_report_violation_drift",
+      "kind": "data",
+      "schema": "Report",
+      "spec": "security-compliance",
+      "score": 0.2512,
+      "attrs": {
+        "instance_id": {
+          "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The ID of the Security and Compliance Center instance.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Report"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_rule",
+      "kind": "data",
+      "schema": "ConditionBase",
+      "spec": "security-compliance",
+      "score": 0.2545,
+      "attrs": {
+        "required_config.description": {
+          "min_len": 0,
+          "max_len": 512,
+          "description": "The required config description.",
+          "source": "security-compliance",
+          "schema": "ConditionBase"
+        },
+        "required_config.operator": {
+          "enum": [
+            "string_equals",
+            "string_not_equals",
+            "string_match",
+            "string_not_match",
+            "string_contains",
+            "string_not_contains",
+            "num_equals",
+            "num_not_equals",
+            "num_less_than",
+            "num_less_than_equals",
+            "num_greater_than",
+            "num_greater_than_equals",
+            "is_empty",
+            "is_not_empty",
+            "is_true",
+            "is_false",
+            "strings_in_list",
+            "strings_allowed",
+            "strings_required",
+            "ips_in_range",
+            "ips_equals",
+            "ips_not_equals",
+            "days_less_than"
+          ],
+          "min_len": 7,
+          "max_len": 23,
+          "description": "The operator.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "ConditionBase"
+        },
+        "required_config.property": {
+          "pattern": "^[A-Za-z0-9]+$",
+          "min_len": 0,
+          "max_len": 256,
+          "description": "The property.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "ConditionBase"
+        },
+        "target.additional_target_attributes.operator": {
+          "enum": [
+            "string_equals",
+            "string_not_equals",
+            "string_match",
+            "string_not_match",
+            "string_contains",
+            "string_not_contains",
+            "num_equals",
+            "num_not_equals",
+            "num_less_than",
+            "num_less_than_equals",
+            "num_greater_than",
+            "num_greater_than_equals",
+            "is_empty",
+            "is_not_empty",
+            "is_true",
+            "is_false",
+            "strings_in_list",
+            "strings_allowed",
+            "strings_required",
+            "ips_in_range",
+            "ips_equals",
+            "ips_not_equals",
+            "days_less_than"
+          ],
+          "min_len": 7,
+          "max_len": 23,
+          "description": "The operator.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "ConditionBase"
+        },
+        "target.service_display_name": {
+          "min_len": 0,
+          "max_len": 64,
+          "description": "The display name of the target service.",
+          "source": "security-compliance",
+          "schema": "/instances/{instance_id}/v3/rules:post"
+        },
+        "target.service_name": {
+          "min_len": 0,
+          "max_len": 256,
+          "description": "The name of the service",
+          "source": "security-compliance",
+          "schema": "/instances/{instance_id}/v3/targets:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_scope",
+      "kind": "data",
+      "schema": "ScopePropertyExclusionItem",
+      "spec": "security-compliance",
+      "score": 0.4667,
+      "attrs": {
+        "exclusions.scope_id": {
+          "format": "identifier",
+          "source": "security-compliance",
+          "schema": "ScopePropertyExclusionItem"
+        },
+        "exclusions.scope_type": {
+          "enum": [
+            "enterprise",
+            "enterprise.account_group",
+            "enterprise.account",
+            "account",
+            "account.resource_group"
+          ],
+          "description": "The type of scope it targets The scope values are as followed: - enterprise: The scope targets an enterprise account - enterprise.account_group: The scope targets an account group within an enterprise - enterprise.account: The scope targets an account within an enterprise - account: The scope targets an account not tied to an enterprise - account.resource_group: The scope targets a resource group ",
+          "source": "security-compliance",
+          "schema": "ScopePropertyExclusionItem"
+        },
+        "scope_id": {
+          "format": "identifier",
+          "source": "security-compliance",
+          "schema": "ScopePropertyExclusionItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_scc_scope_collection",
+      "kind": "data",
+      "schema": "Scope",
+      "spec": "security-compliance",
+      "score": 0.3715,
+      "attrs": {
+        "instance_id": {
+          "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-4[0-9A-Fa-f]{3}-[89ABab][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12}$|^$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The ID of the instance associated with the scope",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Scope"
+        },
+        "scopes.environment": {
+          "pattern": "^[a-zA-Z0-9_,'\\s\\-\\.]*$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "The scope environment. This value details what cloud provider the scope targets",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Scope"
+        },
+        "scopes.properties.name": {
+          "pattern": "^[a-zA-Z0-9_,'\\s\\-\\.]*$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "The scope name.",
+          "api_required": true,
+          "source": "security-compliance",
+          "schema": "Scope"
+        },
+        "scopes.properties.value": {
+          "description": "Any exclusion to be defined in the scope.",
+          "source": "security-compliance",
+          "schema": "Scope"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "package": "vmware",
+  "specs": [
+    {
+      "slug": "vmware-service",
+      "title": "VMware Cloud Foundation as a Service API",
+      "schema_count": 100,
+      "path_count": 34
+    },
+    {
+      "slug": "vmware-solutions",
+      "title": "IBM Cloud for VMware Solutions API",
+      "schema_count": 70,
+      "path_count": 34
+    }
+  ],
+  "matched": 3,
+  "resource_count": 4,
+  "overlay_attrs": 17,
+  "resources": [
+    {
+      "name": "ibm_vmaas_transit_gateway_connection",
+      "kind": "resource",
+      "schema": "TransitGatewayConnection",
+      "spec": "vmware-service",
+      "score": 0.2882,
+      "attrs": {
+        "connections.local_bgp_asn": {
+          "min": 1,
+          "max": 4294967294,
+          "description": "Local network BGP ASN for the connection.",
+          "source": "vmware-service",
+          "schema": "TransitGatewayConnection"
+        },
+        "connections.local_gateway_ip": {
+          "description": "Local gateway IP address for the connection.",
+          "source": "vmware-service",
+          "schema": "TransitGatewayConnection"
+        },
+        "connections.local_tunnel_ip": {
+          "description": "Local tunnel IP address for the connection.",
+          "source": "vmware-service",
+          "schema": "TransitGatewayConnection"
+        },
+        "connections.remote_bgp_asn": {
+          "min": 1,
+          "max": 4294967294,
+          "description": "Remote network BGP ASN for the connection.",
+          "source": "vmware-service",
+          "schema": "TransitGatewayConnection"
+        },
+        "connections.remote_gateway_ip": {
+          "description": "Remote gateway IP address for the connection.",
+          "source": "vmware-service",
+          "schema": "TransitGatewayConnection"
+        },
+        "connections.remote_tunnel_ip": {
+          "description": "Remote tunnel IP address for the connection.",
+          "source": "vmware-service",
+          "schema": "TransitGatewayConnection"
+        },
+        "connections.transit_gateway_connection_name": {
+          "description": "The user-defined name of the connection created on the IBM Transit Gateway.",
+          "source": "vmware-service",
+          "schema": "TransitGatewayConnection"
+        }
+      }
+    },
+    {
+      "name": "ibm_vmaas_vdc",
+      "kind": "resource",
+      "schema": "VDCPrototype",
+      "spec": "vmware-service",
+      "score": 0.43,
+      "attrs": {
+        "cpu": {
+          "min": 0,
+          "max": 10000,
+          "description": "The vCPU usage limit on the virtual data center (VDC). Supported for VDCs deployed on a multitenant Cloud Director site. This property is required when the resource pool type is reserved.",
+          "source": "vmware-service",
+          "schema": "VDCPrototype"
+        },
+        "director_site.id": {
+          "pattern": "^[A-Za-z0-9_-]{1,128}$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "A unique ID for the Cloud Director site.",
+          "api_required": true,
+          "source": "vmware-service",
+          "schema": "VDCPrototype"
+        },
+        "director_site.pvdc.compute_ha_enabled": {
+          "description": "Specifies whether compute HA is enabled for this VDC.",
+          "source": "vmware-service",
+          "schema": "VDCPrototype"
+        },
+        "director_site.pvdc.id": {
+          "pattern": "^[A-Za-z0-9_-]{1,128}$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "A unique ID for the resource pool.",
+          "api_required": true,
+          "source": "vmware-service",
+          "schema": "VDCPrototype"
+        },
+        "director_site.pvdc.provider_type.name": {
+          "enum": [
+            "paygo",
+            "on_demand",
+            "reserved"
+          ],
+          "description": "The name of the resource pool type.",
+          "api_required": true,
+          "source": "vmware-service",
+          "schema": "VDCPrototype"
+        },
+        "fast_provisioning_enabled": {
+          "description": "Indicates whether to enable or not fast provisioning.",
+          "source": "vmware-service",
+          "schema": "VDCPrototype"
+        },
+        "name": {
+          "pattern": "^[a-zA-Z][A-Za-z0-9_\\-]{1,128}$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "A human readable ID for the virtual data center (VDC). Use a name that is unique to your region.",
+          "api_required": true,
+          "source": "vmware-service",
+          "schema": "VDCPrototype"
+        },
+        "ram": {
+          "min": 0,
+          "max": 40960,
+          "description": "The RAM usage limit on the virtual data center (VDC) in GB (1024^3 bytes). Supported for VDCs deployed on a multitenant Cloud Director site. This property is required when the resource pool type is reserved.",
+          "source": "vmware-service",
+          "schema": "VDCPrototype"
+        },
+        "rhel_byol": {
+          "description": "Indicates if the RHEL VMs will be using the license from IBM or the customer will use their own license (BYOL).",
+          "source": "vmware-service",
+          "schema": "VDCPrototype"
+        },
+        "windows_byol": {
+          "description": "Indicates if the Microsoft Windows VMs will be using the license from IBM or the customer will use their own license (BYOL).",
+          "source": "vmware-service",
+          "schema": "VDCPrototype"
+        }
+      }
+    },
+    {
+      "name": "ibm_vmaas_transit_gateway_connection",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.1073,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_vmaas_vdc",
+      "kind": "data",
+      "schema": "VDC",
+      "spec": "vmware-service",
+      "score": 0.21,
+      "attrs": {}
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "package": "platformnotifications",
+  "specs": [
+    {
+      "slug": "platform-notifications",
+      "title": "Platform Notifications",
+      "schema_count": 25,
+      "path_count": 6
+    }
+  ],
+  "matched": 1,
+  "resource_count": 1,
+  "overlay_attrs": 2,
+  "resources": [
+    {
+      "name": "ibm_notification_distribution_list_destination",
+      "kind": "resource",
+      "schema": "AddDestinationPrototype",
+      "spec": "platform-notifications",
+      "score": 0.5467,
+      "attrs": {
+        "destination_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$",
+          "kind": "uuid",
+          "format": "uuid",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The GUID of the Event Notifications instance.",
+          "source": "platform-notifications",
+          "schema": "AddDestinationPrototype"
+        },
+        "destination_type": {
+          "enum": [
+            "event_notifications"
+          ],
+          "description": "The type of the destination.",
+          "api_required": true,
+          "source": "platform-notifications",
+          "schema": "AddDestinationPrototype"
+        }
+      }
+    }
+  ]
+}

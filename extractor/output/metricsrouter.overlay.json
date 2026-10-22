@@ -1,0 +1,216 @@
+{
+  "package": "metricsrouter",
+  "specs": [
+    {
+      "slug": "metrics-router-metrics-router-v3",
+      "title": "Metrics Routing API Version 3",
+      "schema_count": 26,
+      "path_count": 6
+    }
+  ],
+  "matched": 5,
+  "resource_count": 5,
+  "overlay_attrs": 18,
+  "resources": [
+    {
+      "name": "ibm_metrics_router_route",
+      "kind": "resource",
+      "schema": "Route",
+      "spec": "metrics-router-metrics-router-v3",
+      "score": 0.4009,
+      "attrs": {
+        "managed_by": {
+          "enum": [
+            "enterprise",
+            "account"
+          ],
+          "description": "Present when the route is enterprise-managed (`managed_by: enterprise`).",
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "Route"
+        },
+        "name": {
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The name of the route.",
+          "api_required": true,
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "Route"
+        },
+        "rules.action": {
+          "enum": [
+            "send",
+            "drop"
+          ],
+          "description": "The action if the inclusion_filters matches, default is `send` action.",
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "Route"
+        },
+        "rules.inclusion_filters.operand": {
+          "enum": [
+            "location",
+            "service_name",
+            "service_instance",
+            "resource_type",
+            "resource"
+          ],
+          "description": "Part of CRN that can be compared with values.",
+          "api_required": true,
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "Route"
+        },
+        "rules.inclusion_filters.operator": {
+          "enum": [
+            "is",
+            "in"
+          ],
+          "description": "The operation to be performed between operand and the provided values. 'is' to be used with one value and 'in' can support upto 20 values in the array.",
+          "api_required": true,
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "Route"
+        },
+        "rules.inclusion_filters.values": {
+          "min_len": 2,
+          "max_len": 100,
+          "description": "The provided string values of the operand to be compared with.",
+          "api_required": true,
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "Route"
+        },
+        "rules.targets.id": {
+          "pattern": "^[a-zA-Z0-9 \\-._:]+$",
+          "min_len": 3,
+          "max_len": 1000,
+          "description": "The target uuid for a pre-defined metrics router target.",
+          "api_required": true,
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "Route"
+        }
+      }
+    },
+    {
+      "name": "ibm_metrics_router_settings",
+      "kind": "resource",
+      "schema": "/settings:patch",
+      "spec": "metrics-router-metrics-router-v3",
+      "score": 0.7567,
+      "attrs": {
+        "backup_metadata_region": {
+          "pattern": "^[a-zA-Z0-9 \\-_]+$",
+          "min_len": 3,
+          "max_len": 256,
+          "description": "To backup all your meta data in a different region.",
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "/settings:patch"
+        },
+        "default_targets.id": {
+          "pattern": "^[a-zA-Z0-9 \\-._:]+$",
+          "min_len": 3,
+          "max_len": 1000,
+          "description": "The target uuid for a pre-defined metrics router target.",
+          "api_required": true,
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "/settings:patch"
+        },
+        "permitted_target_regions": {
+          "pattern": "^[a-zA-Z0-9 \\-_]+$",
+          "min_len": 3,
+          "max_len": 1028,
+          "description": "If present then only these regions may be used to define a target.",
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "/settings:patch"
+        },
+        "primary_metadata_region": {
+          "pattern": "^[a-zA-Z0-9 \\-_]+$",
+          "min_len": 3,
+          "max_len": 256,
+          "description": "To store all your meta data in a single region.",
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "/settings:patch"
+        },
+        "private_api_endpoint_only": {
+          "description": "If you set this true then you cannot access api through public network.",
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "/settings:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_metrics_router_target",
+      "kind": "resource",
+      "schema": "TargetPrototype",
+      "spec": "metrics-router-metrics-router-v3",
+      "score": 0.78,
+      "attrs": {
+        "destination_crn": {
+          "pattern": "^[a-zA-Z0-9 \\-._:/]+$",
+          "min_len": 3,
+          "max_len": 1000,
+          "description": "Cloud Resource Name (CRN) of the destination resource. Ensure you have a service authorization between IBM Cloud Metrics Routing and your Cloud resource. See [service-to-service authorization](https://cloud.ibm.com/docs/metrics-router?topic=metrics-router-target-monitoring&interface=ui#target-monitoring-ui) for details.",
+          "api_required": true,
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "TargetPrototype"
+        },
+        "managed_by": {
+          "enum": [
+            "enterprise",
+            "account"
+          ],
+          "description": "Identifies who manages this target. Optional at create time. If set to `enterprise`, the target becomes enterprise-managed and can only be modified by identities authorized for the enterprise actions. If omitted or set to `account`, the target is managed by the child account. This value is immutable after creation.",
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "TargetPrototype"
+        },
+        "name": {
+          "pattern": "^[a-zA-Z0-9 \\-._:]+$",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The name of the target. The name must be 1000 characters or less, and cannot include any special characters other than `(space) - . _ :`. Do not include any personal identifying information (PII) in any resource names.",
+          "api_required": true,
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "TargetPrototype"
+        },
+        "region": {
+          "pattern": "^[a-zA-Z0-9 \\-._:]+$",
+          "min_len": 3,
+          "max_len": 1000,
+          "description": "Include this optional field if you want to create a target in a different region other than the one you are connected.",
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "TargetPrototype"
+        }
+      }
+    },
+    {
+      "name": "ibm_metrics_router_routes",
+      "kind": "data",
+      "schema": "/routes/{id}:patch",
+      "spec": "metrics-router-metrics-router-v3",
+      "score": 0.505,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-zA-Z0-9 \\-._:]+$",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The name of the route. The name must be 1000 characters or less and cannot include any special characters other than `(space) - . _ :`. Do not include any personal identifying information (PII) in any resource names.",
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "/routes/{id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_metrics_router_targets",
+      "kind": "data",
+      "schema": "/targets/{id}:patch",
+      "spec": "metrics-router-metrics-router-v3",
+      "score": 0.505,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-zA-Z0-9 \\-._:]+$",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The name of the target. The name must be 1000 characters or less, and cannot include any special characters other than `(space) - . _ :`. Do not include any personal identifying information (PII) in any resource names.",
+          "source": "metrics-router-metrics-router-v3",
+          "schema": "/targets/{id}:patch"
+        }
+      }
+    }
+  ]
+}

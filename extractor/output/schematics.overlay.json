@@ -1,0 +1,4739 @@
+{
+  "package": "schematics",
+  "specs": [
+    {
+      "slug": "schematics-schematics",
+      "title": "Schematics Service API",
+      "schema_count": 208,
+      "path_count": 53
+    }
+  ],
+  "matched": 25,
+  "resource_count": 25,
+  "overlay_attrs": 581,
+  "resources": [
+    {
+      "name": "ibm_schematics_action",
+      "kind": "resource",
+      "schema": "Action",
+      "spec": "schematics-schematics",
+      "score": 0.322,
+      "attrs": {
+        "action_inputs.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.metadata.aliases": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of aliases for the variable name.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.metadata.default_value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Default value for the variable only if the override value is not specified.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.metadata.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Action description",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.metadata.group_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The display name of the group this variable belongs to.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.metadata.hidden": {
+          "description": "If **true**, the variable is not displayed on UI or Command line.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.metadata.immutable": {
+          "description": "Is the variable readonly ?",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.metadata.matches": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The regex for the variable value.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.metadata.max_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.metadata.max_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.metadata.min_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.metadata.min_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.metadata.options": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of possible values for this variable. If type is **integer** or **date**, then the array of string is converted to array of integers or date during the runtime.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.metadata.position": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The relative position of this variable in a list.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.metadata.secure": {
+          "description": "Is the variable secure or sensitive ?",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.metadata.source": {
+          "description": "Source of templates, playbooks, or controls",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.metadata.type": {
+          "enum": [
+            "string",
+            "link"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of the variable.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The unique name of your action. The name can be up to 128 characters long and can include alphanumeric characters, spaces, dashes, and underscores. **Example** you can use the name to stop action.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_inputs.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The credential value for the variable or reference to the value. **Note** The SSH key should contain three `\\n` in the SSH key value as shown in the example for CLI or API calls. When using Bastion from API you need to add SSH key in both `credentials` and `bastion_credentials`.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.metadata.aliases": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of aliases for the variable name.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.metadata.default_value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Default value for the variable only if the override value is not specified.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.metadata.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Action description",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.metadata.group_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The display name of the group this variable belongs to.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.metadata.hidden": {
+          "description": "If **true**, the variable is not displayed on UI or Command line.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.metadata.immutable": {
+          "description": "Is the variable readonly ?",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.metadata.matches": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The regex for the variable value.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.metadata.max_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.metadata.max_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.metadata.min_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.metadata.min_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.metadata.options": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of possible values for this variable. If type is **integer** or **date**, then the array of string is converted to array of integers or date during the runtime.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.metadata.position": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The relative position of this variable in a list.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.metadata.secure": {
+          "description": "Is the variable secure or sensitive ?",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.metadata.source": {
+          "description": "Source of templates, playbooks, or controls",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.metadata.type": {
+          "enum": [
+            "string",
+            "link"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of the variable.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The unique name of your action. The name can be up to 128 characters long and can include alphanumeric characters, spaces, dashes, and underscores. **Example** you can use the name to stop action.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "action_outputs.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The credential value for the variable or reference to the value. **Note** The SSH key should contain three `\\n` in the SSH key value as shown in the example for CLI or API calls. When using Bastion from API you need to add SSH key in both `credentials` and `bastion_credentials`.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion.host": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Reference to the Inventory resource definition",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Bastion Name; the name must be unique",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.metadata.aliases": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of aliases for the variable name.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.metadata.default_value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Default value for the variable only if the override value is not specified.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.metadata.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of the meta data.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.metadata.group_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The display name of the group this variable belongs to.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.metadata.hidden": {
+          "description": "If **true**, the variable is not displayed on UI or Command line.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.metadata.immutable": {
+          "description": "Is the variable readonly ?",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.metadata.matches": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The regex for the variable value.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.metadata.max_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.metadata.max_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.metadata.min_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.metadata.min_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.metadata.options": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of possible values for this variable. If type is **integer** or **date**, then the array of string is converted to array of integers or date during the runtime.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.metadata.position": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The relative position of this variable in a list.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.metadata.secure": {
+          "description": "Is the variable secure or sensitive ?",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.metadata.source": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The source of this meta-data.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.metadata.type": {
+          "enum": [
+            "string",
+            "link"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of the variable.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the credential variable.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "bastion_credential.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The credential value for the variable or reference to the value. **Note** The SSH key should contain three `\\n` in the SSH key value as shown in the example for CLI or API calls. When using Bastion from API you need to add SSH key in both `credentials` and `bastion_credentials`.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "command_parameter": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Schematics job command parameter (playbook-name).",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.metadata.aliases": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of aliases for the variable name.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.metadata.default_value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Default value for the variable only if the override value is not specified.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.metadata.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of the meta data.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.metadata.group_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The display name of the group this variable belongs to.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.metadata.hidden": {
+          "description": "If **true**, the variable is not displayed on UI or Command line.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.metadata.immutable": {
+          "description": "Is the variable readonly ?",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.metadata.matches": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The regex for the variable value.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.metadata.max_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.metadata.max_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.metadata.min_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.metadata.min_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.metadata.options": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of possible values for this variable. If type is **integer** or **date**, then the array of string is converted to array of integers or date during the runtime.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.metadata.position": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The relative position of this variable in a list.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.metadata.secure": {
+          "description": "Is the variable secure or sensitive ?",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.metadata.source": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The source of this meta-data.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.metadata.type": {
+          "enum": [
+            "string",
+            "link"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of the variable.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the credential variable.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "credentials.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The credential value for the variable or reference to the value. **Note** The SSH key should contain three `\\n` in the SSH key value as shown in the example for CLI or API calls. When using Bastion from API you need to add SSH key in both `credentials` and `bastion_credentials`.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Action description",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "inventory": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Target inventory record ID, used by the action or ansible playbook",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "location": {
+          "enum": [
+            "us-south",
+            "us-east",
+            "eu-gb",
+            "eu-de"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "List of locations supported by IBM Cloud Schematics service. While creating your workspace or action, choose the right region, since it cannot be changed. Note, this does not limit the location of the IBM Cloud resources, provisioned using Schematics.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The unique name of your action. The name can be up to 128 characters long and can include alphanumeric characters, spaces, dashes, and underscores. **Example** you can use the name to stop action.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "resource_group": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Resource-group name for an action. By default, an action is created in `Default` resource group.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.metadata.aliases": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of aliases for the variable name.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.metadata.default_value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Default value for the variable only if the override value is not specified.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.metadata.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of the meta data.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.metadata.group_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The display name of the group this variable belongs to.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.metadata.hidden": {
+          "description": "If **true**, the variable is not displayed on UI or Command line.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.metadata.immutable": {
+          "description": "Is the variable readonly ?",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.metadata.matches": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The regex for the variable value.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.metadata.max_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.metadata.max_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.metadata.min_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.metadata.min_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.metadata.options": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of possible values for this variable. If type is **integer** or **date**, then the array of string is converted to array of integers or date during the runtime.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.metadata.position": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The relative position of this variable in a list.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.metadata.secure": {
+          "description": "Is the variable secure or sensitive ?",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.metadata.source": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The source of this meta-data.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.metadata.type": {
+          "enum": [
+            "boolean",
+            "string",
+            "integer",
+            "date",
+            "array",
+            "list",
+            "map",
+            "complex",
+            "link"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of the variable.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable. For example, `name = \"inventory username\"`.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "settings.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The value for the variable or reference to the value. For example, `value = \"<provide your ssh_key_value with \\n>\"`.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "source.catalog.catalog_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the private catalog.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "source.catalog.offering_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The ID of an offering in the IBM Cloud Catalog.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "source.catalog.offering_kind": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The type of an offering, in the IBM Cloud Catalog.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "source.catalog.offering_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of an offering in the IBM Cloud Catalog.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "source.catalog.offering_repo_url": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The repository URL of an offering, in the IBM Cloud Catalog.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "source.catalog.offering_version": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The version of the software template that you chose to install from the IBM Cloud catalog",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "source.catalog.offering_version_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The ID of an offering version the IBM Cloud Catalog.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "source.git.computed_git_repo_url": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The complete URL which is computed by the **git_repo_url**, **git_repo_folder**, and **branch**.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "source.git.git_branch": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the branch that are used to fetch the Git repository.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "source.git.git_release": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the release tag that are used to fetch the Git repository.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "source.git.git_repo_folder": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the folder in the Git repository, that contains the template.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "source.git.git_repo_url": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The URL to the Git repository that can be used to clone the template.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "source.git.git_token": {
+          "format": "password",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The Personal Access Token (PAT) to connect to the Git URLs.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "source.source_type": {
+          "enum": [
+            "local",
+            "git_hub",
+            "git_hub_enterprise",
+            "git_lab",
+            "ibm_git_lab",
+            "ibm_cloud_catalog"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of source for the Template",
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "source_readme_url": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "URL of the `README` file, for the source URL.",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "source_type": {
+          "enum": [
+            "local",
+            "git_hub",
+            "git_hub_enterprise",
+            "git_lab",
+            "ibm_git_lab",
+            "ibm_cloud_catalog"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of source for the Template",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "state.status_code": {
+          "enum": [
+            "normal",
+            "pending",
+            "disabled",
+            "critical"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Status of automation (workspace or action)",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "state.status_message": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Automation status message - to be displayed along with the status_code",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "sys_lock.sys_locked": {
+          "description": "Is the automation locked by a Schematic job ?",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "sys_lock.sys_locked_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "When the User performed the job that lead to locking of the automation ?",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "sys_lock.sys_locked_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Name of the User who performed the job, that lead to the locking of the automation",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "tags": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Action tags",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "targets_ini": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Inventory of host and host group for the playbook in `INI` file format. For example, `\"targets_ini\": \"[webserverhost] 172.22.192.6 [dbhost] 172.22.192.5\"`. For more information, about an inventory host group syntax, see [Inventory host groups](https://cloud.ibm.com/docs/schematics?topic=schematics-schematics-cli-reference#schematics-inventory-host-grps).",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "user_state.set_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "When the User who set the state of the Object",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "user_state.set_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Name of the User who set the state of the Object",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        },
+        "user_state.state": {
+          "enum": [
+            "draft",
+            "live",
+            "locked",
+            "disable"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "User-defined states * `draft` Object can be modified; can be used by Jobs run by the author, during execution * `live` Object can be modified; can be used by Jobs during execution * `locked` Object cannot be modified; can be used by Jobs during execution * `disable` Object can be modified. cannot be used by Jobs during execution",
+          "source": "schematics-schematics",
+          "schema": "Action"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_agent",
+      "kind": "resource",
+      "schema": "VariableMetadata",
+      "spec": "schematics-schematics",
+      "score": 0.3244,
+      "attrs": {
+        "agent_inputs.metadata.aliases": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of aliases for the variable name.",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.cloud_data_type": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Cloud data type of the variable. eg. resource_group_id, region, vpc_id.",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.default_value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Default value for the variable only if the override value is not specified.",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of the meta data.",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.group_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The display name of the group this variable belongs to.",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.hidden": {
+          "description": "If **true**, the variable is not displayed on UI or Command line.",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.immutable": {
+          "description": "Is the variable readonly ?",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.link_status": {
+          "enum": [
+            "normal",
+            "broken"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The status of the link",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.matches": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The regex for the variable value.",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.max_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.max_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.min_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.min_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.options": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of possible values for this variable. If type is **integer** or **date**, then the array of string is converted to array of integers or date during the runtime.",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.position": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The relative position of this variable in a list.",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.required": {
+          "description": "If the variable required?",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.secure": {
+          "description": "Is the variable secure or sensitive ?",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.source": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The source of this meta-data.",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_inputs.metadata.type": {
+          "enum": [
+            "boolean",
+            "string",
+            "integer",
+            "date",
+            "array",
+            "list",
+            "map",
+            "complex",
+            "link"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of the variable.",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of the meta data.",
+          "source": "schematics-schematics",
+          "schema": "VariableMetadata"
+        },
+        "agent_infrastructure.cluster_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The ID of the cluster where you want to provision the resources of all IBM Cloud catalog templates that are included in the catalog offering.",
+          "source": "schematics-schematics",
+          "schema": "/v1/workspaces:post"
+        },
+        "agent_infrastructure.cluster_resource_group": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The resource group of the cluster (is it required?)",
+          "source": "schematics-schematics",
+          "schema": "/v2/agents:post"
+        },
+        "agent_infrastructure.cos_bucket_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The COS bucket name used to store the logs.",
+          "source": "schematics-schematics",
+          "schema": "/v2/agents:post"
+        },
+        "agent_infrastructure.cos_bucket_region": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The COS bucket region.",
+          "source": "schematics-schematics",
+          "schema": "/v2/agents:post"
+        },
+        "agent_infrastructure.cos_instance_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The COS instance name to store the agent logs.",
+          "source": "schematics-schematics",
+          "schema": "/v2/agents:post"
+        },
+        "agent_infrastructure.infra_type": {
+          "enum": [
+            "ibm_kubernetes",
+            "ibm_openshift",
+            "ibm_satellite"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of target agent infrastructure.",
+          "source": "schematics-schematics",
+          "schema": "/v2/agents:post"
+        },
+        "agent_inputs.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Name of the Service Data",
+          "source": "schematics-schematics",
+          "schema": "/v1/workspaces:post"
+        },
+        "agent_inputs.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Values of service data",
+          "source": "schematics-schematics",
+          "schema": "/v1/workspaces:post"
+        },
+        "agent_location": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The location where agent is deployed in the user environment.",
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "/v2/agents:post"
+        },
+        "agent_metadata.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Name of the Service Data",
+          "source": "schematics-schematics",
+          "schema": "/v1/workspaces:post"
+        },
+        "agent_metadata.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Values of service data",
+          "source": "schematics-schematics",
+          "schema": "/v1/workspaces:post"
+        },
+        "name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Name of the Service Data",
+          "source": "schematics-schematics",
+          "schema": "/v1/workspaces:post"
+        },
+        "recent_deploy_job.agent_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "agent id which is binded to with the workspace.",
+          "source": "schematics-schematics",
+          "schema": "/v1/workspaces:post"
+        },
+        "recent_deploy_job.job_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "workspace job id.",
+          "source": "schematics-schematics",
+          "schema": "/v2/jobs:post"
+        },
+        "recent_deploy_job.log_url": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Log url for job",
+          "source": "schematics-schematics",
+          "schema": "/v2/jobs:post"
+        },
+        "recent_deploy_job.status_message": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Automation status message - to be displayed along with the status_code",
+          "source": "schematics-schematics",
+          "schema": "/v2/actions:post"
+        },
+        "recent_health_job.agent_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "agent id which is binded to with the workspace.",
+          "source": "schematics-schematics",
+          "schema": "/v1/workspaces:post"
+        },
+        "recent_health_job.job_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "workspace job id.",
+          "source": "schematics-schematics",
+          "schema": "/v2/jobs:post"
+        },
+        "recent_health_job.log_url": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Log url for job",
+          "source": "schematics-schematics",
+          "schema": "/v2/jobs:post"
+        },
+        "recent_health_job.status_message": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Automation status message - to be displayed along with the status_code",
+          "source": "schematics-schematics",
+          "schema": "/v2/actions:post"
+        },
+        "recent_prs_job.agent_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "agent id which is binded to with the workspace.",
+          "source": "schematics-schematics",
+          "schema": "/v1/workspaces:post"
+        },
+        "recent_prs_job.job_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "workspace job id.",
+          "source": "schematics-schematics",
+          "schema": "/v2/jobs:post"
+        },
+        "recent_prs_job.log_url": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Log url for job",
+          "source": "schematics-schematics",
+          "schema": "/v2/jobs:post"
+        },
+        "recent_prs_job.status_message": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Automation status message - to be displayed along with the status_code",
+          "source": "schematics-schematics",
+          "schema": "/v2/actions:post"
+        },
+        "resource_group": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The ID of the resource group where you want to provision the workspace.",
+          "source": "schematics-schematics",
+          "schema": "/v1/workspaces:post"
+        },
+        "schematics_location": {
+          "enum": [
+            "us-south",
+            "us-east",
+            "eu-gb",
+            "eu-de"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "List of locations supported by IBM Cloud Schematics service. While creating your workspace or action, choose the right region, since it cannot be changed. Note, this does not limit the location of the IBM Cloud resources, provisioned using Schematics.",
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "/v2/agents:post"
+        },
+        "system_state.status_message": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Automation status message - to be displayed along with the status_code",
+          "source": "schematics-schematics",
+          "schema": "/v2/actions:post"
+        },
+        "tags": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "A list of tags that are associated with the workspace.",
+          "source": "schematics-schematics",
+          "schema": "/v1/workspaces:post"
+        },
+        "version": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "A version of the terraform template.",
+          "source": "schematics-schematics",
+          "schema": "/v1/workspace_jobs:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_agent_deploy",
+      "kind": "resource",
+      "schema": "params:put:/v2/agents/{agent_id}",
+      "spec": "schematics-schematics",
+      "score": 0.2833,
+      "attrs": {
+        "agent_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "params:put:/v2/agents/{agent_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_agent_health",
+      "kind": "resource",
+      "schema": "params:put:/v2/agents/{agent_id}",
+      "spec": "schematics-schematics",
+      "score": 0.2833,
+      "attrs": {
+        "agent_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "params:put:/v2/agents/{agent_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_agent_prs",
+      "kind": "resource",
+      "schema": "params:put:/v2/agents/{agent_id}",
+      "spec": "schematics-schematics",
+      "score": 0.2833,
+      "attrs": {
+        "agent_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "params:put:/v2/agents/{agent_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_inventory",
+      "kind": "resource",
+      "schema": "/v2/inventories/{inventory_id}:put",
+      "spec": "schematics-schematics",
+      "score": 0.41,
+      "attrs": {
+        "description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of your Inventory definition. The description can be up to 2048 characters long in size.",
+          "source": "schematics-schematics",
+          "schema": "/v2/inventories/{inventory_id}:put"
+        },
+        "inventories_ini": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Input inventory of host and host group for the playbook, in the `.ini` file format.",
+          "source": "schematics-schematics",
+          "schema": "/v2/inventories/{inventory_id}:put"
+        },
+        "location": {
+          "enum": [
+            "us-south",
+            "us-east",
+            "eu-gb",
+            "eu-de"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "List of locations supported by IBM Cloud Schematics service. While creating your workspace or action, choose the right region, since it cannot be changed. Note, this does not limit the location of the IBM Cloud resources, provisioned using Schematics.",
+          "source": "schematics-schematics",
+          "schema": "/v2/inventories/{inventory_id}:put"
+        },
+        "name": {
+          "min_len": 3,
+          "max_len": 64,
+          "description": "The unique name of your Inventory definition. The name can be up to 128 characters long and can include alphanumeric characters, spaces, dashes, and underscores.",
+          "source": "schematics-schematics",
+          "schema": "/v2/inventories/{inventory_id}:put"
+        },
+        "resource_group": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Resource-group id for the shared dataset",
+          "source": "schematics-schematics",
+          "schema": "/v2/inventories/{inventory_id}:put"
+        },
+        "resource_queries": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Input resource query definitions that is used to dynamically generate the inventory of host and host group for the playbook",
+          "source": "schematics-schematics",
+          "schema": "/v2/inventories/{inventory_id}:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_job",
+      "kind": "resource",
+      "schema": "Job",
+      "spec": "schematics-schematics",
+      "score": 0.29,
+      "attrs": {
+        "bastion.host": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Reference to the Inventory resource definition",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "bastion.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Bastion Name; the name must be unique",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "command_name": {
+          "enum": [
+            "workspace_plan",
+            "workspace_apply",
+            "workspace_destroy",
+            "workspace_refresh",
+            "ansible_playbook_run",
+            "ansible_playbook_check",
+            "create_action",
+            "put_action",
+            "patch_action",
+            "delete_action",
+            "system_key_enable",
+            "system_key_delete",
+            "system_key_disable",
+            "system_key_rotate",
+            "system_key_restore",
+            "create_workspace",
+            "put_workspace",
+            "patch_workspace",
+            "delete_workspace",
+            "create_cart",
+            "repository_process",
+            "terraform_commands"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Schematics job command name",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "command_object": {
+          "enum": [
+            "workspace",
+            "action",
+            "system",
+            "environment"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Name of the Schematics automation resource",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "command_object_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job command object id (workspace-id, action-id)",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "command_options": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Command line options for the command",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "command_parameter": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Schematics job command parameter (playbook-name)",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.action_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Flow name",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.metadata.aliases": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of aliases for the variable name.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.metadata.default_value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Default value for the variable only if the override value is not specified.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.metadata.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of the meta data.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.metadata.group_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The display name of the group this variable belongs to.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.metadata.hidden": {
+          "description": "If **true**, the variable is not displayed on UI or Command line.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.metadata.immutable": {
+          "description": "Is the variable readonly ?",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.metadata.matches": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The regex for the variable value.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.metadata.max_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.metadata.max_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.metadata.min_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.metadata.min_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.metadata.options": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of possible values for this variable. If type is **integer** or **date**, then the array of string is converted to array of integers or date during the runtime.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.metadata.position": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The relative position of this variable in a list.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.metadata.secure": {
+          "description": "Is the variable secure or sensitive ?",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.metadata.source": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The source of this meta-data.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.metadata.type": {
+          "enum": [
+            "boolean",
+            "string",
+            "integer",
+            "date",
+            "array",
+            "list",
+            "map",
+            "complex",
+            "link"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of the variable.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable. For example, `name = \"inventory username\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inputs.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The value for the variable or reference to the value. For example, `value = \"<provide your ssh_key_value with \\n>\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inventory_record.created_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Inventory creation time",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inventory_record.created_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Email address of user who created the Inventory",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inventory_record.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of your Inventory. The description can be up to 2048 characters long in size.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inventory_record.id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Inventory id",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inventory_record.inventories_ini": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Input inventory of host and host group for the playbook, in the .ini file format.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inventory_record.location": {
+          "enum": [
+            "us-south",
+            "us-east",
+            "eu-gb",
+            "eu-de"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "List of locations supported by IBM Cloud Schematics service. While creating your workspace or action, choose the right region, since it cannot be changed. Note, this does not limit the location of the IBM Cloud resources, provisioned using Schematics.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inventory_record.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The unique name of your Inventory. The name can be up to 128 characters long and can include alphanumeric characters, spaces, dashes, and underscores.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inventory_record.resource_group": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Resource-group name for the Inventory definition. By default, Inventory will be created in Default Resource Group",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inventory_record.resource_queries": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Input resource queries that is used to dynamically generate the inventory of host and host group for the playbook",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inventory_record.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Inventory updation time",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.inventory_record.updated_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Email address of user who updated the Inventory",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.materialized_inventory": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Materialized inventory details used by the Action Job, in .ini format",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.metadata.aliases": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of aliases for the variable name.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.metadata.default_value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Default value for the variable only if the override value is not specified.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.metadata.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of the meta data.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.metadata.group_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The display name of the group this variable belongs to.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.metadata.hidden": {
+          "description": "If **true**, the variable is not displayed on UI or Command line.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.metadata.immutable": {
+          "description": "Is the variable readonly ?",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.metadata.matches": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The regex for the variable value.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.metadata.max_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.metadata.max_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.metadata.min_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.metadata.min_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.metadata.options": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of possible values for this variable. If type is **integer** or **date**, then the array of string is converted to array of integers or date during the runtime.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.metadata.position": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The relative position of this variable in a list.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.metadata.secure": {
+          "description": "Is the variable secure or sensitive ?",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.metadata.source": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The source of this meta-data.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.metadata.type": {
+          "enum": [
+            "boolean",
+            "string",
+            "integer",
+            "date",
+            "array",
+            "list",
+            "map",
+            "complex",
+            "link"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of the variable.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable. For example, `name = \"inventory username\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.outputs.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The value for the variable or reference to the value. For example, `value = \"<provide your ssh_key_value with \\n>\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.metadata.aliases": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of aliases for the variable name.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.metadata.default_value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Default value for the variable only if the override value is not specified.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.metadata.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of the meta data.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.metadata.group_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The display name of the group this variable belongs to.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.metadata.hidden": {
+          "description": "If **true**, the variable is not displayed on UI or Command line.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.metadata.immutable": {
+          "description": "Is the variable readonly ?",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.metadata.matches": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The regex for the variable value.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.metadata.max_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.metadata.max_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.metadata.min_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.metadata.min_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.metadata.options": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of possible values for this variable. If type is **integer** or **date**, then the array of string is converted to array of integers or date during the runtime.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.metadata.position": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The relative position of this variable in a list.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.metadata.secure": {
+          "description": "Is the variable secure or sensitive ?",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.metadata.source": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The source of this meta-data.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.metadata.type": {
+          "enum": [
+            "boolean",
+            "string",
+            "integer",
+            "date",
+            "array",
+            "list",
+            "map",
+            "complex",
+            "link"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of the variable.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable. For example, `name = \"inventory username\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.settings.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The value for the variable or reference to the value. For example, `value = \"<provide your ssh_key_value with \\n>\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.action_job_data.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job status updation timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.flow_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Flow ID",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.flow_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Flow Name",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job status updation timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.command_object_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "command object id",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.command_object_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "command object name",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.inputs.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.inputs.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable. For example, `name = \"inventory username\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.inputs.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The value for the variable or reference to the value. For example, `value = \"<provide your ssh_key_value with \\n>\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.last_job.command_name": {
+          "enum": [
+            "workspace_plan",
+            "workspace_apply",
+            "workspace_destroy",
+            "workspace_refresh",
+            "ansible_playbook_run",
+            "ansible_playbook_check",
+            "create_action",
+            "put_action",
+            "patch_action",
+            "delete_action",
+            "system_key_enable",
+            "system_key_delete",
+            "system_key_disable",
+            "system_key_rotate",
+            "system_key_restore",
+            "create_workspace",
+            "put_workspace",
+            "patch_workspace",
+            "delete_workspace",
+            "create_cart",
+            "repository_process",
+            "terraform_commands"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Schematics job command name",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.last_job.command_object": {
+          "enum": [
+            "workspace",
+            "action",
+            "system",
+            "environment"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Name of the Schematics automation resource",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.last_job.command_object_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Workitem command object id, maps to workspace_id or action_id",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.last_job.command_object_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "command object name (workspace_name/action_name)",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.last_job.job_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Workspace job id",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.last_job.job_status": {
+          "enum": [
+            "job_pending",
+            "job_in_progress",
+            "job_finished",
+            "job_failed",
+            "job_cancelled",
+            "job_stopped",
+            "job_stop_in_progress",
+            "job_ready_to_execute"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Status of Jobs",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.layers": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "layer name",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.outputs.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.outputs.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable. For example, `name = \"inventory username\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.outputs.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The value for the variable or reference to the value. For example, `value = \"<provide your ssh_key_value with \\n>\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.settings.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.settings.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable. For example, `name = \"inventory username\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.settings.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The value for the variable or reference to the value. For example, `value = \"<provide your ssh_key_value with \\n>\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.source.source_type": {
+          "enum": [
+            "local",
+            "git_hub",
+            "git_hub_enterprise",
+            "git_lab",
+            "ibm_git_lab",
+            "ibm_cloud_catalog"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of source for the Template",
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.source_type": {
+          "enum": [
+            "local",
+            "git_hub",
+            "git_hub_enterprise",
+            "git_lab",
+            "ibm_git_lab",
+            "ibm_cloud_catalog"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of source for the Template",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.flow_job_data.workitems.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job status updation timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.job_type": {
+          "enum": [
+            "repo_download_job",
+            "workspace_job",
+            "action_job",
+            "system_job",
+            "flow-job"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of Job",
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.system_job_data.key_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Key ID for which key event is generated",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.system_job_data.schematics_resource_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "List of the schematics resource id",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.system_job_data.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job status updation timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.flow_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Flow Id",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.flow_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Flow name",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.metadata.aliases": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of aliases for the variable name.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.metadata.default_value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Default value for the variable only if the override value is not specified.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.metadata.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of the meta data.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.metadata.group_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The display name of the group this variable belongs to.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.metadata.hidden": {
+          "description": "If **true**, the variable is not displayed on UI or Command line.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.metadata.immutable": {
+          "description": "Is the variable readonly ?",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.metadata.matches": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The regex for the variable value.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.metadata.max_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.metadata.max_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.metadata.min_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.metadata.min_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.metadata.options": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of possible values for this variable. If type is **integer** or **date**, then the array of string is converted to array of integers or date during the runtime.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.metadata.position": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The relative position of this variable in a list.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.metadata.secure": {
+          "description": "Is the variable secure or sensitive ?",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.metadata.source": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The source of this meta-data.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.metadata.type": {
+          "enum": [
+            "boolean",
+            "string",
+            "integer",
+            "date",
+            "array",
+            "list",
+            "map",
+            "complex",
+            "link"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of the variable.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable. For example, `name = \"inventory username\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.inputs.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The value for the variable or reference to the value. For example, `value = \"<provide your ssh_key_value with \\n>\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.metadata.aliases": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of aliases for the variable name.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.metadata.default_value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Default value for the variable only if the override value is not specified.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.metadata.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of the meta data.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.metadata.group_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The display name of the group this variable belongs to.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.metadata.hidden": {
+          "description": "If **true**, the variable is not displayed on UI or Command line.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.metadata.immutable": {
+          "description": "Is the variable readonly ?",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.metadata.matches": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The regex for the variable value.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.metadata.max_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.metadata.max_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.metadata.min_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.metadata.min_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.metadata.options": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of possible values for this variable. If type is **integer** or **date**, then the array of string is converted to array of integers or date during the runtime.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.metadata.position": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The relative position of this variable in a list.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.metadata.secure": {
+          "description": "Is the variable secure or sensitive ?",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.metadata.source": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The source of this meta-data.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.metadata.type": {
+          "enum": [
+            "boolean",
+            "string",
+            "integer",
+            "date",
+            "array",
+            "list",
+            "map",
+            "complex",
+            "link"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of the variable.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable. For example, `name = \"inventory username\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.outputs.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The value for the variable or reference to the value. For example, `value = \"<provide your ssh_key_value with \\n>\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.metadata.aliases": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of aliases for the variable name.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.metadata.default_value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Default value for the variable only if the override value is not specified.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.metadata.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of the meta data.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.metadata.group_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The display name of the group this variable belongs to.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.metadata.hidden": {
+          "description": "If **true**, the variable is not displayed on UI or Command line.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.metadata.immutable": {
+          "description": "Is the variable readonly ?",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.metadata.matches": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The regex for the variable value.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.metadata.max_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.metadata.max_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.metadata.min_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.metadata.min_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.metadata.options": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of possible values for this variable. If type is **integer** or **date**, then the array of string is converted to array of integers or date during the runtime.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.metadata.position": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The relative position of this variable in a list.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.metadata.secure": {
+          "description": "Is the variable secure or sensitive ?",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.metadata.source": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The source of this meta-data.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.metadata.type": {
+          "enum": [
+            "boolean",
+            "string",
+            "integer",
+            "date",
+            "array",
+            "list",
+            "map",
+            "complex",
+            "link"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of the variable.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable. For example, `name = \"inventory username\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.settings.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The value for the variable or reference to the value. For example, `value = \"<provide your ssh_key_value with \\n>\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.template_data.flow_index": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "Index of the template in the Flow",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.template_data.inputs.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.template_data.inputs.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable. For example, `name = \"inventory username\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.template_data.inputs.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The value for the variable or reference to the value. For example, `value = \"<provide your ssh_key_value with \\n>\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.template_data.outputs.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.template_data.outputs.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable. For example, `name = \"inventory username\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.template_data.outputs.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The value for the variable or reference to the value. For example, `value = \"<provide your ssh_key_value with \\n>\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.template_data.settings.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.template_data.settings.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable. For example, `name = \"inventory username\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.template_data.settings.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The value for the variable or reference to the value. For example, `value = \"<provide your ssh_key_value with \\n>\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.template_data.template_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Template Id",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.template_data.template_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Template name",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.template_data.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job status updation timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job status updation timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "data.workspace_job_data.workspace_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Workspace name",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.metadata.aliases": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of aliases for the variable name.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.metadata.default_value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Default value for the variable only if the override value is not specified.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.metadata.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of the meta data.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.metadata.group_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The display name of the group this variable belongs to.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.metadata.hidden": {
+          "description": "If **true**, the variable is not displayed on UI or Command line.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.metadata.immutable": {
+          "description": "Is the variable readonly ?",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.metadata.matches": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The regex for the variable value.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.metadata.max_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.metadata.max_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.metadata.min_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.metadata.min_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.metadata.options": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of possible values for this variable. If type is **integer** or **date**, then the array of string is converted to array of integers or date during the runtime.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.metadata.position": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The relative position of this variable in a list.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.metadata.secure": {
+          "description": "Is the variable secure or sensitive ?",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.metadata.source": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The source of this meta-data.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.metadata.type": {
+          "enum": [
+            "boolean",
+            "string",
+            "integer",
+            "date",
+            "array",
+            "list",
+            "map",
+            "complex",
+            "link"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of the variable.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable. For example, `name = \"inventory username\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_env_settings.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The value for the variable or reference to the value. For example, `value = \"<provide your ssh_key_value with \\n>\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.link": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The reference link to the variable value By default the expression points to `$self.value`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.metadata.aliases": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of aliases for the variable name.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.metadata.default_value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Default value for the variable only if the override value is not specified.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.metadata.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of the meta data.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.metadata.group_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The display name of the group this variable belongs to.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.metadata.hidden": {
+          "description": "If **true**, the variable is not displayed on UI or Command line.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.metadata.immutable": {
+          "description": "Is the variable readonly ?",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.metadata.matches": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The regex for the variable value.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.metadata.max_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.metadata.max_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The maximum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.metadata.min_length": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum length of the variable value. Applicable for the string type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.metadata.min_value": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The minimum value of the variable. Applicable for the integer type.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.metadata.options": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The list of possible values for this variable. If type is **integer** or **date**, then the array of string is converted to array of integers or date during the runtime.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.metadata.position": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "The relative position of this variable in a list.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.metadata.secure": {
+          "description": "Is the variable secure or sensitive ?",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.metadata.source": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The source of this meta-data.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.metadata.type": {
+          "enum": [
+            "boolean",
+            "string",
+            "integer",
+            "date",
+            "array",
+            "list",
+            "map",
+            "complex",
+            "link"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of the variable.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable. For example, `name = \"inventory username\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "job_inputs.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The value for the variable or reference to the value. For example, `value = \"<provide your ssh_key_value with \\n>\"`.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "location": {
+          "enum": [
+            "us-south",
+            "us-east",
+            "eu-gb",
+            "eu-de"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "List of locations supported by IBM Cloud Schematics service. While creating your workspace or action, choose the right region, since it cannot be changed. Note, this does not limit the location of the IBM Cloud resources, provisioned using Schematics.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.action_job.play_count": {
+          "description": "number of plays in playbook",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.action_job.recap.changed": {
+          "description": "Number of changed",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.action_job.recap.failed": {
+          "description": "Number of failed",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.action_job.recap.ok": {
+          "description": "Number of OK",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.action_job.recap.skipped": {
+          "description": "Number of skipped",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.action_job.recap.target": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "List of target or host name",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.action_job.recap.unreachable": {
+          "description": "Number of unreachable",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.action_job.target_count": {
+          "description": "number of targets or hosts",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.action_job.task_count": {
+          "description": "number of tasks in playbook",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.elapsed_time": {
+          "description": "Job log elapsed time (log_analyzed_till - log_start_at)",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.flow_job.workitems.job_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "workspace JOB ID",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.flow_job.workitems.log_url": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Log url for job",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.flow_job.workitems.resources_add": {
+          "description": "Number of resources add",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.flow_job.workitems.resources_destroy": {
+          "description": "Number of resources destroy",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.flow_job.workitems.resources_modify": {
+          "description": "Number of resources modify",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.flow_job.workitems.workspace_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "workspace ID",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.flow_job.workitems_completed": {
+          "description": "Number of workitems completed successfully",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.flow_job.workitems_failed": {
+          "description": "Number of workitems failed",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.flow_job.workitems_pending": {
+          "description": "Number of workitems pending in the flow",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.job_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Workspace Id",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.job_type": {
+          "enum": [
+            "repo_download_job",
+            "workspace_job",
+            "action_job",
+            "system_job",
+            "flow_job"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of Job",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.log_analyzed_till": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job log update timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.log_errors.error_code": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Error code in the Log",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.log_errors.error_count": {
+          "description": "Number of occurrence",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.log_errors.error_msg": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Summary error message in the log",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.log_start_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job log start timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.repo_download_job.detected_filetype": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Detected template or data file type",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.repo_download_job.inputs_count": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Number of inputs detected",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.repo_download_job.outputs_count": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Number of outputs detected",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.repo_download_job.quarantined_file_count": {
+          "description": "Number of files quarantined",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.repo_download_job.scanned_file_count": {
+          "description": "Number of files scanned",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.system_job.failed": {
+          "description": "Number of failed",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.system_job.success": {
+          "description": "Number of passed",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.system_job.target_count": {
+          "description": "number of targets or hosts",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.workspace_job.resources_add": {
+          "description": "Number of resources add",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.workspace_job.resources_destroy": {
+          "description": "Number of resources destroy",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "log_summary.workspace_job.resources_modify": {
+          "description": "Number of resources modify",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.action_job_status.action_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Action name",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.action_job_status.bastion_status_code": {
+          "enum": [
+            "none",
+            "ready",
+            "processing",
+            "error"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Status of Resources",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.action_job_status.bastion_status_message": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Bastion status message - to be displayed along with the bastion_status_code;",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.action_job_status.status_code": {
+          "enum": [
+            "job_pending",
+            "job_in_progress",
+            "job_finished",
+            "job_failed",
+            "job_cancelled",
+            "job_stopped",
+            "job_stop_in_progress",
+            "job_ready_to_execute"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Status of Jobs",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.action_job_status.status_message": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Action Job status message - to be displayed along with the action_status_code",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.action_job_status.targets_status_code": {
+          "enum": [
+            "none",
+            "ready",
+            "processing",
+            "error"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Status of Resources",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.action_job_status.targets_status_message": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Aggregated status message for all target resources, to be displayed along with the targets_status_code;",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.action_job_status.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job status updation timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.flow_job_status.flow_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "flow id",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.flow_job_status.flow_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "flow name",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.flow_job_status.status_code": {
+          "enum": [
+            "job_pending",
+            "job_in_progress",
+            "job_finished",
+            "job_failed",
+            "job_cancelled",
+            "job_stopped",
+            "job_stop_in_progress",
+            "job_ready_to_execute"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Status of Jobs",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.flow_job_status.status_message": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Flow Job status message - to be displayed along with the status_code;",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.flow_job_status.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job status updation timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.flow_job_status.workitems.job_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "workspace job id.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.flow_job_status.workitems.status_code": {
+          "enum": [
+            "job_pending",
+            "job_in_progress",
+            "job_finished",
+            "job_failed",
+            "job_cancelled",
+            "job_stopped",
+            "job_stop_in_progress",
+            "job_ready_to_execute"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Status of Jobs",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.flow_job_status.workitems.status_message": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "workitem job status message;",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.flow_job_status.workitems.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "workitem job status updation timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.flow_job_status.workitems.workspace_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Workspace id",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.flow_job_status.workitems.workspace_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "workspace name.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.system_job_status.schematics_resource_status.schematics_resource_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "id for each resource which is targeted as a part of system job",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.system_job_status.schematics_resource_status.status_code": {
+          "enum": [
+            "job_pending",
+            "job_in_progress",
+            "job_finished",
+            "job_failed",
+            "job_cancelled",
+            "job_stopped",
+            "job_stop_in_progress",
+            "job_ready_to_execute"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Status of Jobs",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.system_job_status.schematics_resource_status.status_message": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "system job status message",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.system_job_status.schematics_resource_status.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job status updation timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.system_job_status.system_status_code": {
+          "enum": [
+            "job_pending",
+            "job_in_progress",
+            "job_finished",
+            "job_failed",
+            "job_cancelled",
+            "job_stopped",
+            "job_stop_in_progress",
+            "job_ready_to_execute"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Status of Jobs",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.system_job_status.system_status_message": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "System job message",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.system_job_status.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job status updation timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.flow_status.flow_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "flow id",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.flow_status.flow_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "flow name",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.flow_status.status_code": {
+          "enum": [
+            "job_pending",
+            "job_in_progress",
+            "job_finished",
+            "job_failed",
+            "job_cancelled",
+            "job_stopped",
+            "job_stop_in_progress",
+            "job_ready_to_execute"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Status of Jobs",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.flow_status.status_message": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Flow Job status message - to be displayed along with the status_code;",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.flow_status.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job status updation timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.flow_status.workitems.job_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "workspace job id.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.flow_status.workitems.status_code": {
+          "enum": [
+            "job_pending",
+            "job_in_progress",
+            "job_finished",
+            "job_failed",
+            "job_cancelled",
+            "job_stopped",
+            "job_stop_in_progress",
+            "job_ready_to_execute"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Status of Jobs",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.flow_status.workitems.status_message": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "workitem job status message;",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.flow_status.workitems.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "workitem job status updation timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.flow_status.workitems.workspace_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Workspace id",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.flow_status.workitems.workspace_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "workspace name.",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.status_code": {
+          "enum": [
+            "job_pending",
+            "job_in_progress",
+            "job_finished",
+            "job_failed",
+            "job_cancelled",
+            "job_stopped",
+            "job_stop_in_progress",
+            "job_ready_to_execute"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Status of Jobs",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.status_message": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Workspace job status message (eg. App1_Setup_Pending, for a 'Setup' flow in the 'App1' Workspace)",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.template_status.flow_index": {
+          "format": "int64",
+          "min": 0,
+          "max": 10000,
+          "description": "Index of the template in the Flow",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.template_status.status_code": {
+          "enum": [
+            "job_pending",
+            "job_in_progress",
+            "job_finished",
+            "job_failed",
+            "job_cancelled",
+            "job_stopped",
+            "job_stop_in_progress",
+            "job_ready_to_execute"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Status of Jobs",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.template_status.status_message": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Template job status message (eg. VPCt1_Apply_Pending, for a 'VPCt1' Template)",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.template_status.template_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Template Id",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.template_status.template_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Template name",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.template_status.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job status updation timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job status updation timestamp",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "status.workspace_job_status.workspace_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Workspace name",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        },
+        "tags": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "User defined tags, while running the job",
+          "source": "schematics-schematics",
+          "schema": "Job"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_policy",
+      "kind": "resource",
+      "schema": "Policy",
+      "spec": "schematics-schematics",
+      "score": 0.49,
+      "attrs": {
+        "description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of Schematics customization policy.",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "kind": {
+          "enum": [
+            "agent_assignment_policy"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Policy kind or categories for managing and deriving policy decision * `agent_assignment_policy` Agent assignment policy for job execution.",
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "location": {
+          "enum": [
+            "us-south",
+            "us-east",
+            "eu-gb",
+            "eu-de"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "List of locations supported by IBM Cloud Schematics service. While creating your workspace or action, choose the right region, since it cannot be changed. Note, this does not limit the location of the IBM Cloud resources, provisioned using Schematics.",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Name of Schematics customization policy",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "parameter.agent_assignment_policy_parameter.selector_ids": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The static selectors of schematics object ids (workspace or action) for the Schematics policy.",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "parameter.agent_assignment_policy_parameter.selector_kind": {
+          "enum": [
+            "ids",
+            "scoped"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Types of schematics object selector",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "parameter.agent_assignment_policy_parameter.selector_scope.kind": {
+          "enum": [
+            "workspace",
+            "action",
+            "system",
+            "environment"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Name of the Schematics automation resource",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "parameter.agent_assignment_policy_parameter.selector_scope.locations": {
+          "enum": [
+            "us-south",
+            "us-east",
+            "eu-gb",
+            "eu-de"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "List of locations supported by IBM Cloud Schematics service. While creating your workspace or action, choose the right region, since it cannot be changed. Note, this does not limit the location of the IBM Cloud resources, provisioned using Schematics.",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "parameter.agent_assignment_policy_parameter.selector_scope.resource_groups": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The resource group based selector.",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "parameter.agent_assignment_policy_parameter.selector_scope.tags": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The tag based selector.",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "resource_group": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The resource group name for the policy. By default, Policy will be created in `default` Resource Group",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "scoped_resources.id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Schematics resource Id",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "scoped_resources.kind": {
+          "enum": [
+            "workspace",
+            "action",
+            "system",
+            "environment"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Name of the Schematics automation resource",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "state.state": {
+          "enum": [
+            "draft",
+            "live",
+            "locked",
+            "disable"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "User-defined states * `draft` Object can be modified; can be used by Jobs run by the author, during execution * `live` Object can be modified; can be used by Jobs during execution * `locked` Object cannot be modified; can be used by Jobs during execution * `disable` Object can be modified. cannot be used by Jobs during execution",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "tags": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Tags for the Schematics customization policy",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "target.selector_ids": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Static selectors of schematics object ids (agent, workspace or action) for the Schematics policy.",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "target.selector_kind": {
+          "enum": [
+            "ids",
+            "scoped"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Types of schematics object selector",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "target.selector_scope.kind": {
+          "enum": [
+            "workspace",
+            "action",
+            "system",
+            "environment"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Name of the Schematics automation resource",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "target.selector_scope.locations": {
+          "enum": [
+            "us-south",
+            "us-east",
+            "eu-gb",
+            "eu-de"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "List of locations supported by IBM Cloud Schematics service. While creating your workspace or action, choose the right region, since it cannot be changed. Note, this does not limit the location of the IBM Cloud resources, provisioned using Schematics.",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "target.selector_scope.resource_groups": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The resource group based selector.",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        },
+        "target.selector_scope.tags": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The tag based selector.",
+          "source": "schematics-schematics",
+          "schema": "Policy"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_resource_query",
+      "kind": "resource",
+      "schema": "WorkspaceVariableRequest",
+      "spec": "schematics-schematics",
+      "score": 0.3911,
+      "attrs": {
+        "name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceVariableRequest"
+        },
+        "queries.query_condition.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of your input variable.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceVariableRequest"
+        },
+        "queries.query_condition.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the variable.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceVariableRequest"
+        },
+        "queries.query_condition.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Enter the value as a string for the primitive types such as `bool`, `number`, `string`, and `HCL` format for the complex variables, as you provide in a `.tfvars` file. **You need to enter escaped string of `HCL` format for the complex variable value**. For more information, about how to declare variables in a terraform configuration file and provide value to schematics, see [Providing values for t",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceVariableRequest"
+        },
+        "type": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "`Terraform v0.11` supports `string`, `list`, `map` data type. For more information, about the syntax, see [Configuring input variables](https://www.terraform.io/docs/configuration-0-11/variables.html). <br> `Terraform v0.12` additionally, supports `bool`, `number` and complex data types such as `list(type)`, `map(type)`, `object({attribute name=type,..})`, `set(type)`, `tuple([type])`. For more in",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceVariableRequest"
+        },
+        "queries.query_select": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "List of query selection parameters",
+          "source": "schematics-schematics",
+          "schema": "/v2/resources_query:post"
+        },
+        "queries.query_type": {
+          "enum": [
+            "workspaces"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of the query(workspaces)",
+          "source": "schematics-schematics",
+          "schema": "/v2/resources_query:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_workspace",
+      "kind": "resource",
+      "schema": "WorkspaceCreateRequest",
+      "spec": "schematics-schematics",
+      "score": 0.1662,
+      "attrs": {
+        "applied_shareddata_ids": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "List of applied shared dataset ID.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "catalog_ref.dry_run": {
+          "description": "Dry run",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "catalog_ref.item_icon_url": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The URL to the icon of the software template in the IBM Cloud catalog.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "catalog_ref.item_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The ID of the software template that you chose to install from the IBM Cloud catalog. This software is provisioned with Schematics.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "catalog_ref.item_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of the software that you chose to install from the IBM Cloud catalog.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "catalog_ref.item_readme_url": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The URL to the readme file of the software template in the IBM Cloud catalog.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "catalog_ref.item_url": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The URL to the software template in the IBM Cloud catalog.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "catalog_ref.launch_url": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The URL to the dashboard to access your software.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "catalog_ref.offering_version": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The version of the software template that you chose to install from the IBM Cloud catalog.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "catalog_ref.owning_account": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Owning account ID of the catalog.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of the workspace.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "frozen": {
+          "description": "If set to true, the workspace is frozen and changes to the workspace are disabled.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "frozen_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The timestamp when the workspace was frozen.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "frozen_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The user ID that froze the workspace.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "location": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The location where you want to create your Schematics workspace and run the Schematics jobs. The location that you enter must match the API endpoint that you use. For example, if you use the Frankfurt API endpoint, you must specify `eu-de` as your location. If you use an API endpoint for a geography and you do not specify a location, Schematics determines the location based on availability.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "locked": {
+          "description": "If set to true, the workspace is locked and disabled for changes.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "locked_by": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The user ID that initiated a resource-related job, such as applying or destroying resources, that locked the workspace.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "locked_time": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The timestamp when the workspace was locked.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The name of your workspace. The name can be up to 128 characters long and can include alphanumeric characters, spaces, dashes, and underscores. When you create a workspace for your own Terraform template, consider including the microservice component that you set up with your Terraform template and the IBM Cloud environment where you want to deploy your resources in your name.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "resource_group": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The ID of the resource group where you want to provision the workspace.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "shared_data.cluster_created_on": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Cluster created on.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "shared_data.cluster_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The ID of the cluster where you want to provision the resources of all IBM Cloud catalog templates that are included in the catalog offering.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "shared_data.cluster_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The cluster name.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "shared_data.cluster_type": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The cluster type.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "shared_data.entitlement_keys": {
+          "description": "The entitlement key that you want to use to install IBM Cloud entitled software.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "shared_data.namespace": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The Kubernetes namespace or OpenShift project where the resources of all IBM Cloud catalog templates that are included in the catalog offering are deployed into.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "shared_data.region": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The IBM Cloud region that you want to use for the resources of all IBM Cloud catalog templates that are included in the catalog offering.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "shared_data.resource_group_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The ID of the resource group that you want to use for the resources of all IBM Cloud catalog templates that are included in the catalog offering.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "shared_data.worker_count": {
+          "format": "int64",
+          "min": 0,
+          "max": 5000,
+          "description": "The cluster worker count.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "shared_data.worker_machine_type": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The cluster worker type.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "tags": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "A list of tags that are associated with the workspace.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "template_inputs.description": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The description of the workspace.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "template_inputs.name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Name of the Service Data",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "template_inputs.secure": {
+          "description": "Environment variable is secure.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "template_inputs.type": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Type of the value string, int, bool",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "template_inputs.use_default": {
+          "description": "Variable uses default value; and is not over-ridden.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "template_inputs.value": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Values of service data",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "template_ref": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Workspace template ref",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceCreateRequest"
+        },
+        "runtime_data.engine_cmd": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The command that was used to apply the Terraform template or IBM Cloud catalog software template.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceResponseList"
+        },
+        "runtime_data.engine_name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The provisioning engine that was used to apply the Terraform template or IBM Cloud catalog software template.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceResponseList"
+        },
+        "runtime_data.engine_version": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The version of the provisioning engine that was used.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceResponseList"
+        },
+        "runtime_data.id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Action ID",
+          "source": "schematics-schematics",
+          "schema": "/v2/actions:post"
+        },
+        "runtime_data.log_store_url": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job log store URL",
+          "source": "schematics-schematics",
+          "schema": "/v2/jobs:post"
+        },
+        "runtime_data.state_store_url": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Job state store URL",
+          "source": "schematics-schematics",
+          "schema": "/v2/jobs:post"
+        },
+        "template_type": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Template type such as **terraform**, **ansible**, **helm**, **cloudpak**, or **bash script**.",
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "/v2/template_metadata_processor:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_action",
+      "kind": "data",
+      "schema": "params:put:/v2/actions/{action_id}/template_repo_upload",
+      "spec": "schematics-schematics",
+      "score": 0.3929,
+      "attrs": {
+        "action_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "params:put:/v2/actions/{action_id}/template_repo_upload"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_agent",
+      "kind": "data",
+      "schema": "params:put:/v2/agents/{agent_id}",
+      "spec": "schematics-schematics",
+      "score": 0.41,
+      "attrs": {
+        "agent_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "params:put:/v2/agents/{agent_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_agent_deploy",
+      "kind": "data",
+      "schema": "params:put:/v2/agents/{agent_id}",
+      "spec": "schematics-schematics",
+      "score": 0.4,
+      "attrs": {
+        "agent_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "params:put:/v2/agents/{agent_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_agent_health",
+      "kind": "data",
+      "schema": "params:put:/v2/agents/{agent_id}",
+      "spec": "schematics-schematics",
+      "score": 0.4,
+      "attrs": {
+        "agent_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "params:put:/v2/agents/{agent_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_agent_prs",
+      "kind": "data",
+      "schema": "params:put:/v2/agents/{agent_id}",
+      "spec": "schematics-schematics",
+      "score": 0.4,
+      "attrs": {
+        "agent_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "params:put:/v2/agents/{agent_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_agents",
+      "kind": "data",
+      "schema": "CommandsInfo",
+      "spec": "schematics-schematics",
+      "score": 0.35,
+      "attrs": {
+        "name": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Name of the command",
+          "source": "schematics-schematics",
+          "schema": "CommandsInfo"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_inventory",
+      "kind": "data",
+      "schema": "params:put:/v2/inventories/{inventory_id}",
+      "spec": "schematics-schematics",
+      "score": 0.41,
+      "attrs": {
+        "inventory_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "params:put:/v2/inventories/{inventory_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_job",
+      "kind": "data",
+      "schema": "params:put:/v2/jobs/{job_id}",
+      "spec": "schematics-schematics",
+      "score": 0.2933,
+      "attrs": {
+        "job_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "params:put:/v2/jobs/{job_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_kms",
+      "kind": "data",
+      "schema": "/v2/settings/kms:put",
+      "spec": "schematics-schematics",
+      "score": 0.215,
+      "attrs": {
+        "location": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The location to integrate kms instance. For example, location can be `US` and `EU`.",
+          "source": "schematics-schematics",
+          "schema": "/v2/settings/kms:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_output",
+      "kind": "data",
+      "schema": "JobStatusTemplate",
+      "spec": "schematics-schematics",
+      "score": 0.1578,
+      "attrs": {
+        "template_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Template Id",
+          "source": "schematics-schematics",
+          "schema": "JobStatusTemplate"
+        },
+        "workspace_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Workspace id",
+          "source": "schematics-schematics",
+          "schema": "/v2/jobs:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_policies",
+      "kind": "data",
+      "schema": "/v2/settings/policies/{policy_id}:patch",
+      "spec": "schematics-schematics",
+      "score": 0.14,
+      "attrs": {
+        "policy_kind": {
+          "enum": [
+            "agent_assignment_policy"
+          ],
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Policy kind or categories for managing and deriving policy decision * `agent_assignment_policy` Agent assignment policy for job execution.",
+          "source": "schematics-schematics",
+          "schema": "PolicyList"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_policy",
+      "kind": "data",
+      "schema": "params:patch:/v2/settings/policies/{policy_id}",
+      "spec": "schematics-schematics",
+      "score": 0.76,
+      "attrs": {
+        "policy_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "params:patch:/v2/settings/policies/{policy_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_resource_query",
+      "kind": "data",
+      "schema": "params:put:/v2/resources_query/{query_id}",
+      "spec": "schematics-schematics",
+      "score": 0.41,
+      "attrs": {
+        "query_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "api_required": true,
+          "source": "schematics-schematics",
+          "schema": "params:put:/v2/resources_query/{query_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_state",
+      "kind": "data",
+      "schema": "JobStatusTemplate",
+      "spec": "schematics-schematics",
+      "score": 0.1675,
+      "attrs": {
+        "template_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Template Id",
+          "source": "schematics-schematics",
+          "schema": "JobStatusTemplate"
+        },
+        "workspace_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Workspace id",
+          "source": "schematics-schematics",
+          "schema": "/v2/jobs:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_schematics_workspace",
+      "kind": "data",
+      "schema": "WorkspaceActivities",
+      "spec": "schematics-schematics",
+      "score": 0.14,
+      "attrs": {
+        "workspace_id": {
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The ID of the workspace.",
+          "source": "schematics-schematics",
+          "schema": "WorkspaceActivities"
+        }
+      }
+    }
+  ]
+}

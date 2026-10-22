@@ -1,0 +1,148 @@
+{
+  "package": "database",
+  "specs": [
+    {
+      "slug": "cloud-databases-api-cloud-databases-api-v5",
+      "title": "The IBM Cloud Databases API",
+      "schema_count": 75,
+      "path_count": 32
+    },
+    {
+      "slug": "cloud-databases-api-cloud-databases-api-v4",
+      "title": "The IBM Cloud Databases API",
+      "schema_count": 61,
+      "path_count": 29
+    }
+  ],
+  "matched": 6,
+  "resource_count": 9,
+  "overlay_attrs": 7,
+  "resources": [
+    {
+      "name": "ibm_database",
+      "kind": "resource",
+      "schema": "leaf-unique",
+      "spec": "cloud-databases-api-cloud-databases-api-v5",
+      "score": 0.1111,
+      "attrs": {
+        "group.host_flavor.id": {
+          "enum": [
+            "member",
+            "search",
+            "bi_connector",
+            "analytics"
+          ],
+          "description": "Id/name for group",
+          "source": "cloud-databases-api-cloud-databases-api-v5",
+          "schema": "Capability"
+        },
+        "users.password": {
+          "min_len": 15,
+          "description": "Password for new Ops Manager user. Password must be at least 15 characters in length and contain a letter, number and a special character.",
+          "api_required": true,
+          "source": "cloud-databases-api-cloud-databases-api-v5",
+          "schema": "/deployments/{id}/users/{user_type}:post"
+        },
+        "users.type": {
+          "enum": [
+            "scheduled",
+            "on_demand"
+          ],
+          "description": "The type of backup.",
+          "source": "cloud-databases-api-cloud-databases-api-v5",
+          "schema": "Backups"
+        }
+      }
+    },
+    {
+      "name": "ibm_database",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.1167,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_database_backup",
+      "kind": "data",
+      "schema": "Backup",
+      "spec": "cloud-databases-api-cloud-databases-api-v5",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_database_backups",
+      "kind": "data",
+      "schema": "Backups",
+      "spec": "cloud-databases-api-cloud-databases-api-v5",
+      "score": 0.21,
+      "attrs": {
+        "deployment_id": {
+          "description": "ID of the deployment this backup relates to.",
+          "source": "cloud-databases-api-cloud-databases-api-v5",
+          "schema": "Backups"
+        }
+      }
+    },
+    {
+      "name": "ibm_database_connection",
+      "kind": "data",
+      "schema": "params:post:/deployments/{id}/users/{user_type}/{user_id}/connections/{endpoint_type}",
+      "spec": "cloud-databases-api-cloud-databases-api-v5",
+      "score": 0.35,
+      "attrs": {
+        "endpoint_type": {
+          "enum": [
+            "public",
+            "private"
+          ],
+          "api_required": true,
+          "source": "cloud-databases-api-cloud-databases-api-v5",
+          "schema": "params:post:/deployments/{id}/users/{user_type}/{user_id}/connections/{endpoint_type}"
+        },
+        "user_id": {
+          "api_required": true,
+          "source": "cloud-databases-api-cloud-databases-api-v5",
+          "schema": "params:post:/deployments/{id}/users/{user_type}/{user_id}/connections/{endpoint_type}"
+        },
+        "user_type": {
+          "api_required": true,
+          "source": "cloud-databases-api-cloud-databases-api-v5",
+          "schema": "params:post:/deployments/{id}/users/{user_type}/{user_id}/connections/{endpoint_type}"
+        }
+      }
+    },
+    {
+      "name": "ibm_database_point_in_time_recovery",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.1,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_database_remotes",
+      "kind": "data",
+      "schema": "Remotes",
+      "spec": "cloud-databases-api-cloud-databases-api-v5",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_database_task",
+      "kind": "data",
+      "schema": "Task",
+      "spec": "cloud-databases-api-cloud-databases-api-v5",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_database_tasks",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.1,
+      "attrs": {}
+    }
+  ]
+}

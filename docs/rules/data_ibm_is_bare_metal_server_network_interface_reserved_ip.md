@@ -1,0 +1,53 @@
+# ibm_is_bare_metal_server_network_interface_reserved_ip_data
+
+Reads ibm_is_bare_metal_server_network_interface_reserved_ip. The user-defined or system-provided name for this reserved IP.
+
+This rule validates `ibm_is_bare_metal_server_network_interface_reserved_ip` data sources against the IBM Cloud provider schema and the published IBM Cloud API: required arguments, allowed values, numeric ranges, and format constraints.
+
+OpenAPI schema: `ImageAllowedUsePatch` (`vpc-latest`).
+
+## Configuration
+
+```hcl
+rule "ibm_is_bare_metal_server_network_interface_reserved_ip_data" {
+  enabled = true
+}
+```
+
+## Checks
+
+| Argument | Required | Constraints |
+| --- | --- | --- |
+| `address` | no | — |
+| `auto_delete` | no | — |
+| `bare_metal_server` | yes | pattern `^([a-zA-Z_][a-zA-Z0-9_]*|[-+*/%]|&&|\|\||!|==|!=|<|<=|>|>=|~|\bin\b|\(|\)|\[|\]|,|\.|"|'|"|'|\s+|\d+)+$` |
+| `created_at` | no | — |
+| `href` | no | — |
+| `name` | no | — |
+| `network_interface` | yes | — |
+| `owner` | no | — |
+| `reserved_ip` | yes | — |
+| `resource_type` | no | — |
+| `target` | no | — |
+
+## Attribute rules
+
+Each writable argument has its own rule so checks can be enabled or disabled independently.
+
+| Rule | Argument |
+| --- | --- |
+| `ibm_is_bare_metal_server_network_interface_reserved_ip_data_invalid_bare_metal_server` | `bare_metal_server` |
+| `ibm_is_bare_metal_server_network_interface_reserved_ip_data_invalid_network_interface` | `network_interface` |
+| `ibm_is_bare_metal_server_network_interface_reserved_ip_data_invalid_reserved_ip` | `reserved_ip` |
+
+## Example
+
+### Valid
+
+```hcl
+data "ibm_is_bare_metal_server_network_interface_reserved_ip" "test" {
+  bare_metal_server = "example-name"
+  network_interface = "example"
+  reserved_ip = "10.0.0.1"
+}
+```

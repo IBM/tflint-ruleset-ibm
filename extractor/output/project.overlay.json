@@ -1,0 +1,740 @@
+{
+  "package": "project",
+  "specs": [
+    {
+      "slug": "projects",
+      "title": "Projects API",
+      "schema_count": 428,
+      "path_count": 89
+    }
+  ],
+  "matched": 6,
+  "resource_count": 6,
+  "overlay_attrs": 70,
+  "resources": [
+    {
+      "name": "ibm_project",
+      "kind": "resource",
+      "schema": "Project update",
+      "spec": "projects",
+      "score": 0.38,
+      "attrs": {
+        "definition.auto_deploy": {
+          "description": "A boolean flag to enable deploying configurations automatically.",
+          "source": "projects",
+          "schema": "Project update"
+        },
+        "configs.approved_version.container_state": {
+          "enum": [
+            "approved",
+            "deleted",
+            "deleting",
+            "deleting_failed",
+            "discarded",
+            "draft",
+            "deployed",
+            "deploying_failed",
+            "deploying",
+            "superseded",
+            "undeploying",
+            "undeploying_failed",
+            "validated",
+            "validating",
+            "validating_failed",
+            "working"
+          ],
+          "description": "The aggregate state from all deployabe architectures that are included in this configuration.",
+          "source": "projects",
+          "schema": "ProjectConfigSummary"
+        },
+        "configs.approved_version.definition.environment_id": {
+          "pattern": "^[\\.\\-0-9a-zA-Z]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The ID of the project environment.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "configs.container_state": {
+          "enum": [
+            "approved",
+            "deleted",
+            "deleting",
+            "deleting_failed",
+            "discarded",
+            "draft",
+            "deployed",
+            "deploying_failed",
+            "deploying",
+            "superseded",
+            "undeploying",
+            "undeploying_failed",
+            "validated",
+            "validating",
+            "validating_failed",
+            "working"
+          ],
+          "description": "The aggregate state from all deployabe architectures that are included in this configuration.",
+          "source": "projects",
+          "schema": "ProjectConfigSummary"
+        },
+        "configs.container_state_code": {
+          "enum": [
+            "awaiting_input",
+            "awaiting_prerequisite",
+            "awaiting_validation",
+            "awaiting_member_deployment",
+            "awaiting_stack_setup"
+          ],
+          "description": "Computed state code clarifying the prerequisites for validation for the configuration.",
+          "source": "projects",
+          "schema": "ProjectConfigSummary"
+        },
+        "configs.deployed_version.container_state": {
+          "enum": [
+            "approved",
+            "deleted",
+            "deleting",
+            "deleting_failed",
+            "discarded",
+            "draft",
+            "deployed",
+            "deploying_failed",
+            "deploying",
+            "superseded",
+            "undeploying",
+            "undeploying_failed",
+            "validated",
+            "validating",
+            "validating_failed",
+            "working"
+          ],
+          "description": "The aggregate state from all deployabe architectures that are included in this configuration.",
+          "source": "projects",
+          "schema": "ProjectConfigSummary"
+        },
+        "configs.deployed_version.definition.environment_id": {
+          "pattern": "^[\\.\\-0-9a-zA-Z]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The ID of the project environment.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "cumulative_needs_attention_view.config_id": {
+          "pattern": "^[\\.\\-0-9a-zA-Z]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "api_required": true,
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "cumulative_needs_attention_view.config_version": {
+          "format": "int32",
+          "min": 0,
+          "max": 10000,
+          "description": "The version number of the configuration.",
+          "source": "projects",
+          "schema": "ProjectMetadataCommon"
+        },
+        "definition.auto_deploy_mode": {
+          "enum": [
+            "auto_approval",
+            "manual_approval"
+          ],
+          "description": "This is an advanced setting to auto deploy to tell how auto deploy should behave when it is enabled. There are 2 options: > 1. `auto_approval` will automatically approve the configuration after validated without user confirmation. > 2. `manual_approval` will require user confirmation to approve the configuration after validated before deploying the configuration starts.",
+          "source": "projects",
+          "schema": "ProjectV2Patch"
+        },
+        "definition.store.config_directory": {
+          "pattern": "^/?[^/]*(?:/[^/]*)*/?$",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "The directory where project configs are stored.",
+          "source": "projects",
+          "schema": "ProjectV2Patch"
+        },
+        "definition.store.url": {
+          "pattern": "^((http(s)?:\\/\\/)|\\/)[a-zA-Z0-9\\$\\-_\\.+!\\*'\\(\\),=&?\\/:]+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "A Url.",
+          "api_required": true,
+          "source": "projects",
+          "schema": "ProjectV2Patch"
+        },
+        "resource_group": {
+          "pattern": "^(?!\\s)(?!.*\\s$)[^'\"`<>{}\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 64,
+          "description": "The resource group name where the project's data and tools are created.",
+          "api_required": true,
+          "source": "projects",
+          "schema": "Project input"
+        }
+      }
+    },
+    {
+      "name": "ibm_project_config",
+      "kind": "resource",
+      "schema": "Project update",
+      "spec": "projects",
+      "score": 0.29,
+      "attrs": {
+        "approved_version.container_state": {
+          "enum": [
+            "approved",
+            "deleted",
+            "deleting",
+            "deleting_failed",
+            "discarded",
+            "draft",
+            "deployed",
+            "deploying_failed",
+            "deploying",
+            "superseded",
+            "undeploying",
+            "undeploying_failed",
+            "validated",
+            "validating",
+            "validating_failed",
+            "working"
+          ],
+          "description": "The aggregate state from all deployabe architectures that are included in this configuration.",
+          "source": "projects",
+          "schema": "ProjectConfigSummary"
+        },
+        "approved_version.definition.environment_id": {
+          "pattern": "^[\\.\\-0-9a-zA-Z]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The ID of the project environment.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.authorizations.api_key": {
+          "pattern": "^(?!\\s)(?!.*\\s$)[^`<>\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 512,
+          "description": "The IBM Cloud API Key. It can be either raw or pulled from the catalog via a `CRN` or `JSON` blob.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.authorizations.method": {
+          "pattern": "^(ref:)[a-zA-Z0-9\\$\\-_\\.+%!\\*'\\(\\),=&?\\/ ]+(authorizations\\/method)$|^(api_key)$|^(trusted_profile)$",
+          "min_len": 7,
+          "max_len": 256,
+          "description": "The authorization method. It can authorize by using a trusted profile or an API key in Secrets Manager.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.authorizations.trusted_profile_id": {
+          "pattern": "^(?!\\s)(?!.*\\s$)[^`<>\\x00-\\x1F]*$",
+          "format": "identifier",
+          "min_len": 0,
+          "max_len": 512,
+          "description": "The trusted profile ID.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.compliance_profile.attachment_id": {
+          "pattern": "^[\\./:a-zA-Z0-9\\.\\-]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.compliance_profile.instance_id": {
+          "pattern": "^[\\./:a-zA-Z0-9\\.\\-]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.compliance_profile.instance_location": {
+          "enum": [
+            "us-south",
+            "us-east",
+            "eu-gb",
+            "eu-de",
+            "ca-tor"
+          ],
+          "description": "The location of the compliance instance.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.compliance_profile.profile_name": {
+          "pattern": "^(?!\\s)(?!.*\\s$)[^`<>\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 1024,
+          "description": "The name of the compliance profile.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.compliance_profile.wp_instance_id": {
+          "pattern": "^[\\./:a-zA-Z0-9\\.\\-]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.compliance_profile.wp_instance_location": {
+          "enum": [
+            "us-south",
+            "us-east",
+            "eu-gb",
+            "eu-de",
+            "ca-tor"
+          ],
+          "description": "The location of the compliance instance.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.compliance_profile.wp_instance_name": {
+          "pattern": "^(?!\\s)(?!.*\\s$)[^`<>\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 1024,
+          "description": "The name of the compliance profile.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.compliance_profile.wp_policy_id": {
+          "pattern": "^[\\./:a-zA-Z0-9\\.\\-]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.compliance_profile.wp_policy_name": {
+          "pattern": "^(?!\\s)(?!.*\\s$)[^`<>\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 1024,
+          "description": "The name of the compliance profile.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.compliance_profile.wp_zone_id": {
+          "pattern": "^[\\./:a-zA-Z0-9\\.\\-]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.compliance_profile.wp_zone_name": {
+          "pattern": "^(?!\\s)(?!.*\\s$)[^`<>\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 1024,
+          "description": "The name of the compliance profile.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.environment_id": {
+          "pattern": "^[\\.\\-0-9a-zA-Z]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The ID of the project environment.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.members.config_id": {
+          "pattern": "^[\\.\\-0-9a-zA-Z]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "api_required": true,
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.resource_crns": {
+          "pattern": "^(?!\\s)(?!.*\\s$)(crn)[^'\"`<>{}\\s\\x00-\\x1F]*$",
+          "kind": "crn",
+          "format": "crn",
+          "min_len": 4,
+          "max_len": 512,
+          "description": "An IBM Cloud resource name that uniquely identifies a resource.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.uses.config_id": {
+          "pattern": "^[\\.\\-0-9a-zA-Z]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "api_required": true,
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.uses.project_id": {
+          "pattern": "^[\\.\\-0-9a-zA-Z]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "api_required": true,
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "deployed_version.container_state": {
+          "enum": [
+            "approved",
+            "deleted",
+            "deleting",
+            "deleting_failed",
+            "discarded",
+            "draft",
+            "deployed",
+            "deploying_failed",
+            "deploying",
+            "superseded",
+            "undeploying",
+            "undeploying_failed",
+            "validated",
+            "validating",
+            "validating_failed",
+            "working"
+          ],
+          "description": "The aggregate state from all deployabe architectures that are included in this configuration.",
+          "source": "projects",
+          "schema": "ProjectConfigSummary"
+        },
+        "deployed_version.definition.environment_id": {
+          "pattern": "^[\\.\\-0-9a-zA-Z]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The ID of the project environment.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "needs_attention_state.action_url": {
+          "pattern": "^\\S+$",
+          "min_len": 1,
+          "max_len": 512,
+          "description": "An actionable Url that users can access in response to the event. This is a system generated field. For user triggered events the field is not present.",
+          "source": "projects",
+          "schema": "ProjectConfigCommonMetadata"
+        },
+        "project_id": {
+          "pattern": "^[\\.\\-0-9a-zA-Z]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "api_required": true,
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "schematics.deploy_post_script.path": {
+          "pattern": "^\\S+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The path to this script is within the current version source.",
+          "source": "projects",
+          "schema": "ProjectConfigMetadata"
+        },
+        "schematics.deploy_post_script.short_description": {
+          "pattern": "^$|^(?!\\s)(?!.*\\s$)[^\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 256,
+          "description": "The short description for this script.",
+          "source": "projects",
+          "schema": "ProjectConfigMetadata"
+        },
+        "schematics.deploy_pre_script.path": {
+          "pattern": "^\\S+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The path to this script is within the current version source.",
+          "source": "projects",
+          "schema": "ProjectConfigMetadata"
+        },
+        "schematics.deploy_pre_script.short_description": {
+          "pattern": "^$|^(?!\\s)(?!.*\\s$)[^\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 256,
+          "description": "The short description for this script.",
+          "source": "projects",
+          "schema": "ProjectConfigMetadata"
+        },
+        "schematics.undeploy_post_script.path": {
+          "pattern": "^\\S+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The path to this script is within the current version source.",
+          "source": "projects",
+          "schema": "ProjectConfigMetadata"
+        },
+        "schematics.undeploy_post_script.short_description": {
+          "pattern": "^$|^(?!\\s)(?!.*\\s$)[^\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 256,
+          "description": "The short description for this script.",
+          "source": "projects",
+          "schema": "ProjectConfigMetadata"
+        },
+        "schematics.undeploy_pre_script.path": {
+          "pattern": "^\\S+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The path to this script is within the current version source.",
+          "source": "projects",
+          "schema": "ProjectConfigMetadata"
+        },
+        "schematics.undeploy_pre_script.short_description": {
+          "pattern": "^$|^(?!\\s)(?!.*\\s$)[^\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 256,
+          "description": "The short description for this script.",
+          "source": "projects",
+          "schema": "ProjectConfigMetadata"
+        },
+        "schematics.validate_post_script.path": {
+          "pattern": "^\\S+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The path to this script is within the current version source.",
+          "source": "projects",
+          "schema": "ProjectConfigMetadata"
+        },
+        "schematics.validate_post_script.short_description": {
+          "pattern": "^$|^(?!\\s)(?!.*\\s$)[^\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 256,
+          "description": "The short description for this script.",
+          "source": "projects",
+          "schema": "ProjectConfigMetadata"
+        },
+        "schematics.validate_pre_script.path": {
+          "pattern": "^\\S+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The path to this script is within the current version source.",
+          "source": "projects",
+          "schema": "ProjectConfigMetadata"
+        },
+        "schematics.validate_pre_script.short_description": {
+          "pattern": "^$|^(?!\\s)(?!.*\\s$)[^\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 256,
+          "description": "The short description for this script.",
+          "source": "projects",
+          "schema": "ProjectConfigMetadata"
+        },
+        "schematics.workspace_crn": {
+          "pattern": "^(?!\\s)(?!.*\\s$)(crn)[^'\"`<>{}\\s\\x00-\\x1F]*$",
+          "kind": "crn",
+          "format": "crn",
+          "min_len": 4,
+          "max_len": 512,
+          "description": "An IBM Cloud resource name that uniquely identifies a resource.",
+          "source": "projects",
+          "schema": "Project input"
+        }
+      }
+    },
+    {
+      "name": "ibm_project_environment",
+      "kind": "resource",
+      "schema": "ProjectComplianceProfileV1",
+      "spec": "projects",
+      "score": 0.4421,
+      "attrs": {
+        "definition.compliance_profile.attachment_id": {
+          "pattern": "^[\\./:a-zA-Z0-9\\.\\-]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "source": "projects",
+          "schema": "ProjectComplianceProfileV1"
+        },
+        "definition.compliance_profile.id": {
+          "pattern": "^[\\./:a-zA-Z0-9\\.\\-]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "source": "projects",
+          "schema": "ProjectComplianceProfileV1"
+        },
+        "definition.compliance_profile.instance_id": {
+          "pattern": "^[\\./:a-zA-Z0-9\\.\\-]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "source": "projects",
+          "schema": "ProjectComplianceProfileV1"
+        },
+        "definition.compliance_profile.instance_location": {
+          "enum": [
+            "us-south",
+            "us-east",
+            "eu-gb",
+            "eu-de",
+            "ca-tor"
+          ],
+          "description": "The location of the compliance instance.",
+          "source": "projects",
+          "schema": "ProjectComplianceProfileV1"
+        },
+        "definition.compliance_profile.profile_name": {
+          "pattern": "^(?!\\s)(?!.*\\s$)[^`<>\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 1024,
+          "description": "The name of the compliance profile.",
+          "source": "projects",
+          "schema": "ProjectComplianceProfileV1"
+        },
+        "definition.compliance_profile.wp_instance_id": {
+          "pattern": "^[\\./:a-zA-Z0-9\\.\\-]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "source": "projects",
+          "schema": "ProjectComplianceProfileV1"
+        },
+        "definition.compliance_profile.wp_instance_location": {
+          "enum": [
+            "us-south",
+            "us-east",
+            "eu-gb",
+            "eu-de",
+            "ca-tor"
+          ],
+          "description": "The location of the compliance instance.",
+          "source": "projects",
+          "schema": "ProjectComplianceProfileV1"
+        },
+        "definition.compliance_profile.wp_instance_name": {
+          "pattern": "^(?!\\s)(?!.*\\s$)[^`<>\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 1024,
+          "description": "The name of the compliance profile.",
+          "source": "projects",
+          "schema": "ProjectComplianceProfileV1"
+        },
+        "definition.compliance_profile.wp_policy_id": {
+          "pattern": "^[\\./:a-zA-Z0-9\\.\\-]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "source": "projects",
+          "schema": "ProjectComplianceProfileV1"
+        },
+        "definition.compliance_profile.wp_policy_name": {
+          "pattern": "^(?!\\s)(?!.*\\s$)[^`<>\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 1024,
+          "description": "The name of the compliance profile.",
+          "source": "projects",
+          "schema": "ProjectComplianceProfileV1"
+        },
+        "definition.compliance_profile.wp_zone_id": {
+          "pattern": "^[\\./:a-zA-Z0-9\\.\\-]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "source": "projects",
+          "schema": "ProjectComplianceProfileV1"
+        },
+        "definition.compliance_profile.wp_zone_name": {
+          "pattern": "^(?!\\s)(?!.*\\s$)[^`<>\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 1024,
+          "description": "The name of the compliance profile.",
+          "source": "projects",
+          "schema": "ProjectComplianceProfileV1"
+        },
+        "definition.authorizations.api_key": {
+          "pattern": "^(?!\\s)(?!.*\\s$)[^`<>\\x00-\\x1F]*$",
+          "min_len": 0,
+          "max_len": 512,
+          "description": "The IBM Cloud API Key. It can be either raw or pulled from the catalog via a `CRN` or `JSON` blob.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.authorizations.method": {
+          "pattern": "^(ref:)[a-zA-Z0-9\\$\\-_\\.+%!\\*'\\(\\),=&?\\/ ]+(authorizations\\/method)$|^(api_key)$|^(trusted_profile)$",
+          "min_len": 7,
+          "max_len": 256,
+          "description": "The authorization method. It can authorize by using a trusted profile or an API key in Secrets Manager.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "definition.authorizations.trusted_profile_id": {
+          "pattern": "^(?!\\s)(?!.*\\s$)[^`<>\\x00-\\x1F]*$",
+          "format": "identifier",
+          "min_len": 0,
+          "max_len": 512,
+          "description": "The trusted profile ID.",
+          "source": "projects",
+          "schema": "Project input"
+        },
+        "project_id": {
+          "pattern": "^[\\.\\-0-9a-zA-Z]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "api_required": true,
+          "source": "projects",
+          "schema": "Project input"
+        }
+      }
+    },
+    {
+      "name": "ibm_project",
+      "kind": "data",
+      "schema": "Project update",
+      "spec": "projects",
+      "score": 0.38,
+      "attrs": {
+        "project_id": {
+          "pattern": "^[\\.\\-0-9a-zA-Z]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "api_required": true,
+          "source": "projects",
+          "schema": "Project input"
+        }
+      }
+    },
+    {
+      "name": "ibm_project_config",
+      "kind": "data",
+      "schema": "Project update",
+      "spec": "projects",
+      "score": 0.29,
+      "attrs": {
+        "project_id": {
+          "pattern": "^[\\.\\-0-9a-zA-Z]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "api_required": true,
+          "source": "projects",
+          "schema": "Project input"
+        }
+      }
+    },
+    {
+      "name": "ibm_project_environment",
+      "kind": "data",
+      "schema": "Project environment input",
+      "spec": "projects",
+      "score": 0.3,
+      "attrs": {
+        "project_id": {
+          "pattern": "^[\\.\\-0-9a-zA-Z]+$",
+          "format": "identifier",
+          "max_len": 128,
+          "description": "The unique ID.",
+          "api_required": true,
+          "source": "projects",
+          "schema": "Project input"
+        }
+      }
+    }
+  ]
+}

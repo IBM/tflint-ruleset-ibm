@@ -1,0 +1,447 @@
+{
+  "package": "logsrouting",
+  "resources": [
+    {
+      "name": "ibm_logs_router_tenant",
+      "function": "ResourceIBMLogsRouterTenant",
+      "package": "logsrouting",
+      "kind": "resource",
+      "description": "Manages ibm_logs_router_tenant. The name for this tenant.",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Time stamp the tenant was originally created."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Cloud resource name of the tenant.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "etag": {
+          "name": "etag",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Resource version identifier."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name for this tenant. The name is regionally unique across all tenants in the account.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 35,
+            "regexp": "[a-z,A-Z,0-9,-,.]"
+          }
+        },
+        "region": {
+          "name": "region",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The region where this tenant exists.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 3,
+            "max_len": 1000,
+            "regexp": "^[a-zA-Z0-9 -._:]+$"
+          }
+        },
+        "targets": {
+          "name": "targets",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "min_items": 1,
+          "description": "List of targets",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Time stamp the target was originally created."
+              },
+              "etag": {
+                "name": "etag",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Resource version identifier."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique ID of the target."
+              },
+              "log_sink_crn": {
+                "name": "log_sink_crn",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "force_new": true,
+                "description": "Cloud resource name of the log-sink target instance.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The name for this tenant target. The name is unique across all targets for this tenant."
+              },
+              "parameters": {
+                "name": "parameters",
+                "type": "list",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "max_items": 1,
+                "description": "List of properties returned from a successful list operation for a log-sink of type IBM Log Analysis (logdna).",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "host": {
+                      "name": "host",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "Host name of the log-sink."
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "Network port of the log-sink.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Type of log-sink. Identical to the \u003ccode\u003eservice-name\u003c/code\u003e segment of \u003ccode\u003elog_sink_crn\u003c/code\u003e."
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Time stamp the target was last updated."
+              }
+            }
+          }
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Time stamp the tenant was last updated."
+        },
+        "write_status": {
+          "name": "write_status",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the write attempt to the target with the provided endpoint parameters.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "last_failure": {
+                "name": "last_failure",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The timestamp of the failure."
+              },
+              "reason_for_last_failure": {
+                "name": "reason_for_last_failure",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Detailed description of the cause of the failure."
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status such as failed or success."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "[a-z,A-Z,0-9,-,.]",
+          "min_len": 1,
+          "max_len": 35
+        },
+        {
+          "identifier": "region",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9 -._:]+$",
+          "min_len": 3,
+          "max_len": 1000
+        }
+      ]
+    },
+    {
+      "name": "ibm_logs_router_tenants",
+      "function": "DataSourceIBMLogsRouterTenants",
+      "package": "logsrouting",
+      "kind": "data",
+      "description": "Reads ibm_logs_router_tenants. Optional: The name of a tenant.",
+      "attributes": {
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Optional: The name of a tenant."
+        },
+        "region": {
+          "name": "region",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The region where the tenants exist."
+        },
+        "tenants": {
+          "name": "tenants",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of tenants in the account.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Time stamp the tenant was originally created."
+              },
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Cloud resource name of the tenant.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "etag": {
+                "name": "etag",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Resource version identifier."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique ID of the tenant."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name for this tenant. The name is regionally unique across all tenants in the account."
+              },
+              "targets": {
+                "name": "targets",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of targets.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "created_at": {
+                      "name": "created_at",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Time stamp the target was originally created."
+                    },
+                    "etag": {
+                      "name": "etag",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Resource version identifier."
+                    },
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Unique ID of the target."
+                    },
+                    "log_sink_crn": {
+                      "name": "log_sink_crn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Cloud resource name of the log-sink target instance.",
+                      "validate": {
+                        "kind": "crn",
+                        "func_name": "name_heuristic"
+                      }
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name for this tenant target. The name is unique across all targets for this tenant."
+                    },
+                    "parameters": {
+                      "name": "parameters",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "List of properties returned from a successful list operation for a log-sink of type IBM Log Analysis (logdna).",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "host": {
+                            "name": "host",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Host name of the log-sink."
+                          },
+                          "port": {
+                            "name": "port",
+                            "type": "int",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Network port of the log-sink.",
+                            "validate": {
+                              "kind": "port",
+                              "func_name": "name_heuristic",
+                              "min": 1,
+                              "max": 65535
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Type of log-sink. Identical to the \u003ccode\u003eservice-name\u003c/code\u003e segment of \u003ccode\u003elog_sink_crn\u003c/code\u003e."
+                    },
+                    "updated_at": {
+                      "name": "updated_at",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Time stamp the target was last updated."
+                    }
+                  }
+                }
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Time stamp the tenant was last updated."
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 2,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package logsrouting"
+}

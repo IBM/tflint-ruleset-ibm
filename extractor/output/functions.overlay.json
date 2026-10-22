@@ -1,0 +1,89 @@
+{
+  "package": "functions",
+  "specs": [],
+  "matched": 0,
+  "resource_count": 10,
+  "overlay_attrs": 0,
+  "resources": [
+    {
+      "name": "ibm_function_action",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_function_namespace",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_function_package",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_function_rule",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_function_trigger",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_function_action",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_function_namespace",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_function_package",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_function_rule",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_function_trigger",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    }
+  ]
+}

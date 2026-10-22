@@ -1,0 +1,1294 @@
+{
+  "package": "functions",
+  "resources": [
+    {
+      "name": "ibm_function_action",
+      "function": "ResourceIBMFunctionAction",
+      "package": "functions",
+      "kind": "resource",
+      "description": "Manages ibm_function_action. Name of action.",
+      "attributes": {
+        "action_id": {
+          "name": "action_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "annotations": {
+          "name": "annotations",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "All annotations set on action by user and those set by the IBM Cloud Function backend/API."
+        },
+        "exec": {
+          "name": "exec",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "max_items": 1,
+          "description": "Execution info",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "code": {
+                "name": "code",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The code to execute.",
+                "conflicts_with": [
+                  "exec.0.components",
+                  "exec.0.code_path"
+                ]
+              },
+              "code_path": {
+                "name": "code_path",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The file path of code to execute.",
+                "conflicts_with": [
+                  "exec.0.components",
+                  "exec.0.code"
+                ]
+              },
+              "components": {
+                "name": "components",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The List of fully qualified action.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                },
+                "conflicts_with": [
+                  "exec.0.image",
+                  "exec.0.code",
+                  "exec.0.code_path"
+                ]
+              },
+              "image": {
+                "name": "image",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Container image name when kind is 'blackbox'.",
+                "conflicts_with": [
+                  "exec.0.components"
+                ]
+              },
+              "init": {
+                "name": "init",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Optional zipfile reference.",
+                "conflicts_with": [
+                  "exec.0.image",
+                  "exec.0.components"
+                ]
+              },
+              "kind": {
+                "name": "kind",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The type of action. Possible values can be found here (https://cloud.ibm.com/docs/openwhisk?topic=cloud-functions-runtimes)"
+              },
+              "main": {
+                "name": "main",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The name of the action entry point (function or fully-qualified method name when applicable).",
+                "conflicts_with": [
+                  "exec.0.image",
+                  "exec.0.components"
+                ]
+              }
+            }
+          }
+        },
+        "limits": {
+          "name": "limits",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "max_items": 1,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "log_size": {
+                "name": "log_size",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The maximum log size LIMIT in MB for the action.",
+                "default": "10"
+              },
+              "memory": {
+                "name": "memory",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The maximum memory LIMIT in MB for the action (default 256.",
+                "default": "256"
+              },
+              "timeout": {
+                "name": "timeout",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The timeout LIMIT in milliseconds after which the action is terminated.",
+                "default": "60000"
+              }
+            }
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Name of action.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexp",
+            "regexp": "^[^/*][a-zA-Z0-9/_@.-]"
+          }
+        },
+        "namespace": {
+          "name": "namespace",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "IBM Cloud function namespace.",
+          "validate": {
+            "kind": "no_zero",
+            "func_name": "ValidateNoZeroValues",
+            "no_zero": true
+          }
+        },
+        "parameters": {
+          "name": "parameters",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "All paramters set on action by user and those set by the IBM Cloud Function backend/API."
+        },
+        "publish": {
+          "name": "publish",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Action visibilty."
+        },
+        "target_endpoint_url": {
+          "name": "target_endpoint_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Action target endpoint URL."
+        },
+        "user_defined_annotations": {
+          "name": "user_defined_annotations",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Annotation values in KEY VALUE format.",
+          "default": "[]",
+          "validate": {
+            "kind": "json",
+            "func_name": "ValidateJSONString"
+          }
+        },
+        "user_defined_parameters": {
+          "name": "user_defined_parameters",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the action.",
+          "default": "[]",
+          "validate": {
+            "kind": "json",
+            "func_name": "ValidateJSONString"
+          }
+        },
+        "version": {
+          "name": "version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Semantic version of the item."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexp",
+          "regexp": "^[^/*][a-zA-Z0-9/_@.-]"
+        },
+        {
+          "identifier": "namespace",
+          "kind": "ValidateNoZeroValues"
+        },
+        {
+          "identifier": "user_defined_annotations",
+          "kind": "ValidateJSONString"
+        },
+        {
+          "identifier": "user_defined_parameters",
+          "kind": "ValidateJSONString"
+        }
+      ]
+    },
+    {
+      "name": "ibm_function_namespace",
+      "function": "ResourceIBMFunctionNamespace",
+      "package": "functions",
+      "kind": "resource",
+      "description": "Manages ibm_function_namespace. Name of namespace.",
+      "attributes": {
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Namespace Description."
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Namespace Location."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of namespace.",
+          "validate": {
+            "kind": "no_zero",
+            "func_name": "ValidateNoZeroValues",
+            "no_zero": true
+          }
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Resource Group ID.",
+          "validate": {
+            "kind": "no_zero",
+            "func_name": "ValidateNoZeroValues",
+            "no_zero": true
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateNoZeroValues"
+        },
+        {
+          "identifier": "resource_group_id",
+          "kind": "ValidateNoZeroValues"
+        }
+      ]
+    },
+    {
+      "name": "ibm_function_package",
+      "function": "ResourceIBMFunctionPackage",
+      "package": "functions",
+      "kind": "resource",
+      "description": "Manages ibm_function_package. Name of package.",
+      "attributes": {
+        "annotations": {
+          "name": "annotations",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "All annotations set on package by user and those set by the IBM Cloud Function backend/API."
+        },
+        "bind_package_name": {
+          "name": "bind_package_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Name of package to be binded.",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateBindedPackageName"
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Name of package.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexp",
+            "regexp": "\\A([\\w]|[\\w][\\w@ .-]*[\\w@.-]+)\\z"
+          }
+        },
+        "namespace": {
+          "name": "namespace",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "IBM Cloud function namespace.",
+          "validate": {
+            "kind": "no_zero",
+            "func_name": "ValidateNoZeroValues",
+            "no_zero": true
+          }
+        },
+        "package_id": {
+          "name": "package_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "parameters": {
+          "name": "parameters",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "All parameters set on package by user and those set by the IBM Cloud Function backend/API."
+        },
+        "publish": {
+          "name": "publish",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Package visibilty.",
+          "default": "false"
+        },
+        "user_defined_annotations": {
+          "name": "user_defined_annotations",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Annotation values in KEY VALUE format.",
+          "default": "[]",
+          "validate": {
+            "kind": "json",
+            "func_name": "ValidateJSONString"
+          }
+        },
+        "user_defined_parameters": {
+          "name": "user_defined_parameters",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the package.",
+          "default": "[]",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "user_defined_parameters"
+          }
+        },
+        "version": {
+          "name": "version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Semantic version of the item."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "bind_package_name",
+          "kind": "ValidateBindedPackageName"
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexp",
+          "regexp": "\\A([\\w]|[\\w][\\w@ .-]*[\\w@.-]+)\\z"
+        },
+        {
+          "identifier": "namespace",
+          "kind": "ValidateNoZeroValues"
+        },
+        {
+          "identifier": "user_defined_annotations",
+          "kind": "ValidateJSONString"
+        }
+      ]
+    },
+    {
+      "name": "ibm_function_rule",
+      "function": "ResourceIBMFunctionRule",
+      "package": "functions",
+      "kind": "resource",
+      "description": "Manages ibm_function_rule. Name of rule.",
+      "attributes": {
+        "action_name": {
+          "name": "action_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of action."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Name of rule.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexp",
+            "regexp": "\\A([\\w]|[\\w][\\w@ .-]*[\\w@.-]+)\\z"
+          }
+        },
+        "namespace": {
+          "name": "namespace",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "IBM Cloud function namespace.",
+          "validate": {
+            "kind": "no_zero",
+            "func_name": "ValidateNoZeroValues",
+            "no_zero": true
+          }
+        },
+        "publish": {
+          "name": "publish",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Rule visbility."
+        },
+        "rule_id": {
+          "name": "rule_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Status of the rule."
+        },
+        "trigger_name": {
+          "name": "trigger_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of trigger."
+        },
+        "version": {
+          "name": "version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Semantic version of the item."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexp",
+          "regexp": "\\A([\\w]|[\\w][\\w@ .-]*[\\w@.-]+)\\z"
+        },
+        {
+          "identifier": "namespace",
+          "kind": "ValidateNoZeroValues"
+        }
+      ]
+    },
+    {
+      "name": "ibm_function_trigger",
+      "function": "ResourceIBMFunctionTrigger",
+      "package": "functions",
+      "kind": "resource",
+      "description": "Manages ibm_function_trigger. Name of Trigger.",
+      "attributes": {
+        "annotations": {
+          "name": "annotations",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "All annotations set on trigger by user and those set by the IBM Cloud Function backend/API."
+        },
+        "feed": {
+          "name": "feed",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "max_items": 1,
+          "description": "Trigger feed",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "force_new": true,
+                "description": "Trigger feed ACTION_NAME."
+              },
+              "parameters": {
+                "name": "parameters",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the action invoke.",
+                "default": "[]",
+                "validate": {
+                  "kind": "invoke",
+                  "func_name": "parameters"
+                }
+              }
+            }
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Name of Trigger.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexp",
+            "regexp": "\\A([\\w]|[\\w][\\w@ .-]*[\\w@.-]+)\\z"
+          }
+        },
+        "namespace": {
+          "name": "namespace",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "IBM Cloud function namespace.",
+          "validate": {
+            "kind": "no_zero",
+            "func_name": "ValidateNoZeroValues",
+            "no_zero": true
+          }
+        },
+        "parameters": {
+          "name": "parameters",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "All parameters set on trigger by user and those set by the IBM Cloud Function backend/API.",
+          "validate": {
+            "kind": "json",
+            "func_name": "ValidateJSONString"
+          }
+        },
+        "publish": {
+          "name": "publish",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Trigger visbility."
+        },
+        "trigger_id": {
+          "name": "trigger_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "user_defined_annotations": {
+          "name": "user_defined_annotations",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Annotation values in KEY VALUE format.",
+          "default": "[]",
+          "validate": {
+            "kind": "json",
+            "func_name": "ValidateJSONString"
+          }
+        },
+        "user_defined_parameters": {
+          "name": "user_defined_parameters",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Parameters values in KEY VALUE format. Parameter bindings included in the context passed to the trigger.",
+          "default": "[]",
+          "validate": {
+            "kind": "json",
+            "func_name": "ValidateJSONString"
+          }
+        },
+        "version": {
+          "name": "version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Semantic version of the item."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexp",
+          "regexp": "\\A([\\w]|[\\w][\\w@ .-]*[\\w@.-]+)\\z"
+        },
+        {
+          "identifier": "namespace",
+          "kind": "ValidateNoZeroValues"
+        },
+        {
+          "identifier": "parameters",
+          "kind": "ValidateJSONString"
+        },
+        {
+          "identifier": "user_defined_annotations",
+          "kind": "ValidateJSONString"
+        },
+        {
+          "identifier": "user_defined_parameters",
+          "kind": "ValidateJSONString"
+        }
+      ]
+    },
+    {
+      "name": "ibm_function_action",
+      "function": "DataSourceIBMFunctionAction",
+      "package": "functions",
+      "kind": "data",
+      "description": "Reads ibm_function_action. Name of action.",
+      "attributes": {
+        "action_id": {
+          "name": "action_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "annotations": {
+          "name": "annotations",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "All annotations set on action by user and those set by the IBM Cloud Function backend/API."
+        },
+        "exec": {
+          "name": "exec",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "code": {
+                "name": "code",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The code to execute when kind is not 'blackbox'."
+              },
+              "components": {
+                "name": "components",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The List of fully qualified action",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "image": {
+                "name": "image",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Container image name when kind is 'blackbox'."
+              },
+              "init": {
+                "name": "init",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Optional zipfile reference."
+              },
+              "kind": {
+                "name": "kind",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The type of action. Possible values:php:7.3, nodejs:8, swift:3, nodejs, blackbox, java, sequence, nodejs:10, python:3, python, python:2, swift, swift:4.2."
+              },
+              "main": {
+                "name": "main",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the action entry point (function or fully-qualified method name when applicable)"
+              }
+            }
+          }
+        },
+        "limits": {
+          "name": "limits",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "log_size": {
+                "name": "log_size",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The maximum log size LIMIT in MB for the action."
+              },
+              "memory": {
+                "name": "memory",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The maximum memory LIMIT in MB for the action (default 256."
+              },
+              "timeout": {
+                "name": "timeout",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The timeout LIMIT in milliseconds after which the action is terminated."
+              }
+            }
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of action.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexp",
+            "regexp": "^[^/*][a-zA-Z0-9/_@.-]"
+          }
+        },
+        "namespace": {
+          "name": "namespace",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of the namespace.",
+          "validate": {
+            "kind": "no_zero",
+            "func_name": "ValidateNoZeroValues",
+            "no_zero": true
+          }
+        },
+        "parameters": {
+          "name": "parameters",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "All paramters set on action by user and those set by the IBM Cloud Function backend/API."
+        },
+        "publish": {
+          "name": "publish",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Action visibilty."
+        },
+        "target_endpoint_url": {
+          "name": "target_endpoint_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Action target endpoint URL."
+        },
+        "version": {
+          "name": "version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Semantic version of the item."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexp",
+          "regexp": "^[^/*][a-zA-Z0-9/_@.-]"
+        },
+        {
+          "identifier": "namespace",
+          "kind": "ValidateNoZeroValues"
+        },
+        {
+          "identifier": "user_defined_annotations",
+          "kind": "ValidateJSONString"
+        },
+        {
+          "identifier": "user_defined_parameters",
+          "kind": "ValidateJSONString"
+        }
+      ]
+    },
+    {
+      "name": "ibm_function_namespace",
+      "function": "DataSourceIBMFunctionNamespace",
+      "package": "functions",
+      "kind": "data",
+      "description": "Reads ibm_function_namespace. Name of namespace.",
+      "attributes": {
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Namespace Description."
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Namespace Location."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of namespace.",
+          "validate": {
+            "kind": "no_zero",
+            "func_name": "ValidateNoZeroValues",
+            "no_zero": true
+          }
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Resource Group ID.",
+          "validate": {
+            "kind": "no_zero",
+            "func_name": "ValidateNoZeroValues",
+            "no_zero": true
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateNoZeroValues"
+        },
+        {
+          "identifier": "resource_group_id",
+          "kind": "ValidateNoZeroValues"
+        }
+      ]
+    },
+    {
+      "name": "ibm_function_package",
+      "function": "DataSourceIBMFunctionPackage",
+      "package": "functions",
+      "kind": "data",
+      "description": "Reads ibm_function_package. Name of the package.",
+      "attributes": {
+        "annotations": {
+          "name": "annotations",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "All annotations set on package by user and those set by the IBM Cloud Function backend/API."
+        },
+        "bind_package_name": {
+          "name": "bind_package_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of binded package.",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateBindedPackageName"
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of the package.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexp",
+            "regexp": "\\A([\\w]|[\\w][\\w@ .-]*[\\w@.-]+)\\z"
+          }
+        },
+        "namespace": {
+          "name": "namespace",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of the namespace.",
+          "validate": {
+            "kind": "no_zero",
+            "func_name": "ValidateNoZeroValues",
+            "no_zero": true
+          }
+        },
+        "package_id": {
+          "name": "package_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "parameters": {
+          "name": "parameters",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "All parameters set on package by user and those set by the IBM Cloud Function backend/API."
+        },
+        "publish": {
+          "name": "publish",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Package Visibility."
+        },
+        "version": {
+          "name": "version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Semantic version of the package."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "bind_package_name",
+          "kind": "ValidateBindedPackageName"
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexp",
+          "regexp": "\\A([\\w]|[\\w][\\w@ .-]*[\\w@.-]+)\\z"
+        },
+        {
+          "identifier": "namespace",
+          "kind": "ValidateNoZeroValues"
+        },
+        {
+          "identifier": "user_defined_annotations",
+          "kind": "ValidateJSONString"
+        }
+      ]
+    },
+    {
+      "name": "ibm_function_rule",
+      "function": "DataSourceIBMFunctionRule",
+      "package": "functions",
+      "kind": "data",
+      "description": "Reads ibm_function_rule. Name of the rule.",
+      "attributes": {
+        "action_name": {
+          "name": "action_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of an action."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of the rule.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexp",
+            "regexp": "\\A([\\w]|[\\w][\\w@ .-]*[\\w@.-]+)\\z"
+          }
+        },
+        "namespace": {
+          "name": "namespace",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of the namespace.",
+          "validate": {
+            "kind": "no_zero",
+            "func_name": "ValidateNoZeroValues",
+            "no_zero": true
+          }
+        },
+        "publish": {
+          "name": "publish",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Rule Visibility."
+        },
+        "rule_id": {
+          "name": "rule_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Status of the rule."
+        },
+        "trigger_name": {
+          "name": "trigger_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of the trigger."
+        },
+        "version": {
+          "name": "version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Semantic version of the rule"
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexp",
+          "regexp": "\\A([\\w]|[\\w][\\w@ .-]*[\\w@.-]+)\\z"
+        },
+        {
+          "identifier": "namespace",
+          "kind": "ValidateNoZeroValues"
+        }
+      ]
+    },
+    {
+      "name": "ibm_function_trigger",
+      "function": "DataSourceIBMFunctionTrigger",
+      "package": "functions",
+      "kind": "data",
+      "description": "Reads ibm_function_trigger. Name of Trigger.",
+      "attributes": {
+        "annotations": {
+          "name": "annotations",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "All annotations set on trigger by user and those set by the IBM Cloud Function backend/API."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of Trigger.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexp",
+            "regexp": "\\A([\\w]|[\\w][\\w@ .-]*[\\w@.-]+)\\z"
+          }
+        },
+        "namespace": {
+          "name": "namespace",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of the namespace.",
+          "validate": {
+            "kind": "no_zero",
+            "func_name": "ValidateNoZeroValues",
+            "no_zero": true
+          }
+        },
+        "parameters": {
+          "name": "parameters",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "All parameters set on trigger by user and those set by the IBM Cloud Function backend/API.",
+          "validate": {
+            "kind": "json",
+            "func_name": "ValidateJSONString"
+          }
+        },
+        "publish": {
+          "name": "publish",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Trigger Visibility."
+        },
+        "trigger_id": {
+          "name": "trigger_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "version": {
+          "name": "version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Semantic version of the trigger."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexp",
+          "regexp": "\\A([\\w]|[\\w][\\w@ .-]*[\\w@.-]+)\\z"
+        },
+        {
+          "identifier": "namespace",
+          "kind": "ValidateNoZeroValues"
+        },
+        {
+          "identifier": "parameters",
+          "kind": "ValidateJSONString"
+        },
+        {
+          "identifier": "user_defined_annotations",
+          "kind": "ValidateJSONString"
+        },
+        {
+          "identifier": "user_defined_parameters",
+          "kind": "ValidateJSONString"
+        }
+      ]
+    }
+  ],
+  "skipped": [],
+  "extracted": 10,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package functions"
+}

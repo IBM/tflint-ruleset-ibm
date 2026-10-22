@@ -1,0 +1,977 @@
+{
+  "package": "enterprise",
+  "resources": [
+    {
+      "name": "ibm_enterprise",
+      "function": "ResourceIBMEnterprise",
+      "package": "enterprise",
+      "kind": "resource",
+      "description": "Manages ibm_enterprise. The name of the enterprise.",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The time stamp at which the enterprise was created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IAM ID of the user or service that created the enterprise."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Cloud Resource Name (CRN) of the enterprise.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "domain": {
+          "name": "domain",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "A domain or subdomain for the enterprise, such as `example.com` or `my.example.com`."
+        },
+        "enterprise_account_id": {
+          "name": "enterprise_account_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The enterprise account ID."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name of the enterprise. This field must have 3 - 60 characters.",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateAllowedEnterpriseNameValue"
+          }
+        },
+        "primary_contact_email": {
+          "name": "primary_contact_email",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The email of the primary contact of the enterprise."
+        },
+        "primary_contact_iam_id": {
+          "name": "primary_contact_iam_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The IAM ID of the enterprise primary contact, such as `IBMid-0123ABC`. The IAM ID must already exist.",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateRegexps"
+          }
+        },
+        "source_account_id": {
+          "name": "source_account_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The ID of the account that is used to create the enterprise."
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The state of the enterprise."
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The time stamp at which the enterprise was last updated."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IAM ID of the user or service that updated the enterprise."
+        },
+        "url": {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the enterprise."
+        }
+      }
+    },
+    {
+      "name": "ibm_enterprise_account",
+      "function": "ResourceIBMEnterpriseAccount",
+      "package": "enterprise",
+      "kind": "resource",
+      "description": "Manages ibm_enterprise_account. The name of the account.",
+      "attributes": {
+        "account_id": {
+          "name": "account_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The source account id of account to be imported"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The time stamp at which the account was created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IAM ID of the user or service that created the account."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Cloud Resource Name (CRN) of the account.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "enterprise_account_id": {
+          "name": "enterprise_account_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The enterprise account ID."
+        },
+        "enterprise_id": {
+          "name": "enterprise_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The enterprise ID that the account is a part of."
+        },
+        "enterprise_path": {
+          "name": "enterprise_path",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The path from the enterprise to this particular account."
+        },
+        "iam_apikey": {
+          "name": "iam_apikey",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "The IAM API KEY of the account with owner IAM policies."
+        },
+        "iam_apikey_id": {
+          "name": "iam_apikey_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of IAM APIKEY which has owner IAM policies"
+        },
+        "iam_service_id": {
+          "name": "iam_service_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IAM Service ID of the account will be used to create IAM_API_KEY with owner IAM policies."
+        },
+        "is_enterprise_account": {
+          "name": "is_enterprise_account",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The flag to indicate whether the account is an enterprise account or not."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The name of the account. This field must have 3 - 60 characters.",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateAllowedEnterpriseNameValue"
+          }
+        },
+        "options": {
+          "name": "options",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "By default create_iam_service_id_with_apikey_and_owner_policies is turned off for a newly created child account. You can enable this property by passing 'true' in this boolean field. IAM service id has account owner IAM policies and the API key associated with it can generate a token and setup resources in the account.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "create_iam_service_id_with_apikey_and_owner_policies": {
+                "name": "create_iam_service_id_with_apikey_and_owner_policies",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "By default this field is turned off for a newly created child account. You can enable this property by passing 'true' in this boolean field. IAM service id has account owner IAM policies and the API key associated with it can generate a token and setup resources in the account."
+              }
+            }
+          }
+        },
+        "owner_email": {
+          "name": "owner_email",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The email address of the owner of the account."
+        },
+        "owner_iam_id": {
+          "name": "owner_iam_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The IAM ID of the account owner, such as `IBMid-0123ABC`. The IAM ID must already exist.",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateRegexps"
+          }
+        },
+        "paid": {
+          "name": "paid",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The type of account - whether it is free or paid."
+        },
+        "parent": {
+          "name": "parent",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The CRN of the parent under which the account will be created. The parent can be an existing account group or the enterprise itself."
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The state of the account."
+        },
+        "traits": {
+          "name": "traits",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The traits object can be used to set properties on child accounts of an enterprise. You can pass a field to opt-out of Multi-Factor Authentication setting or setup enterprise IAM settings when creating a child account in the enterprise. This is an optional field.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enterprise_iam_managed": {
+                "name": "enterprise_iam_managed",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The Enterprise IAM settings property will be turned off for a newly created child account by default. You can enable this property by passing 'true' in this boolean field. This is an optional field."
+              },
+              "mfa": {
+                "name": "mfa",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "By default MFA will be enabled on a child account. To opt out, pass the traits object with the mfa field set to empty string. This is an optional field."
+              }
+            }
+          }
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The time stamp at which the account was last updated."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IAM ID of the user or service that updated the account."
+        },
+        "url": {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the account."
+        }
+      }
+    },
+    {
+      "name": "ibm_enterprise_account_group",
+      "function": "ResourceIBMEnterpriseAccountGroup",
+      "package": "enterprise",
+      "kind": "resource",
+      "description": "Manages ibm_enterprise_account_group. The name of the account group.",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The time stamp at which the account group was created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IAM ID of the user or service that created the account group."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Cloud Resource Name (CRN) of the account group.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "enterprise_account_id": {
+          "name": "enterprise_account_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The enterprise account ID."
+        },
+        "enterprise_id": {
+          "name": "enterprise_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The enterprise ID that the account group is a part of."
+        },
+        "enterprise_path": {
+          "name": "enterprise_path",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The path from the enterprise to this particular account group."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name of the account group. This field must have 3 - 60 characters.",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateAllowedEnterpriseNameValue"
+          }
+        },
+        "parent": {
+          "name": "parent",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The CRN of the parent under which the account group will be created. The parent can be an existing account group or the enterprise itself."
+        },
+        "primary_contact_email": {
+          "name": "primary_contact_email",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The email address of the primary contact of the account group."
+        },
+        "primary_contact_iam_id": {
+          "name": "primary_contact_iam_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The IAM ID of the primary contact for this account group, such as `IBMid-0123ABC`. The IAM ID must already exist.",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateRegexps"
+          }
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The state of the account group."
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The time stamp at which the account group was last updated."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IAM ID of the user or service that updated the account group."
+        },
+        "url": {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the account group."
+        }
+      }
+    },
+    {
+      "name": "ibm_enterprise_account_groups",
+      "function": "DataSourceIBMEnterpriseAccountGroups",
+      "package": "enterprise",
+      "kind": "data",
+      "description": "Reads ibm_enterprise_account_groups. The name of the account group.",
+      "attributes": {
+        "account_groups": {
+          "name": "account_groups",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A list of account groups.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The time stamp at which the account group was created."
+              },
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The IAM ID of the user or service that created the account group."
+              },
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Cloud Resource Name (CRN) of the account group.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "enterprise_account_id": {
+                "name": "enterprise_account_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The enterprise account ID."
+              },
+              "enterprise_id": {
+                "name": "enterprise_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The enterprise ID that the account group is a part of."
+              },
+              "enterprise_path": {
+                "name": "enterprise_path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The path from the enterprise to this particular account group."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The account group ID."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the account group."
+              },
+              "parent": {
+                "name": "parent",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The CRN of the parent of the account group."
+              },
+              "primary_contact_email": {
+                "name": "primary_contact_email",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The email address of the primary contact of the account group."
+              },
+              "primary_contact_iam_id": {
+                "name": "primary_contact_iam_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The IAM ID of the primary contact of the account group."
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The state of the account group."
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The time stamp at which the account group was last updated."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The IAM ID of the user or service that updated the account group."
+              },
+              "url": {
+                "name": "url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The URL of the account group."
+              }
+            }
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The name of the account group.",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateAllowedEnterpriseNameValue"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_enterprise_accounts",
+      "function": "DataSourceIBMEnterpriseAccounts",
+      "package": "enterprise",
+      "kind": "data",
+      "description": "Reads ibm_enterprise_accounts. The name of the account.",
+      "attributes": {
+        "accounts": {
+          "name": "accounts",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A list of accounts.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The time stamp at which the account was created."
+              },
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The IAM ID of the user or service that created the account."
+              },
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Cloud Resource Name (CRN) of the account.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "enterprise_account_id": {
+                "name": "enterprise_account_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The enterprise account ID."
+              },
+              "enterprise_id": {
+                "name": "enterprise_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The enterprise ID that the account is a part of."
+              },
+              "enterprise_path": {
+                "name": "enterprise_path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The path from the enterprise to this particular account."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The account ID."
+              },
+              "is_enterprise_account": {
+                "name": "is_enterprise_account",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The flag to indicate whether the account is an enterprise account or not."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the account."
+              },
+              "owner_email": {
+                "name": "owner_email",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The email address of the owner of the account."
+              },
+              "owner_iam_id": {
+                "name": "owner_iam_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The IAM ID of the owner of the account."
+              },
+              "paid": {
+                "name": "paid",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The type of account - whether it is free or paid."
+              },
+              "parent": {
+                "name": "parent",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The CRN of the parent of the account."
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The state of the account."
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The time stamp at which the account was last updated."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The IAM ID of the user or service that updated the account."
+              },
+              "url": {
+                "name": "url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The URL of the account."
+              }
+            }
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The name of the account.",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateAllowedEnterpriseNameValue"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_enterprises",
+      "function": "DataSourceIBMEnterprises",
+      "package": "enterprise",
+      "kind": "data",
+      "description": "Reads ibm_enterprises. The name of the enterprise.",
+      "attributes": {
+        "enterprises": {
+          "name": "enterprises",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A list of enterprise objects.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The time stamp at which the enterprise was created."
+              },
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The IAM ID of the user or service that created the enterprise."
+              },
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Cloud Resource Name (CRN) of the enterprise.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "domain": {
+                "name": "domain",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The domain of the enterprise."
+              },
+              "enterprise_account_id": {
+                "name": "enterprise_account_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The enterprise account ID."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The enterprise ID."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the enterprise."
+              },
+              "primary_contact_email": {
+                "name": "primary_contact_email",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The email of the primary contact of the enterprise."
+              },
+              "primary_contact_iam_id": {
+                "name": "primary_contact_iam_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The IAM ID of the primary contact of the enterprise, such as `IBMid-0123ABC`."
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The state of the enterprise."
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The time stamp at which the enterprise was last updated."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The IAM ID of the user or service that updated the enterprise."
+              },
+              "url": {
+                "name": "url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The URL of the enterprise."
+              }
+            }
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The name of the enterprise.",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateAllowedEnterpriseNameValue"
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 6,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package enterprise"
+}

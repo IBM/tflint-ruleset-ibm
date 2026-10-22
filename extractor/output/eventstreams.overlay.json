@@ -1,0 +1,188 @@
+{
+  "package": "eventstreams",
+  "specs": [
+    {
+      "slug": "event-streams-adminrest",
+      "title": "IBM Event Streams Admin REST API",
+      "schema_count": 28,
+      "path_count": 14
+    },
+    {
+      "slug": "event-streams-schemaregistry",
+      "title": "IBM Event Streams Schema Registry API",
+      "schema_count": 5,
+      "path_count": 7
+    },
+    {
+      "slug": "event-streams-restproducer",
+      "title": "IBM Event Streams REST Producer",
+      "schema_count": 3,
+      "path_count": 1
+    },
+    {
+      "slug": "event-streams-restproducer_v2",
+      "title": "IBM Event Streams REST Producer v2 endpoint",
+      "schema_count": 13,
+      "path_count": 1
+    }
+  ],
+  "matched": 8,
+  "resource_count": 10,
+  "overlay_attrs": 9,
+  "resources": [
+    {
+      "name": "ibm_event_streams_mirroring_config",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_event_streams_quota",
+      "kind": "resource",
+      "schema": "/admin/quotas/{entity_name}:patch",
+      "spec": "event-streams-adminrest",
+      "score": 0.43,
+      "attrs": {
+        "consumer_byte_rate": {
+          "format": "int64",
+          "description": "The consumer byte rate quota value.",
+          "source": "event-streams-adminrest",
+          "schema": "/admin/quotas/{entity_name}:patch"
+        },
+        "producer_byte_rate": {
+          "format": "int64",
+          "description": "The producer byte rate quota value.",
+          "source": "event-streams-adminrest",
+          "schema": "/admin/quotas/{entity_name}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_event_streams_schema",
+      "kind": "resource",
+      "schema": "/artifacts:post",
+      "spec": "event-streams-schemaregistry",
+      "score": 0.2333,
+      "attrs": {
+        "schema": {
+          "description": "The AVRO schema",
+          "source": "event-streams-schemaregistry",
+          "schema": "/artifacts:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_event_streams_schema_global_rule",
+      "kind": "resource",
+      "schema": "rule",
+      "spec": "event-streams-schemaregistry",
+      "score": 0.4433,
+      "attrs": {
+        "config": {
+          "enum": [
+            "BACKWARD",
+            "BACKWARD_TRANSITIVE",
+            "FORWARD",
+            "FORWARD_TRANSITIVE",
+            "FULL",
+            "FULL_TRANSITIVE",
+            "NONE"
+          ],
+          "description": "The configuration value for the rule. Which values are valid depends on the value of this object's `type` property.",
+          "api_required": true,
+          "source": "event-streams-schemaregistry",
+          "schema": "rule"
+        }
+      }
+    },
+    {
+      "name": "ibm_event_streams_topic",
+      "kind": "resource",
+      "schema": "topic_create_request",
+      "spec": "event-streams-adminrest",
+      "score": 0.5233,
+      "attrs": {
+        "name": {
+          "description": "The name of topic to be created.",
+          "source": "event-streams-adminrest",
+          "schema": "topic_create_request"
+        },
+        "partitions": {
+          "format": "int64",
+          "description": "The number of partitions.",
+          "source": "event-streams-adminrest",
+          "schema": "topic_create_request"
+        },
+        "config": {
+          "enum": [
+            "BACKWARD",
+            "BACKWARD_TRANSITIVE",
+            "FORWARD",
+            "FORWARD_TRANSITIVE",
+            "FULL",
+            "FULL_TRANSITIVE",
+            "NONE"
+          ],
+          "description": "The configuration value for the rule. Which values are valid depends on the value of this object's `type` property.",
+          "api_required": true,
+          "source": "event-streams-schemaregistry",
+          "schema": "/artifacts/{id}/rules:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_event_streams_mirroring_config",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_event_streams_quota",
+      "kind": "data",
+      "schema": "quota_list",
+      "spec": "event-streams-adminrest",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_event_streams_schema",
+      "kind": "data",
+      "schema": "ProduceResponseSchemaMetadata",
+      "spec": "event-streams-restproducer_v2",
+      "score": 0.175,
+      "attrs": {
+        "schema_id": {
+          "description": "The schema id of the schema used in the registry. example: \"schema_id\": 101",
+          "source": "event-streams-restproducer_v2",
+          "schema": "ProduceResponseSchemaMetadata"
+        }
+      }
+    },
+    {
+      "name": "ibm_event_streams_schema_global_rule",
+      "kind": "data",
+      "schema": "rule",
+      "spec": "event-streams-schemaregistry",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_event_streams_topic",
+      "kind": "data",
+      "schema": "topic_create_request",
+      "spec": "event-streams-adminrest",
+      "score": 0.43,
+      "attrs": {
+        "name": {
+          "description": "The name of topic to be created.",
+          "source": "event-streams-adminrest",
+          "schema": "topic_create_request"
+        }
+      }
+    }
+  ]
+}

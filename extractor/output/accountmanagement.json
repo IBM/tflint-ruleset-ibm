@@ -1,0 +1,114 @@
+{
+  "package": "accountmanagement",
+  "resources": [
+    {
+      "name": "ibm_account_info",
+      "function": "DataSourceIbmAccount",
+      "package": "accountmanagement",
+      "kind": "data",
+      "description": "Schema validation for the ibm_account_info data source.",
+      "attributes": {
+        "account_id": {
+          "name": "account_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The unique identifier of the account you want to retrieve."
+        },
+        "linked_softlayer_account": {
+          "name": "linked_softlayer_account",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "owner": {
+          "name": "owner",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "owner_iamid": {
+          "name": "owner_iamid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "owner_userid": {
+          "name": "owner_userid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "team_directory_enabled": {
+          "name": "team_directory_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "traits": {
+          "name": "traits",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "eu_supported": {
+                "name": "eu_supported",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "hippa": {
+                "name": "hippa",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "poc": {
+                "name": "poc",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 1,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package accountmanagement"
+}

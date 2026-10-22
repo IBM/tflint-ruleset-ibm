@@ -1,0 +1,176 @@
+{
+  "package": "configurationaggregator",
+  "specs": [
+    {
+      "slug": "app-configuration",
+      "title": "App Configuration API",
+      "schema_count": 147,
+      "path_count": 40
+    }
+  ],
+  "matched": 4,
+  "resource_count": 4,
+  "overlay_attrs": 15,
+  "resources": [
+    {
+      "name": "ibm_config_aggregator_settings",
+      "kind": "resource",
+      "schema": "/apprapp/config_aggregator/v1/instances/{guid}/settings:put",
+      "spec": "app-configuration",
+      "score": 0.385,
+      "attrs": {
+        "additional_scope.enterprise_id": {
+          "pattern": "^[a-zA-Z0-9]+$",
+          "min_len": 0,
+          "max_len": 32,
+          "description": "The Enterprise ID.",
+          "source": "app-configuration",
+          "schema": "/apprapp/config_aggregator/v1/instances/{guid}/settings:put"
+        },
+        "additional_scope.profile_template.id": {
+          "pattern": "^[a-zA-Z0-9-=:]+$",
+          "min_len": 52,
+          "max_len": 52,
+          "description": "The Profile Template ID created in the enterprise account that provides access to App Configuration instance for resource collection.",
+          "source": "app-configuration",
+          "schema": "/apprapp/config_aggregator/v1/instances/{guid}/settings:put"
+        },
+        "additional_scope.profile_template.trusted_profile_id": {
+          "pattern": "^[a-zA-Z0-9-=:]+$",
+          "min_len": 44,
+          "max_len": 44,
+          "description": "The trusted profile ID that provides access to App Configuration instance to retrieve template information.",
+          "source": "app-configuration",
+          "schema": "/apprapp/config_aggregator/v1/instances/{guid}/settings:put"
+        },
+        "additional_scope.type": {
+          "pattern": "^[a-zA-Z0-9]+$",
+          "min_len": 0,
+          "max_len": 64,
+          "description": "The type of scope. Currently allowed value is Enterprise",
+          "source": "app-configuration",
+          "schema": "/apprapp/config_aggregator/v1/instances/{guid}/settings:put"
+        },
+        "resource_collection_enabled": {
+          "description": "The field denoting if the resource collection is enabled",
+          "source": "app-configuration",
+          "schema": "/apprapp/config_aggregator/v1/instances/{guid}/settings:put"
+        },
+        "trusted_profile_id": {
+          "pattern": "^[a-zA-Z0-9-]*$",
+          "min_len": 44,
+          "max_len": 44,
+          "description": "The trusted profile id that provides Reader access to the App Configuration instance to collect resource metadata.",
+          "source": "app-configuration",
+          "schema": "/apprapp/config_aggregator/v1/instances/{guid}/settings:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_config_aggregator_configurations",
+      "kind": "data",
+      "schema": "About",
+      "spec": "app-configuration",
+      "score": 0.3294,
+      "attrs": {
+        "access_tags": {
+          "pattern": "^[a-z0-9 _\\-.:\\s]*$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "The accesss Tag associated with the resource. This format is usually a key-value pair",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "About"
+        },
+        "config_type": {
+          "pattern": "^[a-zA-Z0-9.\\:/-]+$",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The type of configuration of the retrieved resource.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "About"
+        },
+        "location": {
+          "pattern": "^$|^[a-z]+-[a-z]+$",
+          "min_len": 0,
+          "max_len": 1000,
+          "description": "The location or region in which the resources are created.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "About"
+        },
+        "resource_crn": {
+          "pattern": "^[a-zA-Z0-9.\\:/-]+$",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The unique CRN of the IBM Cloud resource.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "About"
+        },
+        "resource_group_id": {
+          "pattern": "^[a-zA-Z0-9-]*$",
+          "min_len": 0,
+          "max_len": 32,
+          "description": "The resource group id of the resources.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "About"
+        },
+        "service_name": {
+          "pattern": "^[a-zA-Z0-9.\\:/-]+$",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The name of the service to which the resources belongs.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "About"
+        },
+        "service_tags": {
+          "pattern": "^[a-z0-9 _\\-.:\\s]*$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Tag associated with the resource.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "About"
+        },
+        "user_tags": {
+          "pattern": "^[a-z0-9 _\\-.:\\s]*$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Tag associated with the resource.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "About"
+        },
+        "sub_account": {
+          "pattern": "^[a-zA-Z0-9:-]+$",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "Filter the resource configurations from the specified sub-account in an enterprise hierarchy.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "NLPQuery"
+        }
+      }
+    },
+    {
+      "name": "ibm_config_aggregator_resource_collection_status",
+      "kind": "data",
+      "schema": "Config",
+      "spec": "app-configuration",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_config_aggregator_settings",
+      "kind": "data",
+      "schema": "/apprapp/config_aggregator/v1/instances/{guid}/settings:put",
+      "spec": "app-configuration",
+      "score": 0.21,
+      "attrs": {}
+    }
+  ]
+}

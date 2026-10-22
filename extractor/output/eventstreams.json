@@ -1,0 +1,418 @@
+{
+  "package": "eventstreams",
+  "resources": [
+    {
+      "name": "ibm_event_streams_mirroring_config",
+      "function": "ResourceIBMEventStreamsMirroringConfig",
+      "package": "eventstreams",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_event_streams_mirroring_config resource.",
+      "attributes": {
+        "mirroring_topic_patterns": {
+          "name": "mirroring_topic_patterns",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The topic pattern to use for mirroring",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "resource_instance_id": {
+          "name": "resource_instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The ID or CRN of the Event Streams service instance"
+        }
+      }
+    },
+    {
+      "name": "ibm_event_streams_quota",
+      "function": "ResourceIBMEventStreamsQuota",
+      "package": "eventstreams",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_event_streams_quota resource.",
+      "attributes": {
+        "consumer_byte_rate": {
+          "name": "consumer_byte_rate",
+          "type": "int",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The consumer quota in bytes per second, -1 means no quota",
+          "validate": {
+            "kind": "int_min",
+            "func_name": "IntAtLeast",
+            "min": -1
+          }
+        },
+        "entity": {
+          "name": "entity",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The entity for which the quota is set; 'default' or IAM ID"
+        },
+        "producer_byte_rate": {
+          "name": "producer_byte_rate",
+          "type": "int",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The producer quota in bytes per second, -1 means no quota",
+          "validate": {
+            "kind": "int_min",
+            "func_name": "IntAtLeast",
+            "min": -1
+          }
+        },
+        "resource_instance_id": {
+          "name": "resource_instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The ID or the CRN of the Event Streams service instance"
+        }
+      }
+    },
+    {
+      "name": "ibm_event_streams_schema",
+      "function": "ResourceIBMEventStreamsSchema",
+      "package": "eventstreams",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_event_streams_schema resource.",
+      "attributes": {
+        "kafka_http_url": {
+          "name": "kafka_http_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The API endpoint for interacting with an Event Streams REST API"
+        },
+        "resource_instance_id": {
+          "name": "resource_instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The ID or the CRN of the Event Streams service instance"
+        },
+        "schema": {
+          "name": "schema",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The schema in JSON format",
+          "validate": {
+            "kind": "func",
+            "func_name": "validateAvroSchema"
+          }
+        },
+        "schema_id": {
+          "name": "schema_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The ID to be assigned to schema, which must be unique. If this value is not specified, a generated UUID is assigned."
+        }
+      }
+    },
+    {
+      "name": "ibm_event_streams_schema_global_rule",
+      "function": "ResourceIBMEventStreamsSchemaGlobalCompatibilityRule",
+      "package": "eventstreams",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_event_streams_schema_global_rule resource.",
+      "attributes": {
+        "config": {
+          "name": "config",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The value of the global schema compatibility rule",
+          "validate": {
+            "kind": "enum",
+            "func_name": "StringInSlice",
+            "ignore_case": true
+          }
+        },
+        "resource_instance_id": {
+          "name": "resource_instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The ID or the CRN of the Event Streams service instance"
+        }
+      }
+    },
+    {
+      "name": "ibm_event_streams_topic",
+      "function": "ResourceIBMEventStreamsTopic",
+      "package": "eventstreams",
+      "kind": "resource",
+      "description": "Manages ibm_event_streams_topic. The name of the topic",
+      "attributes": {
+        "config": {
+          "name": "config",
+          "type": "map",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The configuration parameters of a topic"
+        },
+        "kafka_brokers_sasl": {
+          "name": "kafka_brokers_sasl",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Kafka brokers addresses for interacting with Kafka native API",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "kafka_http_url": {
+          "name": "kafka_http_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "API endpoint for interacting with Event Streams REST API"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name of the topic"
+        },
+        "partitions": {
+          "name": "partitions",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The number of partitions",
+          "default": "1"
+        },
+        "resource_instance_id": {
+          "name": "resource_instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The CRN of the Event Streams instance"
+        }
+      }
+    },
+    {
+      "name": "ibm_event_streams_mirroring_config",
+      "function": "DataSourceIBMEventStreamsMirroringConfig",
+      "package": "eventstreams",
+      "kind": "data",
+      "description": "Schema validation for the ibm_event_streams_mirroring_config data source.",
+      "attributes": {
+        "mirroring_topic_patterns": {
+          "name": "mirroring_topic_patterns",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The topic pattern to use for mirroring",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "resource_instance_id": {
+          "name": "resource_instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The ID or CRN of the Event Streams service instance"
+        }
+      }
+    },
+    {
+      "name": "ibm_event_streams_quota",
+      "function": "DataSourceIBMEventStreamsQuota",
+      "package": "eventstreams",
+      "kind": "data",
+      "description": "Schema validation for the ibm_event_streams_quota data source.",
+      "attributes": {
+        "consumer_byte_rate": {
+          "name": "consumer_byte_rate",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The consumer quota in bytes per second, -1 means no quota"
+        },
+        "entity": {
+          "name": "entity",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The entity for which the quota is set; 'default' or IAM ID"
+        },
+        "producer_byte_rate": {
+          "name": "producer_byte_rate",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The producer quota in bytes per second, -1 means no quota"
+        },
+        "resource_instance_id": {
+          "name": "resource_instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The ID or CRN of the Event Streams service instance"
+        }
+      }
+    },
+    {
+      "name": "ibm_event_streams_schema",
+      "function": "DataSourceIBMEventStreamsSchema",
+      "package": "eventstreams",
+      "kind": "data",
+      "description": "Schema validation for the ibm_event_streams_schema data source.",
+      "attributes": {
+        "kafka_http_url": {
+          "name": "kafka_http_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The API endpoint for interacting with an Event Streams REST API"
+        },
+        "resource_instance_id": {
+          "name": "resource_instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The ID or CRN of the Event Streams service instance"
+        },
+        "schema_id": {
+          "name": "schema_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The unique ID to be assigned to the schema."
+        }
+      }
+    },
+    {
+      "name": "ibm_event_streams_schema_global_rule",
+      "function": "DataSourceIBMEventStreamsSchemaGlobalCompatibilityRule",
+      "package": "eventstreams",
+      "kind": "data",
+      "description": "Schema validation for the ibm_event_streams_schema_global_rule data source.",
+      "attributes": {
+        "config": {
+          "name": "config",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The value of the global schema compatibility rule"
+        },
+        "resource_instance_id": {
+          "name": "resource_instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The ID or CRN of the Event Streams service instance"
+        }
+      }
+    },
+    {
+      "name": "ibm_event_streams_topic",
+      "function": "DataSourceIBMEventStreamsTopic",
+      "package": "eventstreams",
+      "kind": "data",
+      "description": "Reads ibm_event_streams_topic. The name of the topic",
+      "attributes": {
+        "config": {
+          "name": "config",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The configuration parameters of the topic."
+        },
+        "kafka_brokers_sasl": {
+          "name": "kafka_brokers_sasl",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Kafka brokers addresses for interacting with Kafka native API",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "kafka_http_url": {
+          "name": "kafka_http_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The API endpoint for interacting with Event Streams REST API"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name of the topic"
+        },
+        "partitions": {
+          "name": "partitions",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The number of partitions of the topic"
+        },
+        "resource_instance_id": {
+          "name": "resource_instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The CRN of the Event Streams instance"
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 10,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package eventstreams"
+}

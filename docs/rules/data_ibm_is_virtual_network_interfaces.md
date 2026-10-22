@@ -1,0 +1,39 @@
+# ibm_is_virtual_network_interfaces_data
+
+Schema validation for the ibm_is_virtual_network_interfaces data source.
+
+This rule validates `ibm_is_virtual_network_interfaces` data sources against the IBM Cloud provider schema and the published IBM Cloud API: required arguments, allowed values, numeric ranges, and format constraints.
+
+OpenAPI schema: `FloatingIPPrototype` (`vpc-latest`).
+
+## Configuration
+
+```hcl
+rule "ibm_is_virtual_network_interfaces_data" {
+  enabled = true
+}
+```
+
+## Checks
+
+| Argument | Required | Constraints |
+| --- | --- | --- |
+| `resource_group` | no | API: The resource group to use. If unspecified, the account's [default resource group](https://cloud.ibm.com/apidocs/resource-manager#introduction) will be used. |
+| `virtual_network_interfaces` | no | — |
+
+## Attribute rules
+
+Each writable argument has its own rule so checks can be enabled or disabled independently.
+
+| Rule | Argument |
+| --- | --- |
+| `ibm_is_virtual_network_interfaces_data_invalid_resource_group` | `resource_group` |
+
+## Example
+
+### Valid
+
+```hcl
+data "ibm_is_virtual_network_interfaces" "test" {
+}
+```

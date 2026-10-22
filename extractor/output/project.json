@@ -1,0 +1,4475 @@
+{
+  "package": "project",
+  "resources": [
+    {
+      "name": "ibm_project",
+      "function": "ResourceIbmProject",
+      "package": "project",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_project resource.",
+      "attributes": {
+        "configs": {
+          "name": "configs",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The project configurations. These configurations are only included in the response of creating a project if a configuration array is specified in the request payload.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "approved_version": {
+                "name": "approved_version",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "A summary of a project configuration version.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "container_state": {
+                      "name": "container_state",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The aggregate state from all deployabe architectures that are included in this configuration."
+                    },
+                    "definition": {
+                      "name": "definition",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A summary of the definition in a project configuration version.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "environment_id": {
+                            "name": "environment_id",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": true,
+                            "description": "The ID of the project environment."
+                          },
+                          "locator_id": {
+                            "name": "locator_id",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": true,
+                            "force_new": true,
+                            "description": "A unique concatenation of the catalog ID and the version ID that identify the deployable architecture in the catalog. If importing from an existing Schematics workspace that is not backed by cart, a `locator_id` is required. If using a Schematics workspace that is backed by cart, a `locator_id` is not necessary because the Schematics workspace has one.\u003e There are 3 scenarios:\u003e 1. If only a `locator_id` is specified, a new Schematics workspace is instantiated with that `locator_id`.\u003e 2. If only a schematics `workspace_crn` is specified, a `400` is returned if a `locator_id` is not found in the existing schematics workspace.\u003e 3. If both a Schematics `workspace_crn` and a `locator_id` are specified, a `400` message is returned if the specified `locator_id` does not agree with the `locator_id` in the existing Schematics workspace.\u003e For more information of creating a Schematics workspace, see [Creating workspaces and importing the Terraform template](/docs/schematics?topic=schematics-sch-create-wks)."
+                          }
+                        }
+                      }
+                    },
+                    "href": {
+                      "name": "href",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A Url."
+                    },
+                    "state": {
+                      "name": "state",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The state of the configuration."
+                    },
+                    "version": {
+                      "name": "version",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The version number of the configuration."
+                    }
+                  }
+                }
+              },
+              "container_state": {
+                "name": "container_state",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The aggregate state from all deployabe architectures that are included in this configuration."
+              },
+              "container_state_code": {
+                "name": "container_state_code",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Computed state code clarifying the prerequisites for validation for the configuration."
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+              },
+              "definition": {
+                "name": "definition",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The description of a project configuration.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "description": {
+                      "name": "description",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A project configuration description."
+                    },
+                    "locator_id": {
+                      "name": "locator_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "force_new": true,
+                      "description": "A unique concatenation of the catalog ID and the version ID that identify the deployable architecture in the catalog. If importing from an existing Schematics workspace that is not backed by cart, a `locator_id` is required. If using a Schematics workspace that is backed by cart, a `locator_id` is not necessary because the Schematics workspace has one.\u003e There are 3 scenarios:\u003e 1. If only a `locator_id` is specified, a new Schematics workspace is instantiated with that `locator_id`.\u003e 2. If only a schematics `workspace_crn` is specified, a `400` is returned if a `locator_id` is not found in the existing schematics workspace.\u003e 3. If both a Schematics `workspace_crn` and a `locator_id` are specified, a `400` message is returned if the specified `locator_id` does not agree with the `locator_id` in the existing Schematics workspace.\u003e For more information of creating a Schematics workspace, see [Creating workspaces and importing the Terraform template](/docs/schematics?topic=schematics-sch-create-wks)."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The configuration name. It's unique within the account across projects and regions."
+                    }
+                  }
+                }
+              },
+              "deployed_version": {
+                "name": "deployed_version",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "A summary of a project configuration version.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "container_state": {
+                      "name": "container_state",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The aggregate state from all deployabe architectures that are included in this configuration."
+                    },
+                    "definition": {
+                      "name": "definition",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A summary of the definition in a project configuration version.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "environment_id": {
+                            "name": "environment_id",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": true,
+                            "description": "The ID of the project environment."
+                          },
+                          "locator_id": {
+                            "name": "locator_id",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": true,
+                            "force_new": true,
+                            "description": "A unique concatenation of the catalog ID and the version ID that identify the deployable architecture in the catalog. If importing from an existing Schematics workspace that is not backed by cart, a `locator_id` is required. If using a Schematics workspace that is backed by cart, a `locator_id` is not necessary because the Schematics workspace has one.\u003e There are 3 scenarios:\u003e 1. If only a `locator_id` is specified, a new Schematics workspace is instantiated with that `locator_id`.\u003e 2. If only a schematics `workspace_crn` is specified, a `400` is returned if a `locator_id` is not found in the existing schematics workspace.\u003e 3. If both a Schematics `workspace_crn` and a `locator_id` are specified, a `400` message is returned if the specified `locator_id` does not agree with the `locator_id` in the existing Schematics workspace.\u003e For more information of creating a Schematics workspace, see [Creating workspaces and importing the Terraform template](/docs/schematics?topic=schematics-sch-create-wks)."
+                          }
+                        }
+                      }
+                    },
+                    "href": {
+                      "name": "href",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A Url."
+                    },
+                    "state": {
+                      "name": "state",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The state of the configuration."
+                    },
+                    "version": {
+                      "name": "version",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The version number of the configuration."
+                    }
+                  }
+                }
+              },
+              "deployment_model": {
+                "name": "deployment_model",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The configuration type."
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A Url."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the configuration. If this parameter is empty, an ID is automatically created for the configuration."
+              },
+              "modified_at": {
+                "name": "modified_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+              },
+              "project": {
+                "name": "project",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The project that is referenced by this resource.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "crn": {
+                      "name": "crn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "An IBM Cloud resource name that uniquely identifies a resource.",
+                      "validate": {
+                        "kind": "crn",
+                        "func_name": "name_heuristic"
+                      }
+                    },
+                    "definition": {
+                      "name": "definition",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The definition of the project reference.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "name": {
+                            "name": "name",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The name of the project."
+                          }
+                        }
+                      }
+                    },
+                    "href": {
+                      "name": "href",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A Url."
+                    },
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The unique ID."
+                    }
+                  }
+                }
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The state of the configuration."
+              },
+              "state_code": {
+                "name": "state_code",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Computed state code clarifying the prerequisites for validation for the configuration."
+              },
+              "version": {
+                "name": "version",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The version of the configuration."
+              }
+            }
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An IBM Cloud resource name that uniquely identifies a resource.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "cumulative_needs_attention_view": {
+          "name": "cumulative_needs_attention_view",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The cumulative list of needs attention items for a project. If the view is successfully retrieved, an empty or nonempty array is returned.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "config_id": {
+                "name": "config_id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "A unique ID for the configuration."
+              },
+              "config_version": {
+                "name": "config_version",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The version number of the configuration."
+              },
+              "event": {
+                "name": "event",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The event name."
+              },
+              "event_id": {
+                "name": "event_id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "A unique ID for this individual event."
+              }
+            }
+          }
+        },
+        "cumulative_needs_attention_view_error": {
+          "name": "cumulative_needs_attention_view_error",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A value of `true` indicates that the fetch of the needs attention items failed. This property only exists if there was an error while retrieving the cumulative needs attention view."
+        },
+        "definition": {
+          "name": "definition",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "min_items": 1,
+          "max_items": 1,
+          "description": "The definition of the project.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "auto_deploy": {
+                "name": "auto_deploy",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "A boolean flag to enable deploying configurations automatically.",
+                "default": "false"
+              },
+              "auto_deploy_mode": {
+                "name": "auto_deploy_mode",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "This is an advanced setting to auto deploy to tell how auto deploy should behave when it is enabled. There are 2 options:\u003e 1. `auto_approval` will automatically approve the configuration after validated without user confirmation.\u003e 2. `manual_approval` will require user confirmation to approve the configuration after validated before deploying the configuration starts.",
+                "default": "manual_approval"
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "A brief explanation of the project's use in the configuration of a deployable architecture. A project can be created without providing a description."
+              },
+              "destroy_on_delete": {
+                "name": "destroy_on_delete",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The policy that indicates whether the resources are undeployed or not when a project is deleted.",
+                "default": "true"
+              },
+              "monitoring_enabled": {
+                "name": "monitoring_enabled",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "A boolean flag to enable automatic drift detection. Use this field to run a daily check to compare the configurations to those deployed resources to detect any difference.",
+                "default": "false"
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The name of the project.  It's unique within the account across regions."
+              },
+              "store": {
+                "name": "store",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "description": "The details required to custom store project configs.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "config_directory": {
+                      "name": "config_directory",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The directory where project configs are stored."
+                    },
+                    "token": {
+                      "name": "token",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "sensitive": true,
+                      "description": "The IBM Cloud API Key. It can be either raw or pulled from the catalog via a `CRN` or `JSON` blob."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "The type of store used for the project."
+                    },
+                    "url": {
+                      "name": "url",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "A Url."
+                    }
+                  }
+                }
+              },
+              "terraform_engine": {
+                "name": "terraform_engine",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "description": "Experimental schema - this is for prototyping purposes.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "The identifier of the Terraform engine."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "The type of the engine."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "environments": {
+          "name": "environments",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The project environment. These environments are only included in the response if project environments were created on the project.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+              },
+              "definition": {
+                "name": "definition",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The environment definition that is used in the project collection.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "description": {
+                      "name": "description",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The description of the environment."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name of the environment. It's unique within the account across projects and regions."
+                    }
+                  }
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A Url."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The environment ID as a friendly name."
+              },
+              "project": {
+                "name": "project",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The project that is referenced by this resource.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "crn": {
+                      "name": "crn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "An IBM Cloud resource name that uniquely identifies a resource.",
+                      "validate": {
+                        "kind": "crn",
+                        "func_name": "name_heuristic"
+                      }
+                    },
+                    "definition": {
+                      "name": "definition",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The definition of the project reference.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "name": {
+                            "name": "name",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The name of the project."
+                          }
+                        }
+                      }
+                    },
+                    "href": {
+                      "name": "href",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A Url."
+                    },
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The unique ID."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "event_notifications_crn": {
+          "name": "event_notifications_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The CRN of the Event Notifications instance if one is connected to this project.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A Url."
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The IBM Cloud location where a resource is deployed.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "ca-tor",
+              "eu-de",
+              "eu-gb",
+              "us-east",
+              "us-south"
+            ]
+          }
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The resource group name where the project's data and tools are created.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 64,
+            "regexp": "^(?!\\s)(?!.*\\s$)[^'\"`\u003c\u003e{}\\x00-\\x1F]*$"
+          }
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group ID where the project's data and tools are created."
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The project status value."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "location",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "ca-tor, eu-de, eu-gb, us-east, us-south"
+        },
+        {
+          "identifier": "resource_group",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^(?!\\s)(?!.*\\s$)[^'\"`\u003c\u003e{}\\x00-\\x1F]*$",
+          "max_len": 64
+        }
+      ]
+    },
+    {
+      "name": "ibm_project_config",
+      "function": "ResourceIbmProjectConfig",
+      "package": "project",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_project_config resource.",
+      "attributes": {
+        "approved_version": {
+          "name": "approved_version",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "A summary of a project configuration version.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "container_state": {
+                "name": "container_state",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The aggregate state from all deployabe architectures that are included in this configuration."
+              },
+              "definition": {
+                "name": "definition",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A summary of the definition in a project configuration version.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "environment_id": {
+                      "name": "environment_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The ID of the project environment."
+                    },
+                    "locator_id": {
+                      "name": "locator_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "force_new": true,
+                      "description": "A unique concatenation of the catalog ID and the version ID that identify the deployable architecture in the catalog. If importing from an existing Schematics workspace that is not backed by cart, a `locator_id` is required. If using a Schematics workspace that is backed by cart, a `locator_id` is not necessary because the Schematics workspace has one.\u003e There are 3 scenarios:\u003e 1. If only a `locator_id` is specified, a new Schematics workspace is instantiated with that `locator_id`.\u003e 2. If only a schematics `workspace_crn` is specified, a `400` is returned if a `locator_id` is not found in the existing schematics workspace.\u003e 3. If both a Schematics `workspace_crn` and a `locator_id` are specified, a `400` message is returned if the specified `locator_id` does not agree with the `locator_id` in the existing Schematics workspace.\u003e For more information of creating a Schematics workspace, see [Creating workspaces and importing the Terraform template](/docs/schematics?topic=schematics-sch-create-wks)."
+                    }
+                  }
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A Url."
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The state of the configuration."
+              },
+              "version": {
+                "name": "version",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The version number of the configuration."
+              }
+            }
+          }
+        },
+        "config_error": {
+          "name": "config_error",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The error from config actions.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "details": {
+                "name": "details",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The error details from config actions.",
+                "elem": {
+                  "kind": "resource"
+                }
+              },
+              "message": {
+                "name": "message",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The error message from config actions."
+              }
+            }
+          }
+        },
+        "container_state": {
+          "name": "container_state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The aggregate state from all deployabe architectures that are included in this configuration."
+        },
+        "container_state_code": {
+          "name": "container_state_code",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Computed state code clarifying the prerequisites for validation for the configuration."
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+        },
+        "definition": {
+          "name": "definition",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "min_items": 1,
+          "max_items": 1,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authorizations": {
+                "name": "authorizations",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "description": "The authorization details. It can authorize by using a trusted profile or an API key in Secrets Manager.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "api_key": {
+                      "name": "api_key",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "sensitive": true,
+                      "description": "The IBM Cloud API Key. It can be either raw or pulled from the catalog via a `CRN` or `JSON` blob."
+                    },
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The authorization method. It can authorize by using a trusted profile or an API key in Secrets Manager."
+                    },
+                    "trusted_profile_id": {
+                      "name": "trusted_profile_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The trusted profile ID."
+                    }
+                  }
+                }
+              },
+              "compliance_profile": {
+                "name": "compliance_profile",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "description": "The profile that is required for compliance.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "attachment_id": {
+                      "name": "attachment_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "A unique ID for the attachment to a compliance profile."
+                    },
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The unique ID for the compliance profile."
+                    },
+                    "instance_id": {
+                      "name": "instance_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "A unique ID for the instance of a compliance profile."
+                    },
+                    "instance_location": {
+                      "name": "instance_location",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The location of the compliance instance."
+                    },
+                    "profile_name": {
+                      "name": "profile_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The name of the compliance profile."
+                    },
+                    "wp_instance_id": {
+                      "name": "wp_instance_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "A unique ID for the instance of a Workload Protection."
+                    },
+                    "wp_instance_location": {
+                      "name": "wp_instance_location",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The location of the compliance instance."
+                    },
+                    "wp_instance_name": {
+                      "name": "wp_instance_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The name of the Workload Protection instance."
+                    },
+                    "wp_policy_id": {
+                      "name": "wp_policy_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The unique ID for the Workload Protection policy."
+                    },
+                    "wp_policy_name": {
+                      "name": "wp_policy_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The name of the Workload Protection policy."
+                    },
+                    "wp_zone_id": {
+                      "name": "wp_zone_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "A unique ID for the zone to a Workload Protection policy."
+                    },
+                    "wp_zone_name": {
+                      "name": "wp_zone_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "A unique ID for the zone to a Workload Protection policy."
+                    }
+                  }
+                }
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "A project configuration description."
+              },
+              "environment_id": {
+                "name": "environment_id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The ID of the project environment."
+              },
+              "inputs": {
+                "name": "inputs",
+                "type": "map",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The input variables that are used for configuration definition and environment.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "locator_id": {
+                "name": "locator_id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "force_new": true,
+                "description": "A unique concatenation of the catalog ID and the version ID that identify the deployable architecture in the catalog. If importing from an existing Schematics workspace that is not backed by cart, a `locator_id` is required. If using a Schematics workspace that is backed by cart, a `locator_id` is not necessary because the Schematics workspace has one.\u003e There are 3 scenarios:\u003e 1. If only a `locator_id` is specified, a new Schematics workspace is instantiated with that `locator_id`.\u003e 2. If only a schematics `workspace_crn` is specified, a `400` is returned if a `locator_id` is not found in the existing schematics workspace.\u003e 3. If both a Schematics `workspace_crn` and a `locator_id` are specified, a `400` message is returned if the specified `locator_id` does not agree with the `locator_id` in the existing Schematics workspace.\u003e For more information of creating a Schematics workspace, see [Creating workspaces and importing the Terraform template](/docs/schematics?topic=schematics-sch-create-wks)."
+              },
+              "members": {
+                "name": "members",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The member deployabe architectures that are included in the stack.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "config_id": {
+                      "name": "config_id",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "The unique ID."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "The name matching the alias in the stack definition."
+                    }
+                  }
+                }
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The configuration name. It's unique within the account across projects and regions."
+              },
+              "resource_crns": {
+                "name": "resource_crns",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The CRNs of the resources that are associated with this configuration.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "settings": {
+                "name": "settings",
+                "type": "map",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The Schematics environment variables to use to deploy the configuration. Settings are only available if they are specified when the configuration is initially created.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "uses": {
+                "name": "uses",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The depending deployabe architectures that are referenced by this configuration.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "config_id": {
+                      "name": "config_id",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "The unique ID."
+                    },
+                    "project_id": {
+                      "name": "project_id",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "The unique ID."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deployed_version": {
+          "name": "deployed_version",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "A summary of a project configuration version.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "container_state": {
+                "name": "container_state",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The aggregate state from all deployabe architectures that are included in this configuration."
+              },
+              "definition": {
+                "name": "definition",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A summary of the definition in a project configuration version.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "environment_id": {
+                      "name": "environment_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The ID of the project environment."
+                    },
+                    "locator_id": {
+                      "name": "locator_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "force_new": true,
+                      "description": "A unique concatenation of the catalog ID and the version ID that identify the deployable architecture in the catalog. If importing from an existing Schematics workspace that is not backed by cart, a `locator_id` is required. If using a Schematics workspace that is backed by cart, a `locator_id` is not necessary because the Schematics workspace has one.\u003e There are 3 scenarios:\u003e 1. If only a `locator_id` is specified, a new Schematics workspace is instantiated with that `locator_id`.\u003e 2. If only a schematics `workspace_crn` is specified, a `400` is returned if a `locator_id` is not found in the existing schematics workspace.\u003e 3. If both a Schematics `workspace_crn` and a `locator_id` are specified, a `400` message is returned if the specified `locator_id` does not agree with the `locator_id` in the existing Schematics workspace.\u003e For more information of creating a Schematics workspace, see [Creating workspaces and importing the Terraform template](/docs/schematics?topic=schematics-sch-create-wks)."
+                    }
+                  }
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A Url."
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The state of the configuration."
+              },
+              "version": {
+                "name": "version",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The version number of the configuration."
+              }
+            }
+          }
+        },
+        "deployment_model": {
+          "name": "deployment_model",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The configuration type."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A Url."
+        },
+        "is_draft": {
+          "name": "is_draft",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The flag that indicates whether the version of the configuration is draft, or active."
+        },
+        "last_saved_at": {
+          "name": "last_saved_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+        },
+        "member_of": {
+          "name": "member_of",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The stack config parent of which this configuration is a member of.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "definition": {
+                "name": "definition",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The definition summary of the stack configuration.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "members": {
+                      "name": "members",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The member deployable architectures that are included in the stack.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "config_id": {
+                            "name": "config_id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The unique ID."
+                          },
+                          "name": {
+                            "name": "name",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The name matching the alias in the stack definition."
+                          }
+                        }
+                      }
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The configuration name. It's unique within the account across projects and regions."
+                    }
+                  }
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A Url."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique ID."
+              },
+              "version": {
+                "name": "version",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The version of the stack configuration."
+              }
+            }
+          }
+        },
+        "modified_at": {
+          "name": "modified_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+        },
+        "needs_attention_state": {
+          "name": "needs_attention_state",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The needs attention state of a configuration.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "action_url": {
+                "name": "action_url",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "An actionable Url that users can access in response to the event. This is a system generated field. For user triggered events the field is not present."
+              },
+              "event": {
+                "name": "event",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the event."
+              },
+              "event_id": {
+                "name": "event_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The id of the event."
+              },
+              "severity": {
+                "name": "severity",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The severity of the event. This is a system generated field. For user triggered events the field is not present."
+              },
+              "target": {
+                "name": "target",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The configuration id and version for which the event occurred. This field is only available for user generated events. For system triggered events the field is not present."
+              },
+              "timestamp": {
+                "name": "timestamp",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The time at which the event was triggered."
+              },
+              "triggered_by": {
+                "name": "triggered_by",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The IAM id of the user that triggered the event. This field is only available for user generated events. For system triggered events the field is not present."
+              }
+            }
+          }
+        },
+        "outputs": {
+          "name": "outputs",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The outputs of a Schematics template property.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "A short explanation of the output value."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The variable name."
+              },
+              "sensitive": {
+                "name": "sensitive",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Flag if the output value is sensitive. If not present, the output sensitivity is indeterminate."
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "This property can be any value - a string, number, boolean, array, or object."
+              }
+            }
+          }
+        },
+        "project": {
+          "name": "project",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The project that is referenced by this resource.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "An IBM Cloud resource name that uniquely identifies a resource.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "definition": {
+                "name": "definition",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The definition of the project reference.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name of the project."
+                    }
+                  }
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A Url."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique ID."
+              }
+            }
+          }
+        },
+        "project_config_id": {
+          "name": "project_config_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the configuration. If this parameter is empty, an ID is automatically created for the configuration."
+        },
+        "project_id": {
+          "name": "project_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The unique project ID.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexp",
+            "regexp": "^[\\.\\-0-9a-zA-Z]+$"
+          }
+        },
+        "references": {
+          "name": "references",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resolved references that are used by the configuration.",
+          "elem": {
+            "kind": "resource"
+          }
+        },
+        "schematics": {
+          "name": "schematics",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "A Schematics workspace that is associated to a project configuration, with scripts.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "deploy_post_script": {
+                "name": "deploy_post_script",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A script to be run as part of a project configuration for a specific stage (pre or post) and action (validate, deploy, or undeploy).",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "path": {
+                      "name": "path",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The path to this script is within the current version source."
+                    },
+                    "short_description": {
+                      "name": "short_description",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The short description for this script."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The type of the script."
+                    }
+                  }
+                }
+              },
+              "deploy_pre_script": {
+                "name": "deploy_pre_script",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A script to be run as part of a project configuration for a specific stage (pre or post) and action (validate, deploy, or undeploy).",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "path": {
+                      "name": "path",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The path to this script is within the current version source."
+                    },
+                    "short_description": {
+                      "name": "short_description",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The short description for this script."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The type of the script."
+                    }
+                  }
+                }
+              },
+              "undeploy_post_script": {
+                "name": "undeploy_post_script",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A script to be run as part of a project configuration for a specific stage (pre or post) and action (validate, deploy, or undeploy).",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "path": {
+                      "name": "path",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The path to this script is within the current version source."
+                    },
+                    "short_description": {
+                      "name": "short_description",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The short description for this script."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The type of the script."
+                    }
+                  }
+                }
+              },
+              "undeploy_pre_script": {
+                "name": "undeploy_pre_script",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A script to be run as part of a project configuration for a specific stage (pre or post) and action (validate, deploy, or undeploy).",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "path": {
+                      "name": "path",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The path to this script is within the current version source."
+                    },
+                    "short_description": {
+                      "name": "short_description",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The short description for this script."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The type of the script."
+                    }
+                  }
+                }
+              },
+              "validate_post_script": {
+                "name": "validate_post_script",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A script to be run as part of a project configuration for a specific stage (pre or post) and action (validate, deploy, or undeploy).",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "path": {
+                      "name": "path",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The path to this script is within the current version source."
+                    },
+                    "short_description": {
+                      "name": "short_description",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The short description for this script."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The type of the script."
+                    }
+                  }
+                }
+              },
+              "validate_pre_script": {
+                "name": "validate_pre_script",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A script to be run as part of a project configuration for a specific stage (pre or post) and action (validate, deploy, or undeploy).",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "path": {
+                      "name": "path",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The path to this script is within the current version source."
+                    },
+                    "short_description": {
+                      "name": "short_description",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The short description for this script."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "The type of the script."
+                    }
+                  }
+                }
+              },
+              "workspace_crn": {
+                "name": "workspace_crn",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "An IBM Cloud resource name that uniquely identifies a resource.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              }
+            }
+          }
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The state of the configuration."
+        },
+        "state_code": {
+          "name": "state_code",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Computed state code clarifying the prerequisites for validation for the configuration."
+        },
+        "template_id": {
+          "name": "template_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The stack definition identifier."
+        },
+        "update_available": {
+          "name": "update_available",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The flag that indicates whether a configuration update is available."
+        },
+        "version": {
+          "name": "version",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The version of the configuration."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "project_id",
+          "kind": "ValidateRegexp",
+          "regexp": "^[\\.\\-0-9a-zA-Z]+$",
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_project_environment",
+      "function": "ResourceIbmProjectEnvironment",
+      "package": "project",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_project_environment resource.",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+        },
+        "definition": {
+          "name": "definition",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "min_items": 1,
+          "max_items": 1,
+          "description": "The environment definition.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authorizations": {
+                "name": "authorizations",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "description": "The authorization details. It can authorize by using a trusted profile or an API key in Secrets Manager.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "api_key": {
+                      "name": "api_key",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "sensitive": true,
+                      "description": "The IBM Cloud API Key. It can be either raw or pulled from the catalog via a `CRN` or `JSON` blob."
+                    },
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The authorization method. It can authorize by using a trusted profile or an API key in Secrets Manager."
+                    },
+                    "trusted_profile_id": {
+                      "name": "trusted_profile_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The trusted profile ID."
+                    }
+                  }
+                }
+              },
+              "compliance_profile": {
+                "name": "compliance_profile",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "description": "The profile that is required for compliance.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "attachment_id": {
+                      "name": "attachment_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "A unique ID for the attachment to a compliance profile."
+                    },
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The unique ID for the compliance profile."
+                    },
+                    "instance_id": {
+                      "name": "instance_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "A unique ID for the instance of a compliance profile."
+                    },
+                    "instance_location": {
+                      "name": "instance_location",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The location of the compliance instance."
+                    },
+                    "profile_name": {
+                      "name": "profile_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The name of the compliance profile."
+                    },
+                    "wp_instance_id": {
+                      "name": "wp_instance_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "A unique ID for the instance of a Workload Protection."
+                    },
+                    "wp_instance_location": {
+                      "name": "wp_instance_location",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The location of the compliance instance."
+                    },
+                    "wp_instance_name": {
+                      "name": "wp_instance_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The name of the Workload Protection instance."
+                    },
+                    "wp_policy_id": {
+                      "name": "wp_policy_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The unique ID for the Workload Protection policy."
+                    },
+                    "wp_policy_name": {
+                      "name": "wp_policy_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The name of the Workload Protection policy."
+                    },
+                    "wp_zone_id": {
+                      "name": "wp_zone_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "A unique ID for the zone to a Workload Protection policy."
+                    },
+                    "wp_zone_name": {
+                      "name": "wp_zone_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "A unique ID for the zone to a Workload Protection policy."
+                    }
+                  }
+                }
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The description of the environment."
+              },
+              "inputs": {
+                "name": "inputs",
+                "type": "map",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The input variables that are used for configuration definition and environment.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The name of the environment. It's unique within the account across projects and regions."
+              }
+            }
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A Url."
+        },
+        "modified_at": {
+          "name": "modified_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+        },
+        "project": {
+          "name": "project",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The project that is referenced by this resource.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "An IBM Cloud resource name that uniquely identifies a resource.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "definition": {
+                "name": "definition",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The definition of the project reference.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name of the project."
+                    }
+                  }
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A Url."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique ID."
+              }
+            }
+          }
+        },
+        "project_environment_id": {
+          "name": "project_environment_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The environment ID as a friendly name."
+        },
+        "project_id": {
+          "name": "project_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The unique project ID.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexp",
+            "regexp": "^[\\.\\-0-9a-zA-Z]+$"
+          }
+        },
+        "target_account": {
+          "name": "target_account",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The target account ID derived from the authentication block values. The target account exists only if the environment currently has an authorization block."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "project_id",
+          "kind": "ValidateRegexp",
+          "regexp": "^[\\.\\-0-9a-zA-Z]+$",
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_project",
+      "function": "DataSourceIbmProject",
+      "package": "project",
+      "kind": "data",
+      "description": "Schema validation for the ibm_project data source.",
+      "attributes": {
+        "configs": {
+          "name": "configs",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The project configurations. These configurations are only included in the response of creating a project if a configuration array is specified in the request payload.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "approved_version": {
+                "name": "approved_version",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A summary of a project configuration version.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "container_state": {
+                      "name": "container_state",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The aggregate state from all deployabe architectures that are included in this configuration."
+                    },
+                    "definition": {
+                      "name": "definition",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A summary of the definition in a project configuration version.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "environment_id": {
+                            "name": "environment_id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The ID of the project environment."
+                          },
+                          "locator_id": {
+                            "name": "locator_id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "A unique concatenation of the catalog ID and the version ID that identify the deployable architecture in the catalog. If importing from an existing Schematics workspace that is not backed by cart, a `locator_id` is required. If using a Schematics workspace that is backed by cart, a `locator_id` is not necessary because the Schematics workspace has one.\u003e There are 3 scenarios:\u003e 1. If only a `locator_id` is specified, a new Schematics workspace is instantiated with that `locator_id`.\u003e 2. If only a schematics `workspace_crn` is specified, a `400` is returned if a `locator_id` is not found in the existing schematics workspace.\u003e 3. If both a Schematics `workspace_crn` and a `locator_id` are specified, a `400` message is returned if the specified `locator_id` does not agree with the `locator_id` in the existing Schematics workspace.\u003e For more information of creating a Schematics workspace, see [Creating workspaces and importing the Terraform template](/docs/schematics?topic=schematics-sch-create-wks)."
+                          }
+                        }
+                      }
+                    },
+                    "href": {
+                      "name": "href",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A Url."
+                    },
+                    "state": {
+                      "name": "state",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The state of the configuration."
+                    },
+                    "version": {
+                      "name": "version",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The version number of the configuration."
+                    }
+                  }
+                }
+              },
+              "container_state": {
+                "name": "container_state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The aggregate state from all deployabe architectures that are included in this configuration."
+              },
+              "container_state_code": {
+                "name": "container_state_code",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Computed state code clarifying the prerequisites for validation for the configuration."
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+              },
+              "definition": {
+                "name": "definition",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The description of a project configuration.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "description": {
+                      "name": "description",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A project configuration description."
+                    },
+                    "locator_id": {
+                      "name": "locator_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A unique concatenation of the catalog ID and the version ID that identify the deployable architecture in the catalog. If importing from an existing Schematics workspace that is not backed by cart, a `locator_id` is required. If using a Schematics workspace that is backed by cart, a `locator_id` is not necessary because the Schematics workspace has one.\u003e There are 3 scenarios:\u003e 1. If only a `locator_id` is specified, a new Schematics workspace is instantiated with that `locator_id`.\u003e 2. If only a schematics `workspace_crn` is specified, a `400` is returned if a `locator_id` is not found in the existing schematics workspace.\u003e 3. If both a Schematics `workspace_crn` and a `locator_id` are specified, a `400` message is returned if the specified `locator_id` does not agree with the `locator_id` in the existing Schematics workspace.\u003e For more information of creating a Schematics workspace, see [Creating workspaces and importing the Terraform template](/docs/schematics?topic=schematics-sch-create-wks)."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The configuration name. It's unique within the account across projects and regions."
+                    }
+                  }
+                }
+              },
+              "deployed_version": {
+                "name": "deployed_version",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A summary of a project configuration version.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "container_state": {
+                      "name": "container_state",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The aggregate state from all deployabe architectures that are included in this configuration."
+                    },
+                    "definition": {
+                      "name": "definition",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A summary of the definition in a project configuration version.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "environment_id": {
+                            "name": "environment_id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The ID of the project environment."
+                          },
+                          "locator_id": {
+                            "name": "locator_id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "A unique concatenation of the catalog ID and the version ID that identify the deployable architecture in the catalog. If importing from an existing Schematics workspace that is not backed by cart, a `locator_id` is required. If using a Schematics workspace that is backed by cart, a `locator_id` is not necessary because the Schematics workspace has one.\u003e There are 3 scenarios:\u003e 1. If only a `locator_id` is specified, a new Schematics workspace is instantiated with that `locator_id`.\u003e 2. If only a schematics `workspace_crn` is specified, a `400` is returned if a `locator_id` is not found in the existing schematics workspace.\u003e 3. If both a Schematics `workspace_crn` and a `locator_id` are specified, a `400` message is returned if the specified `locator_id` does not agree with the `locator_id` in the existing Schematics workspace.\u003e For more information of creating a Schematics workspace, see [Creating workspaces and importing the Terraform template](/docs/schematics?topic=schematics-sch-create-wks)."
+                          }
+                        }
+                      }
+                    },
+                    "href": {
+                      "name": "href",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A Url."
+                    },
+                    "state": {
+                      "name": "state",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The state of the configuration."
+                    },
+                    "version": {
+                      "name": "version",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The version number of the configuration."
+                    }
+                  }
+                }
+              },
+              "deployment_model": {
+                "name": "deployment_model",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The configuration type."
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A Url."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the configuration. If this parameter is empty, an ID is automatically created for the configuration."
+              },
+              "modified_at": {
+                "name": "modified_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+              },
+              "project": {
+                "name": "project",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The project that is referenced by this resource.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "crn": {
+                      "name": "crn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "An IBM Cloud resource name that uniquely identifies a resource.",
+                      "validate": {
+                        "kind": "crn",
+                        "func_name": "name_heuristic"
+                      }
+                    },
+                    "definition": {
+                      "name": "definition",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The definition of the project reference.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "name": {
+                            "name": "name",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The name of the project."
+                          }
+                        }
+                      }
+                    },
+                    "href": {
+                      "name": "href",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A Url."
+                    },
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The unique ID."
+                    }
+                  }
+                }
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The state of the configuration."
+              },
+              "state_code": {
+                "name": "state_code",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Computed state code clarifying the prerequisites for validation for the configuration."
+              },
+              "version": {
+                "name": "version",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The version of the configuration."
+              }
+            }
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An IBM Cloud resource name that uniquely identifies a resource.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "cumulative_needs_attention_view": {
+          "name": "cumulative_needs_attention_view",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The cumulative list of needs attention items for a project. If the view is successfully retrieved, an empty or nonempty array is returned.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "config_id": {
+                "name": "config_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A unique ID for the configuration."
+              },
+              "config_version": {
+                "name": "config_version",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The version number of the configuration."
+              },
+              "event": {
+                "name": "event",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The event name."
+              },
+              "event_id": {
+                "name": "event_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A unique ID for this individual event."
+              }
+            }
+          }
+        },
+        "cumulative_needs_attention_view_error": {
+          "name": "cumulative_needs_attention_view_error",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A value of `true` indicates that the fetch of the needs attention items failed. This property only exists if there was an error while retrieving the cumulative needs attention view."
+        },
+        "definition": {
+          "name": "definition",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The definition of the project.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "auto_deploy": {
+                "name": "auto_deploy",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A boolean flag to enable deploying configurations automatically."
+              },
+              "auto_deploy_mode": {
+                "name": "auto_deploy_mode",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "This is an advanced setting to auto deploy to tell how auto deploy should behave when it is enabled. There are 2 options:\u003e 1. `auto_approval` will automatically approve the configuration after validated without user confirmation.\u003e 2. `manual_approval` will require user confirmation to approve the configuration after validated before deploying the configuration starts."
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A brief explanation of the project's use in the configuration of a deployable architecture. A project can be created without providing a description."
+              },
+              "destroy_on_delete": {
+                "name": "destroy_on_delete",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The policy that indicates whether the resources are undeployed or not when a project is deleted."
+              },
+              "monitoring_enabled": {
+                "name": "monitoring_enabled",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A boolean flag to enable automatic drift detection. Use this field to run a daily check to compare the configurations to those deployed resources to detect any difference."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the project.  It's unique within the account across regions."
+              },
+              "store": {
+                "name": "store",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The details required to custom store project configs.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "config_directory": {
+                      "name": "config_directory",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The directory where project configs are stored."
+                    },
+                    "token": {
+                      "name": "token",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "sensitive": true,
+                      "description": "The IBM Cloud API Key. It can be either raw or pulled from the catalog via a `CRN` or `JSON` blob."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The type of store used for the project."
+                    },
+                    "url": {
+                      "name": "url",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A Url."
+                    }
+                  }
+                }
+              },
+              "terraform_engine": {
+                "name": "terraform_engine",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Experimental schema - this is for prototyping purposes.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The identifier of the Terraform engine."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The type of the engine."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "environments": {
+          "name": "environments",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The project environment. These environments are only included in the response if project environments were created on the project.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+              },
+              "definition": {
+                "name": "definition",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The environment definition that is used in the project collection.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "description": {
+                      "name": "description",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The description of the environment."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name of the environment. It's unique within the account across projects and regions."
+                    }
+                  }
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A Url."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The environment ID as a friendly name."
+              },
+              "project": {
+                "name": "project",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The project that is referenced by this resource.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "crn": {
+                      "name": "crn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "An IBM Cloud resource name that uniquely identifies a resource.",
+                      "validate": {
+                        "kind": "crn",
+                        "func_name": "name_heuristic"
+                      }
+                    },
+                    "definition": {
+                      "name": "definition",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The definition of the project reference.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "name": {
+                            "name": "name",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The name of the project."
+                          }
+                        }
+                      }
+                    },
+                    "href": {
+                      "name": "href",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A Url."
+                    },
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The unique ID."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "event_notifications_crn": {
+          "name": "event_notifications_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The CRN of the Event Notifications instance if one is connected to this project.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A Url."
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IBM Cloud location where a resource is deployed.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "ca-tor",
+              "eu-de",
+              "eu-gb",
+              "us-east",
+              "us-south"
+            ]
+          }
+        },
+        "project_id": {
+          "name": "project_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The unique project ID."
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group name where the project's data and tools are created.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 64,
+            "regexp": "^(?!\\s)(?!.*\\s$)[^'\"`\u003c\u003e{}\\x00-\\x1F]*$"
+          }
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group ID where the project's data and tools are created."
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The project status value."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "location",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "ca-tor, eu-de, eu-gb, us-east, us-south"
+        },
+        {
+          "identifier": "resource_group",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^(?!\\s)(?!.*\\s$)[^'\"`\u003c\u003e{}\\x00-\\x1F]*$",
+          "max_len": 64
+        }
+      ]
+    },
+    {
+      "name": "ibm_project_config",
+      "function": "DataSourceIbmProjectConfig",
+      "package": "project",
+      "kind": "data",
+      "description": "Schema validation for the ibm_project_config data source.",
+      "attributes": {
+        "approved_version": {
+          "name": "approved_version",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A summary of a project configuration version.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "container_state": {
+                "name": "container_state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The aggregate state from all deployabe architectures that are included in this configuration."
+              },
+              "definition": {
+                "name": "definition",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A summary of the definition in a project configuration version.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "environment_id": {
+                      "name": "environment_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The ID of the project environment."
+                    },
+                    "locator_id": {
+                      "name": "locator_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A unique concatenation of the catalog ID and the version ID that identify the deployable architecture in the catalog. If importing from an existing Schematics workspace that is not backed by cart, a `locator_id` is required. If using a Schematics workspace that is backed by cart, a `locator_id` is not necessary because the Schematics workspace has one.\u003e There are 3 scenarios:\u003e 1. If only a `locator_id` is specified, a new Schematics workspace is instantiated with that `locator_id`.\u003e 2. If only a schematics `workspace_crn` is specified, a `400` is returned if a `locator_id` is not found in the existing schematics workspace.\u003e 3. If both a Schematics `workspace_crn` and a `locator_id` are specified, a `400` message is returned if the specified `locator_id` does not agree with the `locator_id` in the existing Schematics workspace.\u003e For more information of creating a Schematics workspace, see [Creating workspaces and importing the Terraform template](/docs/schematics?topic=schematics-sch-create-wks)."
+                    }
+                  }
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A Url."
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The state of the configuration."
+              },
+              "version": {
+                "name": "version",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The version number of the configuration."
+              }
+            }
+          }
+        },
+        "config_error": {
+          "name": "config_error",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The error from config actions.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "details": {
+                "name": "details",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The error details from config actions.",
+                "elem": {
+                  "kind": "resource"
+                }
+              },
+              "message": {
+                "name": "message",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The error message from config actions."
+              }
+            }
+          }
+        },
+        "container_state": {
+          "name": "container_state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The aggregate state from all deployabe architectures that are included in this configuration."
+        },
+        "container_state_code": {
+          "name": "container_state_code",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Computed state code clarifying the prerequisites for validation for the configuration."
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+        },
+        "definition": {
+          "name": "definition",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authorizations": {
+                "name": "authorizations",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The authorization details. It can authorize by using a trusted profile or an API key in Secrets Manager.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "api_key": {
+                      "name": "api_key",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "sensitive": true,
+                      "description": "The IBM Cloud API Key. It can be either raw or pulled from the catalog via a `CRN` or `JSON` blob."
+                    },
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The authorization method. It can authorize by using a trusted profile or an API key in Secrets Manager."
+                    },
+                    "trusted_profile_id": {
+                      "name": "trusted_profile_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The trusted profile ID."
+                    }
+                  }
+                }
+              },
+              "compliance_profile": {
+                "name": "compliance_profile",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The profile that is required for compliance.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "attachment_id": {
+                      "name": "attachment_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A unique ID for the attachment to a compliance profile."
+                    },
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The unique ID for the compliance profile."
+                    },
+                    "instance_id": {
+                      "name": "instance_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A unique ID for the instance of a compliance profile."
+                    },
+                    "instance_location": {
+                      "name": "instance_location",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The location of the compliance instance."
+                    },
+                    "profile_name": {
+                      "name": "profile_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name of the compliance profile."
+                    },
+                    "wp_instance_id": {
+                      "name": "wp_instance_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A unique ID for the instance of a Workload Protection."
+                    },
+                    "wp_instance_location": {
+                      "name": "wp_instance_location",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The location of the compliance instance."
+                    },
+                    "wp_instance_name": {
+                      "name": "wp_instance_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name of the Workload Protection instance."
+                    },
+                    "wp_policy_id": {
+                      "name": "wp_policy_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The unique ID for the Workload Protection policy."
+                    },
+                    "wp_policy_name": {
+                      "name": "wp_policy_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name of the Workload Protection policy."
+                    },
+                    "wp_zone_id": {
+                      "name": "wp_zone_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A unique ID for the zone to a Workload Protection policy."
+                    },
+                    "wp_zone_name": {
+                      "name": "wp_zone_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A unique ID for the zone to a Workload Protection policy."
+                    }
+                  }
+                }
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A project configuration description."
+              },
+              "environment_id": {
+                "name": "environment_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the project environment."
+              },
+              "inputs": {
+                "name": "inputs",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The input variables that are used for configuration definition and environment.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "locator_id": {
+                "name": "locator_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A unique concatenation of the catalog ID and the version ID that identify the deployable architecture in the catalog. If importing from an existing Schematics workspace that is not backed by cart, a `locator_id` is required. If using a Schematics workspace that is backed by cart, a `locator_id` is not necessary because the Schematics workspace has one.\u003e There are 3 scenarios:\u003e 1. If only a `locator_id` is specified, a new Schematics workspace is instantiated with that `locator_id`.\u003e 2. If only a schematics `workspace_crn` is specified, a `400` is returned if a `locator_id` is not found in the existing schematics workspace.\u003e 3. If both a Schematics `workspace_crn` and a `locator_id` are specified, a `400` message is returned if the specified `locator_id` does not agree with the `locator_id` in the existing Schematics workspace.\u003e For more information of creating a Schematics workspace, see [Creating workspaces and importing the Terraform template](/docs/schematics?topic=schematics-sch-create-wks)."
+              },
+              "members": {
+                "name": "members",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The member deployabe architectures that are included in the stack.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "config_id": {
+                      "name": "config_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The unique ID."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name matching the alias in the stack definition."
+                    }
+                  }
+                }
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The configuration name. It's unique within the account across projects and regions."
+              },
+              "resource_crns": {
+                "name": "resource_crns",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The CRNs of the resources that are associated with this configuration.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "settings": {
+                "name": "settings",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Schematics environment variables to use to deploy the configuration. Settings are only available if they are specified when the configuration is initially created.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "uses": {
+                "name": "uses",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The depending deployabe architectures that are referenced by this configuration.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "config_id": {
+                      "name": "config_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The unique ID."
+                    },
+                    "project_id": {
+                      "name": "project_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The unique ID."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "deployed_version": {
+          "name": "deployed_version",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A summary of a project configuration version.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "container_state": {
+                "name": "container_state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The aggregate state from all deployabe architectures that are included in this configuration."
+              },
+              "definition": {
+                "name": "definition",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A summary of the definition in a project configuration version.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "environment_id": {
+                      "name": "environment_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The ID of the project environment."
+                    },
+                    "locator_id": {
+                      "name": "locator_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A unique concatenation of the catalog ID and the version ID that identify the deployable architecture in the catalog. If importing from an existing Schematics workspace that is not backed by cart, a `locator_id` is required. If using a Schematics workspace that is backed by cart, a `locator_id` is not necessary because the Schematics workspace has one.\u003e There are 3 scenarios:\u003e 1. If only a `locator_id` is specified, a new Schematics workspace is instantiated with that `locator_id`.\u003e 2. If only a schematics `workspace_crn` is specified, a `400` is returned if a `locator_id` is not found in the existing schematics workspace.\u003e 3. If both a Schematics `workspace_crn` and a `locator_id` are specified, a `400` message is returned if the specified `locator_id` does not agree with the `locator_id` in the existing Schematics workspace.\u003e For more information of creating a Schematics workspace, see [Creating workspaces and importing the Terraform template](/docs/schematics?topic=schematics-sch-create-wks)."
+                    }
+                  }
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A Url."
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The state of the configuration."
+              },
+              "version": {
+                "name": "version",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The version number of the configuration."
+              }
+            }
+          }
+        },
+        "deployment_model": {
+          "name": "deployment_model",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The configuration type."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A Url."
+        },
+        "is_draft": {
+          "name": "is_draft",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The flag that indicates whether the version of the configuration is draft, or active."
+        },
+        "last_saved_at": {
+          "name": "last_saved_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+        },
+        "member_of": {
+          "name": "member_of",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The stack config parent of which this configuration is a member of.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "definition": {
+                "name": "definition",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The definition summary of the stack configuration.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "members": {
+                      "name": "members",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The member deployable architectures that are included in the stack.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "config_id": {
+                            "name": "config_id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The unique ID."
+                          },
+                          "name": {
+                            "name": "name",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The name matching the alias in the stack definition."
+                          }
+                        }
+                      }
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The configuration name. It's unique within the account across projects and regions."
+                    }
+                  }
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A Url."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique ID."
+              },
+              "version": {
+                "name": "version",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The version of the stack configuration."
+              }
+            }
+          }
+        },
+        "modified_at": {
+          "name": "modified_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+        },
+        "needs_attention_state": {
+          "name": "needs_attention_state",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The needs attention state of a configuration.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "action_url": {
+                "name": "action_url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "An actionable Url that users can access in response to the event. This is a system generated field. For user triggered events the field is not present."
+              },
+              "event": {
+                "name": "event",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the event."
+              },
+              "event_id": {
+                "name": "event_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The id of the event."
+              },
+              "severity": {
+                "name": "severity",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The severity of the event. This is a system generated field. For user triggered events the field is not present."
+              },
+              "target": {
+                "name": "target",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The configuration id and version for which the event occurred. This field is only available for user generated events. For system triggered events the field is not present."
+              },
+              "timestamp": {
+                "name": "timestamp",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The time at which the event was triggered."
+              },
+              "triggered_by": {
+                "name": "triggered_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The IAM id of the user that triggered the event. This field is only available for user generated events. For system triggered events the field is not present."
+              }
+            }
+          }
+        },
+        "outputs": {
+          "name": "outputs",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The outputs of a Schematics template property.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A short explanation of the output value."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The variable name."
+              },
+              "sensitive": {
+                "name": "sensitive",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Flag if the output value is sensitive. If not present, the output sensitivity is indeterminate."
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "This property can be any value - a string, number, boolean, array, or object."
+              }
+            }
+          }
+        },
+        "project": {
+          "name": "project",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The project that is referenced by this resource.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "An IBM Cloud resource name that uniquely identifies a resource.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "definition": {
+                "name": "definition",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The definition of the project reference.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name of the project."
+                    }
+                  }
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A Url."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique ID."
+              }
+            }
+          }
+        },
+        "project_config_id": {
+          "name": "project_config_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The unique configuration ID."
+        },
+        "project_id": {
+          "name": "project_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The unique project ID.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexp",
+            "regexp": "^[\\.\\-0-9a-zA-Z]+$"
+          }
+        },
+        "references": {
+          "name": "references",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resolved references that are used by the configuration.",
+          "elem": {
+            "kind": "resource"
+          }
+        },
+        "schematics": {
+          "name": "schematics",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A Schematics workspace that is associated to a project configuration, with scripts.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "deploy_post_script": {
+                "name": "deploy_post_script",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A script to be run as part of a project configuration for a specific stage (pre or post) and action (validate, deploy, or undeploy).",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "path": {
+                      "name": "path",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The path to this script is within the current version source."
+                    },
+                    "short_description": {
+                      "name": "short_description",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The short description for this script."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The type of the script."
+                    }
+                  }
+                }
+              },
+              "deploy_pre_script": {
+                "name": "deploy_pre_script",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A script to be run as part of a project configuration for a specific stage (pre or post) and action (validate, deploy, or undeploy).",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "path": {
+                      "name": "path",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The path to this script is within the current version source."
+                    },
+                    "short_description": {
+                      "name": "short_description",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The short description for this script."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The type of the script."
+                    }
+                  }
+                }
+              },
+              "undeploy_post_script": {
+                "name": "undeploy_post_script",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A script to be run as part of a project configuration for a specific stage (pre or post) and action (validate, deploy, or undeploy).",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "path": {
+                      "name": "path",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The path to this script is within the current version source."
+                    },
+                    "short_description": {
+                      "name": "short_description",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The short description for this script."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The type of the script."
+                    }
+                  }
+                }
+              },
+              "undeploy_pre_script": {
+                "name": "undeploy_pre_script",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A script to be run as part of a project configuration for a specific stage (pre or post) and action (validate, deploy, or undeploy).",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "path": {
+                      "name": "path",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The path to this script is within the current version source."
+                    },
+                    "short_description": {
+                      "name": "short_description",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The short description for this script."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The type of the script."
+                    }
+                  }
+                }
+              },
+              "validate_post_script": {
+                "name": "validate_post_script",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A script to be run as part of a project configuration for a specific stage (pre or post) and action (validate, deploy, or undeploy).",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "path": {
+                      "name": "path",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The path to this script is within the current version source."
+                    },
+                    "short_description": {
+                      "name": "short_description",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The short description for this script."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The type of the script."
+                    }
+                  }
+                }
+              },
+              "validate_pre_script": {
+                "name": "validate_pre_script",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A script to be run as part of a project configuration for a specific stage (pre or post) and action (validate, deploy, or undeploy).",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "path": {
+                      "name": "path",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The path to this script is within the current version source."
+                    },
+                    "short_description": {
+                      "name": "short_description",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The short description for this script."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The type of the script."
+                    }
+                  }
+                }
+              },
+              "workspace_crn": {
+                "name": "workspace_crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "An IBM Cloud resource name that uniquely identifies a resource.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              }
+            }
+          }
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The state of the configuration."
+        },
+        "state_code": {
+          "name": "state_code",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Computed state code clarifying the prerequisites for validation for the configuration."
+        },
+        "template_id": {
+          "name": "template_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The stack definition identifier."
+        },
+        "update_available": {
+          "name": "update_available",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The flag that indicates whether a configuration update is available."
+        },
+        "version": {
+          "name": "version",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The version of the configuration."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "project_id",
+          "kind": "ValidateRegexp",
+          "regexp": "^[\\.\\-0-9a-zA-Z]+$",
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_project_environment",
+      "function": "DataSourceIbmProjectEnvironment",
+      "package": "project",
+      "kind": "data",
+      "description": "Schema validation for the ibm_project_environment data source.",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+        },
+        "definition": {
+          "name": "definition",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The environment definition.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authorizations": {
+                "name": "authorizations",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The authorization details. It can authorize by using a trusted profile or an API key in Secrets Manager.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "api_key": {
+                      "name": "api_key",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "sensitive": true,
+                      "description": "The IBM Cloud API Key. It can be either raw or pulled from the catalog via a `CRN` or `JSON` blob."
+                    },
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The authorization method. It can authorize by using a trusted profile or an API key in Secrets Manager."
+                    },
+                    "trusted_profile_id": {
+                      "name": "trusted_profile_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The trusted profile ID."
+                    }
+                  }
+                }
+              },
+              "compliance_profile": {
+                "name": "compliance_profile",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The profile that is required for compliance.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "attachment_id": {
+                      "name": "attachment_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A unique ID for the attachment to a compliance profile."
+                    },
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The unique ID for the compliance profile."
+                    },
+                    "instance_id": {
+                      "name": "instance_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A unique ID for the instance of a compliance profile."
+                    },
+                    "instance_location": {
+                      "name": "instance_location",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The location of the compliance instance."
+                    },
+                    "profile_name": {
+                      "name": "profile_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name of the compliance profile."
+                    },
+                    "wp_instance_id": {
+                      "name": "wp_instance_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A unique ID for the instance of a Workload Protection."
+                    },
+                    "wp_instance_location": {
+                      "name": "wp_instance_location",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The location of the compliance instance."
+                    },
+                    "wp_instance_name": {
+                      "name": "wp_instance_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name of the Workload Protection instance."
+                    },
+                    "wp_policy_id": {
+                      "name": "wp_policy_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The unique ID for the Workload Protection policy."
+                    },
+                    "wp_policy_name": {
+                      "name": "wp_policy_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name of the Workload Protection policy."
+                    },
+                    "wp_zone_id": {
+                      "name": "wp_zone_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A unique ID for the zone to a Workload Protection policy."
+                    },
+                    "wp_zone_name": {
+                      "name": "wp_zone_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A unique ID for the zone to a Workload Protection policy."
+                    }
+                  }
+                }
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The description of the environment."
+              },
+              "inputs": {
+                "name": "inputs",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The input variables that are used for configuration definition and environment.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the environment. It's unique within the account across projects and regions."
+              }
+            }
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A Url."
+        },
+        "modified_at": {
+          "name": "modified_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A date and time value in the format YYYY-MM-DDTHH:mm:ssZ or YYYY-MM-DDTHH:mm:ss.sssZ to match the date and time format as specified by RFC 3339."
+        },
+        "project": {
+          "name": "project",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The project that is referenced by this resource.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "An IBM Cloud resource name that uniquely identifies a resource.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "definition": {
+                "name": "definition",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The definition of the project reference.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name of the project."
+                    }
+                  }
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A Url."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique ID."
+              }
+            }
+          }
+        },
+        "project_environment_id": {
+          "name": "project_environment_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The environment ID."
+        },
+        "project_id": {
+          "name": "project_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The unique project ID.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexp",
+            "regexp": "^[\\.\\-0-9a-zA-Z]+$"
+          }
+        },
+        "target_account": {
+          "name": "target_account",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The target account ID derived from the authentication block values. The target account exists only if the environment currently has an authorization block."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "project_id",
+          "kind": "ValidateRegexp",
+          "regexp": "^[\\.\\-0-9a-zA-Z]+$",
+          "max_len": 128
+        }
+      ]
+    }
+  ],
+  "skipped": [],
+  "extracted": 6,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package project"
+}

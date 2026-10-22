@@ -1,0 +1,155 @@
+{
+  "package": "enterprise",
+  "specs": [
+    {
+      "slug": "enterprise-apis-enterprise",
+      "title": "Enterprise Management",
+      "schema_count": 19,
+      "path_count": 10
+    },
+    {
+      "slug": "enterprise-apis-billing-unit",
+      "title": "Enterprise Billing Units",
+      "schema_count": 8,
+      "path_count": 4
+    },
+    {
+      "slug": "enterprise-apis-resource-usage-reports",
+      "title": "Enterprise Usage Reports API",
+      "schema_count": 14,
+      "path_count": 1
+    }
+  ],
+  "matched": 6,
+  "resource_count": 6,
+  "overlay_attrs": 14,
+  "resources": [
+    {
+      "name": "ibm_enterprise",
+      "kind": "resource",
+      "schema": "/enterprises/{enterprise_id}:patch",
+      "spec": "enterprise-apis-enterprise",
+      "score": 0.815,
+      "attrs": {
+        "domain": {
+          "description": "The new domain of the enterprise. This field has a limit of 60 characters.",
+          "source": "enterprise-apis-enterprise",
+          "schema": "/enterprises/{enterprise_id}:patch"
+        },
+        "name": {
+          "description": "The new name of the enterprise. This field must have 3 - 60 characters.",
+          "source": "enterprise-apis-enterprise",
+          "schema": "/enterprises/{enterprise_id}:patch"
+        },
+        "primary_contact_iam_id": {
+          "description": "The IAM ID of the user to be the new primary contact for the enterprise.",
+          "source": "enterprise-apis-enterprise",
+          "schema": "/enterprises/{enterprise_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_enterprise_account",
+      "kind": "resource",
+      "schema": "Account",
+      "spec": "enterprise-apis-enterprise",
+      "score": 0.3767,
+      "attrs": {
+        "enterprise_account_id": {
+          "description": "The enterprise account ID.",
+          "source": "enterprise-apis-enterprise",
+          "schema": "Account"
+        },
+        "enterprise_id": {
+          "description": "The enterprise ID that the account is a part of.",
+          "source": "enterprise-apis-enterprise",
+          "schema": "Account"
+        },
+        "name": {
+          "description": "The name of the account.",
+          "source": "enterprise-apis-enterprise",
+          "schema": "Account"
+        },
+        "owner_iam_id": {
+          "description": "The IAM ID of the owner of the account.",
+          "source": "enterprise-apis-enterprise",
+          "schema": "Account"
+        },
+        "parent": {
+          "description": "The CRN of the parent of the account.",
+          "source": "enterprise-apis-enterprise",
+          "schema": "Account"
+        }
+      }
+    },
+    {
+      "name": "ibm_enterprise_account_group",
+      "kind": "resource",
+      "schema": "CreateAccountGroupRequest",
+      "spec": "enterprise-apis-enterprise",
+      "score": 0.78,
+      "attrs": {
+        "name": {
+          "description": "The name of the account group. This field must have 3 - 60 characters.",
+          "api_required": true,
+          "source": "enterprise-apis-enterprise",
+          "schema": "CreateAccountGroupRequest"
+        },
+        "parent": {
+          "description": "The CRN of the parent under which the account group will be created. The parent can be an existing account group or the enterprise itself.",
+          "api_required": true,
+          "source": "enterprise-apis-enterprise",
+          "schema": "CreateAccountGroupRequest"
+        },
+        "primary_contact_iam_id": {
+          "description": "The IAM ID of the primary contact for this account group, such as `IBMid-0123ABC`. The IAM ID must already exist.",
+          "api_required": true,
+          "source": "enterprise-apis-enterprise",
+          "schema": "CreateAccountGroupRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_enterprise_account_groups",
+      "kind": "data",
+      "schema": "/account-groups/{account_group_id}:patch",
+      "spec": "enterprise-apis-enterprise",
+      "score": 0.55,
+      "attrs": {
+        "name": {
+          "description": "The new name of the account group. This field must have 3 - 60 characters.",
+          "source": "enterprise-apis-enterprise",
+          "schema": "/account-groups/{account_group_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_enterprise_accounts",
+      "kind": "data",
+      "schema": "/account-groups/{account_group_id}:patch",
+      "spec": "enterprise-apis-enterprise",
+      "score": 0.43,
+      "attrs": {
+        "name": {
+          "description": "The new name of the account group. This field must have 3 - 60 characters.",
+          "source": "enterprise-apis-enterprise",
+          "schema": "/account-groups/{account_group_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_enterprises",
+      "kind": "data",
+      "schema": "/enterprises/{enterprise_id}:patch",
+      "spec": "enterprise-apis-enterprise",
+      "score": 0.5233,
+      "attrs": {
+        "name": {
+          "description": "The new name of the enterprise. This field must have 3 - 60 characters.",
+          "source": "enterprise-apis-enterprise",
+          "schema": "/enterprises/{enterprise_id}:patch"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,4062 @@
+{
+  "package": "logs",
+  "specs": [
+    {
+      "slug": "logs-service-api",
+      "title": "Cloud Logs API",
+      "schema_count": 598,
+      "path_count": 36
+    }
+  ],
+  "matched": 33,
+  "resource_count": 43,
+  "overlay_attrs": 400,
+  "resources": [
+    {
+      "name": "ibm_logs_alert",
+      "kind": "resource",
+      "schema": "Alert",
+      "spec": "logs-service-api",
+      "score": 0.285,
+      "attrs": {
+        "active_when.timeframes.days_of_week": {
+          "enum": [
+            "monday_or_unspecified",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday"
+          ],
+          "description": "Days of the week for activity",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "active_when.timeframes.range.end.hours": {
+          "format": "int32",
+          "min": 0,
+          "max": 24,
+          "description": "Hours of the day",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "active_when.timeframes.range.end.minutes": {
+          "format": "int32",
+          "min": 0,
+          "max": 59,
+          "description": "Minutes of the hour",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "active_when.timeframes.range.end.seconds": {
+          "format": "int32",
+          "min": 0,
+          "max": 59,
+          "description": "Seconds of the minute",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "active_when.timeframes.range.start.hours": {
+          "format": "int32",
+          "min": 0,
+          "max": 24,
+          "description": "Hours of the day",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "active_when.timeframes.range.start.minutes": {
+          "format": "int32",
+          "min": 0,
+          "max": 59,
+          "description": "Minutes of the hour",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "active_when.timeframes.range.start.seconds": {
+          "format": "int32",
+          "min": 0,
+          "max": 59,
+          "description": "Seconds of the minute",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.enforce_suppression": {
+          "description": "Should suppression be enforced on the flow alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.cardinality_fields": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Cardinality fields for unique count alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.group_by": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The group by fields for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.ignore_infinity": {
+          "description": "Should the evaluation ignore infinity value",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.metric_alert_parameters.arithmetic_operator": {
+          "enum": [
+            "avg_or_unspecified",
+            "min",
+            "max",
+            "sum",
+            "count",
+            "percentile"
+          ],
+          "description": "The arithmetic operator of the metric PromQL alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.metric_alert_parameters.arithmetic_operator_modifier": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The arithmetic operator modifier of the metric PromQL alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.metric_alert_parameters.metric_field": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The metric field of the metric alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.metric_alert_parameters.metric_source": {
+          "enum": [
+            "logs2metrics_or_unspecified",
+            "prometheus"
+          ],
+          "description": "The metric source of the metric alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.metric_alert_parameters.non_null_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The percentage of the evaluation as a value between 0 and 100.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.metric_alert_parameters.sample_threshold_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The threshold percentage",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.metric_alert_parameters.swap_null_values": {
+          "description": "Indicates whether null values are replaced with zero values.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.metric_alert_promql_parameters.arithmetic_operator_modifier": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The arithmetic operator of the metric PromQL alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.metric_alert_promql_parameters.non_null_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The percentage of the evaluation as a value between 0 and 100.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.metric_alert_promql_parameters.promql_text": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The PromQL text of the metric alert by fields for the alert condition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.metric_alert_promql_parameters.sample_threshold_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The threshold percentage",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.metric_alert_promql_parameters.swap_null_values": {
+          "description": "Indicates whether null values are replaced with zero values.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.related_extended_data.cleanup_deadman_duration": {
+          "enum": [
+            "cleanup_deadman_duration_never_or_unspecified",
+            "cleanup_deadman_duration_5min",
+            "cleanup_deadman_duration_10min",
+            "cleanup_deadman_duration_1h",
+            "cleanup_deadman_duration_2h",
+            "cleanup_deadman_duration_6h",
+            "cleanup_deadman_duration_12h",
+            "cleanup_deadman_duration_24h"
+          ],
+          "description": "Cleanup deadman duration",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.related_extended_data.should_trigger_deadman": {
+          "description": "Should we trigger deadman",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.relative_timeframe": {
+          "enum": [
+            "hour_or_unspecified",
+            "day",
+            "week",
+            "month"
+          ],
+          "description": "The relative timeframe for time relative alerts",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.threshold": {
+          "format": "double",
+          "description": "The threshold for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.parameters.timeframe": {
+          "enum": [
+            "timeframe_5_min_or_unspecified",
+            "timeframe_10_min",
+            "timeframe_20_min",
+            "timeframe_30_min",
+            "timeframe_1_h",
+            "timeframe_2_h",
+            "timeframe_3_h",
+            "timeframe_4_h",
+            "timeframe_6_h",
+            "timeframe_12_h",
+            "timeframe_24_h",
+            "timeframe_48_h",
+            "timeframe_72_h",
+            "timeframe_1_w",
+            "timeframe_1_m",
+            "timeframe_2_m",
+            "timeframe_3_m",
+            "timeframe_15_min",
+            "timeframe_1_min",
+            "timeframe_2_min",
+            "timeframe_36_h"
+          ],
+          "description": "The timeframe for the alert condition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.stages.groups.next_op": {
+          "enum": [
+            "and",
+            "or"
+          ],
+          "description": "Operator for the alerts",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.flow.stages.timeframe.ms": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "Timeframe in milliseconds",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.cardinality_fields": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Cardinality fields for unique count alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.group_by": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The group by fields for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.ignore_infinity": {
+          "description": "Should the evaluation ignore infinity value",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.metric_alert_parameters.arithmetic_operator": {
+          "enum": [
+            "avg_or_unspecified",
+            "min",
+            "max",
+            "sum",
+            "count",
+            "percentile"
+          ],
+          "description": "The arithmetic operator of the metric PromQL alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.metric_alert_parameters.arithmetic_operator_modifier": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The arithmetic operator modifier of the metric PromQL alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.metric_alert_parameters.metric_field": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The metric field of the metric alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.metric_alert_parameters.metric_source": {
+          "enum": [
+            "logs2metrics_or_unspecified",
+            "prometheus"
+          ],
+          "description": "The metric source of the metric alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.metric_alert_parameters.non_null_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The percentage of the evaluation as a value between 0 and 100.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.metric_alert_parameters.sample_threshold_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The threshold percentage",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.metric_alert_parameters.swap_null_values": {
+          "description": "Indicates whether null values are replaced with zero values.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.metric_alert_promql_parameters.arithmetic_operator_modifier": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The arithmetic operator of the metric PromQL alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.metric_alert_promql_parameters.non_null_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The percentage of the evaluation as a value between 0 and 100.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.metric_alert_promql_parameters.promql_text": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The PromQL text of the metric alert by fields for the alert condition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.metric_alert_promql_parameters.sample_threshold_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The threshold percentage",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.metric_alert_promql_parameters.swap_null_values": {
+          "description": "Indicates whether null values are replaced with zero values.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.related_extended_data.cleanup_deadman_duration": {
+          "enum": [
+            "cleanup_deadman_duration_never_or_unspecified",
+            "cleanup_deadman_duration_5min",
+            "cleanup_deadman_duration_10min",
+            "cleanup_deadman_duration_1h",
+            "cleanup_deadman_duration_2h",
+            "cleanup_deadman_duration_6h",
+            "cleanup_deadman_duration_12h",
+            "cleanup_deadman_duration_24h"
+          ],
+          "description": "Cleanup deadman duration",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.related_extended_data.should_trigger_deadman": {
+          "description": "Should we trigger deadman",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.relative_timeframe": {
+          "enum": [
+            "hour_or_unspecified",
+            "day",
+            "week",
+            "month"
+          ],
+          "description": "The relative timeframe for time relative alerts",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.threshold": {
+          "format": "double",
+          "description": "The threshold for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than.parameters.timeframe": {
+          "enum": [
+            "timeframe_5_min_or_unspecified",
+            "timeframe_10_min",
+            "timeframe_20_min",
+            "timeframe_30_min",
+            "timeframe_1_h",
+            "timeframe_2_h",
+            "timeframe_3_h",
+            "timeframe_4_h",
+            "timeframe_6_h",
+            "timeframe_12_h",
+            "timeframe_24_h",
+            "timeframe_48_h",
+            "timeframe_72_h",
+            "timeframe_1_w",
+            "timeframe_1_m",
+            "timeframe_2_m",
+            "timeframe_3_m",
+            "timeframe_15_min",
+            "timeframe_1_min",
+            "timeframe_2_min",
+            "timeframe_36_h"
+          ],
+          "description": "The timeframe for the alert condition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.cardinality_fields": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Cardinality fields for unique count alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.group_by": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The group by fields for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.ignore_infinity": {
+          "description": "Should the evaluation ignore infinity value",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.metric_alert_parameters.arithmetic_operator": {
+          "enum": [
+            "avg_or_unspecified",
+            "min",
+            "max",
+            "sum",
+            "count",
+            "percentile"
+          ],
+          "description": "The arithmetic operator of the metric PromQL alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.metric_alert_parameters.arithmetic_operator_modifier": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The arithmetic operator modifier of the metric PromQL alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.metric_alert_parameters.metric_field": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The metric field of the metric alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.metric_alert_parameters.metric_source": {
+          "enum": [
+            "logs2metrics_or_unspecified",
+            "prometheus"
+          ],
+          "description": "The metric source of the metric alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.metric_alert_parameters.non_null_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The percentage of the evaluation as a value between 0 and 100.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.metric_alert_parameters.sample_threshold_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The threshold percentage",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.metric_alert_parameters.swap_null_values": {
+          "description": "Indicates whether null values are replaced with zero values.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.metric_alert_promql_parameters.arithmetic_operator_modifier": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The arithmetic operator of the metric PromQL alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.metric_alert_promql_parameters.non_null_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The percentage of the evaluation as a value between 0 and 100.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.metric_alert_promql_parameters.promql_text": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The PromQL text of the metric alert by fields for the alert condition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.metric_alert_promql_parameters.sample_threshold_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The threshold percentage",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.metric_alert_promql_parameters.swap_null_values": {
+          "description": "Indicates whether null values are replaced with zero values.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.related_extended_data.cleanup_deadman_duration": {
+          "enum": [
+            "cleanup_deadman_duration_never_or_unspecified",
+            "cleanup_deadman_duration_5min",
+            "cleanup_deadman_duration_10min",
+            "cleanup_deadman_duration_1h",
+            "cleanup_deadman_duration_2h",
+            "cleanup_deadman_duration_6h",
+            "cleanup_deadman_duration_12h",
+            "cleanup_deadman_duration_24h"
+          ],
+          "description": "Cleanup deadman duration",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.related_extended_data.should_trigger_deadman": {
+          "description": "Should we trigger deadman",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.relative_timeframe": {
+          "enum": [
+            "hour_or_unspecified",
+            "day",
+            "week",
+            "month"
+          ],
+          "description": "The relative timeframe for time relative alerts",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.threshold": {
+          "format": "double",
+          "description": "The threshold for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.less_than_usual.parameters.timeframe": {
+          "enum": [
+            "timeframe_5_min_or_unspecified",
+            "timeframe_10_min",
+            "timeframe_20_min",
+            "timeframe_30_min",
+            "timeframe_1_h",
+            "timeframe_2_h",
+            "timeframe_3_h",
+            "timeframe_4_h",
+            "timeframe_6_h",
+            "timeframe_12_h",
+            "timeframe_24_h",
+            "timeframe_48_h",
+            "timeframe_72_h",
+            "timeframe_1_w",
+            "timeframe_1_m",
+            "timeframe_2_m",
+            "timeframe_3_m",
+            "timeframe_15_min",
+            "timeframe_1_min",
+            "timeframe_2_min",
+            "timeframe_36_h"
+          ],
+          "description": "The timeframe for the alert condition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.evaluation_window": {
+          "enum": [
+            "rolling_or_unspecified",
+            "dynamic"
+          ],
+          "description": "The evaluation window for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.cardinality_fields": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Cardinality fields for unique count alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.group_by": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The group by fields for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.ignore_infinity": {
+          "description": "Should the evaluation ignore infinity value",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.metric_alert_parameters.arithmetic_operator": {
+          "enum": [
+            "avg_or_unspecified",
+            "min",
+            "max",
+            "sum",
+            "count",
+            "percentile"
+          ],
+          "description": "The arithmetic operator of the metric PromQL alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.metric_alert_parameters.arithmetic_operator_modifier": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The arithmetic operator modifier of the metric PromQL alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.metric_alert_parameters.metric_field": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The metric field of the metric alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.metric_alert_parameters.metric_source": {
+          "enum": [
+            "logs2metrics_or_unspecified",
+            "prometheus"
+          ],
+          "description": "The metric source of the metric alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.metric_alert_parameters.non_null_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The percentage of the evaluation as a value between 0 and 100.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.metric_alert_parameters.sample_threshold_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The threshold percentage",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.metric_alert_parameters.swap_null_values": {
+          "description": "Indicates whether null values are replaced with zero values.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.metric_alert_promql_parameters.arithmetic_operator_modifier": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The arithmetic operator of the metric PromQL alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.metric_alert_promql_parameters.non_null_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The percentage of the evaluation as a value between 0 and 100.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.metric_alert_promql_parameters.promql_text": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The PromQL text of the metric alert by fields for the alert condition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.metric_alert_promql_parameters.sample_threshold_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The threshold percentage",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.metric_alert_promql_parameters.swap_null_values": {
+          "description": "Indicates whether null values are replaced with zero values.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.related_extended_data.cleanup_deadman_duration": {
+          "enum": [
+            "cleanup_deadman_duration_never_or_unspecified",
+            "cleanup_deadman_duration_5min",
+            "cleanup_deadman_duration_10min",
+            "cleanup_deadman_duration_1h",
+            "cleanup_deadman_duration_2h",
+            "cleanup_deadman_duration_6h",
+            "cleanup_deadman_duration_12h",
+            "cleanup_deadman_duration_24h"
+          ],
+          "description": "Cleanup deadman duration",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.related_extended_data.should_trigger_deadman": {
+          "description": "Should we trigger deadman",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.relative_timeframe": {
+          "enum": [
+            "hour_or_unspecified",
+            "day",
+            "week",
+            "month"
+          ],
+          "description": "The relative timeframe for time relative alerts",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.threshold": {
+          "format": "double",
+          "description": "The threshold for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than.parameters.timeframe": {
+          "enum": [
+            "timeframe_5_min_or_unspecified",
+            "timeframe_10_min",
+            "timeframe_20_min",
+            "timeframe_30_min",
+            "timeframe_1_h",
+            "timeframe_2_h",
+            "timeframe_3_h",
+            "timeframe_4_h",
+            "timeframe_6_h",
+            "timeframe_12_h",
+            "timeframe_24_h",
+            "timeframe_48_h",
+            "timeframe_72_h",
+            "timeframe_1_w",
+            "timeframe_1_m",
+            "timeframe_2_m",
+            "timeframe_3_m",
+            "timeframe_15_min",
+            "timeframe_1_min",
+            "timeframe_2_min",
+            "timeframe_36_h"
+          ],
+          "description": "The timeframe for the alert condition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.cardinality_fields": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Cardinality fields for unique count alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.group_by": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The group by fields for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.ignore_infinity": {
+          "description": "Should the evaluation ignore infinity value",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.metric_alert_parameters.arithmetic_operator": {
+          "enum": [
+            "avg_or_unspecified",
+            "min",
+            "max",
+            "sum",
+            "count",
+            "percentile"
+          ],
+          "description": "The arithmetic operator of the metric PromQL alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.metric_alert_parameters.arithmetic_operator_modifier": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The arithmetic operator modifier of the metric PromQL alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.metric_alert_parameters.metric_field": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The metric field of the metric alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.metric_alert_parameters.metric_source": {
+          "enum": [
+            "logs2metrics_or_unspecified",
+            "prometheus"
+          ],
+          "description": "The metric source of the metric alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.metric_alert_parameters.non_null_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The percentage of the evaluation as a value between 0 and 100.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.metric_alert_parameters.sample_threshold_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The threshold percentage",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.metric_alert_parameters.swap_null_values": {
+          "description": "Indicates whether null values are replaced with zero values.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.metric_alert_promql_parameters.arithmetic_operator_modifier": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The arithmetic operator of the metric PromQL alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.metric_alert_promql_parameters.non_null_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The percentage of the evaluation as a value between 0 and 100.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.metric_alert_promql_parameters.promql_text": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The PromQL text of the metric alert by fields for the alert condition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.metric_alert_promql_parameters.sample_threshold_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The threshold percentage",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.metric_alert_promql_parameters.swap_null_values": {
+          "description": "Indicates whether null values are replaced with zero values.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.related_extended_data.cleanup_deadman_duration": {
+          "enum": [
+            "cleanup_deadman_duration_never_or_unspecified",
+            "cleanup_deadman_duration_5min",
+            "cleanup_deadman_duration_10min",
+            "cleanup_deadman_duration_1h",
+            "cleanup_deadman_duration_2h",
+            "cleanup_deadman_duration_6h",
+            "cleanup_deadman_duration_12h",
+            "cleanup_deadman_duration_24h"
+          ],
+          "description": "Cleanup deadman duration",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.related_extended_data.should_trigger_deadman": {
+          "description": "Should we trigger deadman",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.relative_timeframe": {
+          "enum": [
+            "hour_or_unspecified",
+            "day",
+            "week",
+            "month"
+          ],
+          "description": "The relative timeframe for time relative alerts",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.threshold": {
+          "format": "double",
+          "description": "The threshold for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.more_than_usual.parameters.timeframe": {
+          "enum": [
+            "timeframe_5_min_or_unspecified",
+            "timeframe_10_min",
+            "timeframe_20_min",
+            "timeframe_30_min",
+            "timeframe_1_h",
+            "timeframe_2_h",
+            "timeframe_3_h",
+            "timeframe_4_h",
+            "timeframe_6_h",
+            "timeframe_12_h",
+            "timeframe_24_h",
+            "timeframe_48_h",
+            "timeframe_72_h",
+            "timeframe_1_w",
+            "timeframe_1_m",
+            "timeframe_2_m",
+            "timeframe_3_m",
+            "timeframe_15_min",
+            "timeframe_1_min",
+            "timeframe_2_min",
+            "timeframe_36_h"
+          ],
+          "description": "The timeframe for the alert condition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.cardinality_fields": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Cardinality fields for unique count alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.group_by": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The group by fields for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.ignore_infinity": {
+          "description": "Should the evaluation ignore infinity value",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.metric_alert_parameters.arithmetic_operator": {
+          "enum": [
+            "avg_or_unspecified",
+            "min",
+            "max",
+            "sum",
+            "count",
+            "percentile"
+          ],
+          "description": "The arithmetic operator of the metric PromQL alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.metric_alert_parameters.arithmetic_operator_modifier": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The arithmetic operator modifier of the metric PromQL alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.metric_alert_parameters.metric_field": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The metric field of the metric alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.metric_alert_parameters.metric_source": {
+          "enum": [
+            "logs2metrics_or_unspecified",
+            "prometheus"
+          ],
+          "description": "The metric source of the metric alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.metric_alert_parameters.non_null_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The percentage of the evaluation as a value between 0 and 100.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.metric_alert_parameters.sample_threshold_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The threshold percentage",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.metric_alert_parameters.swap_null_values": {
+          "description": "Indicates whether null values are replaced with zero values.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.metric_alert_promql_parameters.arithmetic_operator_modifier": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The arithmetic operator of the metric PromQL alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.metric_alert_promql_parameters.non_null_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The percentage of the evaluation as a value between 0 and 100.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.metric_alert_promql_parameters.promql_text": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The PromQL text of the metric alert by fields for the alert condition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.metric_alert_promql_parameters.sample_threshold_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The threshold percentage",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.metric_alert_promql_parameters.swap_null_values": {
+          "description": "Indicates whether null values are replaced with zero values.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.related_extended_data.cleanup_deadman_duration": {
+          "enum": [
+            "cleanup_deadman_duration_never_or_unspecified",
+            "cleanup_deadman_duration_5min",
+            "cleanup_deadman_duration_10min",
+            "cleanup_deadman_duration_1h",
+            "cleanup_deadman_duration_2h",
+            "cleanup_deadman_duration_6h",
+            "cleanup_deadman_duration_12h",
+            "cleanup_deadman_duration_24h"
+          ],
+          "description": "Cleanup deadman duration",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.related_extended_data.should_trigger_deadman": {
+          "description": "Should we trigger deadman",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.relative_timeframe": {
+          "enum": [
+            "hour_or_unspecified",
+            "day",
+            "week",
+            "month"
+          ],
+          "description": "The relative timeframe for time relative alerts",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.threshold": {
+          "format": "double",
+          "description": "The threshold for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.new_value.parameters.timeframe": {
+          "enum": [
+            "timeframe_5_min_or_unspecified",
+            "timeframe_10_min",
+            "timeframe_20_min",
+            "timeframe_30_min",
+            "timeframe_1_h",
+            "timeframe_2_h",
+            "timeframe_3_h",
+            "timeframe_4_h",
+            "timeframe_6_h",
+            "timeframe_12_h",
+            "timeframe_24_h",
+            "timeframe_48_h",
+            "timeframe_72_h",
+            "timeframe_1_w",
+            "timeframe_1_m",
+            "timeframe_2_m",
+            "timeframe_3_m",
+            "timeframe_15_min",
+            "timeframe_1_min",
+            "timeframe_2_min",
+            "timeframe_36_h"
+          ],
+          "description": "The timeframe for the alert condition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.cardinality_fields": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Cardinality fields for unique count alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.group_by": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The group by fields for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.ignore_infinity": {
+          "description": "Should the evaluation ignore infinity value",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.metric_alert_parameters.arithmetic_operator": {
+          "enum": [
+            "avg_or_unspecified",
+            "min",
+            "max",
+            "sum",
+            "count",
+            "percentile"
+          ],
+          "description": "The arithmetic operator of the metric PromQL alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.metric_alert_parameters.arithmetic_operator_modifier": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The arithmetic operator modifier of the metric PromQL alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.metric_alert_parameters.metric_field": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The metric field of the metric alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.metric_alert_parameters.metric_source": {
+          "enum": [
+            "logs2metrics_or_unspecified",
+            "prometheus"
+          ],
+          "description": "The metric source of the metric alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.metric_alert_parameters.non_null_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The percentage of the evaluation as a value between 0 and 100.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.metric_alert_parameters.sample_threshold_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The threshold percentage",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.metric_alert_parameters.swap_null_values": {
+          "description": "Indicates whether null values are replaced with zero values.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.metric_alert_promql_parameters.arithmetic_operator_modifier": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The arithmetic operator of the metric PromQL alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.metric_alert_promql_parameters.non_null_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The percentage of the evaluation as a value between 0 and 100.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.metric_alert_promql_parameters.promql_text": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The PromQL text of the metric alert by fields for the alert condition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.metric_alert_promql_parameters.sample_threshold_percentage": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The threshold percentage",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.metric_alert_promql_parameters.swap_null_values": {
+          "description": "Indicates whether null values are replaced with zero values.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.related_extended_data.cleanup_deadman_duration": {
+          "enum": [
+            "cleanup_deadman_duration_never_or_unspecified",
+            "cleanup_deadman_duration_5min",
+            "cleanup_deadman_duration_10min",
+            "cleanup_deadman_duration_1h",
+            "cleanup_deadman_duration_2h",
+            "cleanup_deadman_duration_6h",
+            "cleanup_deadman_duration_12h",
+            "cleanup_deadman_duration_24h"
+          ],
+          "description": "Cleanup deadman duration",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.related_extended_data.should_trigger_deadman": {
+          "description": "Should we trigger deadman",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.relative_timeframe": {
+          "enum": [
+            "hour_or_unspecified",
+            "day",
+            "week",
+            "month"
+          ],
+          "description": "The relative timeframe for time relative alerts",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.threshold": {
+          "format": "double",
+          "description": "The threshold for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "condition.unique_count.parameters.timeframe": {
+          "enum": [
+            "timeframe_5_min_or_unspecified",
+            "timeframe_10_min",
+            "timeframe_20_min",
+            "timeframe_30_min",
+            "timeframe_1_h",
+            "timeframe_2_h",
+            "timeframe_3_h",
+            "timeframe_4_h",
+            "timeframe_6_h",
+            "timeframe_12_h",
+            "timeframe_24_h",
+            "timeframe_48_h",
+            "timeframe_72_h",
+            "timeframe_1_w",
+            "timeframe_1_m",
+            "timeframe_2_m",
+            "timeframe_3_m",
+            "timeframe_15_min",
+            "timeframe_1_min",
+            "timeframe_2_min",
+            "timeframe_36_h"
+          ],
+          "description": "The timeframe for the alert condition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "description": {
+          "pattern": "^[\\p{L}0-9_\\-\\s]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Alert description",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "expiration.day": {
+          "format": "int32",
+          "min": 1,
+          "max": 31,
+          "description": "Day of the month",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "expiration.month": {
+          "format": "int32",
+          "min": 1,
+          "max": 12,
+          "description": "Month of the year",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "expiration.year": {
+          "format": "int32",
+          "min": 0,
+          "max": 2147483647,
+          "description": "Year",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "filters.alias": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The alias of the filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "filters.filter_type": {
+          "enum": [
+            "text_or_unspecified",
+            "template",
+            "ratio",
+            "unique_count",
+            "time_relative",
+            "metric",
+            "flow"
+          ],
+          "description": "The type of the filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "filters.metadata.applications": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The applications to filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "filters.metadata.subsystems": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The subsystems to filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "filters.ratio_alerts.alias": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The alias of the filter",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "filters.ratio_alerts.applications": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The applications to filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "filters.ratio_alerts.group_by": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The group by fields",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "filters.ratio_alerts.severities": {
+          "enum": [
+            "debug_or_unspecified",
+            "verbose",
+            "info",
+            "warning",
+            "error",
+            "critical"
+          ],
+          "description": "The severity of the logs to filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "filters.ratio_alerts.subsystems": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The subsystems to filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "filters.ratio_alerts.text": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The text to filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "filters.severities": {
+          "enum": [
+            "debug_or_unspecified",
+            "verbose",
+            "info",
+            "warning",
+            "error",
+            "critical"
+          ],
+          "description": "The severity of the logs to filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "filters.text": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The text to filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "incident_settings.notify_on": {
+          "enum": [
+            "triggered_only",
+            "triggered_and_resolved"
+          ],
+          "description": "Notify on setting",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "incident_settings.retriggering_period_seconds": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The retriggering period of the alert in seconds",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "incident_settings.use_as_notification_settings": {
+          "description": "Use these settings for all notificaion webhook",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "is_active": {
+          "description": "Alert is active",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "meta_labels.key": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The key of the label",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "meta_labels.value": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The value of the label",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "meta_labels_strings": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 2000,
+          "description": "The meta data added to the alert as a string separated by a \":\" character.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Alert name",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "notification_groups.group_by_fields": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Group by fields to group the values by",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "notification_groups.notifications.notify_on": {
+          "enum": [
+            "triggered_only",
+            "triggered_and_resolved"
+          ],
+          "description": "Notify on setting",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "notification_groups.notifications.retriggering_period_seconds": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "Retriggering period of the alert in seconds",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "notification_payload_filters": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The JSON keys to be included in the alert notification. If unspecified, the full log text will be included in the alert notification.",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "severity": {
+          "enum": [
+            "info_or_unspecified",
+            "warning",
+            "critical",
+            "error"
+          ],
+          "description": "Alert severity",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "notification_groups.notifications.integration_id": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The integration ID for the notification",
+          "source": "logs-service-api",
+          "schema": "/v1/alert_definitions/{id}:put"
+        },
+        "notification_groups.notifications.recipients.emails": {
+          "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Email addresses",
+          "source": "logs-service-api",
+          "schema": "AlertsV2Recipients"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_alert_definition",
+      "kind": "resource",
+      "schema": "Alert",
+      "spec": "logs-service-api",
+      "score": 0.233,
+      "attrs": {
+        "active_on.end_time.hours": {
+          "format": "int32",
+          "min": 0,
+          "max": 24,
+          "description": "Hours of the day",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "active_on.end_time.minutes": {
+          "format": "int32",
+          "min": 0,
+          "max": 59,
+          "description": "Minutes of the hour",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "active_on.start_time.hours": {
+          "format": "int32",
+          "min": 0,
+          "max": 24,
+          "description": "Hours of the day",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "active_on.start_time.minutes": {
+          "format": "int32",
+          "min": 0,
+          "max": 59,
+          "description": "Minutes of the hour",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "description": {
+          "pattern": "^[\\p{L}0-9_\\-\\s]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Alert description",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "flow.enforce_suppression": {
+          "description": "Should suppression be enforced on the flow alert",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "flow.stages.flow_stages_groups.groups.next_op": {
+          "enum": [
+            "and",
+            "or"
+          ],
+          "description": "Operator for the alerts",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "incidents_settings.minutes": {
+          "format": "int32",
+          "min": 0,
+          "max": 59,
+          "description": "Minutes of the hour",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "incidents_settings.notify_on": {
+          "enum": [
+            "triggered_only",
+            "triggered_and_resolved"
+          ],
+          "description": "Notify on setting",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "logs_anomaly.logs_filter.simple_filter.label_filters.severities": {
+          "enum": [
+            "debug_or_unspecified",
+            "verbose",
+            "info",
+            "warning",
+            "error",
+            "critical"
+          ],
+          "description": "The severity of the logs to filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "logs_immediate.logs_filter.simple_filter.label_filters.severities": {
+          "enum": [
+            "debug_or_unspecified",
+            "verbose",
+            "info",
+            "warning",
+            "error",
+            "critical"
+          ],
+          "description": "The severity of the logs to filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "logs_new_value.logs_filter.simple_filter.label_filters.severities": {
+          "enum": [
+            "debug_or_unspecified",
+            "verbose",
+            "info",
+            "warning",
+            "error",
+            "critical"
+          ],
+          "description": "The severity of the logs to filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "logs_ratio_threshold.denominator.simple_filter.label_filters.severities": {
+          "enum": [
+            "debug_or_unspecified",
+            "verbose",
+            "info",
+            "warning",
+            "error",
+            "critical"
+          ],
+          "description": "The severity of the logs to filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "logs_ratio_threshold.ignore_infinity": {
+          "description": "Should the evaluation ignore infinity value",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "logs_ratio_threshold.numerator.simple_filter.label_filters.severities": {
+          "enum": [
+            "debug_or_unspecified",
+            "verbose",
+            "info",
+            "warning",
+            "error",
+            "critical"
+          ],
+          "description": "The severity of the logs to filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "logs_ratio_threshold.rules.condition.threshold": {
+          "format": "double",
+          "description": "The threshold for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "logs_threshold.logs_filter.simple_filter.label_filters.severities": {
+          "enum": [
+            "debug_or_unspecified",
+            "verbose",
+            "info",
+            "warning",
+            "error",
+            "critical"
+          ],
+          "description": "The severity of the logs to filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "logs_threshold.rules.condition.threshold": {
+          "format": "double",
+          "description": "The threshold for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "logs_time_relative_threshold.ignore_infinity": {
+          "description": "Should the evaluation ignore infinity value",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "logs_time_relative_threshold.logs_filter.simple_filter.label_filters.severities": {
+          "enum": [
+            "debug_or_unspecified",
+            "verbose",
+            "info",
+            "warning",
+            "error",
+            "critical"
+          ],
+          "description": "The severity of the logs to filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "logs_time_relative_threshold.rules.condition.threshold": {
+          "format": "double",
+          "description": "The threshold for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "logs_unique_count.logs_filter.simple_filter.label_filters.severities": {
+          "enum": [
+            "debug_or_unspecified",
+            "verbose",
+            "info",
+            "warning",
+            "error",
+            "critical"
+          ],
+          "description": "The severity of the logs to filter",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "metric_anomaly.rules.condition.threshold": {
+          "format": "double",
+          "description": "The threshold for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "metric_threshold.rules.condition.threshold": {
+          "format": "double",
+          "description": "The threshold for the alert condition",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Alert name",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "notification_group.webhooks.minutes": {
+          "format": "int32",
+          "min": 0,
+          "max": 59,
+          "description": "Minutes of the hour",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "notification_group.webhooks.notify_on": {
+          "enum": [
+            "triggered_only",
+            "triggered_and_resolved"
+          ],
+          "description": "Notify on setting",
+          "source": "logs-service-api",
+          "schema": "Alert"
+        },
+        "active_on.day_of_week": {
+          "enum": [
+            "monday_or_unspecified",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+            "sunday"
+          ],
+          "description": "Days of the week when the alert is active.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/alert_definitions/{id}:put"
+        },
+        "flow.stages.flow_stages_groups.groups.alerts_op": {
+          "enum": [
+            "and_or_unspecified",
+            "or"
+          ],
+          "description": "The logical operation to apply to the alerts in the group",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionFlowStagesGroup"
+        },
+        "flow.stages.timeframe_ms": {
+          "pattern": "^-?\\d{1,19}$",
+          "min_len": 1,
+          "max_len": 19,
+          "description": "The timeframe for the flow alert in milliseconds",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionFlowStages"
+        },
+        "flow.stages.timeframe_type": {
+          "enum": [
+            "unspecified",
+            "up_to"
+          ],
+          "description": "The type of timeframe for the flow alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionFlowStages"
+        },
+        "logs_anomaly.anomaly_alert_settings.percentage_of_deviation": {
+          "format": "float",
+          "description": "The percentage of deviation from the baseline when the alert is triggered.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionAnomalyAlertSettings"
+        },
+        "logs_anomaly.evaluation_delay_ms": {
+          "format": "int32",
+          "min": 0,
+          "max": 2147483647,
+          "description": "The delay in milliseconds before evaluating the alert condition",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsThresholdType"
+        },
+        "logs_anomaly.logs_filter.simple_filter.lucene_query": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The Lucene query to filter logs.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsSimpleFilter"
+        },
+        "logs_anomaly.notification_payload_filter": {
+          "pattern": "^[a-zA-Z0-9_.]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The filter to specify which fields are included in the notification payload.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsImmediateType"
+        },
+        "logs_anomaly.rules.condition.minimum_threshold": {
+          "format": "double",
+          "description": "The threshold value for the alert condition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsAnomalyCondition"
+        },
+        "logs_anomaly.rules.condition.time_window.logs_time_window_specific_value": {
+          "enum": [
+            "minutes_5_or_unspecified",
+            "minutes_10",
+            "minutes_20",
+            "minutes_15",
+            "minutes_30",
+            "hour_1",
+            "hours_2",
+            "hours_4",
+            "hours_6",
+            "hours_12",
+            "hours_24",
+            "hours_36"
+          ],
+          "description": "The time window defined for an alert to be triggered.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsTimeWindow"
+        },
+        "logs_immediate.logs_filter.simple_filter.lucene_query": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The Lucene query to filter logs.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsSimpleFilter"
+        },
+        "logs_immediate.notification_payload_filter": {
+          "pattern": "^[a-zA-Z0-9_.]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The filter to specify which fields are included in the notification payload.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsImmediateType"
+        },
+        "logs_new_value.logs_filter.simple_filter.lucene_query": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The Lucene query to filter logs.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsSimpleFilter"
+        },
+        "logs_new_value.notification_payload_filter": {
+          "pattern": "^[a-zA-Z0-9_.]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The filter to specify which fields are included in the notification payload.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsImmediateType"
+        },
+        "logs_new_value.rules.condition.keypath_to_track": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The keypath to track for new values",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsNewValueCondition"
+        },
+        "logs_new_value.rules.condition.time_window.logs_new_value_time_window_specific_value": {
+          "enum": [
+            "hours_12_or_unspecified",
+            "hours_24",
+            "hours_48",
+            "hours_72",
+            "week_1",
+            "month_1",
+            "months_2",
+            "months_3"
+          ],
+          "description": "A time window defined by a specific value",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsNewValueTimeWindow"
+        },
+        "logs_ratio_threshold.denominator.simple_filter.lucene_query": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The Lucene query to filter logs.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsSimpleFilter"
+        },
+        "logs_ratio_threshold.denominator_alias": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The alias for the denominator filter, used for display purposes",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsRatioThresholdType"
+        },
+        "logs_ratio_threshold.evaluation_delay_ms": {
+          "format": "int32",
+          "min": 0,
+          "max": 2147483647,
+          "description": "The delay in milliseconds before evaluating the alert condition",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsThresholdType"
+        },
+        "logs_ratio_threshold.group_by_for": {
+          "enum": [
+            "both_or_unspecified",
+            "numerator_only",
+            "denumerator_only"
+          ],
+          "description": "The group by settings for the numerator and denominator filters",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsRatioThresholdType"
+        },
+        "logs_ratio_threshold.notification_payload_filter": {
+          "pattern": "^[a-zA-Z0-9_.]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The filter to specify which fields are included in the notification payload.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsImmediateType"
+        },
+        "logs_ratio_threshold.numerator.simple_filter.lucene_query": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The Lucene query to filter logs.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsSimpleFilter"
+        },
+        "logs_ratio_threshold.numerator_alias": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The alias for the numerator filter, used for display purposes",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsRatioThresholdType"
+        },
+        "logs_ratio_threshold.rules.condition.time_window.logs_ratio_time_window_specific_value": {
+          "enum": [
+            "minutes_5_or_unspecified",
+            "minutes_10",
+            "minutes_15",
+            "minutes_30",
+            "hour_1",
+            "hours_2",
+            "hours_4",
+            "hours_6",
+            "hours_12",
+            "hours_24",
+            "hours_36"
+          ],
+          "description": "Specifies the time window for the ratio alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsRatioTimeWindow"
+        },
+        "logs_ratio_threshold.undetected_values_management.auto_retire_timeframe": {
+          "enum": [
+            "never_or_unspecified",
+            "minutes_5",
+            "minutes_10",
+            "hour_1",
+            "hours_2",
+            "hours_6",
+            "hours_12",
+            "hours_24"
+          ],
+          "description": "The timeframe for auto-retiring the alert when undetected values are detected",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionUndetectedValuesManagement"
+        },
+        "logs_threshold.evaluation_delay_ms": {
+          "format": "int32",
+          "min": 0,
+          "max": 2147483647,
+          "description": "The delay in milliseconds before evaluating the alert condition",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsThresholdType"
+        },
+        "logs_threshold.logs_filter.simple_filter.lucene_query": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The Lucene query to filter logs.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsSimpleFilter"
+        },
+        "logs_threshold.notification_payload_filter": {
+          "pattern": "^[a-zA-Z0-9_.]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The filter to specify which fields are included in the notification payload.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsImmediateType"
+        },
+        "logs_threshold.rules.condition.time_window.logs_time_window_specific_value": {
+          "enum": [
+            "minutes_5_or_unspecified",
+            "minutes_10",
+            "minutes_20",
+            "minutes_15",
+            "minutes_30",
+            "hour_1",
+            "hours_2",
+            "hours_4",
+            "hours_6",
+            "hours_12",
+            "hours_24",
+            "hours_36"
+          ],
+          "description": "The time window defined for an alert to be triggered.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsTimeWindow"
+        },
+        "logs_threshold.undetected_values_management.auto_retire_timeframe": {
+          "enum": [
+            "never_or_unspecified",
+            "minutes_5",
+            "minutes_10",
+            "hour_1",
+            "hours_2",
+            "hours_6",
+            "hours_12",
+            "hours_24"
+          ],
+          "description": "The timeframe for auto-retiring the alert when undetected values are detected",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionUndetectedValuesManagement"
+        },
+        "logs_time_relative_threshold.evaluation_delay_ms": {
+          "format": "int32",
+          "min": 0,
+          "max": 2147483647,
+          "description": "The delay in milliseconds before evaluating the alert condition",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsThresholdType"
+        },
+        "logs_time_relative_threshold.logs_filter.simple_filter.lucene_query": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The Lucene query to filter logs.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsSimpleFilter"
+        },
+        "logs_time_relative_threshold.notification_payload_filter": {
+          "pattern": "^[a-zA-Z0-9_.]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The filter to specify which fields are included in the notification payload.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsImmediateType"
+        },
+        "logs_time_relative_threshold.rules.condition.compared_to": {
+          "enum": [
+            "previous_hour_or_unspecified",
+            "same_hour_yesterday",
+            "same_hour_last_week",
+            "yesterday",
+            "same_day_last_week",
+            "same_day_last_month"
+          ],
+          "description": "The time frame to compare the current value against",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsTimeRelativeCondition"
+        },
+        "logs_time_relative_threshold.undetected_values_management.auto_retire_timeframe": {
+          "enum": [
+            "never_or_unspecified",
+            "minutes_5",
+            "minutes_10",
+            "hour_1",
+            "hours_2",
+            "hours_6",
+            "hours_12",
+            "hours_24"
+          ],
+          "description": "The timeframe for auto-retiring the alert when undetected values are detected",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionUndetectedValuesManagement"
+        },
+        "logs_unique_count.logs_filter.simple_filter.lucene_query": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The Lucene query to filter logs.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsSimpleFilter"
+        },
+        "logs_unique_count.max_unique_count_per_group_by_key": {
+          "pattern": "^-?\\d{1,19}$",
+          "min_len": 1,
+          "max_len": 19,
+          "description": "The maximum unique count per group by key",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsUniqueCountType"
+        },
+        "logs_unique_count.notification_payload_filter": {
+          "pattern": "^[a-zA-Z0-9_.]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The filter to specify which fields are included in the notification payload.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsImmediateType"
+        },
+        "logs_unique_count.rules.condition.max_unique_count": {
+          "pattern": "^-?\\d{1,19}$",
+          "min_len": 1,
+          "max_len": 19,
+          "description": "The maximum unique count for the alert condition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsUniqueCountCondition"
+        },
+        "logs_unique_count.rules.condition.time_window.logs_unique_value_time_window_specific_value": {
+          "enum": [
+            "minute_1_or_unspecified",
+            "minutes_15",
+            "minutes_20",
+            "minutes_30",
+            "hours_1",
+            "hours_2",
+            "hours_4",
+            "hours_6",
+            "hours_12",
+            "hours_24",
+            "minutes_5",
+            "minutes_10",
+            "hours_36"
+          ],
+          "description": "A time window defined by a specific value",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsUniqueValueTimeWindow"
+        },
+        "logs_unique_count.unique_count_keypath": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The keypath in the logs to be used for unique count",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsUniqueCountType"
+        },
+        "metric_anomaly.anomaly_alert_settings.percentage_of_deviation": {
+          "format": "float",
+          "description": "The percentage of deviation from the baseline when the alert is triggered.",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionAnomalyAlertSettings"
+        },
+        "metric_anomaly.evaluation_delay_ms": {
+          "format": "int32",
+          "min": 0,
+          "max": 2147483647,
+          "description": "The delay in milliseconds before evaluating the alert condition",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsThresholdType"
+        },
+        "metric_anomaly.metric_filter.promql": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The filter is a PromQL expression.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionMetricFilter"
+        },
+        "metric_anomaly.rules.condition.for_over_pct": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The percentage of values that must exceed the threshold to trigger the alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionMetricThresholdCondition"
+        },
+        "metric_anomaly.rules.condition.min_non_null_values_pct": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "If set, specifies the minimum percentage of non-null values required for the alert to be triggered",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionMetricMissingValuesMissingValuesMinNonNullValuesPct"
+        },
+        "metric_anomaly.rules.condition.of_the_last.metric_time_window_dynamic_duration": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The time window as a dynamic value",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionMetricTimeWindowTypeMetricTimeWindowDynamicDuration"
+        },
+        "metric_anomaly.rules.condition.of_the_last.metric_time_window_specific_value": {
+          "enum": [
+            "minutes_1_or_unspecified",
+            "minutes_5",
+            "minutes_10",
+            "minutes_15",
+            "minutes_30",
+            "hour_1",
+            "hours_2",
+            "hours_4",
+            "hours_6",
+            "hours_12",
+            "hours_24",
+            "minutes_20",
+            "hours_36"
+          ],
+          "description": "The time window as a specific value",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionMetricTimeWindowTypeMetricTimeWindowSpecificValue"
+        },
+        "metric_threshold.evaluation_delay_ms": {
+          "format": "int32",
+          "min": 0,
+          "max": 2147483647,
+          "description": "The delay in milliseconds before evaluating the alert condition",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionLogsThresholdType"
+        },
+        "metric_threshold.metric_filter.promql": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The filter is a PromQL expression.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionMetricFilter"
+        },
+        "metric_threshold.missing_values.min_non_null_values_pct": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "If set, specifies the minimum percentage of non-null values required for the alert to be triggered",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionMetricMissingValuesMissingValuesMinNonNullValuesPct"
+        },
+        "metric_threshold.rules.condition.for_over_pct": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The percentage of values that must exceed the threshold to trigger the alert",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionMetricThresholdCondition"
+        },
+        "metric_threshold.rules.condition.of_the_last.metric_time_window_dynamic_duration": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The time window as a dynamic value",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionMetricTimeWindowTypeMetricTimeWindowDynamicDuration"
+        },
+        "metric_threshold.rules.condition.of_the_last.metric_time_window_specific_value": {
+          "enum": [
+            "minutes_1_or_unspecified",
+            "minutes_5",
+            "minutes_10",
+            "minutes_15",
+            "minutes_30",
+            "hour_1",
+            "hours_2",
+            "hours_4",
+            "hours_6",
+            "hours_12",
+            "hours_24",
+            "minutes_20",
+            "hours_36"
+          ],
+          "description": "The time window as a specific value",
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionMetricTimeWindowTypeMetricTimeWindowSpecificValue"
+        },
+        "metric_threshold.undetected_values_management.auto_retire_timeframe": {
+          "enum": [
+            "never_or_unspecified",
+            "minutes_5",
+            "minutes_10",
+            "hour_1",
+            "hours_2",
+            "hours_6",
+            "hours_12",
+            "hours_24"
+          ],
+          "description": "The timeframe for auto-retiring the alert when undetected values are detected",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ApisAlertDefinitionUndetectedValuesManagement"
+        },
+        "notification_group.webhooks.integration.integration_id": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The integration ID for the notification",
+          "source": "logs-service-api",
+          "schema": "/v1/alert_definitions/{id}:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_dashboard",
+      "kind": "resource",
+      "schema": "Dashboard",
+      "spec": "logs-service-api",
+      "score": 0.3177,
+      "attrs": {
+        "annotations.enabled": {
+          "description": "Whether the annotation is enabled. If enabled, annotations are applied.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "annotations.href": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "kind": "uuid",
+          "format": "uuid",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier within the dashboard",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "annotations.id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "kind": "uuid",
+          "format": "uuid",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier within the dashboard",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "annotations.name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Name of the annotation",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "annotations.source.logs.label_fields.keypath": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Path within the dataset scope",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "annotations.source.logs.label_fields.scope": {
+          "enum": [
+            "unspecified",
+            "user_data",
+            "label",
+            "metadata"
+          ],
+          "description": "Scope of the dataset",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "annotations.source.logs.lucene_query.value": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The Lucene query string.",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "annotations.source.logs.message_template": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Template for the annotation message",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "annotations.source.metrics.labels": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 10,
+          "description": "Labels to display in the annotation",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "annotations.source.metrics.message_template": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Message template for the annotation message",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "annotations.source.metrics.promql_query.value": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The PromQL query string.",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "description": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 200,
+          "description": "Brief description or summary of the dashboard's purpose or content.",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "filters.collapsed": {
+          "description": "Indicates if the filter's UI representation will be collapsed or expanded.",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "filters.enabled": {
+          "description": "Indicates if the filter is currently enabled or not.",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "filters.source.logs.observation_field.keypath": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Path within the dataset scope",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "filters.source.logs.observation_field.scope": {
+          "enum": [
+            "unspecified",
+            "user_data",
+            "label",
+            "metadata"
+          ],
+          "description": "Scope of the dataset",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "filters.source.metrics.label": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Label associated with the metric.",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "folder_id.value": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "kind": "uuid",
+          "format": "uuid",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The UUID value",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "href": {
+          "pattern": "^[a-zA-Z0-9]{21}$",
+          "min_len": 21,
+          "max_len": 21,
+          "description": "Unique identifier for the dashboard.",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "layout.sections.href": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The unique identifier of the section within the layout",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "layout.sections.id.value": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "kind": "uuid",
+          "format": "uuid",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The UUID value",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "layout.sections.rows.appearance.height": {
+          "format": "int32",
+          "min": 0,
+          "max": 2147483647,
+          "description": "The height of the row",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "layout.sections.rows.href": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The unique identifier of the row within the layout",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "layout.sections.rows.id.value": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "kind": "uuid",
+          "format": "uuid",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The UUID value",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "layout.sections.rows.widgets.created_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 20,
+          "max_len": 29,
+          "description": "Creation timestamp",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "layout.sections.rows.widgets.description": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 200,
+          "description": "Widget description",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "layout.sections.rows.widgets.href": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The widget identifier within the dashboard. The identifier must be unique within the dahsboard.",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "layout.sections.rows.widgets.title": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Widget title",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "layout.sections.rows.widgets.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 20,
+          "max_len": 29,
+          "description": "Last update timestamp",
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Display name of the dashboard.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "variables.definition.multi_select.values_order_direction": {
+          "enum": [
+            "unspecified",
+            "asc",
+            "desc"
+          ],
+          "description": "Indicates if the order is ascending or descending",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "variables.display_name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "The name of variable.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "variables.name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Name of the variable which can be used in templates",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Dashboard"
+        },
+        "absolute_time_frame.to": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 20,
+          "max_len": 29,
+          "description": "To is the end of the time frame",
+          "source": "logs-service-api",
+          "schema": "ApisDashboardsV1CommonTimeFrame"
+        },
+        "folder_path.segments": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The segments of the folder path.",
+          "source": "logs-service-api",
+          "schema": "ApisDashboardsV1AstFolderPath"
+        },
+        "relative_time_frame": {
+          "pattern": "^[0-9]+[smhdw]?$",
+          "min_len": 2,
+          "max_len": 10,
+          "description": "Relative time frame specifying a duration from the current time.",
+          "source": "logs-service-api",
+          "schema": "ApisDashboardsV1AstDashboardTimeFrameRelativeTimeFrame"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_dashboard_folder",
+      "kind": "resource",
+      "schema": "DashboardFolder",
+      "spec": "logs-service-api",
+      "score": 0.4667,
+      "attrs": {
+        "name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Name of the dashboard folder.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "DashboardFolder"
+        },
+        "parent_id": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "kind": "uuid",
+          "format": "uuid",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "(Optional) The dashboard folder parent ID, optional. If not set, the folder is a root folder. If set, the folder is a subfolder of the parent folder and needs to be a uuid",
+          "source": "logs-service-api",
+          "schema": "DashboardFolder"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_data_access_rule",
+      "kind": "resource",
+      "schema": "DataAccessRulePrototype",
+      "spec": "logs-service-api",
+      "score": 0.43,
+      "attrs": {
+        "default_expression": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Default Expression for the data access rule",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "DataAccessRulePrototype"
+        },
+        "description": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Description for the data access rule",
+          "source": "logs-service-api",
+          "schema": "DataAccessRulePrototype"
+        },
+        "display_name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Display Name for the data access rule",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "DataAccessRulePrototype"
+        },
+        "filters.entity_type": {
+          "enum": [
+            "unspecified",
+            "logs"
+          ],
+          "description": "Filter's Entity Type",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "DataAccessRulePrototype"
+        },
+        "filters.expression": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Expression of the filter",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "DataAccessRulePrototype"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_data_usage_metrics",
+      "kind": "resource",
+      "schema": "/v1/data_usage:put",
+      "spec": "logs-service-api",
+      "score": 0.775,
+      "attrs": {
+        "enabled": {
+          "description": "Whether metrics export is enabled or not. When 'true' metrics are exported.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/data_usage:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_e2m",
+      "kind": "resource",
+      "schema": "ApisLogs2metricsV2LogsQuery",
+      "spec": "logs-service-api",
+      "score": 0.2188,
+      "attrs": {
+        "logs_query.alias": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Alias",
+          "source": "logs-service-api",
+          "schema": "ApisLogs2metricsV2LogsQuery"
+        },
+        "logs_query.applicationname_filters": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Application name filters",
+          "source": "logs-service-api",
+          "schema": "ApisLogs2metricsV2LogsQuery"
+        },
+        "logs_query.lucene": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Lucene query",
+          "source": "logs-service-api",
+          "schema": "ApisLogs2metricsV2LogsQuery"
+        },
+        "logs_query.severity_filters": {
+          "enum": [
+            "unspecified",
+            "debug",
+            "verbose",
+            "info",
+            "warning",
+            "error",
+            "critical"
+          ],
+          "description": "Severity type filters",
+          "source": "logs-service-api",
+          "schema": "ApisLogs2metricsV2LogsQuery"
+        },
+        "logs_query.subsystemname_filters": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Subsystem names filters",
+          "source": "logs-service-api",
+          "schema": "ApisLogs2metricsV2LogsQuery"
+        },
+        "metric_fields.aggregations.agg_type": {
+          "enum": [
+            "unspecified",
+            "min",
+            "max",
+            "count",
+            "avg",
+            "sum",
+            "histogram",
+            "samples"
+          ],
+          "description": "Aggregation type",
+          "source": "logs-service-api",
+          "schema": "/v1/events2metrics:post"
+        },
+        "metric_fields.aggregations.histogram.buckets": {
+          "format": "float",
+          "description": "Histogram buckets of the Events to Metrics",
+          "source": "logs-service-api",
+          "schema": "ApisEvents2metricsV2E2mAggHistogram"
+        },
+        "metric_fields.aggregations.samples.sample_type": {
+          "enum": [
+            "unspecified",
+            "min",
+            "max"
+          ],
+          "description": "Type of the sample.",
+          "source": "logs-service-api",
+          "schema": "ApisEvents2metricsV2E2mAggSamples"
+        },
+        "metric_fields.aggregations.target_metric_name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Target metric field alias name",
+          "source": "logs-service-api",
+          "schema": "/v1/events2metrics:post"
+        },
+        "metric_fields.source_field": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Metric label source field",
+          "source": "logs-service-api",
+          "schema": "/v1/events2metrics:post"
+        },
+        "metric_fields.target_base_metric_name": {
+          "pattern": "^[\\w/-]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Target metric field alias name",
+          "source": "logs-service-api",
+          "schema": "/v1/events2metrics:post"
+        },
+        "metric_labels.source_field": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Metric label source field",
+          "source": "logs-service-api",
+          "schema": "/v1/events2metrics:post"
+        },
+        "metric_labels.target_label": {
+          "pattern": "^[\\w/-]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Metric label target alias name",
+          "source": "logs-service-api",
+          "schema": "/v1/events2metrics:post"
+        },
+        "name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The name of the alert definition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/alert_definitions/{id}:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_enrichment",
+      "kind": "resource",
+      "schema": "Enrichment",
+      "spec": "logs-service-api",
+      "score": 0.6767,
+      "attrs": {
+        "enrichment_type.custom_enrichment.id": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The ID of the custom enrichment",
+          "source": "logs-service-api",
+          "schema": "Enrichment"
+        },
+        "field_name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The enrichment field name",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Enrichment"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_extension_deployment",
+      "kind": "resource",
+      "schema": "Extension deployment",
+      "spec": "logs-service-api",
+      "score": 0.77,
+      "attrs": {
+        "applications": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Applications that the Extension is deployed for. When this is empty, it is applied to all applications.",
+          "source": "logs-service-api",
+          "schema": "Extension deployment"
+        },
+        "item_ids": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The list of Extension item IDs to deploy.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Extension deployment"
+        },
+        "subsystems": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Subsystems that the Extension is deployed. When this is empty, it is applied to all subsystems.",
+          "source": "logs-service-api",
+          "schema": "Extension deployment"
+        },
+        "version": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The version of the Extension revision to deploy.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Extension deployment"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_log_data_retention_tags",
+      "kind": "resource",
+      "schema": "/v1/log_data_retention_tags:put",
+      "spec": "logs-service-api",
+      "score": 0.88,
+      "attrs": {
+        "tags": {
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "Editable archive retention tag name.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/log_data_retention_tags:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_outgoing_webhook",
+      "kind": "resource",
+      "schema": "OutgoingWebhooksV1IbmEventNotificationsConfig",
+      "spec": "logs-service-api",
+      "score": 0.4375,
+      "attrs": {
+        "ibm_event_notifications.endpoint_type": {
+          "enum": [
+            "default_or_public",
+            "private"
+          ],
+          "description": "The integration endpoint type",
+          "source": "logs-service-api",
+          "schema": "OutgoingWebhooksV1IbmEventNotificationsConfig"
+        },
+        "ibm_event_notifications.event_notifications_instance_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "kind": "uuid",
+          "format": "uuid",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The ID of the selected IBM Event Notifications instance.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "OutgoingWebhooksV1IbmEventNotificationsConfig"
+        },
+        "ibm_event_notifications.region_id": {
+          "pattern": "^[a-z]{2}-[a-z]+$",
+          "min_len": 4,
+          "max_len": 4096,
+          "description": "The region ID of the selected IBM Event Notifications instance.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "OutgoingWebhooksV1IbmEventNotificationsConfig"
+        },
+        "ibm_event_notifications.source_id": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The ID of the created source in the IBM Event Notifications instance. Corresponds to the Cloud Logs instance crn. Not required when creating an outbound integration.",
+          "source": "logs-service-api",
+          "schema": "OutgoingWebhooksV1IbmEventNotificationsConfig"
+        },
+        "ibm_event_notifications.source_name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The name of the created source in the IBM Event Notifications instance. Not required when creating an outbound integration.",
+          "source": "logs-service-api",
+          "schema": "OutgoingWebhooksV1IbmEventNotificationsConfig"
+        },
+        "name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The name of the alert definition",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/alert_definitions/{id}:put"
+        },
+        "url": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "kind": "uri",
+          "format": "url",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The URL of the outbound integration. This value is null for IBM Events Notifications integration.",
+          "source": "logs-service-api",
+          "schema": "/v1/outgoing_webhooks:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_policy",
+      "kind": "resource",
+      "schema": "Policy",
+      "spec": "logs-service-api",
+      "score": 0.4725,
+      "attrs": {
+        "application_rule.name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Name of the rule. Multiple values can be provided as comma separated string of values.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Policy"
+        },
+        "application_rule.rule_type_id": {
+          "enum": [
+            "unspecified",
+            "is",
+            "is_not",
+            "start_with",
+            "includes"
+          ],
+          "description": "Identifier of the rule",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Policy"
+        },
+        "archive_retention.id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "kind": "uuid",
+          "format": "uuid",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Policy ID",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Policy"
+        },
+        "archive_retention_tag": {
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Archive retention tag. Required when retention tags are active. Cannot be set when retention tags are not active.",
+          "source": "logs-service-api",
+          "schema": "Policy"
+        },
+        "before.id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "kind": "uuid",
+          "format": "uuid",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The policy will be inserted immediately before the existing policy with this ID. If unspecified, the policy will be inserted after all existing policies.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Policy"
+        },
+        "description": {
+          "pattern": "^[\\p{L}0-9_\\-\\s]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Description of policy",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Policy"
+        },
+        "enabled": {
+          "description": "Flag to enable or disable a policy. This flag is supported only while updating a policy, since the policies are always enabled during creation.",
+          "source": "logs-service-api",
+          "schema": "Policy"
+        },
+        "name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Name of policy",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Policy"
+        },
+        "priority": {
+          "enum": [
+            "type_unspecified",
+            "type_block",
+            "type_low",
+            "type_medium",
+            "type_high"
+          ],
+          "description": "The data pipeline sources that match the policy rules will continue to be processed by Cloud Logs",
+          "source": "logs-service-api",
+          "schema": "Policy"
+        },
+        "subsystem_rule.name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Name of the rule. Multiple values can be provided as comma separated string of values.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Policy"
+        },
+        "subsystem_rule.rule_type_id": {
+          "enum": [
+            "unspecified",
+            "is",
+            "is_not",
+            "start_with",
+            "includes"
+          ],
+          "description": "Identifier of the rule",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Policy"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_rule_group",
+      "kind": "resource",
+      "schema": "/v1/rule_groups/{group_id}:put",
+      "spec": "logs-service-api",
+      "score": 0.2556,
+      "attrs": {
+        "description": {
+          "pattern": "^[\\p{L}0-9_\\-\\s]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "A description of the rule group. The description will describe the purpose of the rule group.",
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "enabled": {
+          "description": "Whether or not the rule is enabled",
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The name of the rule group",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "order": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The order in which the rule group will be evaluated. The lower the order, the more priority the group will have. Not providing the order will, by default, create a group with the last order.",
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_matchers.application_name.value": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Only logs with this ApplicationName value will match the rule constraint.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_matchers.severity.value": {
+          "enum": [
+            "debug_or_unspecified",
+            "verbose",
+            "info",
+            "warning",
+            "error",
+            "critical"
+          ],
+          "description": "Only logs with this severity value will match",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_matchers.subsystem_name.value": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Only logs with this SubsystemName value will match the rule constraint.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.enabled": {
+          "description": "Whether or not the rule subgroup is enabled",
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.order": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The ordering of the rule subgroup. Lower order will run first. 0 is considered as no value",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.description": {
+          "pattern": "^[\\p{L}0-9_\\-\\s]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Optional description for the rule",
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.enabled": {
+          "description": "Rule parameters which define how the rule will execute",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Optional rule name",
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.order": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "The order the rule will execute inside the rule subgroup.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.allow_parameters.keep_blocked_logs": {
+          "description": "If true, matched logs will be blocked, otherwise matched logs will be kept",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.allow_parameters.rule": {
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Regex which will match the source field and decide if the rule will apply",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.block_parameters.keep_blocked_logs": {
+          "description": "If true, matched logs will be kept, otherwise matched logs will be blocked",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.block_parameters.rule": {
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Regex which will match the source field and decide if the rule will apply",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.extract_parameters.rule": {
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Regex which will parse the source field and extract the JSON keys from source field while retaining the original log",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.extract_timestamp_parameters.format": {
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The time format of the source field being extracted.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.extract_timestamp_parameters.standard": {
+          "enum": [
+            "strftime_or_unspecified",
+            "javasdf",
+            "golang",
+            "secondsts",
+            "millits",
+            "microts",
+            "nanots"
+          ],
+          "description": "The time format to be used for the extracted time value",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.json_extract_parameters.destination_field": {
+          "enum": [
+            "category_or_unspecified",
+            "classname",
+            "methodname",
+            "threadid",
+            "severity"
+          ],
+          "description": "The metadata field used to store the extracted value",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.json_parse_parameters.delete_source": {
+          "description": "Whether or not to delete the source field after running this rule",
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.json_parse_parameters.destination_field": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Destination field where the JSON object will be placed.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.json_parse_parameters.override_dest": {
+          "description": "The destination field where the JSON stringified content will be placed.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.json_stringify_parameters.delete_source": {
+          "description": "Whether or not to delete the source field after running this rule",
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.json_stringify_parameters.destination_field": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The destination field where the JSON stringified content will be placed.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.parse_parameters.destination_field": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The field to store the parsed text",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.parse_parameters.rule": {
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Regex which will parse the source field and extract the JSON keys from it while removing the source field",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.remove_fields_parameters.fields": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Json field paths to drop from the log",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.replace_parameters.destination_field": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The field used to store the modified text",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.replace_parameters.replace_new_val": {
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The value replacing the matched text.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.parameters.replace_parameters.rule": {
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Regex which will match parts in the text to replace",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        },
+        "rule_subgroups.rules.source_field": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The field on which to execute the rule",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "/v1/rule_groups/{group_id}:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_stream",
+      "kind": "resource",
+      "schema": "Stream",
+      "spec": "logs-service-api",
+      "score": 0.49,
+      "attrs": {
+        "compression_type": {
+          "enum": [
+            "unspecified",
+            "gzip"
+          ],
+          "description": "The compression type of the stream.",
+          "source": "logs-service-api",
+          "schema": "Stream"
+        },
+        "dpxl_expression": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The DPXL expression of the Event stream.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Stream"
+        },
+        "ibm_event_streams.brokers": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The brokers of the IBM Event Streams. Multiple broker endpoints can be provided as comma separated values.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Stream"
+        },
+        "ibm_event_streams.topic": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The topic of the IBM Event Streams.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Stream"
+        },
+        "is_active": {
+          "description": "Whether the event stream is active.",
+          "source": "logs-service-api",
+          "schema": "Stream"
+        },
+        "name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "The name of the Event stream.",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "Stream"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_view",
+      "kind": "resource",
+      "schema": "View",
+      "spec": "logs-service-api",
+      "score": 0.36,
+      "attrs": {
+        "filters.filters.name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Filter name",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "View"
+        },
+        "filters.filters.selected_values": {
+          "description": "Filter selected values",
+          "source": "logs-service-api",
+          "schema": "View"
+        },
+        "folder_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "kind": "uuid",
+          "format": "uuid",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "View folder ID",
+          "source": "logs-service-api",
+          "schema": "View"
+        },
+        "name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "View name",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "View"
+        },
+        "search_query.query": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "View search query",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "View"
+        },
+        "search_query.syntax_type": {
+          "enum": [
+            "lucene",
+            "dataprime"
+          ],
+          "description": "Syntax type for the query used in views.",
+          "source": "logs-service-api",
+          "schema": "View"
+        },
+        "tier": {
+          "enum": [
+            "priority_insights",
+            "priority_insights_templates",
+            "all_logs",
+            "all_logs_templates"
+          ],
+          "description": "Type of view",
+          "source": "logs-service-api",
+          "schema": "View"
+        },
+        "time_selection.custom_selection.from_time": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 20,
+          "max_len": 29,
+          "description": "Custom time selection starting timestamp",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "View"
+        },
+        "time_selection.custom_selection.to_time": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 20,
+          "max_len": 29,
+          "description": "Custom time selection ending timestamp",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "View"
+        },
+        "time_selection.quick_selection.caption": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Quick time selection caption",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "View"
+        },
+        "time_selection.quick_selection.seconds": {
+          "format": "int64",
+          "min": 0,
+          "max": 4294967295,
+          "description": "Quick time selection amount in seconds",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "View"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_view_folder",
+      "kind": "resource",
+      "schema": "ViewFolderPrototype",
+      "spec": "logs-service-api",
+      "score": 0.78,
+      "attrs": {
+        "name": {
+          "pattern": "^[\\p{L}\\p{N}\\p{P}\\p{Z}\\p{S}\\p{M}]+$",
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "View folder name",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "ViewFolderPrototype"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_alert",
+      "kind": "data",
+      "schema": "Alert",
+      "spec": "logs-service-api",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_alert_definition",
+      "kind": "data",
+      "schema": "Alert",
+      "spec": "logs-service-api",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_alert_definitions",
+      "kind": "data",
+      "schema": "Alert",
+      "spec": "logs-service-api",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_alerts",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.1,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_dashboard",
+      "kind": "data",
+      "schema": "Dashboard",
+      "spec": "logs-service-api",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_dashboard_folders",
+      "kind": "data",
+      "schema": "Dashboard",
+      "spec": "logs-service-api",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_data_access_rules",
+      "kind": "data",
+      "schema": "/v1/data_access_rules:post",
+      "spec": "logs-service-api",
+      "score": 0.15,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_data_usage_metrics",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_e2m",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_e2ms",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_enrichments",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.1,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_extension",
+      "kind": "data",
+      "schema": "Extension",
+      "spec": "logs-service-api",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_extension_deployment",
+      "kind": "data",
+      "schema": "Extension deployment",
+      "spec": "logs-service-api",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_extensions",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_log_data_retention_tags",
+      "kind": "data",
+      "schema": "/v1/log_data_retention_tags:put",
+      "spec": "logs-service-api",
+      "score": 0.18,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_outgoing_webhook",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_outgoing_webhooks",
+      "kind": "data",
+      "schema": "ApisDashboardsV1AstMultiSelectQueryLogsQuery",
+      "spec": "logs-service-api",
+      "score": 0.7,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_policies",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.1,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_policy",
+      "kind": "data",
+      "schema": "Policy",
+      "spec": "logs-service-api",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_rule_group",
+      "kind": "data",
+      "schema": "params:put:/v1/rule_groups/{group_id}",
+      "spec": "logs-service-api",
+      "score": 0.8,
+      "attrs": {
+        "group_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "kind": "uuid",
+          "format": "uuid",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The group ID",
+          "api_required": true,
+          "source": "logs-service-api",
+          "schema": "params:put:/v1/rule_groups/{group_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_rule_groups",
+      "kind": "data",
+      "schema": "/v1/rule_groups:post",
+      "spec": "logs-service-api",
+      "score": 0.15,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_stream",
+      "kind": "data",
+      "schema": "Stream",
+      "spec": "logs-service-api",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_streams",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.1,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_view",
+      "kind": "data",
+      "schema": "View",
+      "spec": "logs-service-api",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_view_folder",
+      "kind": "data",
+      "schema": "View",
+      "spec": "logs-service-api",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_view_folders",
+      "kind": "data",
+      "schema": "View",
+      "spec": "logs-service-api",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_logs_views",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.1,
+      "attrs": {}
+    }
+  ]
+}

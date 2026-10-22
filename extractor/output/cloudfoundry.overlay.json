@@ -1,0 +1,168 @@
+{
+  "package": "cloudfoundry",
+  "specs": [
+    {
+      "slug": "cloudfoundry",
+      "title": "Cloud Foundry API",
+      "schema_count": 0,
+      "path_count": 1
+    }
+  ],
+  "matched": 0,
+  "resource_count": 19,
+  "overlay_attrs": 0,
+  "resources": [
+    {
+      "name": "ibm_app",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_app_domain_private",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_app_domain_shared",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_app_route",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_org",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_service_instance",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_service_key",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_space",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_account",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_app",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_app_domain_private",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_app_domain_shared",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_app_route",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_org",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_org_quota",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_service_instance",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_service_key",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_service_plan",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_space",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    }
+  ]
+}

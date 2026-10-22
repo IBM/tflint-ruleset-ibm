@@ -1,0 +1,75 @@
+{
+  "package": "pushnotification",
+  "resources": [
+    {
+      "name": "ibm_pn_application_chrome",
+      "function": "ResourceIBMPNApplicationChrome",
+      "package": "pushnotification",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_pn_application_chrome resource.",
+      "attributes": {
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Unique guid of the push notification instance."
+        },
+        "server_key": {
+          "name": "server_key",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "A server key that gives the push service an authorized access to Google services that is used for Chrome Web Push."
+        },
+        "web_site_url": {
+          "name": "web_site_url",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The URL of the WebSite / WebApp that should be permitted to subscribe to WebPush."
+        }
+      }
+    },
+    {
+      "name": "ibm_pn_application_chrome",
+      "function": "DataSourceIBMPNApplicationChrome",
+      "package": "pushnotification",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pn_application_chrome data source.",
+      "attributes": {
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Unique guid of the application using the push service."
+        },
+        "server_key": {
+          "name": "server_key",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A server key that gives the push service an authorized access to Google services that is used for Chrome Web Push."
+        },
+        "web_site_url": {
+          "name": "web_site_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the WebSite / WebApp that should be permitted to subscribe to WebPush."
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 2,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package pushnotification"
+}

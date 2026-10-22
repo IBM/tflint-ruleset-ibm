@@ -1,0 +1,126 @@
+name: regenerate
+
+on:
+  workflow_dispatch:
+    inputs:
+      packages:
+        description: "Always regenerates every package (value ignored; kept for compatibility)"
+        required: false
+        default: "all"
+  schedule:
+    - cron: "0 6 * * 1"
+
+concurrency:
+  group: regenerate
+  cancel-in-progress: false
+
+permissions: {}
+
+env:
+  # The provider source is the generator's only code-shaped input. It is
+  # pinned to a reviewed release commit; bump both values together in a
+  # reviewed pull request.
+  PROVIDER_REPO: IBM-Cloud/terraform-provider-ibm
+  PROVIDER_REF: 2875fb7317d0c9d38929fbcc31d699088ffa63cc # v2.7.0
+
+jobs:
+  generate:
+    # Runs upstream-derived code (generator output and tests) with a
+    # read-only token. It only hands a patch to the next job.
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - name: Set up Go
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
+        with:
+          go-version-file: "go.mod"
+          cache: false
+      - name: Checkout provider source (disposable, not committed)
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          repository: ${{ env.PROVIDER_REPO }}
+          ref: ${{ env.PROVIDER_REF }}
+          path: .provider-src
+          persist-credentials: false
+          sparse-checkout: |
+            ibm/service
+            ibm/validate
+            ibm/provider
+            ibm/flex
+      - name: Verify provider commit
+        run: test "$(git -C .provider-src rev-parse HEAD)" = "$PROVIDER_REF"
+      - name: Extract, generate, and verify
+        run: |
+          go run ./extractor -provider .provider-src -out extractor/output
+          cp -a extractor/output "$RUNNER_TEMP/extract-a"
+          go run ./extractor -provider .provider-src -out extractor/output
+          diff -rq "$RUNNER_TEMP/extract-a" extractor/output
+          go run ./generator -in extractor/output -rules rules -docs docs/rules
+          gofmt -w .
+          cp -a rules "$RUNNER_TEMP/rules-a"
+          cp -a docs/rules "$RUNNER_TEMP/docs-a"
+          go run ./generator -in extractor/output -rules rules -docs docs/rules
+          gofmt -w .
+          diff -rq "$RUNNER_TEMP/rules-a" rules
+          diff -rq "$RUNNER_TEMP/docs-a" docs/rules
+          go run ./coverage -provider .provider-src -root .
+          if grep -E '^\| `[^`]+` \|[[:space:]]*\|$' SKIPPED.md; then
+            echo "SKIPPED.md has an entry without a reason"
+            exit 1
+          fi
+          rm -rf .provider-src
+      - name: Test
+        run: go test ./...
+      - name: Export patch
+        run: |
+          git add -A
+          git diff --cached --binary > "$RUNNER_TEMP/regen.patch"
+          echo "patch size: $(wc -c < "$RUNNER_TEMP/regen.patch") bytes"
+      - name: Upload patch
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: regen-patch
+          path: ${{ runner.temp }}/regen.patch
+          retention-days: 7
+          if-no-files-found: error
+
+  pull-request:
+    # Holds the write token but runs no repository or upstream code: it only
+    # applies the patch and opens a pull request for human review.
+    needs: generate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - name: Download patch
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: regen-patch
+          path: ${{ runner.temp }}
+      - name: Apply patch
+        run: |
+          if [ -s "$RUNNER_TEMP/regen.patch" ]; then
+            git apply --index "$RUNNER_TEMP/regen.patch"
+          fi
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7.0.11
+        with:
+          commit-message: Refresh generated rules from provider schema
+          title: Refresh generated IBM Cloud rules
+          body: |
+            Automated extraction and generation against `${{ env.PROVIDER_REPO }}` at commit `${{ env.PROVIDER_REF }}`.
+
+            Review the generated code before merging. Pull requests opened by this workflow do not trigger the build workflow on their own; run `build` on `chore/regen-rules` with workflow_dispatch.
+          branch: chore/regen-rules

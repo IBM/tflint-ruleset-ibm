@@ -1,0 +1,4618 @@
+{
+  "package": "eventnotification",
+  "specs": [
+    {
+      "slug": "event-notifications",
+      "title": "Event Notifications API",
+      "schema_count": 185,
+      "path_count": 31
+    }
+  ],
+  "matched": 102,
+  "resource_count": 115,
+  "overlay_attrs": 401,
+  "resources": [
+    {
+      "name": "ibm_en_app_configuration_template",
+      "kind": "resource",
+      "schema": "TemplateCreate",
+      "spec": "event-notifications",
+      "score": 0.43,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The Template description",
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The Message Template",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "params.body": {
+          "min_len": 1,
+          "max_len": 4000000,
+          "description": "Template body(Base64 encoded)",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "type": {
+          "pattern": "^(smtp_custom.notification|smtp_custom.invitation|slack.notification|webhook.notification|pagerduty.notification|event_streams.notification|ibmcejob.notification|ibmceapp.notification|app_configuration.notification)$",
+          "min_len": 22,
+          "max_len": 24,
+          "description": "The type of template",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_code_engine_template",
+      "kind": "resource",
+      "schema": "TemplateCreate",
+      "spec": "event-notifications",
+      "score": 0.43,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The Template description",
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The Message Template",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "params.body": {
+          "min_len": 1,
+          "max_len": 4000000,
+          "description": "Template body(Base64 encoded)",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "type": {
+          "pattern": "^(smtp_custom.notification|smtp_custom.invitation|slack.notification|webhook.notification|pagerduty.notification|event_streams.notification|ibmcejob.notification|ibmceapp.notification|app_configuration.notification)$",
+          "min_len": 22,
+          "max_len": 24,
+          "description": "The type of template",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_android",
+      "kind": "resource",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.41,
+      "attrs": {
+        "collect_failed_events": {
+          "description": "Whether to collect the failed event in Cloud Object Storage bucket",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.client_email": {
+          "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "FCM client_email",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.pre_prod": {
+          "description": "If pre prod enabled",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.private_key": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 2000,
+          "description": "FCM private_key",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.project_id": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 300,
+          "description": "FCM project_id",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "type": {
+          "enum": [
+            "webhook",
+            "smtp_ibm",
+            "sms_ibm",
+            "push_android",
+            "push_ios",
+            "slack",
+            "ibmce",
+            "pagerduty",
+            "push_safari",
+            "msteams",
+            "servicenow",
+            "ibmcos",
+            "push_huawei",
+            "smtp_custom",
+            "smtp_custom_sandbox",
+            "sms_custom",
+            "event_streams",
+            "app_configuration"
+          ],
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Destination type Email/SMS/Webhook/FCM/Slack/MSTeams/PagerDuty/IBMCodeEngine/ServiceNow/IBMCloudObjectStorage/Huawei/CustomEmail/CustomSMS/EventStreams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_app_configuration",
+      "kind": "resource",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.4254,
+      "attrs": {
+        "collect_failed_events": {
+          "description": "Whether to collect the failed event in Cloud Object Storage bucket",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.crn": {
+          "pattern": "^crn:v1:[a-z]+:public:apprapp:[A-z0-9-]+:a/[a-f0-9]{32}:[a-f0-9-]+::$",
+          "min_len": 1,
+          "max_len": 300,
+          "description": "CRN of the App Configuration instance",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.environment_id": {
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Environment ID of App Configuration",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.feature_id": {
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Feature ID of App Configuration",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.type": {
+          "enum": [
+            "features"
+          ],
+          "min_len": 1,
+          "description": "The App Configuration Destination type",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "type": {
+          "enum": [
+            "webhook",
+            "smtp_ibm",
+            "sms_ibm",
+            "push_android",
+            "push_ios",
+            "slack",
+            "ibmce",
+            "pagerduty",
+            "push_safari",
+            "msteams",
+            "servicenow",
+            "ibmcos",
+            "push_huawei",
+            "smtp_custom",
+            "smtp_custom_sandbox",
+            "sms_custom",
+            "event_streams",
+            "app_configuration"
+          ],
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Destination type Email/SMS/Webhook/FCM/Slack/MSTeams/PagerDuty/IBMCodeEngine/ServiceNow/IBMCloudObjectStorage/Huawei/CustomEmail/CustomSMS/EventStreams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_ce",
+      "kind": "resource",
+      "schema": "CodeEngineDestinationConfig",
+      "spec": "event-notifications",
+      "score": 0.4455,
+      "attrs": {
+        "config.params.custom_headers": {
+          "description": "Custom headers (Key-Value pair) for webhook call",
+          "source": "event-notifications",
+          "schema": "CodeEngineDestinationConfig"
+        },
+        "config.params.job_name": {
+          "min_len": 1,
+          "max_len": 200,
+          "description": "name of the code engine job",
+          "source": "event-notifications",
+          "schema": "CodeEngineDestinationConfig"
+        },
+        "config.params.project_crn": {
+          "min_len": 1,
+          "max_len": 200,
+          "description": "CRN of the code engine project",
+          "source": "event-notifications",
+          "schema": "CodeEngineDestinationConfig"
+        },
+        "config.params.sensitive_headers": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*()]*",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "List of sensitive headers from custom headers",
+          "source": "event-notifications",
+          "schema": "CodeEngineDestinationConfig"
+        },
+        "config.params.type": {
+          "enum": [
+            "job",
+            "application"
+          ],
+          "min_len": 1,
+          "description": "The code engine destination type",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "CodeEngineDestinationConfig"
+        },
+        "config.params.url": {
+          "pattern": "^(?:https?://)?(?:[^@/\n]+@)?(?:www.)?([^:/\n]+)",
+          "min_len": 5,
+          "max_len": 500,
+          "description": "URL of code engine",
+          "source": "event-notifications",
+          "schema": "CodeEngineDestinationConfig"
+        },
+        "config.params.verb": {
+          "enum": [
+            "get",
+            "post"
+          ],
+          "min_len": 1,
+          "description": "HTTP method of code engine",
+          "source": "event-notifications",
+          "schema": "CodeEngineDestinationConfig"
+        },
+        "type": {
+          "enum": [
+            "job",
+            "application"
+          ],
+          "min_len": 1,
+          "description": "The code engine destination type",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "CodeEngineDestinationConfig"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_chrome",
+      "kind": "resource",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.4254,
+      "attrs": {
+        "collect_failed_events": {
+          "description": "Whether to collect the failed event in Cloud Object Storage bucket",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.api_key": {
+          "min_len": 3,
+          "max_len": 200,
+          "description": "API Key for the PagerDuty account",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.pre_prod": {
+          "description": "If pre prod enabled",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.website_url": {
+          "pattern": "^(?:https?://)?(?:[^@/\n]+@)?(?:www.)?([^:/\n]+)",
+          "min_len": 5,
+          "max_len": 500,
+          "description": "Website url",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "type": {
+          "enum": [
+            "webhook",
+            "smtp_ibm",
+            "sms_ibm",
+            "push_android",
+            "push_ios",
+            "slack",
+            "ibmce",
+            "pagerduty",
+            "push_safari",
+            "msteams",
+            "servicenow",
+            "ibmcos",
+            "push_huawei",
+            "smtp_custom",
+            "smtp_custom_sandbox",
+            "sms_custom",
+            "event_streams",
+            "app_configuration"
+          ],
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Destination type Email/SMS/Webhook/FCM/Slack/MSTeams/PagerDuty/IBMCodeEngine/ServiceNow/IBMCloudObjectStorage/Huawei/CustomEmail/CustomSMS/EventStreams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_cos",
+      "kind": "resource",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.4254,
+      "attrs": {
+        "collect_failed_events": {
+          "description": "Whether to collect the failed event in Cloud Object Storage bucket",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.bucket_name": {
+          "min_len": 3,
+          "max_len": 63,
+          "description": "Bucket Name for Cloud Object Storage",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.endpoint": {
+          "pattern": "^(https://[a-z0-9]+\\.svc\\d+\\.[a-z0-9-]+\\.eventstreams\\.(test\\.)?cloud\\.ibm\\.com)",
+          "min_len": 5,
+          "max_len": 500,
+          "description": "Endpoint of Event Streams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.instance_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Instance Id of Cloud Object Storage",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "type": {
+          "enum": [
+            "webhook",
+            "smtp_ibm",
+            "sms_ibm",
+            "push_android",
+            "push_ios",
+            "slack",
+            "ibmce",
+            "pagerduty",
+            "push_safari",
+            "msteams",
+            "servicenow",
+            "ibmcos",
+            "push_huawei",
+            "smtp_custom",
+            "smtp_custom_sandbox",
+            "sms_custom",
+            "event_streams",
+            "app_configuration"
+          ],
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Destination type Email/SMS/Webhook/FCM/Slack/MSTeams/PagerDuty/IBMCodeEngine/ServiceNow/IBMCloudObjectStorage/Huawei/CustomEmail/CustomSMS/EventStreams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_custom_email",
+      "kind": "resource",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.4254,
+      "attrs": {
+        "collect_failed_events": {
+          "description": "Whether to collect the failed event in Cloud Object Storage bucket",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.domain": {
+          "min_len": 1,
+          "max_len": 250,
+          "description": "Email Domain",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "is_sandbox": {
+          "description": "Sandbox mode for iOS destinations",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "type": {
+          "enum": [
+            "webhook",
+            "smtp_ibm",
+            "sms_ibm",
+            "push_android",
+            "push_ios",
+            "slack",
+            "ibmce",
+            "pagerduty",
+            "push_safari",
+            "msteams",
+            "servicenow",
+            "ibmcos",
+            "push_huawei",
+            "smtp_custom",
+            "smtp_custom_sandbox",
+            "sms_custom",
+            "event_streams",
+            "app_configuration"
+          ],
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Destination type Email/SMS/Webhook/FCM/Slack/MSTeams/PagerDuty/IBMCodeEngine/ServiceNow/IBMCloudObjectStorage/Huawei/CustomEmail/CustomSMS/EventStreams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_custom_sms",
+      "kind": "resource",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.49,
+      "attrs": {
+        "collect_failed_events": {
+          "description": "Whether to collect the failed event in Cloud Object Storage bucket",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "type": {
+          "enum": [
+            "webhook",
+            "smtp_ibm",
+            "sms_ibm",
+            "push_android",
+            "push_ios",
+            "slack",
+            "ibmce",
+            "pagerduty",
+            "push_safari",
+            "msteams",
+            "servicenow",
+            "ibmcos",
+            "push_huawei",
+            "smtp_custom",
+            "smtp_custom_sandbox",
+            "sms_custom",
+            "event_streams",
+            "app_configuration"
+          ],
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Destination type Email/SMS/Webhook/FCM/Slack/MSTeams/PagerDuty/IBMCodeEngine/ServiceNow/IBMCloudObjectStorage/Huawei/CustomEmail/CustomSMS/EventStreams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_event_streams",
+      "kind": "resource",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.4254,
+      "attrs": {
+        "collect_failed_events": {
+          "description": "Whether to collect the failed event in Cloud Object Storage bucket",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.crn": {
+          "pattern": "^crn:v1:[a-z]+:public:apprapp:[A-z0-9-]+:a/[a-f0-9]{32}:[a-f0-9-]+::$",
+          "min_len": 1,
+          "max_len": 300,
+          "description": "CRN of the App Configuration instance",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.endpoint": {
+          "pattern": "^(https://[a-z0-9]+\\.svc\\d+\\.[a-z0-9-]+\\.eventstreams\\.(test\\.)?cloud\\.ibm\\.com)",
+          "min_len": 5,
+          "max_len": 500,
+          "description": "Endpoint of Event Streams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.topic": {
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Topic of Event Streams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "type": {
+          "enum": [
+            "webhook",
+            "smtp_ibm",
+            "sms_ibm",
+            "push_android",
+            "push_ios",
+            "slack",
+            "ibmce",
+            "pagerduty",
+            "push_safari",
+            "msteams",
+            "servicenow",
+            "ibmcos",
+            "push_huawei",
+            "smtp_custom",
+            "smtp_custom_sandbox",
+            "sms_custom",
+            "event_streams",
+            "app_configuration"
+          ],
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Destination type Email/SMS/Webhook/FCM/Slack/MSTeams/PagerDuty/IBMCodeEngine/ServiceNow/IBMCloudObjectStorage/Huawei/CustomEmail/CustomSMS/EventStreams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_firefox",
+      "kind": "resource",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.4433,
+      "attrs": {
+        "collect_failed_events": {
+          "description": "Whether to collect the failed event in Cloud Object Storage bucket",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.pre_prod": {
+          "description": "If pre prod enabled",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.website_url": {
+          "pattern": "^(?:https?://)?(?:[^@/\n]+@)?(?:www.)?([^:/\n]+)",
+          "min_len": 5,
+          "max_len": 500,
+          "description": "Website url",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "type": {
+          "enum": [
+            "webhook",
+            "smtp_ibm",
+            "sms_ibm",
+            "push_android",
+            "push_ios",
+            "slack",
+            "ibmce",
+            "pagerduty",
+            "push_safari",
+            "msteams",
+            "servicenow",
+            "ibmcos",
+            "push_huawei",
+            "smtp_custom",
+            "smtp_custom_sandbox",
+            "sms_custom",
+            "event_streams",
+            "app_configuration"
+          ],
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Destination type Email/SMS/Webhook/FCM/Slack/MSTeams/PagerDuty/IBMCodeEngine/ServiceNow/IBMCloudObjectStorage/Huawei/CustomEmail/CustomSMS/EventStreams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_huawei",
+      "kind": "resource",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.4254,
+      "attrs": {
+        "collect_failed_events": {
+          "description": "Whether to collect the failed event in Cloud Object Storage bucket",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.client_id": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "ClientID for the Huawei account oauth",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.client_secret": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "ClientSecret for the Huawei account oauth",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.pre_prod": {
+          "description": "If pre prod enabled",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "type": {
+          "enum": [
+            "webhook",
+            "smtp_ibm",
+            "sms_ibm",
+            "push_android",
+            "push_ios",
+            "slack",
+            "ibmce",
+            "pagerduty",
+            "push_safari",
+            "msteams",
+            "servicenow",
+            "ibmcos",
+            "push_huawei",
+            "smtp_custom",
+            "smtp_custom_sandbox",
+            "sms_custom",
+            "event_streams",
+            "app_configuration"
+          ],
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Destination type Email/SMS/Webhook/FCM/Slack/MSTeams/PagerDuty/IBMCodeEngine/ServiceNow/IBMCloudObjectStorage/Huawei/CustomEmail/CustomSMS/EventStreams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_ios",
+      "kind": "resource",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.3574,
+      "attrs": {
+        "collect_failed_events": {
+          "description": "Whether to collect the failed event in Cloud Object Storage bucket",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.bundle_id": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "Bundle ID for token (Required when cert_type is p8)",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.cert_type": {
+          "pattern": "^(p12)$",
+          "min_len": 1,
+          "max_len": 10,
+          "description": "Authentication type p12",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.is_sandbox": {
+          "description": "Sandbox mode for iOS destinations",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.key_id": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "Key ID for token (Required when cert_type is p8)",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.password": {
+          "min_len": 3,
+          "max_len": 200,
+          "description": "Password for ServiceNow account REST API",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.pre_prod": {
+          "description": "If pre prod enabled",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.team_id": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "Team ID for token (Required when cert_type is p8)",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "type": {
+          "enum": [
+            "webhook",
+            "smtp_ibm",
+            "sms_ibm",
+            "push_android",
+            "push_ios",
+            "slack",
+            "ibmce",
+            "pagerduty",
+            "push_safari",
+            "msteams",
+            "servicenow",
+            "ibmcos",
+            "push_huawei",
+            "smtp_custom",
+            "smtp_custom_sandbox",
+            "sms_custom",
+            "event_streams",
+            "app_configuration"
+          ],
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Destination type Email/SMS/Webhook/FCM/Slack/MSTeams/PagerDuty/IBMCodeEngine/ServiceNow/IBMCloudObjectStorage/Huawei/CustomEmail/CustomSMS/EventStreams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "certificate": {
+          "format": "binary",
+          "min_len": 1,
+          "max_len": 5000,
+          "description": "Certificate for APNS",
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/destinations:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_msteams",
+      "kind": "resource",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.4645,
+      "attrs": {
+        "collect_failed_events": {
+          "description": "Whether to collect the failed event in Cloud Object Storage bucket",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.url": {
+          "pattern": "^(?:https?://)?(?:[^@/\n]+@)?(?:www.)?([^:/\n]+)",
+          "min_len": 5,
+          "max_len": 500,
+          "description": "URL of MS Teams Incoming Notifications",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "type": {
+          "enum": [
+            "webhook",
+            "smtp_ibm",
+            "sms_ibm",
+            "push_android",
+            "push_ios",
+            "slack",
+            "ibmce",
+            "pagerduty",
+            "push_safari",
+            "msteams",
+            "servicenow",
+            "ibmcos",
+            "push_huawei",
+            "smtp_custom",
+            "smtp_custom_sandbox",
+            "sms_custom",
+            "event_streams",
+            "app_configuration"
+          ],
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Destination type Email/SMS/Webhook/FCM/Slack/MSTeams/PagerDuty/IBMCodeEngine/ServiceNow/IBMCloudObjectStorage/Huawei/CustomEmail/CustomSMS/EventStreams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_pagerduty",
+      "kind": "resource",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.4433,
+      "attrs": {
+        "collect_failed_events": {
+          "description": "Whether to collect the failed event in Cloud Object Storage bucket",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.api_key": {
+          "min_len": 3,
+          "max_len": 200,
+          "description": "API Key for the PagerDuty account",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.routing_key": {
+          "min_len": 3,
+          "max_len": 200,
+          "description": "Routing Key (Integration Key) for the team in PagerDuty account",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "type": {
+          "enum": [
+            "webhook",
+            "smtp_ibm",
+            "sms_ibm",
+            "push_android",
+            "push_ios",
+            "slack",
+            "ibmce",
+            "pagerduty",
+            "push_safari",
+            "msteams",
+            "servicenow",
+            "ibmcos",
+            "push_huawei",
+            "smtp_custom",
+            "smtp_custom_sandbox",
+            "sms_custom",
+            "event_streams",
+            "app_configuration"
+          ],
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Destination type Email/SMS/Webhook/FCM/Slack/MSTeams/PagerDuty/IBMCodeEngine/ServiceNow/IBMCloudObjectStorage/Huawei/CustomEmail/CustomSMS/EventStreams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_safari",
+      "kind": "resource",
+      "schema": "DestinationCreate",
+      "spec": "event-notifications",
+      "score": 0.3762,
+      "attrs": {
+        "certificate": {
+          "format": "binary",
+          "min_len": 1,
+          "max_len": 5000,
+          "description": "Certificate for APNS",
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "collect_failed_events": {
+          "description": "Whether to collect the failed event in Cloud Object Storage bucket",
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "config.params.cert_type": {
+          "pattern": "^(p12)$",
+          "min_len": 1,
+          "max_len": 10,
+          "description": "Authentication type p12",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "config.params.password": {
+          "min_len": 3,
+          "max_len": 200,
+          "description": "Password for ServiceNow account REST API",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "config.params.pre_prod": {
+          "description": "If pre prod enabled",
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "config.params.url_format_string": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 5,
+          "max_len": 500,
+          "description": "Website url",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "config.params.website_name": {
+          "pattern": "^(?:https?://)?(?:[^@/\n]+@)?(?:www.)?([^:/\n]+)",
+          "min_len": 5,
+          "max_len": 500,
+          "description": "Website url",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "config.params.website_push_id": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 5,
+          "max_len": 500,
+          "description": "Website url",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "config.params.website_url": {
+          "pattern": "^(?:https?://)?(?:[^@/\n]+@)?(?:www.)?([^:/\n]+)",
+          "min_len": 5,
+          "max_len": 500,
+          "description": "Website url",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The Destination description",
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "icon_128x128": {
+          "format": "binary",
+          "min_len": 1,
+          "max_len": 5000,
+          "description": "Safari icon 128x128",
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "icon_128x128_2x": {
+          "format": "binary",
+          "min_len": 1,
+          "max_len": 5000,
+          "description": "Safari icon 128x128@2x",
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "icon_16x16": {
+          "format": "binary",
+          "min_len": 1,
+          "max_len": 5000,
+          "description": "Safari icon 16x16",
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "icon_16x16_2x": {
+          "format": "binary",
+          "min_len": 1,
+          "max_len": 5000,
+          "description": "Safari icon 16x16@2x",
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "icon_32x32": {
+          "format": "binary",
+          "min_len": 1,
+          "max_len": 5000,
+          "description": "Safari icon 32x32",
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "icon_32x32_2x": {
+          "format": "binary",
+          "min_len": 1,
+          "max_len": 5000,
+          "description": "Safari icon 32x32@2x",
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The Destination name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        },
+        "type": {
+          "enum": [
+            "webhook",
+            "push_android",
+            "push_ios",
+            "push_chrome",
+            "push_firefox",
+            "slack",
+            "ibmce",
+            "pagerduty",
+            "push_safari",
+            "msteams",
+            "servicenow",
+            "ibmcos",
+            "push_huawei",
+            "smtp_custom",
+            "smtp_custom_sandbox",
+            "sms_custom",
+            "event_streams",
+            "app_configuration"
+          ],
+          "min_len": 1,
+          "description": "The type of Destination Webhook",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "DestinationCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_slack",
+      "kind": "resource",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.4433,
+      "attrs": {
+        "collect_failed_events": {
+          "description": "Whether to collect the failed event in Cloud Object Storage bucket",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.token": {
+          "min_len": 1,
+          "max_len": 500,
+          "description": "Token of slack application",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.type": {
+          "enum": [
+            "features"
+          ],
+          "min_len": 1,
+          "description": "The App Configuration Destination type",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.url": {
+          "pattern": "^(?:https?://)?(?:[^@/\n]+@)?(?:www.)?([^:/\n]+)",
+          "min_len": 5,
+          "max_len": 500,
+          "description": "URL of MS Teams Incoming Notifications",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "type": {
+          "enum": [
+            "webhook",
+            "smtp_ibm",
+            "sms_ibm",
+            "push_android",
+            "push_ios",
+            "slack",
+            "ibmce",
+            "pagerduty",
+            "push_safari",
+            "msteams",
+            "servicenow",
+            "ibmcos",
+            "push_huawei",
+            "smtp_custom",
+            "smtp_custom_sandbox",
+            "sms_custom",
+            "event_streams",
+            "app_configuration"
+          ],
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Destination type Email/SMS/Webhook/FCM/Slack/MSTeams/PagerDuty/IBMCodeEngine/ServiceNow/IBMCloudObjectStorage/Huawei/CustomEmail/CustomSMS/EventStreams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_sn",
+      "kind": "resource",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.3967,
+      "attrs": {
+        "collect_failed_events": {
+          "description": "Whether to collect the failed event in Cloud Object Storage bucket",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.client_id": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "ClientID for the Huawei account oauth",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.client_secret": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "ClientSecret for the Huawei account oauth",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.instance_name": {
+          "min_len": 3,
+          "max_len": 200,
+          "description": "Instance name for ServiceNow account",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.password": {
+          "min_len": 3,
+          "max_len": 200,
+          "description": "Password for ServiceNow account REST API",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.username": {
+          "min_len": 3,
+          "max_len": 200,
+          "description": "Username for ServiceNow account REST API",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "type": {
+          "enum": [
+            "webhook",
+            "smtp_ibm",
+            "sms_ibm",
+            "push_android",
+            "push_ios",
+            "slack",
+            "ibmce",
+            "pagerduty",
+            "push_safari",
+            "msteams",
+            "servicenow",
+            "ibmcos",
+            "push_huawei",
+            "smtp_custom",
+            "smtp_custom_sandbox",
+            "sms_custom",
+            "event_streams",
+            "app_configuration"
+          ],
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Destination type Email/SMS/Webhook/FCM/Slack/MSTeams/PagerDuty/IBMCodeEngine/ServiceNow/IBMCloudObjectStorage/Huawei/CustomEmail/CustomSMS/EventStreams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_webhook",
+      "kind": "resource",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.3967,
+      "attrs": {
+        "collect_failed_events": {
+          "description": "Whether to collect the failed event in Cloud Object Storage bucket",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.custom_headers": {
+          "description": "Custom headers (Key-Value pair) for webhook call",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.sensitive_headers": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*()]*",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "List of sensitive headers from custom headers",
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.url": {
+          "pattern": "^(?:https?://)?(?:[^@/\n]+@)?(?:www.)?([^:/\n]+)",
+          "min_len": 5,
+          "max_len": 500,
+          "description": "URL of MS Teams Incoming Notifications",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "config.params.verb": {
+          "enum": [
+            "get",
+            "post"
+          ],
+          "min_len": 1,
+          "description": "HTTP method of code engine",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Destination name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "type": {
+          "enum": [
+            "webhook",
+            "smtp_ibm",
+            "sms_ibm",
+            "push_android",
+            "push_ios",
+            "slack",
+            "ibmce",
+            "pagerduty",
+            "push_safari",
+            "msteams",
+            "servicenow",
+            "ibmcos",
+            "push_huawei",
+            "smtp_custom",
+            "smtp_custom_sandbox",
+            "sms_custom",
+            "event_streams",
+            "app_configuration"
+          ],
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Destination type Email/SMS/Webhook/FCM/Slack/MSTeams/PagerDuty/IBMCodeEngine/ServiceNow/IBMCloudObjectStorage/Huawei/CustomEmail/CustomSMS/EventStreams",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_email_template",
+      "kind": "resource",
+      "schema": "TemplateCreate",
+      "spec": "event-notifications",
+      "score": 0.38,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The Template description",
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The Message Template",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "params.body": {
+          "min_len": 1,
+          "max_len": 4000000,
+          "description": "Template body(Base64 encoded)",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "params.subject": {
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The template subject",
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "type": {
+          "pattern": "^(smtp_custom.notification|smtp_custom.invitation|slack.notification|webhook.notification|pagerduty.notification|event_streams.notification|ibmcejob.notification|ibmceapp.notification|app_configuration.notification)$",
+          "min_len": 22,
+          "max_len": 24,
+          "description": "The type of template",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_event_streams_template",
+      "kind": "resource",
+      "schema": "TemplateCreate",
+      "spec": "event-notifications",
+      "score": 0.43,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The Template description",
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The Message Template",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "params.body": {
+          "min_len": 1,
+          "max_len": 4000000,
+          "description": "Template body(Base64 encoded)",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "type": {
+          "pattern": "^(smtp_custom.notification|smtp_custom.invitation|slack.notification|webhook.notification|pagerduty.notification|event_streams.notification|ibmcejob.notification|ibmceapp.notification|app_configuration.notification)$",
+          "min_len": 22,
+          "max_len": 24,
+          "description": "The type of template",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_ibmsource",
+      "kind": "resource",
+      "schema": "Source",
+      "spec": "event-notifications",
+      "score": 0.3373,
+      "attrs": {
+        "enabled": {
+          "description": "The status of the source",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Source"
+        },
+        "store_notifications": {
+          "description": "view the payload of incoming events for troubleshooting",
+          "source": "event-notifications",
+          "schema": "Source"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_integration",
+      "kind": "resource",
+      "schema": "IntegrationMetadata",
+      "spec": "event-notifications",
+      "score": 0.3,
+      "attrs": {
+        "metadata.crn": {
+          "min_len": 1,
+          "max_len": 200,
+          "description": "CRN of the KMS/COS instance",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "IntegrationMetadata"
+        },
+        "metadata.endpoint": {
+          "min_len": 1,
+          "max_len": 200,
+          "description": "KMS url for key management or url for COS bucket",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "IntegrationMetadata"
+        },
+        "metadata.root_key_id": {
+          "min_len": 1,
+          "max_len": 200,
+          "description": "Root Key ID of KMS",
+          "source": "event-notifications",
+          "schema": "IntegrationMetadata"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_integration_cos",
+      "kind": "resource",
+      "schema": "IntegrationCreateMetadata",
+      "spec": "event-notifications",
+      "score": 0.42,
+      "attrs": {
+        "metadata.bucket_name": {
+          "min_len": 1,
+          "max_len": 200,
+          "description": "Cloud Object Storage bucket name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "IntegrationCreateMetadata"
+        },
+        "metadata.crn": {
+          "min_len": 1,
+          "max_len": 200,
+          "description": "CRN of the Cloud Object Storage instance",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "IntegrationCreateMetadata"
+        },
+        "metadata.endpoint": {
+          "min_len": 1,
+          "max_len": 200,
+          "description": "URL for Cloud Object storage",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "IntegrationCreateMetadata"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_pagerduty_template",
+      "kind": "resource",
+      "schema": "TemplateCreate",
+      "spec": "event-notifications",
+      "score": 0.43,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The Template description",
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The Message Template",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "params.body": {
+          "min_len": 1,
+          "max_len": 4000000,
+          "description": "Template body(Base64 encoded)",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "type": {
+          "pattern": "^(smtp_custom.notification|smtp_custom.invitation|slack.notification|webhook.notification|pagerduty.notification|event_streams.notification|ibmcejob.notification|ibmceapp.notification|app_configuration.notification)$",
+          "min_len": 22,
+          "max_len": 24,
+          "description": "The type of template",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_slack_template",
+      "kind": "resource",
+      "schema": "TemplateCreate",
+      "spec": "event-notifications",
+      "score": 0.43,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The Template description",
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The Message Template",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "params.body": {
+          "min_len": 1,
+          "max_len": 4000000,
+          "description": "Template body(Base64 encoded)",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "type": {
+          "pattern": "^(smtp_custom.notification|smtp_custom.invitation|slack.notification|webhook.notification|pagerduty.notification|event_streams.notification|ibmcejob.notification|ibmceapp.notification|app_configuration.notification)$",
+          "min_len": 22,
+          "max_len": 24,
+          "description": "The type of template",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_smtp_configuration",
+      "kind": "resource",
+      "schema": "SMTPCreate",
+      "spec": "event-notifications",
+      "score": 0.5,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 250,
+          "description": "The description of SMTP configuration",
+          "source": "event-notifications",
+          "schema": "SMTPCreate"
+        },
+        "domain": {
+          "min_len": 1,
+          "max_len": 512,
+          "description": "Domain Name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SMTPCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 250,
+          "description": "The name of SMTP configuration",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SMTPCreate"
+        },
+        "instance_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Instance Id of Cloud Object Storage",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/destinations:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_smtp_setting",
+      "kind": "resource",
+      "schema": "SMTPAllowedIPs",
+      "spec": "event-notifications",
+      "score": 0.175,
+      "attrs": {
+        "settings.subnets": {
+          "min_len": 1,
+          "max_len": 20,
+          "description": "The SMTP allowed Ips",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SMTPAllowedIPs"
+        },
+        "smtp_config_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 32,
+          "max_len": 100,
+          "description": "SMTP confg Id",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SMTPUserResponse"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_smtp_user",
+      "kind": "resource",
+      "schema": "/v1/instances/{instance_id}/smtp/config/{id}/users/{user_id}:patch",
+      "spec": "event-notifications",
+      "score": 0.33,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 250,
+          "description": "SMTP user description",
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/smtp/config/{id}/users/{user_id}:patch"
+        },
+        "instance_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Instance Id of Cloud Object Storage",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/destinations:post"
+        },
+        "smtp_config_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 32,
+          "max_len": 100,
+          "description": "SMTP confg Id",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SMTPUserResponse"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_source",
+      "kind": "resource",
+      "schema": "/v1/instances/{instance_id}/sources/{id}:patch",
+      "spec": "event-notifications",
+      "score": 0.64,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*()]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Description of the source",
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/sources/{id}:patch"
+        },
+        "enabled": {
+          "description": "Whether the source is enabled or not",
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/sources/{id}:patch"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*()]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Name of the source",
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/sources/{id}:patch"
+        },
+        "store_notifications": {
+          "description": "enable to view the payload of incoming events for troubleshooting",
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/sources/{id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_android",
+      "kind": "resource",
+      "schema": "SubscriptionCreate",
+      "spec": "event-notifications",
+      "score": 0.5467,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_app_configuration",
+      "kind": "resource",
+      "schema": "SubscriptionCreate",
+      "spec": "event-notifications",
+      "score": 0.43,
+      "attrs": {
+        "attributes.feature_flag_enabled": {
+          "description": "App Configuration enable feature flag attribute",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "attributes.template_id_notification": {
+          "min_len": 0,
+          "max_len": 36,
+          "description": "App Configuration template id",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_ce",
+      "kind": "resource",
+      "schema": "SubscriptionCreate",
+      "spec": "event-notifications",
+      "score": 0.48,
+      "attrs": {
+        "attributes.template_id_notification": {
+          "min_len": 0,
+          "max_len": 36,
+          "description": "App Configuration template id",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_chrome",
+      "kind": "resource",
+      "schema": "SubscriptionCreate",
+      "spec": "event-notifications",
+      "score": 0.5467,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_cos",
+      "kind": "resource",
+      "schema": "SubscriptionCreate",
+      "spec": "event-notifications",
+      "score": 0.5467,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_custom_email",
+      "kind": "resource",
+      "schema": "CustomEmailAttributes",
+      "spec": "event-notifications",
+      "score": 0.3733,
+      "attrs": {
+        "attributes.add_notification_payload": {
+          "description": "Whether to add the notification payload to the email",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "CustomEmailAttributes"
+        },
+        "attributes.from_email": {
+          "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The email from",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "CustomEmailAttributes"
+        },
+        "attributes.from_name": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The email name of From",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "CustomEmailAttributes"
+        },
+        "attributes.invited": {
+          "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "email IDs",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "CustomEmailAttributes"
+        },
+        "attributes.reply_to_mail": {
+          "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The email address to reply to",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "CustomEmailAttributes"
+        },
+        "attributes.reply_to_name": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The email name to reply to",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "CustomEmailAttributes"
+        },
+        "attributes.template_id_invitation": {
+          "min_len": 0,
+          "max_len": 36,
+          "description": "The templete id for invitation",
+          "source": "event-notifications",
+          "schema": "CustomEmailAttributes"
+        },
+        "attributes.template_id_notification": {
+          "min_len": 0,
+          "max_len": 36,
+          "description": "The templete id for notification",
+          "source": "event-notifications",
+          "schema": "CustomEmailAttributes"
+        },
+        "attributes.add": {
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The email ids or phone numbers to be invited",
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions/{id}:patch"
+        },
+        "attributes.remove": {
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The email ids or phone numbers for removal",
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions/{id}:patch"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_custom_sms",
+      "kind": "resource",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.3967,
+      "attrs": {
+        "attributes.invited": {
+          "description": "The email id string",
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "description": {
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "name": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "attributes.add": {
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The email ids or phone numbers to be invited",
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions/{id}:patch"
+        },
+        "attributes.remove": {
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The email ids or phone numbers for removal",
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions/{id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_email",
+      "kind": "resource",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.3574,
+      "attrs": {
+        "attributes.add_notification_payload": {
+          "description": "Decision for Notification Payload to be added",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "attributes.from_name": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The email name of From",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "attributes.invited": {
+          "description": "The email id string",
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "attributes.reply_to_mail": {
+          "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The email address to reply to",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "attributes.reply_to_name": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The email name to reply to",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "description": {
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "name": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "attributes.add": {
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The email ids or phone numbers to be invited",
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions/{id}:patch"
+        },
+        "attributes.remove": {
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The email ids or phone numbers for removal",
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions/{id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_event_streams",
+      "kind": "resource",
+      "schema": "SubscriptionCreate",
+      "spec": "event-notifications",
+      "score": 0.48,
+      "attrs": {
+        "attributes.template_id_notification": {
+          "min_len": 0,
+          "max_len": 36,
+          "description": "App Configuration template id",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_firefox",
+      "kind": "resource",
+      "schema": "SubscriptionCreate",
+      "spec": "event-notifications",
+      "score": 0.5467,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_huawei",
+      "kind": "resource",
+      "schema": "SubscriptionCreate",
+      "spec": "event-notifications",
+      "score": 0.5467,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_ios",
+      "kind": "resource",
+      "schema": "SubscriptionCreate",
+      "spec": "event-notifications",
+      "score": 0.5467,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_msteams",
+      "kind": "resource",
+      "schema": "SubscriptionCreate",
+      "spec": "event-notifications",
+      "score": 0.5467,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_pagerduty",
+      "kind": "resource",
+      "schema": "SubscriptionCreate",
+      "spec": "event-notifications",
+      "score": 0.48,
+      "attrs": {
+        "attributes.template_id_notification": {
+          "min_len": 0,
+          "max_len": 36,
+          "description": "App Configuration template id",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_safari",
+      "kind": "resource",
+      "schema": "SubscriptionCreate",
+      "spec": "event-notifications",
+      "score": 0.5467,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_scheduler",
+      "kind": "resource",
+      "schema": "SubscriptionCreate",
+      "spec": "event-notifications",
+      "score": 0.5467,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_slack",
+      "kind": "resource",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.4433,
+      "attrs": {
+        "attributes.attachment_color": {
+          "description": "Attachment Color for Slack Notification",
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "attributes.channels.id": {
+          "min_len": 1,
+          "max_len": 50,
+          "description": "channel id",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "attributes.template_id_notification": {
+          "description": "App Configuration template id",
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "description": {
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "name": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "attributes.channels.operation": {
+          "enum": [
+            "add",
+            "remove"
+          ],
+          "min_len": 1,
+          "description": "The channel operation type",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions/{id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_sms",
+      "kind": "resource",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.3967,
+      "attrs": {
+        "attributes.invited": {
+          "description": "The email id string",
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "description": {
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "name": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Subscription"
+        },
+        "attributes.add": {
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The email ids or phone numbers to be invited",
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions/{id}:patch"
+        },
+        "attributes.remove": {
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The email ids or phone numbers for removal",
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions/{id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_sn",
+      "kind": "resource",
+      "schema": "SubscriptionCreate",
+      "spec": "event-notifications",
+      "score": 0.5467,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_webhook",
+      "kind": "resource",
+      "schema": "SubscriptionCreate",
+      "spec": "event-notifications",
+      "score": 0.43,
+      "attrs": {
+        "attributes.signing_enabled": {
+          "description": "Signing webhook attributes",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "attributes.template_id_notification": {
+          "min_len": 0,
+          "max_len": 36,
+          "description": "App Configuration template id",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Subscription description",
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Subscription name",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        },
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Topic ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SubscriptionCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_topic",
+      "kind": "resource",
+      "schema": "Topic",
+      "spec": "event-notifications",
+      "score": 0.35,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*()]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Description of the topic",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Topic"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_]*",
+          "min_len": 1,
+          "max_len": 50,
+          "description": "Name of the topic",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Topic"
+        },
+        "sources.id": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "ID of the source",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Topic"
+        },
+        "sources.rules.enabled": {
+          "description": "Whether the rule is enabled or not",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Topic"
+        },
+        "sources.rules.event_schedule_filter.ends_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 25,
+          "description": "event schedule end time",
+          "source": "event-notifications",
+          "schema": "Topic"
+        },
+        "sources.rules.event_schedule_filter.expression": {
+          "min_len": 1,
+          "max_len": 100,
+          "description": "cron schedule expression",
+          "source": "event-notifications",
+          "schema": "Topic"
+        },
+        "sources.rules.event_schedule_filter.starts_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 25,
+          "description": "event schedule start time",
+          "source": "event-notifications",
+          "schema": "Topic"
+        },
+        "sources.rules.event_type_filter": {
+          "pattern": "[a-zA-Z 0-9-_$.=']*",
+          "min_len": 3,
+          "max_len": 255,
+          "description": "Event type filter",
+          "source": "event-notifications",
+          "schema": "Topic"
+        },
+        "sources.rules.notification_filter": {
+          "pattern": "[a-zA-Z 0-9-_$.=']*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Notification filter",
+          "source": "event-notifications",
+          "schema": "Topic"
+        },
+        "subscriptions.description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Description of the subscription",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Topic"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_webhook_template",
+      "kind": "resource",
+      "schema": "TemplateCreate",
+      "spec": "event-notifications",
+      "score": 0.43,
+      "attrs": {
+        "description": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The Template description",
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "name": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The Message Template",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "params.body": {
+          "min_len": 1,
+          "max_len": 4000000,
+          "description": "Template body(Base64 encoded)",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        },
+        "type": {
+          "pattern": "^(smtp_custom.notification|smtp_custom.invitation|slack.notification|webhook.notification|pagerduty.notification|event_streams.notification|ibmcejob.notification|ibmceapp.notification|app_configuration.notification)$",
+          "min_len": 22,
+          "max_len": 24,
+          "description": "The type of template",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "TemplateCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_app_configuration_template",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_bounce_metrics",
+      "kind": "data",
+      "schema": "Metrics",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        },
+        "instance_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Instance Id of Cloud Object Storage",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/destinations:post"
+        },
+        "notification_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "description": "Notification ID",
+          "source": "event-notifications",
+          "schema": "NotificationResponse"
+        },
+        "smtp_config_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 32,
+          "max_len": 100,
+          "description": "SMTP confg Id",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SMTPUserResponse"
+        },
+        "subject": {
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The subject of the notification",
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/notifications:post"
+        },
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_code_engine_template",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_destination_android",
+      "kind": "data",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_app_configuration",
+      "kind": "data",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_ce",
+      "kind": "data",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_chrome",
+      "kind": "data",
+      "schema": "ChromeDestinationConfig",
+      "spec": "event-notifications",
+      "score": 0.2333,
+      "attrs": {
+        "config.params.api_key": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 2048,
+          "description": "FCM api_key",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "ChromeDestinationConfig"
+        },
+        "config.params.website_url": {
+          "pattern": "^(?:https?://)?(?:[^@/\n]+@)?(?:www.)?([^:/\n]+)",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "Website url",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "ChromeDestinationConfig"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_cos",
+      "kind": "data",
+      "schema": "IBMCloudObjectStorageDestinationConfig",
+      "spec": "event-notifications",
+      "score": 0.42,
+      "attrs": {
+        "config.params.bucket_name": {
+          "min_len": 3,
+          "max_len": 63,
+          "description": "Bucket Name for Cloud Object Storage",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "IBMCloudObjectStorageDestinationConfig"
+        },
+        "config.params.endpoint": {
+          "pattern": "^(?:https?://)?(?:[^@/\n]+@)?(?:www.)?([^:/\n]+)",
+          "min_len": 5,
+          "max_len": 500,
+          "description": "Endpoint of Cloud Object Storage",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "IBMCloudObjectStorageDestinationConfig"
+        },
+        "config.params.instance_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Instance Id of Cloud Object Storage",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "IBMCloudObjectStorageDestinationConfig"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_custom_email",
+      "kind": "data",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_custom_sms",
+      "kind": "data",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_event_streams",
+      "kind": "data",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_firefox",
+      "kind": "data",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "config.params.website_url": {
+          "pattern": "^(?:https?://)?(?:[^@/\n]+@)?(?:www.)?([^:/\n]+)",
+          "min_len": 5,
+          "max_len": 500,
+          "description": "Website url",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Destination"
+        },
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_huawei",
+      "kind": "data",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_ios",
+      "kind": "data",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_msteams",
+      "kind": "data",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_pagerduty",
+      "kind": "data",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_safari",
+      "kind": "data",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_slack",
+      "kind": "data",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_sn",
+      "kind": "data",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destination_webhook",
+      "kind": "data",
+      "schema": "Destination",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_destinations",
+      "kind": "data",
+      "schema": "/v1/instances/{instance_id}/destinations/{id}:patch",
+      "spec": "event-notifications",
+      "score": 0.14,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_email_template",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_email_templates",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_event_streams_template",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_integration",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_integration_cos",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_integrations",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_metrics",
+      "kind": "data",
+      "schema": "Metrics",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "destination_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "Destination ID",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        },
+        "instance_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Instance Id of Cloud Object Storage",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/destinations:post"
+        },
+        "notification_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "description": "Notification ID",
+          "source": "event-notifications",
+          "schema": "NotificationResponse"
+        },
+        "smtp_config_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 32,
+          "max_len": 100,
+          "description": "SMTP confg Id",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "SMTPUserResponse"
+        },
+        "subject": {
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The subject of the notification",
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/notifications:post"
+        },
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_pagerduty_template",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_pre_defined_template",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_pre_defined_templates",
+      "kind": "data",
+      "schema": "PredefinedTemplate",
+      "spec": "event-notifications",
+      "score": 0.255,
+      "attrs": {
+        "source": {
+          "min_len": 1,
+          "description": "The type of source",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "PredefinedTemplate"
+        },
+        "type": {
+          "min_len": 1,
+          "description": "The type of template",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "PredefinedTemplate"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_slack_template",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_smtp_allowed_ips",
+      "kind": "data",
+      "schema": "IBMCloudObjectStorageDestinationConfig",
+      "spec": "event-notifications",
+      "score": 0.175,
+      "attrs": {
+        "instance_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Instance Id of Cloud Object Storage",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "IBMCloudObjectStorageDestinationConfig"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_smtp_configuration",
+      "kind": "data",
+      "schema": "IBMCloudObjectStorageDestinationConfig",
+      "spec": "event-notifications",
+      "score": 0.175,
+      "attrs": {
+        "instance_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Instance Id of Cloud Object Storage",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "IBMCloudObjectStorageDestinationConfig"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_smtp_configurations",
+      "kind": "data",
+      "schema": "/v1/instances/{instance_id}/smtp/config/{id}:patch",
+      "spec": "event-notifications",
+      "score": 0.1229,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_smtp_user",
+      "kind": "data",
+      "schema": "/v1/instances/{instance_id}/smtp/config/{id}/users/{user_id}:patch",
+      "spec": "event-notifications",
+      "score": 0.155,
+      "attrs": {
+        "instance_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Instance Id of Cloud Object Storage",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/destinations:post"
+        },
+        "user_id": {
+          "pattern": "[a-zA-Z 0-9-_/.?:'\";,+=!#@$%^&*() ]*",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The user identifier for the device registration",
+          "source": "event-notifications",
+          "schema": "DestinationTagsSubscriptionResponse"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_smtp_users",
+      "kind": "data",
+      "schema": "/v1/instances/{instance_id}/smtp/config/{id}/users/{user_id}:patch",
+      "spec": "event-notifications",
+      "score": 0.155,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_source",
+      "kind": "data",
+      "schema": "Source",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_sources",
+      "kind": "data",
+      "schema": "/v1/instances/{instance_id}/sources/{id}:patch",
+      "spec": "event-notifications",
+      "score": 0.14,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_subscription_android",
+      "kind": "data",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_app_configuration",
+      "kind": "data",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_ce",
+      "kind": "data",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_chrome",
+      "kind": "data",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_cos",
+      "kind": "data",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_custom_email",
+      "kind": "data",
+      "schema": "CustomEmailAttributes",
+      "spec": "event-notifications",
+      "score": 0.3231,
+      "attrs": {
+        "attributes.from_email": {
+          "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The email from",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "CustomEmailAttributes"
+        },
+        "attributes.from_name": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The email name of From",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "CustomEmailAttributes"
+        },
+        "attributes.reply_to_mail": {
+          "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The email address to reply to",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "CustomEmailAttributes"
+        },
+        "attributes.reply_to_name": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The email name to reply to",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "CustomEmailAttributes"
+        },
+        "attributes.template_id_invitation": {
+          "min_len": 0,
+          "max_len": 36,
+          "description": "The templete id for invitation",
+          "source": "event-notifications",
+          "schema": "CustomEmailAttributes"
+        },
+        "attributes.template_id_notification": {
+          "min_len": 0,
+          "max_len": 36,
+          "description": "The templete id for notification",
+          "source": "event-notifications",
+          "schema": "CustomEmailAttributes"
+        },
+        "attributes.invited.email": {
+          "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "email address",
+          "source": "event-notifications",
+          "schema": "EmailAttributesResponseSubscribedUnsubscribedItems"
+        },
+        "attributes.invited.expires_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "time of expiration",
+          "source": "event-notifications",
+          "schema": "SMSInviteAttributesItems"
+        },
+        "attributes.subscribed.email": {
+          "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "email address",
+          "source": "event-notifications",
+          "schema": "EmailAttributesResponseSubscribedUnsubscribedItems"
+        },
+        "attributes.unsubscribed.email": {
+          "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "email address",
+          "source": "event-notifications",
+          "schema": "EmailAttributesResponseSubscribedUnsubscribedItems"
+        },
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_custom_sms",
+      "kind": "data",
+      "schema": "SMSInviteAttributesItems",
+      "spec": "event-notifications",
+      "score": 0.42,
+      "attrs": {
+        "attributes.invited.expires_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "time of expiration",
+          "source": "event-notifications",
+          "schema": "SMSInviteAttributesItems"
+        },
+        "attributes.invited.phone_number": {
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Phone number",
+          "source": "event-notifications",
+          "schema": "SMSInviteAttributesItems"
+        },
+        "attributes.invited.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "last updated time",
+          "source": "event-notifications",
+          "schema": "SMSInviteAttributesItems"
+        },
+        "attributes.subscribed.phone_number": {
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Phone number",
+          "source": "event-notifications",
+          "schema": "SMSInviteAttributesItems"
+        },
+        "attributes.subscribed.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "last updated time",
+          "source": "event-notifications",
+          "schema": "SMSInviteAttributesItems"
+        },
+        "attributes.unsubscribed.phone_number": {
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Phone number",
+          "source": "event-notifications",
+          "schema": "SMSInviteAttributesItems"
+        },
+        "attributes.unsubscribed.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "last updated time",
+          "source": "event-notifications",
+          "schema": "SMSInviteAttributesItems"
+        },
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_email",
+      "kind": "data",
+      "schema": "EmailAttributesResponseInvitedItems",
+      "spec": "event-notifications",
+      "score": 0.2625,
+      "attrs": {
+        "attributes.invited.email": {
+          "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "email address",
+          "source": "event-notifications",
+          "schema": "EmailAttributesResponseInvitedItems"
+        },
+        "attributes.invited.expires_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "time of expiration",
+          "source": "event-notifications",
+          "schema": "EmailAttributesResponseInvitedItems"
+        },
+        "attributes.invited.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "last updated time",
+          "source": "event-notifications",
+          "schema": "EmailAttributesResponseInvitedItems"
+        },
+        "attributes.subscribed.email": {
+          "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "email address",
+          "source": "event-notifications",
+          "schema": "EmailAttributesResponseInvitedItems"
+        },
+        "attributes.subscribed.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "last updated time",
+          "source": "event-notifications",
+          "schema": "EmailAttributesResponseInvitedItems"
+        },
+        "attributes.unsubscribed.email": {
+          "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "email address",
+          "source": "event-notifications",
+          "schema": "EmailAttributesResponseInvitedItems"
+        },
+        "attributes.unsubscribed.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "last updated time",
+          "source": "event-notifications",
+          "schema": "EmailAttributesResponseInvitedItems"
+        },
+        "attributes.from_name": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The email name of From",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        },
+        "attributes.reply_to_mail": {
+          "pattern": "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The email address to reply to",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        },
+        "attributes.reply_to_name": {
+          "pattern": "[a-zA-Z0-9-:_]*",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "The email name to reply to",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "/v1/instances/{instance_id}/subscriptions:post"
+        },
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_event_streams",
+      "kind": "data",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_firefox",
+      "kind": "data",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_huawei",
+      "kind": "data",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_ios",
+      "kind": "data",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_msteams",
+      "kind": "data",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_pagerduty",
+      "kind": "data",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_safari",
+      "kind": "data",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_scheduler",
+      "kind": "data",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_slack",
+      "kind": "data",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_sms",
+      "kind": "data",
+      "schema": "SMSInviteAttributesItems",
+      "spec": "event-notifications",
+      "score": 0.42,
+      "attrs": {
+        "attributes.invited.expires_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "time of expiration",
+          "source": "event-notifications",
+          "schema": "SMSInviteAttributesItems"
+        },
+        "attributes.invited.phone_number": {
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Phone number",
+          "source": "event-notifications",
+          "schema": "SMSInviteAttributesItems"
+        },
+        "attributes.invited.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "last updated time",
+          "source": "event-notifications",
+          "schema": "SMSInviteAttributesItems"
+        },
+        "attributes.subscribed.phone_number": {
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Phone number",
+          "source": "event-notifications",
+          "schema": "SMSInviteAttributesItems"
+        },
+        "attributes.subscribed.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "last updated time",
+          "source": "event-notifications",
+          "schema": "SMSInviteAttributesItems"
+        },
+        "attributes.unsubscribed.phone_number": {
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Phone number",
+          "source": "event-notifications",
+          "schema": "SMSInviteAttributesItems"
+        },
+        "attributes.unsubscribed.updated_at": {
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "last updated time",
+          "source": "event-notifications",
+          "schema": "SMSInviteAttributesItems"
+        },
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_sn",
+      "kind": "data",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscription_webhook",
+      "kind": "data",
+      "schema": "Subscription",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "subscription_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 1,
+          "max_len": 150,
+          "description": "Subscription ID",
+          "source": "event-notifications",
+          "schema": "BounceMetricItem"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_subscriptions",
+      "kind": "data",
+      "schema": "/v1/instances/{instance_id}/subscriptions/{id}:patch",
+      "spec": "event-notifications",
+      "score": 0.14,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_topic",
+      "kind": "data",
+      "schema": "Topic",
+      "spec": "event-notifications",
+      "score": 0.21,
+      "attrs": {
+        "topic_id": {
+          "pattern": "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}",
+          "min_len": 36,
+          "max_len": 150,
+          "description": "ID of the topic",
+          "api_required": true,
+          "source": "event-notifications",
+          "schema": "Topic"
+        }
+      }
+    },
+    {
+      "name": "ibm_en_topics",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_en_webhook_template",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    }
+  ]
+}

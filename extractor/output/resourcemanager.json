@@ -1,0 +1,449 @@
+{
+  "package": "resourcemanager",
+  "resources": [
+    {
+      "name": "ibm_resource_group",
+      "function": "ResourceIBMResourceGroup",
+      "package": "resourcemanager",
+      "kind": "resource",
+      "description": "Manages ibm_resource_group. The name of the resource group",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the resource group was initially created."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The full CRN associated with the resource group",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "default": {
+          "name": "default",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Specifies whether its default resource group or not"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name of the resource group"
+        },
+        "payment_methods_url": {
+          "name": "payment_methods_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL to access the payment methods details that associated with the resource group."
+        },
+        "quota_id": {
+          "name": "quota_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An alpha-numeric value identifying the quota ID associated with the resource group."
+        },
+        "quota_url": {
+          "name": "quota_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL to access the quota details that associated with the resource group."
+        },
+        "resource_linkages": {
+          "name": "resource_linkages",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An array of the resources that linked to the resource group",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "State of the resource group"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "teams_url": {
+          "name": "teams_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL to access the team details that associated with the resource group."
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the resource group was last updated."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "id",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateCloudData"
+        }
+      ]
+    },
+    {
+      "name": "ibm_resource_group",
+      "function": "DataSourceIBMResourceGroup",
+      "package": "resourcemanager",
+      "kind": "data",
+      "description": "Reads ibm_resource_group. Resource group name",
+      "attributes": {
+        "account_id": {
+          "name": "account_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Account ID"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the resource group was initially created."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The full CRN associated with the resource group",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "id": {
+          "name": "id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Resource group ID",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "id"
+          }
+        },
+        "is_default": {
+          "name": "is_default",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Default Resource group"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Resource group name",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "name"
+          }
+        },
+        "payment_methods_url": {
+          "name": "payment_methods_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL to access the payment methods details that associated with the resource group."
+        },
+        "quota_id": {
+          "name": "quota_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An alpha-numeric value identifying the quota ID associated with the resource group."
+        },
+        "quota_url": {
+          "name": "quota_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL to access the quota details that associated with the resource group."
+        },
+        "resource_linkages": {
+          "name": "resource_linkages",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An array of the resources that linked to the resource group",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "State of the resource group"
+        },
+        "teams_url": {
+          "name": "teams_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL to access the team details that associated with the resource group."
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the resource group was last updated."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "id",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateCloudData"
+        }
+      ]
+    },
+    {
+      "name": "ibm_resource_groups",
+      "function": "DataSourceIBMResourceGroups",
+      "package": "resourcemanager",
+      "kind": "data",
+      "description": "Reads ibm_resource_groups. Resource group name",
+      "attributes": {
+        "date": {
+          "name": "date",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The date in the format of YYYY-MM which returns resource groups. Deleted resource groups will be excluded before this month."
+        },
+        "include_deleted": {
+          "name": "include_deleted",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Include deleted resource groups"
+        },
+        "is_default": {
+          "name": "is_default",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Default Resource group"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Resource group name",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "name"
+          }
+        },
+        "resource_groups": {
+          "name": "resource_groups",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of resource groups",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "account_id": {
+                "name": "account_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Account ID"
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date when the resource group was initially created."
+              },
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The full CRN associated with the resource group",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the resource group"
+              },
+              "is_default": {
+                "name": "is_default",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Default Resource group"
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Resource group name"
+              },
+              "payment_methods_url": {
+                "name": "payment_methods_url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The URL to access the payment methods details that associated with the resource group."
+              },
+              "quota_id": {
+                "name": "quota_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "An alpha-numeric value identifying the quota ID associated with the resource group."
+              },
+              "quota_url": {
+                "name": "quota_url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The URL to access the quota details that associated with the resource group."
+              },
+              "resource_linkages": {
+                "name": "resource_linkages",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "An array of the resources that linked to the resource group",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "State of the resource group"
+              },
+              "teams_url": {
+                "name": "teams_url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The URL to access the team details that associated with the resource group."
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date when the resource group was last updated."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateCloudData"
+        }
+      ]
+    }
+  ],
+  "skipped": [],
+  "extracted": 3,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package resourcemanager"
+}

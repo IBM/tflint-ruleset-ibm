@@ -1,0 +1,169 @@
+{
+  "package": "satellite",
+  "specs": [],
+  "matched": 0,
+  "resource_count": 20,
+  "overlay_attrs": 0,
+  "resources": [
+    {
+      "name": "ibm_satellite_cluster",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_cluster_worker_pool",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_cluster_worker_pool_zone_attachment",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_endpoint",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_host",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_link",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_location",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_location_nlb_dns",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_storage_assignment",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_storage_configuration",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_attach_host_script",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_cluster",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_cluster_worker_pool",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_cluster_worker_pool_zone_attachment",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_endpoint",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_link",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_location",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_location_nlb_dns",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_storage_assignment",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_satellite_storage_configuration",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    }
+  ]
+}

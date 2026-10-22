@@ -1,0 +1,4080 @@
+{
+  "package": "appconfiguration",
+  "resources": [
+    {
+      "name": "ibm_app_config_collection",
+      "function": "ResourceIBMAppConfigCollection",
+      "package": "appconfiguration",
+      "kind": "resource",
+      "description": "Manages ibm_app_config_collection. Collection name.",
+      "attributes": {
+        "collection_id": {
+          "name": "collection_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Collection Id."
+        },
+        "created_time": {
+          "name": "created_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation time of the collection."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Collection description"
+        },
+        "features_count": {
+          "name": "features_count",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Number of features associated with the collection."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Collection URL."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Collection name."
+        },
+        "properties_count": {
+          "name": "properties_count",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Number of properties associated with the collection."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Tags associated with the collection"
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last modified time of the collection data."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_environment",
+      "function": "ResourceIBMAppConfigEnvironment",
+      "package": "appconfiguration",
+      "kind": "resource",
+      "description": "Manages ibm_app_config_environment. Environment name.",
+      "attributes": {
+        "color_code": {
+          "name": "color_code",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Color code to distinguish the environment."
+        },
+        "created_time": {
+          "name": "created_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation time of the environment."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Environment description"
+        },
+        "environment_id": {
+          "name": "environment_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Environment Id."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Environment URL."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Environment name."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Tags associated with the environment"
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last modified time of the environment data."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_feature",
+      "function": "ResourceIBMIbmAppConfigFeature",
+      "package": "appconfiguration",
+      "kind": "resource",
+      "description": "Manages ibm_app_config_feature. Feature name.",
+      "attributes": {
+        "collections": {
+          "name": "collections",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "List of collection id representing the collections that are associated with the specified feature flag.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "collection_id": {
+                "name": "collection_id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Collection id."
+              },
+              "deleted": {
+                "name": "deleted",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Remove Collection Association with Resource"
+              }
+            }
+          }
+        },
+        "created_time": {
+          "name": "created_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation time of the feature flag."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Feature description."
+        },
+        "disabled_value": {
+          "name": "disabled_value",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Value of the feature when it is disabled. The value can be BOOLEAN, STRING or a NUMERIC value as per the `type` attribute."
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The state of the feature flag."
+        },
+        "enabled_value": {
+          "name": "enabled_value",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Value of the feature when it is enabled. The value can be BOOLEAN, STRING or a NUMERIC value as per the `type` attribute."
+        },
+        "environment_id": {
+          "name": "environment_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Environment Id."
+        },
+        "feature_id": {
+          "name": "feature_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Feature id."
+        },
+        "format": {
+          "name": "format",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Format of the feature (TEXT, JSON, YAML)."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Feature flag URL."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Feature name."
+        },
+        "rollout_percentage": {
+          "name": "rollout_percentage",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Rollout percentage of the feature."
+        },
+        "segment_exists": {
+          "name": "segment_exists",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Denotes if the targeting rules are specified for the feature flag."
+        },
+        "segment_rules": {
+          "name": "segment_rules",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Specify the targeting rules that is used to set different feature flag values for different segments.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "order": {
+                "name": "order",
+                "type": "int",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Order of the rule, used during evaluation. The evaluation is performed in the order defined and the value associated with the first matching rule is used for evaluation."
+              },
+              "rollout_percentage": {
+                "name": "rollout_percentage",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Rollout percentage for the segment rule."
+              },
+              "rules": {
+                "name": "rules",
+                "type": "list",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Rules array.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "segments": {
+                      "name": "segments",
+                      "type": "list",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "List of segment ids that are used for targeting using the rule.",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Value to be used for evaluation for this rule. The value can be Boolean, String or a Numeric value as per the `type` attribute."
+              }
+            }
+          }
+        },
+        "tags": {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Tags associated with the feature."
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Type of the feature (BOOLEAN, STRING, NUMERIC).",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "BOOLEAN",
+              "NUMERIC",
+              "STRING"
+            ]
+          }
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last modified time of the feature flag data."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "BOOLEAN, NUMERIC, STRING"
+        }
+      ]
+    },
+    {
+      "name": "ibm_app_config_integration_en",
+      "function": "ResourceIBMAppConfigIntegrationEn",
+      "package": "appconfiguration",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_app_config_integration_en resource.",
+      "attributes": {
+        "created_time": {
+          "name": "created_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation time of the environment."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "EN integration description"
+        },
+        "en_endpoint": {
+          "name": "en_endpoint",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Endpoint of EN instance"
+        },
+        "en_instance_crn": {
+          "name": "en_instance_crn",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "CRN of EN instance",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "en_source_name": {
+          "name": "en_source_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "EN source name which appears in instance"
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Integration URL"
+        },
+        "integration_id": {
+          "name": "integration_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Integration ID for EN integration"
+        },
+        "integration_type": {
+          "name": "integration_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Integration type [will be EVENT_NOTIFICATIONS always]"
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last modified time of the environment data."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_integration_kms",
+      "function": "ResourceIBMAppConfigIntegrationKms",
+      "package": "appconfiguration",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_app_config_integration_kms resource.",
+      "attributes": {
+        "created_time": {
+          "name": "created_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation time of the environment."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Integration URL"
+        },
+        "integration_id": {
+          "name": "integration_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Integration ID for KMS integration"
+        },
+        "integration_type": {
+          "name": "integration_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Integration type [will be KMS always]"
+        },
+        "kms_endpoint": {
+          "name": "kms_endpoint",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Endpoint of KMS instance"
+        },
+        "kms_instance_crn": {
+          "name": "kms_instance_crn",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "CRN of KMS instance",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "kms_schema_type": {
+          "name": "kms_schema_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of key protect instance being used"
+        },
+        "root_key_id": {
+          "name": "root_key_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "ID of root key which will be used for encryption"
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last modified time of the environment data."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_property",
+      "function": "ResourceIBMIbmAppConfigProperty",
+      "package": "appconfiguration",
+      "kind": "resource",
+      "description": "Manages ibm_app_config_property. Property name.",
+      "attributes": {
+        "collections": {
+          "name": "collections",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "List of collection id representing the collections that are associated with the specified property.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "collection_id": {
+                "name": "collection_id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Collection id."
+              },
+              "deleted": {
+                "name": "deleted",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Remove Collection Association with Resource"
+              }
+            }
+          }
+        },
+        "created_time": {
+          "name": "created_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation time of the property."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Property description."
+        },
+        "environment_id": {
+          "name": "environment_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Environment Id."
+        },
+        "evaluation_time": {
+          "name": "evaluation_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The last occurrence of the property value evaluation."
+        },
+        "format": {
+          "name": "format",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Format of the feature (TEXT, JSON, YAML)."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Property URL."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Property name."
+        },
+        "property_id": {
+          "name": "property_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Property id."
+        },
+        "segment_exists": {
+          "name": "segment_exists",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Denotes if the targeting rules are specified for the property."
+        },
+        "segment_rules": {
+          "name": "segment_rules",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Specify the targeting rules that is used to set different property values for different segments.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "order": {
+                "name": "order",
+                "type": "int",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Order of the rule, used during evaluation. The evaluation is performed in the order defined and the value associated with the first matching rule is used for evaluation."
+              },
+              "rules": {
+                "name": "rules",
+                "type": "list",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Rules array.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "segments": {
+                      "name": "segments",
+                      "type": "list",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "List of segment ids that are used for targeting using the rule.",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Value to be used for evaluation for this rule. The value can be Boolean, String or a Numeric value as per the `type` attribute."
+              }
+            }
+          }
+        },
+        "tags": {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Tags associated with the property."
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Type of the Property  (BOOLEAN, STRING, NUMERIC)."
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last modified time of the property data."
+        },
+        "value": {
+          "name": "value",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Value of the Property. The value can be Boolean, String or a Numeric value as per the `type` attribute."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_segment",
+      "function": "ResourceIBMIbmAppConfigSegment",
+      "package": "appconfiguration",
+      "kind": "resource",
+      "description": "Manages ibm_app_config_segment. Segment name.",
+      "attributes": {
+        "created_time": {
+          "name": "created_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation time of the segment."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Segment description."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Segment URL."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Segment name."
+        },
+        "rules": {
+          "name": "rules",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "List of rules that determine if the entity belongs to the segment during feature / property evaluation. An entity is identified by an unique identifier and the attributes that it defines.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "attribute_name": {
+                "name": "attribute_name",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Attribute name."
+              },
+              "operator": {
+                "name": "operator",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Operator to be used for the evaluation if the entity belongs to the segment."
+              },
+              "values": {
+                "name": "values",
+                "type": "list",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "List of values. Entities matching any of the given values will be considered to belong to the segment.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "segment_id": {
+          "name": "segment_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Segment id."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Tags associated with the segments."
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last modified time of the segment data."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_snapshot",
+      "function": "ResourceIBMIbmAppConfigSnapshot",
+      "package": "appconfiguration",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_app_config_snapshot resource.",
+      "attributes": {
+        "action": {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "action promote"
+        },
+        "collection": {
+          "name": "collection",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Collection object.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "collection_id": {
+                "name": "collection_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection id."
+              },
+              "collection_name": {
+                "name": "collection_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection name."
+              }
+            }
+          }
+        },
+        "collection_id": {
+          "name": "collection_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Collection id."
+        },
+        "created_time": {
+          "name": "created_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation time of the git config."
+        },
+        "environment": {
+          "name": "environment",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Environment object",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "color_code": {
+                "name": "color_code",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Environment color code."
+              },
+              "environment_id": {
+                "name": "environment_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Environment id."
+              },
+              "environment_name": {
+                "name": "environment_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Environment name."
+              }
+            }
+          }
+        },
+        "environment_id": {
+          "name": "environment_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Environment id."
+        },
+        "git_branch": {
+          "name": "git_branch",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Branch name to which you need to write or update the configuration."
+        },
+        "git_config_id": {
+          "name": "git_config_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Git config id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only"
+        },
+        "git_config_name": {
+          "name": "git_config_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Git config name. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only"
+        },
+        "git_file_path": {
+          "name": "git_file_path",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Git file path, this is a path where your configuration file will be written."
+        },
+        "git_token": {
+          "name": "git_token",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "sensitive": true,
+          "description": "Git token, this needs to be provided with enough permission to write and update the file."
+        },
+        "git_url": {
+          "name": "git_url",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Git url which will be used to connect to the github account."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Git config URL."
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last modified time of the git config data."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_collection",
+      "function": "DataSourceIBMAppConfigCollection",
+      "package": "appconfiguration",
+      "kind": "data",
+      "description": "Reads ibm_app_config_collection. Collection name.",
+      "attributes": {
+        "collection_id": {
+          "name": "collection_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Collection Id of the collection."
+        },
+        "created_time": {
+          "name": "created_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation time of the collection."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Collection description."
+        },
+        "expand": {
+          "name": "expand",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "If set to true, returns expanded view of the resource details."
+        },
+        "features": {
+          "name": "features",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of Features associated with the collection.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "feature_id": {
+                "name": "feature_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "feature id."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the Feature."
+              }
+            }
+          }
+        },
+        "features_count": {
+          "name": "features_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Number of features associated with the collection."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Collection URL."
+        },
+        "include": {
+          "name": "include",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Include feature, property details in the response.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Collection name."
+        },
+        "properties": {
+          "name": "properties",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of properties associated with the collection.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the Property."
+              },
+              "property_id": {
+                "name": "property_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "property id."
+              }
+            }
+          }
+        },
+        "properties_count": {
+          "name": "properties_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Number of properties associated with the collection."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Tags associated with the collection."
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last modified time of the collection data."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_collections",
+      "function": "DataSourceIBMAppConfigCollections",
+      "package": "appconfiguration",
+      "kind": "data",
+      "description": "Schema validation for the ibm_app_config_collections data source.",
+      "attributes": {
+        "collections": {
+          "name": "collections",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Array of Features.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "collection_id": {
+                "name": "collection_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection id."
+              },
+              "created_time": {
+                "name": "created_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Creation time of the collection."
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection description."
+              },
+              "features": {
+                "name": "features",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of Features associated with the collection.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "feature_id": {
+                      "name": "feature_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "feature id."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name of the Feature."
+                    }
+                  }
+                }
+              },
+              "features_count": {
+                "name": "features_count",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Number of features associated with the collection."
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection URL."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection name."
+              },
+              "properties": {
+                "name": "properties",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of properties associated with the collection.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name of the Property."
+                    },
+                    "property_id": {
+                      "name": "property_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "property id."
+                    }
+                  }
+                }
+              },
+              "properties_count": {
+                "name": "properties_count",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Number of properties associated with the collection."
+              },
+              "tags": {
+                "name": "tags",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Tags associated with the collection."
+              },
+              "updated_time": {
+                "name": "updated_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Last modified time of the collection data."
+              }
+            }
+          }
+        },
+        "expand": {
+          "name": "expand",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "If set to true, returns expanded view of the resource details."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "include": {
+          "name": "include",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Include feature, property details in the response.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "limit": {
+          "name": "limit",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The number of records to retrieve."
+        },
+        "offset": {
+          "name": "offset",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Skipped number of records."
+        },
+        "total_count": {
+          "name": "total_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Total number of records."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_environment",
+      "function": "DataSourceIBMAppConfigEnvironment",
+      "package": "appconfiguration",
+      "kind": "data",
+      "description": "Reads ibm_app_config_environment. Environment name.",
+      "attributes": {
+        "color_code": {
+          "name": "color_code",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Color code to distinguish the environment. The Hex code for the color. For example `#FF0000` for `red`."
+        },
+        "created_time": {
+          "name": "created_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation time of the environment."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Environment description."
+        },
+        "environment_id": {
+          "name": "environment_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Environment Id."
+        },
+        "expand": {
+          "name": "expand",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "If set to `true`, returns expanded view of the resource details."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Environment URL."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Environment name."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Tags associated with the environment."
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last modified time of the environment data."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_environments",
+      "function": "DataSourceIBMAppConfigEnvironments",
+      "package": "appconfiguration",
+      "kind": "data",
+      "description": "Schema validation for the ibm_app_config_environments data source.",
+      "attributes": {
+        "environments": {
+          "name": "environments",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Array of environments.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "color_code": {
+                "name": "color_code",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Color code to distinguish the environment. The Hex code for the color. For example `#FF0000` for `red`."
+              },
+              "created_time": {
+                "name": "created_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Creation time of the environment."
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Environment description."
+              },
+              "environment_id": {
+                "name": "environment_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Environment id."
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Environment URL."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Environment name."
+              },
+              "tags": {
+                "name": "tags",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Tags associated with the environment."
+              },
+              "updated_time": {
+                "name": "updated_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Last modified time of the environment data."
+              }
+            }
+          }
+        },
+        "expand": {
+          "name": "expand",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "If set to `true`, returns expanded view of the resource details."
+        },
+        "first": {
+          "name": "first",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL to navigate to the first page of records.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "URL of the response."
+              }
+            }
+          }
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "last": {
+          "name": "last",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL to navigate to the last page of records.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "URL of the response."
+              }
+            }
+          }
+        },
+        "limit": {
+          "name": "limit",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The number of records to retrieve. By default, the list operation return the first 10 records. To retrieve different set of records, use `limit` with `offset` to page through the available records."
+        },
+        "next": {
+          "name": "next",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL to navigate to the next list of records.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "URL of the response."
+              }
+            }
+          }
+        },
+        "offset": {
+          "name": "offset",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The number of records to skip. By specifying `offset`, you retrieve a subset of items that starts with the `offset` value. Use `offset` with `limit` to page through the available records."
+        },
+        "previous": {
+          "name": "previous",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL to navigate to the previous list of records.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "URL of the response."
+              }
+            }
+          }
+        },
+        "tags": {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "filter the resources to be returned based on the associated tags. Returns resources associated with any of the specified tags."
+        },
+        "total_count": {
+          "name": "total_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Total number of records."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_feature",
+      "function": "DataSourceIBMAppConfigFeature",
+      "package": "appconfiguration",
+      "kind": "data",
+      "description": "Reads ibm_app_config_feature. Feature name.",
+      "attributes": {
+        "collections": {
+          "name": "collections",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of collection id representing the collections that are associated with the specified feature flag.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "collection_id": {
+                "name": "collection_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection id."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the collection."
+              }
+            }
+          }
+        },
+        "created_time": {
+          "name": "created_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation time of the feature flag."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Feature description."
+        },
+        "disabled_value": {
+          "name": "disabled_value",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Value of the feature when it is disabled. The value can be Boolean, String or a Numeric value as per the `type` attribute."
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The state of the feature flag."
+        },
+        "enabled_value": {
+          "name": "enabled_value",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Value of the feature when it is enabled. The value can be Boolean, String or a Numeric value as per the `type` attribute."
+        },
+        "environment_id": {
+          "name": "environment_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Environment Id."
+        },
+        "feature_id": {
+          "name": "feature_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Feature Id."
+        },
+        "format": {
+          "name": "format",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Format of the feature (TEXT, JSON, YAML) and it is a required attribute when `type` is `STRING`. It is not required for `BOOLEAN` and `NUMERIC` types. This property is populated in the response body of `POST, PUT and GET` calls if the type `STRING` is used and not populated for `BOOLEAN` and `NUMERIC` types."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Feature flag URL."
+        },
+        "includes": {
+          "name": "includes",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Include the associated collections in the response."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Feature name."
+        },
+        "rollout_percentage": {
+          "name": "rollout_percentage",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Rollout percentage of the feature."
+        },
+        "segment_exists": {
+          "name": "segment_exists",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Denotes if the targeting rules are specified for the feature flag."
+        },
+        "segment_rules": {
+          "name": "segment_rules",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Specify the targeting rules that is used to set different feature flag values for different segments.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "order": {
+                "name": "order",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Order of the rule, used during evaluation. The evaluation is performed in the order defined and the value associated with the first matching rule is used for evaluation."
+              },
+              "rollout_percentage": {
+                "name": "rollout_percentage",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Rollout percentage for the segment rule."
+              },
+              "rules": {
+                "name": "rules",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Rules array.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "segments": {
+                      "name": "segments",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "List of segment ids that are used for targeting using the rule.",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Value to be used for evaluation for this rule. The value can be Boolean, String or a Numeric value as per the `type` attribute."
+              }
+            }
+          }
+        },
+        "tags": {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Tags associated with the feature."
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of the feature (BOOLEAN, STRING, NUMERIC).",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "BOOLEAN",
+              "NUMERIC",
+              "STRING"
+            ]
+          }
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last modified time of the feature flag data."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "BOOLEAN, NUMERIC, STRING"
+        }
+      ]
+    },
+    {
+      "name": "ibm_app_config_features",
+      "function": "DataSourceIBMAppConfigFeatures",
+      "package": "appconfiguration",
+      "kind": "data",
+      "description": "Schema validation for the ibm_app_config_features data source.",
+      "attributes": {
+        "collections": {
+          "name": "collections",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filter features by a list of comma separated collections.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "environment_id": {
+          "name": "environment_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Environment Id."
+        },
+        "expand": {
+          "name": "expand",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "If set to `true`, returns expanded view of the resource details."
+        },
+        "features": {
+          "name": "features",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Array of Features.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "collections": {
+                "name": "collections",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of collection id representing the collections that are associated with the specified feature flag.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "collection_id": {
+                      "name": "collection_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Collection id."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name of the collection."
+                    }
+                  }
+                }
+              },
+              "created_time": {
+                "name": "created_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Creation time of the feature flag."
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Feature description."
+              },
+              "disabled_value": {
+                "name": "disabled_value",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Value of the feature when it is disabled. The value can be Boolean, String or a Numeric value as per the `type` attribute."
+              },
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The state of the feature flag."
+              },
+              "enabled_value": {
+                "name": "enabled_value",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Value of the feature when it is enabled. The value can be Boolean, String or a Numeric value as per the `type` attribute."
+              },
+              "feature_id": {
+                "name": "feature_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Feature id."
+              },
+              "format": {
+                "name": "format",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Format of the feature (TEXT, JSON, YAML) and it is a required attribute when `type` is `STRING`. It is not required for `BOOLEAN` and `NUMERIC` types. This property is populated in the response body of `POST, PUT and GET` calls if the type `STRING` is used and not populated for `BOOLEAN` and `NUMERIC` types."
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Feature flag URL."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Feature name."
+              },
+              "rollout_percentage": {
+                "name": "rollout_percentage",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Rollout percentage of the feature."
+              },
+              "segment_exists": {
+                "name": "segment_exists",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Denotes if the targeting rules are specified for the feature flag."
+              },
+              "segment_rules": {
+                "name": "segment_rules",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Specify the targeting rules that is used to set different feature flag values for different segments.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "order": {
+                      "name": "order",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Order of the rule, used during evaluation. The evaluation is performed in the order defined and the value associated with the first matching rule is used for evaluation."
+                    },
+                    "rollout_percentage": {
+                      "name": "rollout_percentage",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Rollout percentage for the segment rule."
+                    },
+                    "rules": {
+                      "name": "rules",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Rules array.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "segments": {
+                            "name": "segments",
+                            "type": "list",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "List of segment ids that are used for targeting using the rule.",
+                            "elem": {
+                              "kind": "schema",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "value": {
+                      "name": "value",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Value to be used for evaluation for this rule. The value can be Boolean, String or a Numeric value as per the `type` attribute."
+                    }
+                  }
+                }
+              },
+              "tags": {
+                "name": "tags",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Tags associated with the feature."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of the feature (BOOLEAN, STRING, NUMERIC)."
+              },
+              "updated_time": {
+                "name": "updated_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Last modified time of the feature flag data."
+              }
+            }
+          }
+        },
+        "first": {
+          "name": "first",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL to navigate to the first page of records.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "URL of the response."
+              }
+            }
+          }
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "includes": {
+          "name": "includes",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Include the associated collections or targeting rules details in the response.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "last": {
+          "name": "last",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL to navigate to the last page of records.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "URL of the response."
+              }
+            }
+          }
+        },
+        "limit": {
+          "name": "limit",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The number of records to retrieve. By default, the list operation return the first 10 records. To retrieve different set of records, use `limit` with `offset` to page through the available records."
+        },
+        "next": {
+          "name": "next",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL to navigate to the next list of records.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "URL of the response."
+              }
+            }
+          }
+        },
+        "offset": {
+          "name": "offset",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The number of records to skip. By specifying `offset`, you retrieve a subset of items that starts with the `offset` value. Use `offset` with `limit` to page through the available records."
+        },
+        "previous": {
+          "name": "previous",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL to navigate to the previous list of records.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "URL of the response."
+              }
+            }
+          }
+        },
+        "segments": {
+          "name": "segments",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filter features by a list of comma separated segments.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "sort": {
+          "name": "sort",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Sort the feature details based on the specified attribute."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filter the resources to be returned based on the associated tags. Specify the parameter as a list of comma separated tags. Returns resources associated with any of the specified tags."
+        },
+        "total_count": {
+          "name": "total_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Number of records returned in the current response."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_integration_en",
+      "function": "DataSourceIBMAppConfigIntegrationEn",
+      "package": "appconfiguration",
+      "kind": "data",
+      "description": "Schema validation for the ibm_app_config_integration_en data source.",
+      "attributes": {
+        "created_time": {
+          "name": "created_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation time of the environment."
+        },
+        "en_endpoint": {
+          "name": "en_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Endpoint of EN instance"
+        },
+        "en_instance_crn": {
+          "name": "en_instance_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "CRN of EN instance",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "en_source_id": {
+          "name": "en_source_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "EN source id which appears in instance"
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Integration URL"
+        },
+        "integration_id": {
+          "name": "integration_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "ID of integration"
+        },
+        "integration_type": {
+          "name": "integration_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Integration type [will be EVENT_NOTIFICATIONS always]"
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last modified time of the environment data."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_integration_kms",
+      "function": "DataSourceIBMAppConfigIntegrationKms",
+      "package": "appconfiguration",
+      "kind": "data",
+      "description": "Schema validation for the ibm_app_config_integration_kms data source.",
+      "attributes": {
+        "created_time": {
+          "name": "created_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation time of the environment."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Integration URL"
+        },
+        "integration_id": {
+          "name": "integration_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "ID of integration"
+        },
+        "integration_type": {
+          "name": "integration_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Integration type [will be KMS always]"
+        },
+        "key_status": {
+          "name": "key_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Status of root key"
+        },
+        "kms_endpoint": {
+          "name": "kms_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Endpoint of KMS instance"
+        },
+        "kms_instance_crn": {
+          "name": "kms_instance_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "CRN of KMS instance",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "kms_schema_type": {
+          "name": "kms_schema_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of key protect instance being used"
+        },
+        "root_key_id": {
+          "name": "root_key_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of root key used for encryption"
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last modified time of the environment data."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_integrations",
+      "function": "DataSourceIBMAppConfigIntegrations",
+      "package": "appconfiguration",
+      "kind": "data",
+      "description": "Schema validation for the ibm_app_config_integrations data source.",
+      "attributes": {
+        "first": {
+          "name": "first",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL to navigate to the first page of records.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "URL of the response."
+              }
+            }
+          }
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "integrations": {
+          "name": "integrations",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of integrations",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "integration_id": {
+                "name": "integration_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Integration ID"
+              },
+              "integration_type": {
+                "name": "integration_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Integration Type"
+              }
+            }
+          }
+        },
+        "last": {
+          "name": "last",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL to navigate to the last page of records.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "URL of the response."
+              }
+            }
+          }
+        },
+        "limit": {
+          "name": "limit",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The number of records to retrieve. By default, the list operation return the first 10 records. To retrieve different set of records, use `limit` with `offset` to page through the available records."
+        },
+        "next": {
+          "name": "next",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL to navigate to the next list of records.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "URL of the response."
+              }
+            }
+          }
+        },
+        "offset": {
+          "name": "offset",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The number of records to skip. By specifying `offset`, you retrieve a subset of items that starts with the `offset` value. Use `offset` with `limit` to page through the available records."
+        },
+        "previous": {
+          "name": "previous",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL to navigate to the previous list of records.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "URL of the response."
+              }
+            }
+          }
+        },
+        "total_count": {
+          "name": "total_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Number of records returned in the current response."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_properties",
+      "function": "DataSourceIBMAppConfigProperties",
+      "package": "appconfiguration",
+      "kind": "data",
+      "description": "Schema validation for the ibm_app_config_properties data source.",
+      "attributes": {
+        "collections": {
+          "name": "collections",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filter features by a list of comma separated collections.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "environment_id": {
+          "name": "environment_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Environment Id."
+        },
+        "expand": {
+          "name": "expand",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "If set to `true`, returns expanded view of the resource details."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "include": {
+          "name": "include",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Include the associated collections or targeting rules details in the response.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "limit": {
+          "name": "limit",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The number of records to retrieve. By default, the list operation return the first 10 records. To retrieve different set of records, use `limit` with `offset` to page through the available records."
+        },
+        "offset": {
+          "name": "offset",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The number of records to skip. By specifying `offset`, you retrieve a subset of items that starts with the `offset` value. Use `offset` with `limit` to page through the available records."
+        },
+        "properties": {
+          "name": "properties",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Array of properties.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "collections": {
+                "name": "collections",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of collection id representing the collections that are associated with the specified property.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "collection_id": {
+                      "name": "collection_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Collection id."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name of the collection."
+                    }
+                  }
+                }
+              },
+              "created_time": {
+                "name": "created_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Creation time of the property."
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Property description."
+              },
+              "format": {
+                "name": "format",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Format of the feature (TEXT, JSON, YAML) and it is a required attribute when `type` is `STRING`. It is not required for `BOOLEAN` and `NUMERIC` types. This property is populated in the response body of `POST, PUT and GET` calls if the type `STRING` is used and not populated for `BOOLEAN` and `NUMERIC` types."
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Property URL."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Property name."
+              },
+              "property_id": {
+                "name": "property_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Property id."
+              },
+              "segment_exists": {
+                "name": "segment_exists",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Denotes if the targeting rules are specified for the property."
+              },
+              "segment_rules": {
+                "name": "segment_rules",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Specify the targeting rules that is used to set different property values for different segments.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "order": {
+                      "name": "order",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Order of the rule, used during evaluation. The evaluation is performed in the order defined and the value associated with the first matching rule is used for evaluation."
+                    },
+                    "rules": {
+                      "name": "rules",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Rules array.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "segments": {
+                            "name": "segments",
+                            "type": "list",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "List of segment ids that are used for targeting using the rule.",
+                            "elem": {
+                              "kind": "schema",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "value": {
+                      "name": "value",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Value to be used for evaluation for this rule. The value can be Boolean, String or a Numeric value as per the `type` attribute."
+                    }
+                  }
+                }
+              },
+              "tags": {
+                "name": "tags",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Tags associated with the property."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of the Property (BOOLEAN, STRING, NUMERIC)."
+              },
+              "updated_time": {
+                "name": "updated_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Last modified time of the property data."
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Value of the Property. The value can be Boolean, String or a Numeric value as per the `type` attribute."
+              }
+            }
+          }
+        },
+        "segments": {
+          "name": "segments",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filter features by a list of comma separated segments.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "sort": {
+          "name": "sort",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Sort the feature details based on the specified attribute."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filter the resources to be returned based on the associated tags. Specify the parameter as a list of comma separated tags. Returns resources associated with any of the specified tags."
+        },
+        "total_count": {
+          "name": "total_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Number of records returned in the current response."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_property",
+      "function": "DataSourceIBMAppConfigProperty",
+      "package": "appconfiguration",
+      "kind": "data",
+      "description": "Reads ibm_app_config_property. Property name.",
+      "attributes": {
+        "collections": {
+          "name": "collections",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of collection id representing the collections that are associated with the specified property.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "collection_id": {
+                "name": "collection_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection id."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the collection."
+              }
+            }
+          }
+        },
+        "created_time": {
+          "name": "created_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation time of the property."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Property description."
+        },
+        "environment_id": {
+          "name": "environment_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Environment Id."
+        },
+        "format": {
+          "name": "format",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Format of the feature (TEXT, JSON, YAML) and it is a required attribute when `type` is `STRING`. It is not required for `BOOLEAN` and `NUMERIC` types. This property is populated in the response body of `POST, PUT and GET` calls if the type `STRING` is used and not populated for `BOOLEAN` and `NUMERIC` types."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Property URL."
+        },
+        "include": {
+          "name": "include",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Include the associated collections in the response."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Property name."
+        },
+        "property_id": {
+          "name": "property_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Property Id."
+        },
+        "segment_exists": {
+          "name": "segment_exists",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Denotes if the targeting rules are specified for the property."
+        },
+        "segment_rules": {
+          "name": "segment_rules",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Specify the targeting rules that is used to set different property values for different segments.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "order": {
+                "name": "order",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Order of the rule, used during evaluation. The evaluation is performed in the order defined and the value associated with the first matching rule is used for evaluation."
+              },
+              "rules": {
+                "name": "rules",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Rules array.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "segments": {
+                      "name": "segments",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "List of segment ids that are used for targeting using the rule.",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Value to be used for evaluation for this rule. The value can be Boolean, String or a Numeric value as per the `type` attribute."
+              }
+            }
+          }
+        },
+        "tags": {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Tags associated with the property."
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of the Property (BOOLEAN, STRING, NUMERIC)."
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last modified time of the property data."
+        },
+        "value": {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Value of the Property. The value can be Boolean, String or a Numeric value as per the `type` attribute."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_segment",
+      "function": "DataSourceIBMAppConfigSegment",
+      "package": "appconfiguration",
+      "kind": "data",
+      "description": "Reads ibm_app_config_segment. Segment name.",
+      "attributes": {
+        "created_time": {
+          "name": "created_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation time of the segment."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Segment description."
+        },
+        "features": {
+          "name": "features",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of Features associated with the segment.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "feature_id": {
+                "name": "feature_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "feature id."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the Feature."
+              }
+            }
+          }
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Segment flag URL."
+        },
+        "includes": {
+          "name": "includes",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Include feature and property details in the response.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Segment name."
+        },
+        "properties": {
+          "name": "properties",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of Features associated with the segment.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the Property."
+              },
+              "property_id": {
+                "name": "property_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "property id."
+              }
+            }
+          }
+        },
+        "rules": {
+          "name": "rules",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of rules that determine if the entity belongs to the segment during feature / property evaluation.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "attribute_name": {
+                "name": "attribute_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Attribute name."
+              },
+              "operator": {
+                "name": "operator",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Operator to be used for the evaluation if the entity belongs to the segment."
+              },
+              "values": {
+                "name": "values",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of values. Entities matching any of the given values will be considered to belong to the segment",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "segment_id": {
+          "name": "segment_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Segment id."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Tags associated with the segment."
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last modified time of the segment data."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_segments",
+      "function": "DataSourceIBMAppConfigSegments",
+      "package": "appconfiguration",
+      "kind": "data",
+      "description": "Schema validation for the ibm_app_config_segments data source.",
+      "attributes": {
+        "expand": {
+          "name": "expand",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "If set to `true`, returns expanded view of the resource details."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "include": {
+          "name": "include",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Segment details to include the associated rules in the response"
+        },
+        "limit": {
+          "name": "limit",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The number of records to retrieve. By default, the list operation return the first 10 records. To retrieve different set of records, use `limit` with `offset` to page through the available records."
+        },
+        "offset": {
+          "name": "offset",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The number of records to skip. By specifying `offset`, you retrieve a subset of items that starts with the `offset` value. Use `offset` with `limit` to page through the available records."
+        },
+        "segments": {
+          "name": "segments",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Array of Segments.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_time": {
+                "name": "created_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Creation time of the segment."
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Segment description."
+              },
+              "features": {
+                "name": "features",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of Features associated with the segment.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "feature_id": {
+                      "name": "feature_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "feature id."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name of the Feature."
+                    }
+                  }
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Segment URL.."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Segment name."
+              },
+              "properties": {
+                "name": "properties",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of properties associated with the segment.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name of the Property."
+                    },
+                    "property_id": {
+                      "name": "property_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "property id."
+                    }
+                  }
+                }
+              },
+              "rules": {
+                "name": "rules",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of rules that determine if the entity belongs to the segment during feature / property evaluation.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "attribute_name": {
+                      "name": "attribute_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Attribute name."
+                    },
+                    "operator": {
+                      "name": "operator",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Operator to be used for the evaluation if the entity belongs to the segment."
+                    },
+                    "values": {
+                      "name": "values",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "List of values. Entities matching any of the given values will be considered to belong to the segment",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "segment_id": {
+                "name": "segment_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Segment id."
+              },
+              "tags": {
+                "name": "tags",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Tags associated with the segments."
+              },
+              "updated_time": {
+                "name": "updated_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Last modified time of the segment data."
+              }
+            }
+          }
+        },
+        "sort": {
+          "name": "sort",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Sort the segment details based on the specified attribute."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filter the resources to be returned based on the associated tags."
+        },
+        "total_count": {
+          "name": "total_count",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Total number of records."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_snapshot",
+      "function": "DataSourceIBMAppConfigSnapshot",
+      "package": "appconfiguration",
+      "kind": "data",
+      "description": "Schema validation for the ibm_app_config_snapshot data source.",
+      "attributes": {
+        "collection": {
+          "name": "collection",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Collection object.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "collection_id": {
+                "name": "collection_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection id."
+              },
+              "collection_name": {
+                "name": "collection_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection name."
+              }
+            }
+          }
+        },
+        "created_time": {
+          "name": "created_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation time of the git config."
+        },
+        "environment": {
+          "name": "environment",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Environment object",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "color_code": {
+                "name": "color_code",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Environment color code."
+              },
+              "environment_id": {
+                "name": "environment_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Environment id."
+              },
+              "environment_name": {
+                "name": "environment_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Environment name."
+              }
+            }
+          }
+        },
+        "git_branch": {
+          "name": "git_branch",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Branch name to which you need to write or update the configuration."
+        },
+        "git_config_id": {
+          "name": "git_config_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Git config id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only"
+        },
+        "git_config_name": {
+          "name": "git_config_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Git config name. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only"
+        },
+        "git_file_path": {
+          "name": "git_file_path",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Git file path, this is a path where your configuration file will be written."
+        },
+        "git_url": {
+          "name": "git_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Git url which will be used to connect to the github account."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Git config URL."
+        },
+        "last_sync_time": {
+          "name": "last_sync_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Latest time when the snapshot was synced to git."
+        },
+        "updated_time": {
+          "name": "updated_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last modified time of the git config data."
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_snapshots",
+      "function": "DataSourceIBMAppConfigSnapshots",
+      "package": "appconfiguration",
+      "kind": "data",
+      "description": "Schema validation for the ibm_app_config_snapshots data source.",
+      "attributes": {
+        "collection_id": {
+          "name": "collection_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filters the response based on the specified collection_id."
+        },
+        "environment_id": {
+          "name": "environment_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filters the response based on the specified environment_id."
+        },
+        "git_config": {
+          "name": "git_config",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Array of git_config.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "collection": {
+                "name": "collection",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection object.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "collection_id": {
+                      "name": "collection_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Collection id."
+                    },
+                    "collection_name": {
+                      "name": "collection_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Collection name."
+                    }
+                  }
+                }
+              },
+              "created_time": {
+                "name": "created_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Creation time of the git config."
+              },
+              "environment": {
+                "name": "environment",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Environment object",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "color_code": {
+                      "name": "color_code",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Environment color code."
+                    },
+                    "environment_id": {
+                      "name": "environment_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Environment id."
+                    },
+                    "environment_name": {
+                      "name": "environment_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Environment name."
+                    }
+                  }
+                }
+              },
+              "git_branch": {
+                "name": "git_branch",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Git url which will be used to connect to the github account"
+              },
+              "git_config_id": {
+                "name": "git_config_id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Git config id"
+              },
+              "git_config_name": {
+                "name": "git_config_name",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Git config name."
+              },
+              "git_file_path": {
+                "name": "git_file_path",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Git file path, this is a path where your configuration file will be written."
+              },
+              "git_url": {
+                "name": "git_url",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Git url which will be used to connect to the github account"
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Git config URL."
+              },
+              "last_sync_time": {
+                "name": "last_sync_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Latest time when the snapshot was synced to git."
+              },
+              "updated_time": {
+                "name": "updated_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Last modified time of the git config data."
+              }
+            }
+          }
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "GUID of the App Configuration service. Get it from the service instance credentials section of the dashboard."
+        },
+        "limit": {
+          "name": "limit",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The number of records to retrieve. By default, the list operation return the first 10 records. To retrieve different set of records, use `limit` with `offset` to page through the available records."
+        },
+        "offset": {
+          "name": "offset",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The number of records to skip. By specifying `offset`, you retrieve a subset of items that starts with the `offset` value. Use `offset` with `limit` to page through the available records."
+        },
+        "total_count": {
+          "name": "total_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Total number of records."
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 23,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package appconfiguration"
+}

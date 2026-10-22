@@ -1,0 +1,131 @@
+{
+  "package": "logsrouter",
+  "specs": [
+    {
+      "slug": "logs-router-service-api-logs-router-v1",
+      "title": "IBM Cloud Logs Routing",
+      "schema_count": 31,
+      "path_count": 4
+    }
+  ],
+  "matched": 5,
+  "resource_count": 5,
+  "overlay_attrs": 8,
+  "resources": [
+    {
+      "name": "ibm_logs_router_route",
+      "kind": "resource",
+      "schema": "/tenants/{tenant_id}:patch",
+      "spec": "logs-router-service-api-logs-router-v1",
+      "score": 0.18,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9-]*$",
+          "min_len": 1,
+          "max_len": 35,
+          "description": "The name for this tenant. The name is regionally unique across all tenants in the account.",
+          "source": "logs-router-service-api-logs-router-v1",
+          "schema": "/tenants/{tenant_id}:patch"
+        },
+        "rules.targets.id": {
+          "kind": "uuid",
+          "format": "uuid",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique ID of the tenant",
+          "api_required": true,
+          "source": "logs-router-service-api-logs-router-v1",
+          "schema": "Tenant"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_router_settings",
+      "kind": "resource",
+      "schema": "leaf-unique",
+      "spec": "logs-router-service-api-logs-router-v1",
+      "score": 0.08,
+      "attrs": {
+        "default_targets.id": {
+          "kind": "uuid",
+          "format": "uuid",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique ID of the tenant",
+          "api_required": true,
+          "source": "logs-router-service-api-logs-router-v1",
+          "schema": "Tenant"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_router_target",
+      "kind": "resource",
+      "schema": "Target",
+      "spec": "logs-router-service-api-logs-router-v1",
+      "score": 0.2736,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9-]*$",
+          "min_len": 1,
+          "max_len": 35,
+          "description": "The name for this tenant target. The name must be unique across all targets for this tenant.",
+          "api_required": true,
+          "source": "logs-router-service-api-logs-router-v1",
+          "schema": "Target"
+        },
+        "write_status.last_failure": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "The timestamp of the failure.",
+          "source": "logs-router-service-api-logs-router-v1",
+          "schema": "Tenant"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_router_routes",
+      "kind": "data",
+      "schema": "/tenants/{tenant_id}:patch",
+      "spec": "logs-router-service-api-logs-router-v1",
+      "score": 0.78,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9-]*$",
+          "min_len": 1,
+          "max_len": 35,
+          "description": "The name for this tenant. The name is regionally unique across all tenants in the account.",
+          "source": "logs-router-service-api-logs-router-v1",
+          "schema": "/tenants/{tenant_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_router_targets",
+      "kind": "data",
+      "schema": "/tenants/{tenant_id}:patch",
+      "spec": "logs-router-service-api-logs-router-v1",
+      "score": 0.3133,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9-]*$",
+          "min_len": 1,
+          "max_len": 35,
+          "description": "The name for this tenant. The name is regionally unique across all tenants in the account.",
+          "source": "logs-router-service-api-logs-router-v1",
+          "schema": "/tenants/{tenant_id}:patch"
+        },
+        "tenant_id": {
+          "kind": "uuid",
+          "format": "uuid",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique ID of the tenant",
+          "api_required": true,
+          "source": "logs-router-service-api-logs-router-v1",
+          "schema": "params:patch:/tenants/{tenant_id}"
+        }
+      }
+    }
+  ]
+}

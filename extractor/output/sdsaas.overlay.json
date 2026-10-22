@@ -1,0 +1,240 @@
+{
+  "package": "sdsaas",
+  "specs": [
+    {
+      "slug": "block-storage",
+      "title": "IBM Storage Ceph As a Service Block Storage API",
+      "schema_count": 47,
+      "path_count": 8
+    },
+    {
+      "slug": "object-storage",
+      "title": "IBM CephaaS Object Storage API",
+      "schema_count": 7,
+      "path_count": 4
+    }
+  ],
+  "matched": 3,
+  "resource_count": 3,
+  "overlay_attrs": 22,
+  "resources": [
+    {
+      "name": "ibm_sds_host",
+      "kind": "resource",
+      "schema": "Host",
+      "spec": "block-storage",
+      "score": 0.4254,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The unique name for this resource.",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Host"
+        },
+        "nqn": {
+          "pattern": "^nqn\\.\\d{4}-\\d{2}\\.[a-z0-9-]+(?:\\.[a-z0-9-]+)*:[a-zA-Z0-9.\\-:]+$",
+          "min_len": 16,
+          "max_len": 223,
+          "description": "The NQN (NVMe Qualified Name) as configured on the initiator (compute/host) accessing the storage",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Host"
+        },
+        "volume_mappings.host.id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The unique identifier for this resource",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Host"
+        },
+        "volume_mappings.host.name": {
+          "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The unique name for this resource.",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Host"
+        },
+        "volume_mappings.host.nqn": {
+          "pattern": "^nqn\\.\\d{4}-\\d{2}\\.[a-z0-9-]+(?:\\.[a-z0-9-]+)*:[a-zA-Z0-9.\\-:]+$",
+          "min_len": 16,
+          "max_len": 223,
+          "description": "The NQN (NVMe Qualified Name) as configured on the initiator (compute/host) accessing the storage",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Host"
+        },
+        "volume_mappings.href": {
+          "kind": "uri",
+          "format": "url",
+          "min_len": 10,
+          "max_len": 1000,
+          "description": "The URL for this resource",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Host"
+        },
+        "volume_mappings.id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "Unique identifier of the mapping",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Host"
+        },
+        "volume_mappings.namespace.id": {
+          "min": 1,
+          "max": 32,
+          "description": "NVMe namespace ID that can be used to co-relate the discovered devices on host to the corresponding volume",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Host"
+        },
+        "volume_mappings.namespace.uuid": {
+          "pattern": "^[-0-9a-z_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "UUID of the NVMe namespace",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Host"
+        },
+        "volume_mappings.status": {
+          "pattern": "^[a-z][a-z0-9]*(_[a-z0-9]+)*$",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The status of the volume mapping. The enumerated values for this property will expand in the future. When processing this property, check for and log unknown values. Optionally halt processing and surface the error, or bypass the resource on which the unexpected property value was encountered.",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Host"
+        },
+        "volume_mappings.storage_identifier.subsystem_nqn": {
+          "pattern": "^nqn\\.\\d{4}-\\d{2}\\.[a-z0-9-]+(?:\\.[a-z0-9-]+)*:[a-zA-Z0-9.\\-:]+$",
+          "min_len": 16,
+          "max_len": 223,
+          "description": "The NVMe target subsystem NQN (NVMe Qualified Name) that can be used for doing NVMe connect by the initiator",
+          "source": "block-storage",
+          "schema": "Host"
+        },
+        "volume_mappings.subsystem_nqn": {
+          "pattern": "^nqn\\.\\d{4}-\\d{2}\\.[a-z0-9-]+(?:\\.[a-z0-9-]+)*:[a-zA-Z0-9.\\-:]+$",
+          "min_len": 16,
+          "max_len": 223,
+          "description": "The NVMe target subsystem NQN (NVMe Qualified Name) that can be used for doing NVMe connect by the initiator",
+          "source": "block-storage",
+          "schema": "Host"
+        },
+        "volume_mappings.volume.id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The unique identifier for this resource",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Host"
+        }
+      }
+    },
+    {
+      "name": "ibm_sds_volume",
+      "kind": "resource",
+      "schema": "Volume",
+      "spec": "block-storage",
+      "score": 0.3335,
+      "attrs": {
+        "capacity": {
+          "min": 1,
+          "max": 32000,
+          "description": "The capacity of the volume (in gigabytes).",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Volume"
+        },
+        "name": {
+          "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The unique name for this resource.",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Volume"
+        },
+        "status_reasons.more_info": {
+          "kind": "uri",
+          "format": "url",
+          "min_len": 10,
+          "max_len": 8000,
+          "description": "Link to documentation about this status reason",
+          "source": "block-storage",
+          "schema": "Volume"
+        },
+        "volume_mappings.namespace.id": {
+          "min": 1,
+          "max": 32,
+          "description": "NVMe namespace ID that can be used to co-relate the discovered devices on host to the corresponding volume",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Volume"
+        },
+        "volume_mappings.namespace.uuid": {
+          "pattern": "^[-0-9a-z_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "UUID of the NVMe namespace",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Volume"
+        },
+        "volume_mappings.subsystem_nqn": {
+          "pattern": "^nqn\\.\\d{4}-\\d{2}\\.[a-z0-9-]+(?:\\.[a-z0-9-]+)*:[a-zA-Z0-9.\\-:]+$",
+          "min_len": 16,
+          "max_len": 223,
+          "description": "The NVMe target subsystem NQN (NVMe Qualified Name) that can be used for doing NVMe connect by the initiator",
+          "source": "block-storage",
+          "schema": "Volume"
+        }
+      }
+    },
+    {
+      "name": "ibm_sds_volume_mapping",
+      "kind": "resource",
+      "schema": "Namespace",
+      "spec": "block-storage",
+      "score": 0.35,
+      "attrs": {
+        "namespace.id": {
+          "min": 1,
+          "max": 32,
+          "description": "NVMe namespace ID that can be used to co-relate the discovered devices on host to the corresponding volume",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Namespace"
+        },
+        "namespace.uuid": {
+          "pattern": "^[-0-9a-z_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "UUID of the NVMe namespace",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Namespace"
+        },
+        "volume.id": {
+          "min": 1,
+          "max": 32,
+          "description": "NVMe namespace ID that can be used to co-relate the discovered devices on host to the corresponding volume",
+          "api_required": true,
+          "source": "block-storage",
+          "schema": "Namespace"
+        }
+      }
+    }
+  ]
+}

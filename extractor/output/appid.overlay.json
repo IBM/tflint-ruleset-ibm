@@ -1,0 +1,639 @@
+{
+  "package": "appid",
+  "specs": [
+    {
+      "slug": "app-id-auth",
+      "title": "App ID oauth-flows",
+      "schema_count": 5,
+      "path_count": 11
+    },
+    {
+      "slug": "app-id-management",
+      "title": "App ID Management",
+      "schema_count": 82,
+      "path_count": 67
+    },
+    {
+      "slug": "app-id-profiles",
+      "title": "IBM Cloud App ID User Profiles",
+      "schema_count": 0,
+      "path_count": 2
+    }
+  ],
+  "matched": 16,
+  "resource_count": 49,
+  "overlay_attrs": 31,
+  "resources": [
+    {
+      "name": "ibm_appid_action_url",
+      "kind": "resource",
+      "schema": "leaf-unique",
+      "spec": "app-id-management",
+      "score": 0.08,
+      "attrs": {
+        "url": {
+          "max_len": 300,
+          "description": "The URL.",
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/config/cloud_directory/email_dispatcher:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_apm",
+      "kind": "resource",
+      "schema": "refreshTokenConfigParams",
+      "spec": "app-id-management",
+      "score": 0.1578,
+      "attrs": {
+        "enabled": {
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "refreshTokenConfigParams"
+        },
+        "lockout_policy.enabled": {
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "refreshTokenConfigParams"
+        },
+        "min_password_change_interval.enabled": {
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "refreshTokenConfigParams"
+        },
+        "password_expiration.enabled": {
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "refreshTokenConfigParams"
+        },
+        "password_reuse.enabled": {
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "refreshTokenConfigParams"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_application",
+      "kind": "resource",
+      "schema": "/management/v4/{tenantId}/applications:post",
+      "spec": "app-id-management",
+      "score": 0.4667,
+      "attrs": {
+        "name": {
+          "min_len": 1,
+          "max_len": 50,
+          "description": "The application name to be registered. Application name cannot exceed 50 characters.",
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/applications:post"
+        },
+        "type": {
+          "description": "The type of application to be registered. Allowed types are regularwebapp and singlepageapp.",
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/applications:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_application_roles",
+      "kind": "resource",
+      "schema": "getUserRolesResponse",
+      "spec": "app-id-management",
+      "score": 0.2333,
+      "attrs": {
+        "roles": {
+          "description": "The user's roles.",
+          "source": "app-id-management",
+          "schema": "getUserRolesResponse"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_application_scopes",
+      "kind": "resource",
+      "schema": "/management/v4/{tenantId}/applications/{clientId}/scopes:put",
+      "spec": "app-id-management",
+      "score": 0.2708,
+      "attrs": {
+        "scopes": {
+          "max_len": 20,
+          "description": "The scopes.",
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/applications/{clientId}/scopes:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_audit_status",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_cloud_directory_template",
+      "kind": "resource",
+      "schema": "getTemplate",
+      "spec": "app-id-management",
+      "score": 0.38,
+      "attrs": {
+        "html_body": {
+          "description": "The HTML body of the email.",
+          "source": "app-id-management",
+          "schema": "getTemplate"
+        },
+        "plain_text_body": {
+          "description": "The plain text body of the email.",
+          "source": "app-id-management",
+          "schema": "getTemplate"
+        },
+        "subject": {
+          "description": "The subject of the email.",
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "getTemplate"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_cloud_directory_user",
+      "kind": "resource",
+      "schema": "/management/v4/{tenantId}/cloud_directory/Users/{userId}:put",
+      "spec": "app-id-management",
+      "score": 0.1744,
+      "attrs": {
+        "active": {
+          "description": "The status of the user. This parameter determines whether the user account is active or not. If both parameters are passed (active: false and lockedUntil) - the user account is locked until the time that is configured. If only (active: false) is passed, the user account is locked forever (or until it changes again).",
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/cloud_directory/Users/{userId}:put"
+        },
+        "email.primary": {
+          "description": "The email is the user's primary email.",
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/cloud_directory/Users/{userId}:put"
+        },
+        "email.value": {
+          "description": "The email.",
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/cloud_directory/Users/{userId}:put"
+        },
+        "password": {
+          "description": "The password.",
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/cloud_directory/Users/{userId}:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_idp_cloud_directory",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_idp_custom",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_idp_facebook",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_idp_google",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_idp_saml",
+      "kind": "resource",
+      "schema": "leaf-unique",
+      "spec": "app-id-management",
+      "score": 0.1189,
+      "attrs": {
+        "config.authn_context.comparison": {
+          "enum": [
+            "exact",
+            "maximum",
+            "minimum",
+            "better"
+          ],
+          "description": "The comparison.",
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/config/idps/saml:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_languages",
+      "kind": "resource",
+      "schema": "/management/v4/{tenantId}/config/ui/languages:put",
+      "spec": "app-id-management",
+      "score": 0.3929,
+      "attrs": {
+        "languages": {
+          "description": "The list of languages that can be used to customize email templates for CLoud Directory.",
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/config/ui/languages:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_mfa",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_mfa_channel",
+      "kind": "resource",
+      "schema": "introspection-response",
+      "spec": "app-id-auth",
+      "score": 0.14,
+      "attrs": {
+        "active": {
+          "description": "The status of the token.",
+          "api_required": true,
+          "source": "app-id-auth",
+          "schema": "introspection-response"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_password_regex",
+      "kind": "resource",
+      "schema": "passwordRegexConfigParams",
+      "spec": "app-id-management",
+      "score": 0.43,
+      "attrs": {
+        "error_message": {
+          "max_len": 200,
+          "description": "The error message.",
+          "source": "app-id-management",
+          "schema": "passwordRegexConfigParams"
+        },
+        "regex": {
+          "description": "The regular expression that is used by App ID for password strength validation.",
+          "source": "app-id-management",
+          "schema": "passwordRegexConfigParams"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_redirect_urls",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_role",
+      "kind": "resource",
+      "schema": "/management/v4/{tenantId}/roles:post",
+      "spec": "app-id-management",
+      "score": 0.2333,
+      "attrs": {
+        "access.application_id": {
+          "description": "The application ID.",
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/roles:post"
+        },
+        "access.scopes": {
+          "description": "The scopes.",
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/roles:post"
+        },
+        "description": {
+          "max_len": 100,
+          "description": "The role description.",
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/roles:post"
+        },
+        "name": {
+          "max_len": 50,
+          "description": "The role name.",
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/roles:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_theme_color",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_theme_text",
+      "kind": "resource",
+      "schema": "/management/v4/{tenantId}/config/ui/theme_text:put",
+      "spec": "app-id-management",
+      "score": 0.25,
+      "attrs": {
+        "footnote": {
+          "max_len": 3000,
+          "description": "The footnote.",
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/config/ui/theme_text:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_token_config",
+      "kind": "resource",
+      "schema": "leaf-unique",
+      "spec": "app-id-management",
+      "score": 0.08,
+      "attrs": {
+        "access_token_claim.source": {
+          "enum": [
+            "saml",
+            "cloud_directory",
+            "appid_custom",
+            "facebook",
+            "google",
+            "ibmid",
+            "attributes",
+            "roles"
+          ],
+          "description": "The source of the claim of the token.",
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/config/tokens:put"
+        },
+        "id_token_claim.source": {
+          "enum": [
+            "saml",
+            "cloud_directory",
+            "appid_custom",
+            "facebook",
+            "google",
+            "ibmid",
+            "attributes",
+            "roles"
+          ],
+          "description": "The source of the claim of the token.",
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "/management/v4/{tenantId}/config/tokens:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_user_roles",
+      "kind": "resource",
+      "schema": "getTemplate",
+      "spec": "app-id-management",
+      "score": 0.1967,
+      "attrs": {
+        "subject": {
+          "description": "The subject of the email.",
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "getTemplate"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_action_url",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_apm",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_application",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_application_roles",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_application_scopes",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_applications",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_audit_status",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_cloud_directory_template",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0857,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_cloud_directory_user",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_idp_cloud_directory",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_idp_custom",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_idp_facebook",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_idp_google",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_idp_saml",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_idp_saml_metadata",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_languages",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_mfa",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_mfa_channel",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_password_regex",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_redirect_urls",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_role",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_roles",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_theme_color",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_theme_text",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_token_config",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_appid_user_roles",
+      "kind": "data",
+      "schema": "getTemplate",
+      "spec": "app-id-management",
+      "score": 0.22,
+      "attrs": {
+        "subject": {
+          "description": "The subject of the email.",
+          "api_required": true,
+          "source": "app-id-management",
+          "schema": "getTemplate"
+        }
+      }
+    }
+  ]
+}

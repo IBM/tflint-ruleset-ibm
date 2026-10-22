@@ -1,0 +1,91 @@
+{
+  "package": "cloudant",
+  "specs": [
+    {
+      "slug": "cloudant-cloudant-gen2",
+      "title": "Cloudant",
+      "schema_count": 270,
+      "path_count": 59
+    }
+  ],
+  "matched": 3,
+  "resource_count": 4,
+  "overlay_attrs": 4,
+  "resources": [
+    {
+      "name": "ibm_cloudant",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cloudant_database",
+      "kind": "resource",
+      "schema": "DesignDocumentOptions",
+      "spec": "cloudant-cloudant-gen2",
+      "score": 0.255,
+      "attrs": {
+        "partitioned": {
+          "description": "Whether this design document describes partitioned or global indexes. Set this option to `false` for a design document that describes global indexes in a partitioned database. A design document describes either global or partitioned indexes, but not both. By default, for a partitioned database this option is `true` and the design document describes partitioned indexes for queries on a single parti",
+          "source": "cloudant-cloudant-gen2",
+          "schema": "DesignDocumentOptions"
+        },
+        "db": {
+          "pattern": "^_dbs$|^_global_changes$|^_metadata$|^_nodes$|^_replicator$|^_users$|^[a-z][a-z0-9_$()+/-]*$",
+          "min_len": 1,
+          "max_len": 238,
+          "description": "Schema for a database name.",
+          "source": "cloudant-cloudant-gen2",
+          "schema": "ReplicationDocument"
+        }
+      }
+    },
+    {
+      "name": "ibm_cloudant",
+      "kind": "data",
+      "schema": "IndexAnalysisExclusionReason",
+      "spec": "cloudant-cloudant-gen2",
+      "score": 0.14,
+      "attrs": {
+        "name": {
+          "enum": [
+            "alphabetically_comes_after",
+            "empty_selector",
+            "excluded_by_user",
+            "field_mismatch",
+            "is_partial",
+            "less_overlap",
+            "needs_text_search",
+            "scope_mismatch",
+            "sort_order_mismatch",
+            "too_many_fields",
+            "unfavored_type"
+          ],
+          "description": "A reason code for index's exclusion. The full list of possible reason codes is following: * alphabetically_comes_after: json There is another suitable index whose name comes before that of this index. * empty_selector: text \"text\" indexes do not support queries with empty selectors. * excluded_by_user: any use_index was used to manually specify the index. * field_mismatch: any Fields in \"selector\"",
+          "api_required": true,
+          "source": "cloudant-cloudant-gen2",
+          "schema": "IndexAnalysisExclusionReason"
+        }
+      }
+    },
+    {
+      "name": "ibm_cloudant_database",
+      "kind": "data",
+      "schema": "UserContext",
+      "spec": "cloudant-cloudant-gen2",
+      "score": 0.175,
+      "attrs": {
+        "db": {
+          "pattern": "^_dbs$|^_global_changes$|^_metadata$|^_nodes$|^_replicator$|^_users$|^[a-z][a-z0-9_$()+/-]*$",
+          "min_len": 1,
+          "max_len": 238,
+          "description": "Schema for a database name.",
+          "source": "cloudant-cloudant-gen2",
+          "schema": "UserContext"
+        }
+      }
+    }
+  ]
+}

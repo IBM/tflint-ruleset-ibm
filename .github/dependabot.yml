@@ -1,0 +1,28 @@
+version: 2
+updates:
+  - package-ecosystem: gomod
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    cooldown:
+      default-days: 5
+    groups:
+      golang-x:
+        patterns:
+          - "golang.org/x/*"
+      grpc-protobuf:
+        patterns:
+          - "google.golang.org/*"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 5
+    groups:
+      actions:
+        patterns:
+          - "*"

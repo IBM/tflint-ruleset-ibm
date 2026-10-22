@@ -1,0 +1,1301 @@
+{
+  "package": "cloudfoundry",
+  "resources": [
+    {
+      "name": "ibm_app",
+      "function": "ResourceIBMApp",
+      "package": "cloudfoundry",
+      "kind": "resource",
+      "description": "Manages ibm_app. The name for the app",
+      "attributes": {
+        "app_path": {
+          "name": "app_path",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Define the  path of the zip file of the application."
+        },
+        "app_version": {
+          "name": "app_version",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Version of the application"
+        },
+        "buildpack": {
+          "name": "buildpack",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Buildpack to build the app. 3 options: a) Blank means autodetection; b) A Git Url pointing to a buildpack; c) Name of an installed buildpack."
+        },
+        "command": {
+          "name": "command",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The initial command for the app"
+        },
+        "disk_quota": {
+          "name": "disk_quota",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The maximum amount of disk available to an instance of an app. In megabytes."
+        },
+        "environment_json": {
+          "name": "environment_json",
+          "type": "map",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Key/value pairs of all the environment variables to run in your app. Does not include any system or service variables."
+        },
+        "health_check_http_endpoint": {
+          "name": "health_check_http_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Endpoint called to determine if the app is healthy."
+        },
+        "health_check_timeout": {
+          "name": "health_check_timeout",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Timeout in seconds for health checking of an staged app when starting up."
+        },
+        "health_check_type": {
+          "name": "health_check_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Type of health check to perform.",
+          "default": "port",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "port",
+              "process"
+            ]
+          }
+        },
+        "instances": {
+          "name": "instances",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The number of instances",
+          "default": "1"
+        },
+        "memory": {
+          "name": "memory",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The amount of memory each instance should have. In megabytes."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name for the app"
+        },
+        "route_guid": {
+          "name": "route_guid",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Define the route guids which should be bound to the application.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Define the service instance guids that should be bound to this application.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "space_guid": {
+          "name": "space_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Define space guid to which app belongs"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "wait_time_minutes": {
+          "name": "wait_time_minutes",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Define timeout to wait for the app instances to start/update/restage etc.",
+          "default": "20"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_domain_private",
+      "function": "ResourceIBMAppDomainPrivate",
+      "package": "cloudfoundry",
+      "kind": "resource",
+      "description": "Manages ibm_app_domain_private. The name of the domain",
+      "attributes": {
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The name of the domain",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateDomainName"
+          }
+        },
+        "org_guid": {
+          "name": "org_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The organization that owns the domain."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_app_domain_shared",
+      "function": "ResourceIBMAppDomainShared",
+      "package": "cloudfoundry",
+      "kind": "resource",
+      "description": "Manages ibm_app_domain_shared. The name of the domain",
+      "attributes": {
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The name of the domain",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateDomainName"
+          }
+        },
+        "router_group_guid": {
+          "name": "router_group_guid",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The guid of the router group."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_app_route",
+      "function": "ResourceIBMAppRoute",
+      "package": "cloudfoundry",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_app_route resource.",
+      "attributes": {
+        "domain_guid": {
+          "name": "domain_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The guid of the associated domain"
+        },
+        "host": {
+          "name": "host",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The host portion of the route. Required for shared-domains."
+        },
+        "path": {
+          "name": "path",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The path for a route as raw text.Paths must be between 2 and 128 characters.Paths must start with a forward slash '/'.Paths must not contain a '?'",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateRoutePath"
+          }
+        },
+        "port": {
+          "name": "port",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The port of the route. Supported for domains of TCP router groups only.",
+          "validate": {
+            "kind": "port",
+            "func_name": "ValidateRoutePort",
+            "min": 1,
+            "max": 65535
+          }
+        },
+        "space_guid": {
+          "name": "space_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The guid of the associated space"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_org",
+      "function": "ResourceIBMOrg",
+      "package": "cloudfoundry",
+      "kind": "resource",
+      "description": "Manages ibm_org. Org name, for example myorg@domain",
+      "attributes": {
+        "auditors": {
+          "name": "auditors",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The IBMID of the users who will have auditor role in this org, ex - user@example.com",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "billing_managers": {
+          "name": "billing_managers",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The IBMID of the users who will have billing manager role in this org, ex - user@example.com",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "managers": {
+          "name": "managers",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The IBMID of the users who will have manager role in this org, ex - user@example.com",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Org name, for example myorg@domain"
+        },
+        "org_quota_definition_guid": {
+          "name": "org_quota_definition_guid",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Org quota guid"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "users": {
+          "name": "users",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The IBMID of the users who will have user role in this org, ex - user@example.com",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_service_instance",
+      "function": "ResourceIBMServiceInstance",
+      "package": "cloudfoundry",
+      "kind": "resource",
+      "description": "Manages ibm_service_instance. A name for the service instance",
+      "attributes": {
+        "credentials": {
+          "name": "credentials",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "The service broker-provided credentials to use this service."
+        },
+        "dashboard_url": {
+          "name": "dashboard_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Dashboard URL to access resource."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "A name for the service instance"
+        },
+        "parameters": {
+          "name": "parameters",
+          "type": "map",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Arbitrary parameters to pass along to the service broker. Must be a JSON object"
+        },
+        "plan": {
+          "name": "plan",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The plan type of the service"
+        },
+        "service": {
+          "name": "service",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The name of the service offering like speech_to_text, text_to_speech etc"
+        },
+        "service_keys": {
+          "name": "service_keys",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The service keys asociated with the service instance",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "credentials": {
+                "name": "credentials",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "sensitive": true,
+                "description": "The service key credential details like port, username etc"
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The service key name"
+              }
+            }
+          }
+        },
+        "service_plan_guid": {
+          "name": "service_plan_guid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The uniquie identifier of the service offering plan type"
+        },
+        "space_guid": {
+          "name": "space_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The guid of the space in which the instance will be created"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "wait_time_minutes": {
+          "name": "wait_time_minutes",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Define timeout to wait for the service instances to succeeded/deleted etc.",
+          "default": "10"
+        }
+      }
+    },
+    {
+      "name": "ibm_service_key",
+      "function": "ResourceIBMServiceKey",
+      "package": "cloudfoundry",
+      "kind": "resource",
+      "description": "Manages ibm_service_key. The name of the service key",
+      "attributes": {
+        "credentials": {
+          "name": "credentials",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "Credentials asociated with the key"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The name of the service key"
+        },
+        "parameters": {
+          "name": "parameters",
+          "type": "map",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Arbitrary parameters to pass along to the service broker. Must be a JSON object"
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The guid of the service instance for which to create service key"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_space",
+      "function": "ResourceIBMSpace",
+      "package": "cloudfoundry",
+      "kind": "resource",
+      "description": "Manages ibm_space. The name for the space",
+      "attributes": {
+        "auditors": {
+          "name": "auditors",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The IBMID of the users who will have auditor role in this space, ex - user@example.com",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "developers": {
+          "name": "developers",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The IBMID of the users who will have developer role in this space, ex - user@example.com",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "managers": {
+          "name": "managers",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The IBMID of the users who will have manager role in this space, ex - user@example.com",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name for the space"
+        },
+        "org": {
+          "name": "org",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The org this space belongs to"
+        },
+        "space_quota": {
+          "name": "space_quota",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The name of the Space Quota Definition"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_account",
+      "function": "DataSourceIBMAccount",
+      "package": "cloudfoundry",
+      "kind": "data",
+      "description": "Schema validation for the ibm_account data source.",
+      "attributes": {
+        "account_users": {
+          "name": "account_users",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "email": {
+                "name": "email",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "role": {
+                "name": "role",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        },
+        "org_guid": {
+          "name": "org_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The guid of the org"
+        }
+      }
+    },
+    {
+      "name": "ibm_app",
+      "function": "DataSourceIBMApp",
+      "package": "cloudfoundry",
+      "kind": "data",
+      "description": "Reads ibm_app. The name for the app",
+      "attributes": {
+        "buildpack": {
+          "name": "buildpack",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Buildpack to build the app. 3 options: a) Blank means autodetection; b) A Git Url pointing to a buildpack; c) Name of an installed buildpack."
+        },
+        "disk_quota": {
+          "name": "disk_quota",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The maximum amount of disk available to an instance of an app. In megabytes."
+        },
+        "environment_json": {
+          "name": "environment_json",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Key/value pairs of all the environment variables to run in your app. Does not include any system or service variables."
+        },
+        "health_check_http_endpoint": {
+          "name": "health_check_http_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Endpoint called to determine if the app is healthy."
+        },
+        "health_check_timeout": {
+          "name": "health_check_timeout",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Timeout in seconds for health checking of an staged app when starting up."
+        },
+        "health_check_type": {
+          "name": "health_check_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of health check to perform."
+        },
+        "instances": {
+          "name": "instances",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The number of instances"
+        },
+        "memory": {
+          "name": "memory",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The amount of memory each instance should have. In megabytes."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name for the app"
+        },
+        "package_state": {
+          "name": "package_state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The state of the application package whether staged, pending etc"
+        },
+        "route_guid": {
+          "name": "route_guid",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Define the route guids which should be bound to the application.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Define the service instance guids that should be bound to this application.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "space_guid": {
+          "name": "space_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Define space guid to which app belongs"
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The state of the application"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_domain_private",
+      "function": "DataSourceIBMAppDomainPrivate",
+      "package": "cloudfoundry",
+      "kind": "data",
+      "description": "Reads ibm_app_domain_private. The name of the private domain",
+      "attributes": {
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name of the private domain"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_domain_shared",
+      "function": "DataSourceIBMAppDomainShared",
+      "package": "cloudfoundry",
+      "kind": "data",
+      "description": "Reads ibm_app_domain_shared. The name of the shared domain",
+      "attributes": {
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name of the shared domain",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateDomainName"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_app_route",
+      "function": "DataSourceIBMAppRoute",
+      "package": "cloudfoundry",
+      "kind": "data",
+      "description": "Schema validation for the ibm_app_route data source.",
+      "attributes": {
+        "domain_guid": {
+          "name": "domain_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The guid of the domain"
+        },
+        "host": {
+          "name": "host",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The host of the route"
+        },
+        "path": {
+          "name": "path",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The path of the route",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateRoutePath"
+          }
+        },
+        "port": {
+          "name": "port",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The port of the route",
+          "validate": {
+            "kind": "port",
+            "func_name": "ValidateRoutePort",
+            "min": 1,
+            "max": 65535
+          }
+        },
+        "space_guid": {
+          "name": "space_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The guid of the space"
+        }
+      }
+    },
+    {
+      "name": "ibm_org",
+      "function": "DataSourceIBMOrg",
+      "package": "cloudfoundry",
+      "kind": "data",
+      "description": "Reads ibm_org. Org name, for example myorg@domain",
+      "attributes": {
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Org name, for example myorg@domain"
+        },
+        "org": {
+          "name": "org",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Org name, for example myorg@domain"
+        }
+      }
+    },
+    {
+      "name": "ibm_org_quota",
+      "function": "DataSourceIBMOrgQuota",
+      "package": "cloudfoundry",
+      "kind": "data",
+      "description": "Reads ibm_org_quota. Org quota name, for example qIBM",
+      "attributes": {
+        "app_instance_limit": {
+          "name": "app_instance_limit",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines the total app instance limit for organization."
+        },
+        "app_tasks_limit": {
+          "name": "app_tasks_limit",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines the total app task limit for organization."
+        },
+        "instance_memory_limit": {
+          "name": "instance_memory_limit",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines the  total instance memory limit for organization."
+        },
+        "memory_limit": {
+          "name": "memory_limit",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines the total memory limit for organization."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Org quota name, for example qIBM"
+        },
+        "non_basic_services_allowed": {
+          "name": "non_basic_services_allowed",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Define non basic services are allowed for organization."
+        },
+        "total_private_domains": {
+          "name": "total_private_domains",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines the total private domain limit for organization.v"
+        },
+        "total_reserved_route_ports": {
+          "name": "total_reserved_route_ports",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines the number of reserved route ports for organization. "
+        },
+        "total_routes": {
+          "name": "total_routes",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines the total route for organization."
+        },
+        "total_service_keys": {
+          "name": "total_service_keys",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines the total service keys for organization."
+        },
+        "total_services": {
+          "name": "total_services",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines the total services for organization."
+        },
+        "trial_db_allowed": {
+          "name": "trial_db_allowed",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines trial db are allowed for organization."
+        }
+      }
+    },
+    {
+      "name": "ibm_service_instance",
+      "function": "DataSourceIBMServiceInstance",
+      "package": "cloudfoundry",
+      "kind": "data",
+      "description": "Reads ibm_service_instance. Service instance name for example, speech_to_text",
+      "attributes": {
+        "credentials": {
+          "name": "credentials",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "The service broker-provided credentials to use this service."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Service instance name for example, speech_to_text"
+        },
+        "service_keys": {
+          "name": "service_keys",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Service keys asociated with the service instance",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "credentials": {
+                "name": "credentials",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "sensitive": true,
+                "description": "The service key credential details like port, username etc"
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The service key name"
+              }
+            }
+          }
+        },
+        "service_plan_guid": {
+          "name": "service_plan_guid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The uniquie identifier of the service offering plan type"
+        },
+        "space_guid": {
+          "name": "space_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The guid of the space in which the instance is present"
+        }
+      }
+    },
+    {
+      "name": "ibm_service_key",
+      "function": "DataSourceIBMServiceKey",
+      "package": "cloudfoundry",
+      "kind": "data",
+      "description": "Reads ibm_service_key. The name of the service key",
+      "attributes": {
+        "credentials": {
+          "name": "credentials",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "Credentials asociated with the key"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name of the service key"
+        },
+        "service_instance_name": {
+          "name": "service_instance_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Service instance name for example, speech_to_text"
+        },
+        "space_guid": {
+          "name": "space_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The guid of the space in which the service instance is present"
+        }
+      }
+    },
+    {
+      "name": "ibm_service_plan",
+      "function": "DataSourceIBMServicePlan",
+      "package": "cloudfoundry",
+      "kind": "data",
+      "description": "Schema validation for the ibm_service_plan data source.",
+      "attributes": {
+        "plan": {
+          "name": "plan",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The plan type ex- shared "
+        },
+        "service": {
+          "name": "service",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Service name for example, cloudantNoSQLDB"
+        }
+      }
+    },
+    {
+      "name": "ibm_space",
+      "function": "DataSourceIBMSpace",
+      "package": "cloudfoundry",
+      "kind": "data",
+      "description": "Reads ibm_space. Space name, for example dev",
+      "attributes": {
+        "auditors": {
+          "name": "auditors",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IBMID of the users who  have auditor role in this space, ex - user@example.com",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "developers": {
+          "name": "developers",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IBMID of the users who  have developer role in this space, ex - user@example.com",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "managers": {
+          "name": "managers",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IBMID of the users who  have manager role in this space, ex - user@example.com",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Space name, for example dev"
+        },
+        "org": {
+          "name": "org",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The org this space belongs to"
+        },
+        "space": {
+          "name": "space",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Space name, for example dev"
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 19,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package cloudfoundry"
+}

@@ -1,0 +1,1778 @@
+{
+  "package": "iampolicy",
+  "specs": [
+    {
+      "slug": "iam-policy-management",
+      "title": "IAM Policy Management",
+      "schema_count": 124,
+      "path_count": 28
+    }
+  ],
+  "matched": 37,
+  "resource_count": 38,
+  "overlay_attrs": 202,
+  "resources": [
+    {
+      "name": "ibm_iam_access_group_policy",
+      "kind": "resource",
+      "schema": "Policy",
+      "spec": "iam-policy-management",
+      "score": 0.2552,
+      "attrs": {
+        "description": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "Customer-defined description",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_attributes.name": {
+          "description": "The name of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_attributes.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_attributes.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_tags.name": {
+          "description": "The name of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_tags.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_tags.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resources.attributes": {
+          "description": "An attribute associated with a resource.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "roles": {
+          "description": "A role associated with a policy.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "rule_conditions.conditions.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "rule_conditions.conditions.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "rule_conditions.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "rule_conditions.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "tags": {
+          "description": "A tag associated with a resource.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "pattern": {
+          "pattern": "^[a-z:-]*$",
+          "min_len": 1,
+          "max_len": 42,
+          "description": "Indicates pattern of rule, either 'time-based-conditions:once', 'time-based-conditions:weekly:all-day', or 'time-based-conditions:weekly:custom-hours'.",
+          "source": "iam-policy-management",
+          "schema": "/v2/policies:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_account_settings_external_interaction",
+      "kind": "resource",
+      "schema": "IdentityTypesBase",
+      "spec": "iam-policy-management",
+      "score": 0.35,
+      "attrs": {
+        "external_account_identity_interaction.identity_types.service.external_allowed_accounts": {
+          "pattern": "^[A-Za-z0-9-_]+$",
+          "min_len": 1,
+          "max_len": 1024,
+          "description": "Account ID .",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "IdentityTypesBase"
+        },
+        "external_account_identity_interaction.identity_types.service.state": {
+          "enum": [
+            "enabled",
+            "monitor",
+            "limited"
+          ],
+          "description": "The state of the identity type.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "IdentityTypesBase"
+        },
+        "external_account_identity_interaction.identity_types.service_id.external_allowed_accounts": {
+          "pattern": "^[A-Za-z0-9-_]+$",
+          "min_len": 1,
+          "max_len": 1024,
+          "description": "Account ID .",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "IdentityTypesBase"
+        },
+        "external_account_identity_interaction.identity_types.service_id.state": {
+          "enum": [
+            "enabled",
+            "monitor",
+            "limited"
+          ],
+          "description": "The state of the identity type.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "IdentityTypesBase"
+        },
+        "external_account_identity_interaction.identity_types.user.external_allowed_accounts": {
+          "pattern": "^[A-Za-z0-9-_]+$",
+          "min_len": 1,
+          "max_len": 1024,
+          "description": "Account ID .",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "IdentityTypesBase"
+        },
+        "external_account_identity_interaction.identity_types.user.state": {
+          "enum": [
+            "enabled",
+            "monitor",
+            "limited"
+          ],
+          "description": "The state of the identity type.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "IdentityTypesBase"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_action_control_assignment",
+      "kind": "resource",
+      "schema": "/v1/action_control_assignments/{assignment_id}:patch",
+      "spec": "iam-policy-management",
+      "score": 0.37,
+      "attrs": {
+        "template_version": {
+          "pattern": "^[0-9]*$",
+          "min_len": 1,
+          "max_len": 2,
+          "description": "The version number of the template used to identify different versions of same template.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "/v1/action_control_assignments/{assignment_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_action_control_template",
+      "kind": "resource",
+      "schema": "/v1/action_control_templates/{action_control_template_id}/versions:post",
+      "spec": "iam-policy-management",
+      "score": 0.4357,
+      "attrs": {
+        "action_control.actions": {
+          "min_len": 5,
+          "max_len": 100,
+          "description": "IAM action ID.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "/v1/action_control_templates/{action_control_template_id}/versions:post"
+        },
+        "action_control.description": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "Description of the action control.",
+          "source": "iam-policy-management",
+          "schema": "/v1/action_control_templates/{action_control_template_id}/versions:post"
+        },
+        "action_control.service_name": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "The service name that the action control refers.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "/v1/action_control_templates/{action_control_template_id}/versions:post"
+        },
+        "committed": {
+          "description": "Committed status of the template version. If committed is set to true, then the template version can no longer be updated.",
+          "source": "iam-policy-management",
+          "schema": "/v1/action_control_templates/{action_control_template_id}/versions:post"
+        },
+        "description": {
+          "min_len": 0,
+          "max_len": 300,
+          "description": "Description of the action control template. This is shown to users in the enterprise account. Use this to describe the purpose or context of the action control for enterprise users managing IAM templates.",
+          "source": "iam-policy-management",
+          "schema": "/v1/action_control_templates/{action_control_template_id}/versions:post"
+        },
+        "name": {
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Required field when creating a new template. Otherwise, this field is optional. If the field is included, it will change the name value for all existing versions of the template.",
+          "source": "iam-policy-management",
+          "schema": "/v1/action_control_templates/{action_control_template_id}/versions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_action_control_template_version",
+      "kind": "resource",
+      "schema": "/v1/action_control_templates/{action_control_template_id}/versions/{version}:put",
+      "spec": "iam-policy-management",
+      "score": 0.4125,
+      "attrs": {
+        "action_control.actions": {
+          "min_len": 5,
+          "max_len": 100,
+          "description": "IAM action ID.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "/v1/action_control_templates/{action_control_template_id}/versions/{version}:put"
+        },
+        "action_control.description": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "Description of the action control.",
+          "source": "iam-policy-management",
+          "schema": "/v1/action_control_templates/{action_control_template_id}/versions/{version}:put"
+        },
+        "action_control.service_name": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "The service name that the action control refers.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "/v1/action_control_templates/{action_control_template_id}/versions/{version}:put"
+        },
+        "committed": {
+          "description": "Committed status of the template version. If committed is set to true, then the template version can no longer be updated.",
+          "source": "iam-policy-management",
+          "schema": "/v1/action_control_templates/{action_control_template_id}/versions/{version}:put"
+        },
+        "description": {
+          "min_len": 0,
+          "max_len": 300,
+          "description": "Description of the action control template. This is shown to users in the enterprise account. Use this to describe the purpose or context of the action control for enterprise users managing IAM templates.",
+          "source": "iam-policy-management",
+          "schema": "/v1/action_control_templates/{action_control_template_id}/versions/{version}:put"
+        },
+        "name": {
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Required field when creating a new template. Otherwise, this field is optional. If the field is included, it will change the name value for all existing versions of the template.",
+          "source": "iam-policy-management",
+          "schema": "/v1/action_control_templates/{action_control_template_id}/versions/{version}:put"
+        },
+        "action_control_template_id": {
+          "pattern": "^actionControlTemplate-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 1,
+          "max_len": 58,
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "params:post:/v1/action_control_templates/{action_control_template_id}/versions"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_authorization_policy",
+      "kind": "resource",
+      "schema": "Policy",
+      "spec": "iam-policy-management",
+      "score": 0.266,
+      "attrs": {
+        "description": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "Customer-defined description",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_attributes.name": {
+          "description": "The name of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_attributes.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_attributes.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "roles": {
+          "description": "A role associated with a policy.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "subject_attributes.name": {
+          "description": "The name of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "subject_attributes.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "subject_attributes.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_authorization_policy_detach",
+      "kind": "resource",
+      "schema": "Policy",
+      "spec": "iam-policy-management",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_iam_custom_role",
+      "kind": "resource",
+      "schema": "Role",
+      "spec": "iam-policy-management",
+      "score": 0.56,
+      "attrs": {
+        "actions": {
+          "min_len": 1,
+          "description": "The action ID.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Role"
+        },
+        "description": {
+          "min_len": 1,
+          "max_len": 250,
+          "description": "The description of the role.",
+          "source": "iam-policy-management",
+          "schema": "Role"
+        },
+        "display_name": {
+          "min_len": 1,
+          "max_len": 50,
+          "description": "The display the name of the role that is shown in the console.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Role"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_policy_assignment",
+      "kind": "resource",
+      "schema": "ActionControlAssignmentTemplate",
+      "spec": "iam-policy-management",
+      "score": 0.36,
+      "attrs": {
+        "templates.id": {
+          "pattern": "^actionControlTemplate-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 1,
+          "max_len": 58,
+          "description": "Action control template ID.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "ActionControlAssignmentTemplate"
+        },
+        "templates.version": {
+          "pattern": "^[0-9]*$",
+          "min_len": 1,
+          "max_len": 2,
+          "description": "Action control template version.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "ActionControlAssignmentTemplate"
+        },
+        "version": {
+          "pattern": "^[0-9]*$",
+          "min_len": 1,
+          "max_len": 2,
+          "description": "Action control template version.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "ActionControlAssignmentTemplate"
+        },
+        "template_version": {
+          "pattern": "^[0-9]*$",
+          "min_len": 1,
+          "max_len": 2,
+          "description": "The policy template version to update to.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "/v1/policy_assignments/{assignment_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_policy_template",
+      "kind": "resource",
+      "schema": "Policy",
+      "spec": "iam-policy-management",
+      "score": 0.35,
+      "attrs": {
+        "description": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "Customer-defined description",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "name": {
+          "description": "The name of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.description": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "Customer-defined description",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.resource.attributes.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.resource.attributes.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.resource.tags.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.resource.tags.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.role_template_references.id": {
+          "description": "The policy ID.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.roles": {
+          "description": "A role associated with a policy.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.rule_conditions.conditions.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.rule_conditions.conditions.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.rule_conditions.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.rule_conditions.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.subject.attributes.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.subject.attributes.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.type": {
+          "pattern": "^[a-z]+$",
+          "min_len": 6,
+          "max_len": 13,
+          "description": "The policy type; either 'access' or 'authorization'.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.pattern": {
+          "pattern": "^[a-z:-]*$",
+          "min_len": 1,
+          "max_len": 42,
+          "description": "Indicates pattern of rule, either 'time-based-conditions:once', 'time-based-conditions:weekly:all-day', or 'time-based-conditions:weekly:custom-hours'.",
+          "source": "iam-policy-management",
+          "schema": "/v2/policies:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_policy_template_version",
+      "kind": "resource",
+      "schema": "Policy",
+      "spec": "iam-policy-management",
+      "score": 0.3433,
+      "attrs": {
+        "description": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "Customer-defined description",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "name": {
+          "description": "The name of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.description": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "Customer-defined description",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.resource.attributes.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.resource.attributes.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.resource.tags.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.resource.tags.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.role_template_references.id": {
+          "description": "The policy ID.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.roles": {
+          "description": "A role associated with a policy.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.rule_conditions.conditions.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.rule_conditions.conditions.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.rule_conditions.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.rule_conditions.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.subject.attributes.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.subject.attributes.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.type": {
+          "pattern": "^[a-z]+$",
+          "min_len": 6,
+          "max_len": 13,
+          "description": "The policy type; either 'access' or 'authorization'.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policy.pattern": {
+          "pattern": "^[a-z:-]*$",
+          "min_len": 1,
+          "max_len": 42,
+          "description": "Indicates pattern of rule, either 'time-based-conditions:once', 'time-based-conditions:weekly:all-day', or 'time-based-conditions:weekly:custom-hours'.",
+          "source": "iam-policy-management",
+          "schema": "/v2/policies:post"
+        },
+        "template_id": {
+          "pattern": "^policyTemplate-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 1,
+          "max_len": 51,
+          "description": "policy template ID",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "PolicyAssignmentRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_role_assignment",
+      "kind": "resource",
+      "schema": "/v1/role_assignments/{assignment_id}:patch",
+      "spec": "iam-policy-management",
+      "score": 0.3167,
+      "attrs": {
+        "template_version": {
+          "pattern": "^[0-9]*$",
+          "min_len": 1,
+          "max_len": 2,
+          "description": "The version number of the template used to identify different versions of same template.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "/v1/role_assignments/{assignment_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_role_template",
+      "kind": "resource",
+      "schema": "RolePostRequest",
+      "spec": "iam-policy-management",
+      "score": 0.5175,
+      "attrs": {
+        "description": {
+          "min_len": 1,
+          "max_len": 250,
+          "description": "The description of the role.",
+          "source": "iam-policy-management",
+          "schema": "RolePostRequest"
+        },
+        "name": {
+          "pattern": "^[A-Z]{1}[A-Za-z0-9]{0,29}$",
+          "min_len": 1,
+          "max_len": 30,
+          "description": "The name of the role that is used in the CRN. This must be alphanumeric and capitalized.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "RolePostRequest"
+        },
+        "role.actions": {
+          "min_len": 1,
+          "description": "The action ID.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "RolePostRequest"
+        },
+        "role.description": {
+          "min_len": 1,
+          "max_len": 250,
+          "description": "The description of the role.",
+          "source": "iam-policy-management",
+          "schema": "RolePostRequest"
+        },
+        "role.display_name": {
+          "min_len": 1,
+          "max_len": 50,
+          "description": "The display the name of the role that is shown in the console.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "RolePostRequest"
+        },
+        "role.name": {
+          "pattern": "^[A-Z]{1}[A-Za-z0-9]{0,29}$",
+          "min_len": 1,
+          "max_len": 30,
+          "description": "The name of the role that is used in the CRN. This must be alphanumeric and capitalized.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "RolePostRequest"
+        },
+        "role.service_name": {
+          "description": "The service name.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "RolePostRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_role_template_version",
+      "kind": "resource",
+      "schema": "Role",
+      "spec": "iam-policy-management",
+      "score": 0.51,
+      "attrs": {
+        "description": {
+          "min_len": 1,
+          "max_len": 250,
+          "description": "The description of the role.",
+          "source": "iam-policy-management",
+          "schema": "Role"
+        },
+        "role.actions": {
+          "min_len": 1,
+          "description": "The action ID.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Role"
+        },
+        "role.description": {
+          "min_len": 1,
+          "max_len": 250,
+          "description": "The description of the role.",
+          "source": "iam-policy-management",
+          "schema": "Role"
+        },
+        "role.display_name": {
+          "min_len": 1,
+          "max_len": 50,
+          "description": "The display the name of the role that is shown in the console.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Role"
+        },
+        "role_template_id": {
+          "pattern": "^roleTemplate-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 1,
+          "max_len": 49,
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "params:post:/v1/role_templates/{role_template_id}/versions"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_service_policy",
+      "kind": "resource",
+      "schema": "Policy",
+      "spec": "iam-policy-management",
+      "score": 0.2537,
+      "attrs": {
+        "description": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "Customer-defined description",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_attributes.name": {
+          "description": "The name of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_attributes.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_attributes.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_tags.name": {
+          "description": "The name of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_tags.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_tags.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resources.attributes": {
+          "description": "An attribute associated with a resource.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "roles": {
+          "description": "A role associated with a policy.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "rule_conditions.conditions.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "rule_conditions.conditions.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "rule_conditions.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "rule_conditions.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "tags": {
+          "description": "A tag associated with a resource.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "pattern": {
+          "pattern": "^[a-z:-]*$",
+          "min_len": 1,
+          "max_len": 42,
+          "description": "Indicates pattern of rule, either 'time-based-conditions:once', 'time-based-conditions:weekly:all-day', or 'time-based-conditions:weekly:custom-hours'.",
+          "source": "iam-policy-management",
+          "schema": "/v2/policies:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile_policy",
+      "kind": "resource",
+      "schema": "Policy",
+      "spec": "iam-policy-management",
+      "score": 0.2537,
+      "attrs": {
+        "description": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "Customer-defined description",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_attributes.name": {
+          "description": "The name of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_attributes.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_attributes.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_tags.name": {
+          "description": "The name of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_tags.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_tags.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resources.attributes": {
+          "description": "An attribute associated with a resource.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "roles": {
+          "description": "A role associated with a policy.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "rule_conditions.conditions.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "rule_conditions.conditions.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "rule_conditions.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "rule_conditions.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "tags": {
+          "description": "A tag associated with a resource.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "pattern": {
+          "pattern": "^[a-z:-]*$",
+          "min_len": 1,
+          "max_len": 42,
+          "description": "Indicates pattern of rule, either 'time-based-conditions:once', 'time-based-conditions:weekly:all-day', or 'time-based-conditions:weekly:custom-hours'.",
+          "source": "iam-policy-management",
+          "schema": "/v2/policies:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_user_invite",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.1168,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_iam_user_policy",
+      "kind": "resource",
+      "schema": "Policy",
+      "spec": "iam-policy-management",
+      "score": 0.2552,
+      "attrs": {
+        "description": {
+          "min_len": 1,
+          "max_len": 300,
+          "description": "Customer-defined description",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_attributes.name": {
+          "description": "The name of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_attributes.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_attributes.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_tags.name": {
+          "description": "The name of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_tags.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resource_tags.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "resources.attributes": {
+          "description": "An attribute associated with a resource.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "roles": {
+          "description": "A role associated with a policy.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "rule_conditions.conditions.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "rule_conditions.conditions.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "rule_conditions.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "rule_conditions.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "tags": {
+          "description": "A tag associated with a resource.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "pattern": {
+          "pattern": "^[a-z:-]*$",
+          "min_len": 1,
+          "max_len": 42,
+          "description": "Indicates pattern of rule, either 'time-based-conditions:once', 'time-based-conditions:weekly:all-day', or 'time-based-conditions:weekly:custom-hours'.",
+          "source": "iam-policy-management",
+          "schema": "/v2/policies:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_access_group_policy",
+      "kind": "data",
+      "schema": "V2PolicySubjectAttribute",
+      "spec": "iam-policy-management",
+      "score": 0.2333,
+      "attrs": {
+        "policies.rule_conditions.conditions.key": {
+          "pattern": "^[a-zA-Z0-9_]*$",
+          "min_len": 1,
+          "description": "The name of a subject attribute. For example, iam_id, access_group_id.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policies.rule_conditions.conditions.operator": {
+          "enum": [
+            "stringEquals",
+            "stringExists"
+          ],
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policies.rule_conditions.conditions.value": {
+          "description": "The value of a rule, resource, or subject attribute; can be boolean or string for resource and subject attribute. Can be a string or an array of strings (for example, an array of days to permit access) for rule attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policies.rule_conditions.key": {
+          "pattern": "^[a-zA-Z0-9_]*$",
+          "min_len": 1,
+          "description": "The name of a subject attribute. For example, iam_id, access_group_id.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policies.rule_conditions.operator": {
+          "enum": [
+            "stringEquals",
+            "stringExists"
+          ],
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policies.rule_conditions.value": {
+          "description": "The value of a rule, resource, or subject attribute; can be boolean or string for resource and subject attribute. Can be a string or an array of strings (for example, an array of days to permit access) for rule attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policies.pattern": {
+          "pattern": "^[a-z:-]*$",
+          "min_len": 1,
+          "max_len": 42,
+          "description": "Indicates pattern of rule, either 'time-based-conditions:once', 'time-based-conditions:weekly:all-day', or 'time-based-conditions:weekly:custom-hours'.",
+          "source": "iam-policy-management",
+          "schema": "/v2/policies:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_account_settings_external_interaction",
+      "kind": "data",
+      "schema": "params:patch:/v1/accounts/{account_id}/settings/access_management",
+      "spec": "iam-policy-management",
+      "score": 0.3,
+      "attrs": {
+        "account_id": {
+          "pattern": "^[A-Za-z0-9-_]+$",
+          "min_len": 1,
+          "max_len": 1024,
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "params:patch:/v1/accounts/{account_id}/settings/access_management"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_action_control_assignment",
+      "kind": "data",
+      "schema": "params:patch:/v1/action_control_assignments/{assignment_id}",
+      "spec": "iam-policy-management",
+      "score": 0.5,
+      "attrs": {
+        "assignment_id": {
+          "min_len": 1,
+          "max_len": 60,
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "params:patch:/v1/action_control_assignments/{assignment_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_action_control_assignments",
+      "kind": "data",
+      "schema": "/v1/action_control_assignments/{assignment_id}:patch",
+      "spec": "iam-policy-management",
+      "score": 0.58,
+      "attrs": {
+        "template_version": {
+          "pattern": "^[0-9]*$",
+          "min_len": 1,
+          "max_len": 2,
+          "description": "The version number of the template used to identify different versions of same template.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "/v1/action_control_assignments/{assignment_id}:patch"
+        },
+        "template_id": {
+          "pattern": "^policyTemplate-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 1,
+          "max_len": 51,
+          "description": "policy template ID",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "PolicyAssignmentRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_action_control_template",
+      "kind": "data",
+      "schema": "/v1/action_control_templates/{action_control_template_id}/versions:post",
+      "spec": "iam-policy-management",
+      "score": 0.2607,
+      "attrs": {
+        "action_control_templates.action_control.description": {
+          "min_len": 0,
+          "max_len": 300,
+          "description": "Description of the action control template. This is shown to users in the enterprise account. Use this to describe the purpose or context of the action control for enterprise users managing IAM templates.",
+          "source": "iam-policy-management",
+          "schema": "/v1/action_control_templates/{action_control_template_id}/versions:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_action_control_template_version",
+      "kind": "data",
+      "schema": "params:put:/v1/action_control_templates/{action_control_template_id}/versions/{version}",
+      "spec": "iam-policy-management",
+      "score": 0.5792,
+      "attrs": {
+        "action_control_template_id": {
+          "pattern": "^actionControlTemplate-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 1,
+          "max_len": 58,
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "params:put:/v1/action_control_templates/{action_control_template_id}/versions/{version}"
+        },
+        "version": {
+          "pattern": "^[0-9]*$",
+          "min_len": 1,
+          "max_len": 2,
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "params:put:/v1/action_control_templates/{action_control_template_id}/versions/{version}"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_authorization_policies",
+      "kind": "data",
+      "schema": "PolicyTemplateRequest",
+      "spec": "iam-policy-management",
+      "score": 0.18,
+      "attrs": {
+        "account_id": {
+          "pattern": "^[A-Za-z0-9-]*$",
+          "min_len": 1,
+          "max_len": 32,
+          "description": "Enterprise account ID where this template is created.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "PolicyTemplateRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_policy_assignment",
+      "kind": "data",
+      "schema": "params:patch:/v1/policy_assignments/{assignment_id}",
+      "spec": "iam-policy-management",
+      "score": 0.5867,
+      "attrs": {
+        "assignment_id": {
+          "min_len": 1,
+          "max_len": 53,
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "params:patch:/v1/policy_assignments/{assignment_id}"
+        },
+        "version": {
+          "enum": [
+            "1.0"
+          ],
+          "min_len": 1,
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "params:patch:/v1/policy_assignments/{assignment_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_policy_assignments",
+      "kind": "data",
+      "schema": "PolicyAssignmentRequest",
+      "spec": "iam-policy-management",
+      "score": 0.38,
+      "attrs": {
+        "assignments.resources.target": {
+          "pattern": "^[A-Za-z0-9-]*$",
+          "min_len": 1,
+          "max_len": 32,
+          "description": "ID of the target account",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "PolicyAssignmentRequest"
+        },
+        "template_id": {
+          "pattern": "^policyTemplate-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 1,
+          "max_len": 51,
+          "description": "policy template ID",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "PolicyAssignmentRequest"
+        },
+        "template_version": {
+          "pattern": "^[0-9]*$",
+          "min_len": 1,
+          "max_len": 2,
+          "description": "policy template version",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "PolicyAssignmentRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_policy_template",
+      "kind": "data",
+      "schema": "V2PolicySubjectAttribute",
+      "spec": "iam-policy-management",
+      "score": 0.42,
+      "attrs": {
+        "policy_templates.policy.rule_conditions.conditions.key": {
+          "pattern": "^[a-zA-Z0-9_]*$",
+          "min_len": 1,
+          "description": "The name of a subject attribute. For example, iam_id, access_group_id.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policy_templates.policy.rule_conditions.conditions.operator": {
+          "enum": [
+            "stringEquals",
+            "stringExists"
+          ],
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policy_templates.policy.rule_conditions.conditions.value": {
+          "description": "The value of a rule, resource, or subject attribute; can be boolean or string for resource and subject attribute. Can be a string or an array of strings (for example, an array of days to permit access) for rule attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policy_templates.policy.rule_conditions.key": {
+          "pattern": "^[a-zA-Z0-9_]*$",
+          "min_len": 1,
+          "description": "The name of a subject attribute. For example, iam_id, access_group_id.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policy_templates.policy.rule_conditions.operator": {
+          "enum": [
+            "stringEquals",
+            "stringExists"
+          ],
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policy_templates.policy.rule_conditions.value": {
+          "description": "The value of a rule, resource, or subject attribute; can be boolean or string for resource and subject attribute. Can be a string or an array of strings (for example, an array of days to permit access) for rule attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_policy_template_version",
+      "kind": "data",
+      "schema": "V2PolicySubjectAttribute",
+      "spec": "iam-policy-management",
+      "score": 0.3,
+      "attrs": {
+        "policy.rule_conditions.conditions.key": {
+          "pattern": "^[a-zA-Z0-9_]*$",
+          "min_len": 1,
+          "description": "The name of a subject attribute. For example, iam_id, access_group_id.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policy.rule_conditions.conditions.operator": {
+          "enum": [
+            "stringEquals",
+            "stringExists"
+          ],
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policy.rule_conditions.conditions.value": {
+          "description": "The value of a rule, resource, or subject attribute; can be boolean or string for resource and subject attribute. Can be a string or an array of strings (for example, an array of days to permit access) for rule attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policy.rule_conditions.key": {
+          "pattern": "^[a-zA-Z0-9_]*$",
+          "min_len": 1,
+          "description": "The name of a subject attribute. For example, iam_id, access_group_id.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policy.rule_conditions.operator": {
+          "enum": [
+            "stringEquals",
+            "stringExists"
+          ],
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policy.rule_conditions.value": {
+          "description": "The value of a rule, resource, or subject attribute; can be boolean or string for resource and subject attribute. Can be a string or an array of strings (for example, an array of days to permit access) for rule attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policy_template_id": {
+          "pattern": "^policyTemplate-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 1,
+          "max_len": 51,
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "params:post:/v1/policy_templates/{policy_template_id}/versions"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_role_actions",
+      "kind": "data",
+      "schema": "IdentityTypesPatch",
+      "spec": "iam-policy-management",
+      "score": 0.3133,
+      "attrs": {
+        "service": {
+          "description": "The core set of properties associated with an identity type.",
+          "source": "iam-policy-management",
+          "schema": "IdentityTypesPatch"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_role_assignment",
+      "kind": "data",
+      "schema": "params:patch:/v1/role_assignments/{assignment_id}",
+      "spec": "iam-policy-management",
+      "score": 0.47,
+      "attrs": {
+        "assignment_id": {
+          "min_len": 1,
+          "max_len": 60,
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "params:patch:/v1/role_assignments/{assignment_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_role_assignments",
+      "kind": "data",
+      "schema": "/v1/role_assignments/{assignment_id}:patch",
+      "spec": "iam-policy-management",
+      "score": 0.55,
+      "attrs": {
+        "template_version": {
+          "pattern": "^[0-9]*$",
+          "min_len": 1,
+          "max_len": 2,
+          "description": "The version number of the template used to identify different versions of same template.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "/v1/role_assignments/{assignment_id}:patch"
+        },
+        "template_id": {
+          "pattern": "^policyTemplate-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 1,
+          "max_len": 51,
+          "description": "policy template ID",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "PolicyAssignmentRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_role_template",
+      "kind": "data",
+      "schema": "Role",
+      "spec": "iam-policy-management",
+      "score": 0.56,
+      "attrs": {
+        "role_templates.role.description": {
+          "min_len": 1,
+          "max_len": 250,
+          "description": "The description of the role.",
+          "source": "iam-policy-management",
+          "schema": "Role"
+        },
+        "role_templates.role.display_name": {
+          "min_len": 1,
+          "max_len": 50,
+          "description": "The display the name of the role that is shown in the console.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Role"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_role_template_version",
+      "kind": "data",
+      "schema": "params:put:/v1/role_templates/{role_template_id}/versions/{version}",
+      "spec": "iam-policy-management",
+      "score": 0.4357,
+      "attrs": {
+        "role_template_id": {
+          "pattern": "^roleTemplate-[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 1,
+          "max_len": 49,
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "params:put:/v1/role_templates/{role_template_id}/versions/{version}"
+        },
+        "version": {
+          "pattern": "^[0-9]*$",
+          "min_len": 1,
+          "max_len": 2,
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "params:put:/v1/role_templates/{role_template_id}/versions/{version}"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_roles",
+      "kind": "data",
+      "schema": "IdentityTypesPatch",
+      "spec": "iam-policy-management",
+      "score": 0.3133,
+      "attrs": {
+        "service": {
+          "description": "The core set of properties associated with an identity type.",
+          "source": "iam-policy-management",
+          "schema": "IdentityTypesPatch"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_service_policy",
+      "kind": "data",
+      "schema": "Policy",
+      "spec": "iam-policy-management",
+      "score": 0.21,
+      "attrs": {
+        "policies.rule_conditions.conditions.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policies.rule_conditions.conditions.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policies.rule_conditions.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policies.rule_conditions.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policies.pattern": {
+          "pattern": "^[a-z:-]*$",
+          "min_len": 1,
+          "max_len": 42,
+          "description": "Indicates pattern of rule, either 'time-based-conditions:once', 'time-based-conditions:weekly:all-day', or 'time-based-conditions:weekly:custom-hours'.",
+          "source": "iam-policy-management",
+          "schema": "/v2/policies:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile_policy",
+      "kind": "data",
+      "schema": "Policy",
+      "spec": "iam-policy-management",
+      "score": 0.21,
+      "attrs": {
+        "policies.rule_conditions.conditions.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policies.rule_conditions.conditions.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policies.rule_conditions.operator": {
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policies.rule_conditions.value": {
+          "description": "The value of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "Policy"
+        },
+        "policies.pattern": {
+          "pattern": "^[a-z:-]*$",
+          "min_len": 1,
+          "max_len": 42,
+          "description": "Indicates pattern of rule, either 'time-based-conditions:once', 'time-based-conditions:weekly:all-day', or 'time-based-conditions:weekly:custom-hours'.",
+          "source": "iam-policy-management",
+          "schema": "/v2/policies:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_user_policy",
+      "kind": "data",
+      "schema": "V2PolicySubjectAttribute",
+      "spec": "iam-policy-management",
+      "score": 0.2333,
+      "attrs": {
+        "policies.rule_conditions.conditions.key": {
+          "pattern": "^[a-zA-Z0-9_]*$",
+          "min_len": 1,
+          "description": "The name of a subject attribute. For example, iam_id, access_group_id.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policies.rule_conditions.conditions.operator": {
+          "enum": [
+            "stringEquals",
+            "stringExists"
+          ],
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policies.rule_conditions.conditions.value": {
+          "description": "The value of a rule, resource, or subject attribute; can be boolean or string for resource and subject attribute. Can be a string or an array of strings (for example, an array of days to permit access) for rule attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policies.rule_conditions.key": {
+          "pattern": "^[a-zA-Z0-9_]*$",
+          "min_len": 1,
+          "description": "The name of a subject attribute. For example, iam_id, access_group_id.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policies.rule_conditions.operator": {
+          "enum": [
+            "stringEquals",
+            "stringExists"
+          ],
+          "min_len": 1,
+          "description": "The operator of an attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policies.rule_conditions.value": {
+          "description": "The value of a rule, resource, or subject attribute; can be boolean or string for resource and subject attribute. Can be a string or an array of strings (for example, an array of days to permit access) for rule attribute.",
+          "api_required": true,
+          "source": "iam-policy-management",
+          "schema": "V2PolicySubjectAttribute"
+        },
+        "policies.pattern": {
+          "pattern": "^[a-z:-]*$",
+          "min_len": 1,
+          "max_len": 42,
+          "description": "Indicates pattern of rule, either 'time-based-conditions:once', 'time-based-conditions:weekly:all-day', or 'time-based-conditions:weekly:custom-hours'.",
+          "source": "iam-policy-management",
+          "schema": "/v2/policies:post"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,639 @@
+{
+  "packages": [
+    {
+      "package": "accountmanagement",
+      "matched": 1,
+      "resources": 1,
+      "overlay_attrs": 1,
+      "specs": [
+        "bss-account-management",
+        "user-management",
+        "support-center-case-management",
+        "support-center-case-management-v2"
+      ]
+    },
+    {
+      "package": "appconfiguration",
+      "matched": 23,
+      "resources": 23,
+      "overlay_attrs": 89,
+      "specs": [
+        "app-configuration"
+      ]
+    },
+    {
+      "package": "appid",
+      "matched": 16,
+      "resources": 49,
+      "overlay_attrs": 31,
+      "specs": [
+        "app-id-auth",
+        "app-id-management",
+        "app-id-profiles"
+      ]
+    },
+    {
+      "package": "atracker",
+      "matched": 5,
+      "resources": 5,
+      "overlay_attrs": 26,
+      "specs": [
+        "atracker"
+      ]
+    },
+    {
+      "package": "backuprecovery",
+      "matched": 56,
+      "resources": 57,
+      "overlay_attrs": 589,
+      "specs": [
+        "baas-backup-recovery",
+        "baas-ibm_reporting_api"
+      ]
+    },
+    {
+      "package": "catalogmanagement",
+      "matched": 14,
+      "resources": 14,
+      "overlay_attrs": 341,
+      "specs": [
+        "resource-catalog-private-catalog",
+        "resource-catalog-global-catalog",
+        "search"
+      ]
+    },
+    {
+      "package": "cdtektonpipeline",
+      "matched": 10,
+      "resources": 10,
+      "overlay_attrs": 83,
+      "specs": [
+        "tekton-pipeline"
+      ]
+    },
+    {
+      "package": "cdtoolchain",
+      "matched": 49,
+      "resources": 49,
+      "overlay_attrs": 145,
+      "specs": [
+        "toolchain"
+      ]
+    },
+    {
+      "package": "cis",
+      "matched": 68,
+      "resources": 79,
+      "overlay_attrs": 168,
+      "specs": [
+        "cis"
+      ]
+    },
+    {
+      "package": "classicinfrastructure",
+      "matched": 0,
+      "resources": 59,
+      "overlay_attrs": 0,
+      "specs": []
+    },
+    {
+      "package": "cloudant",
+      "matched": 3,
+      "resources": 4,
+      "overlay_attrs": 4,
+      "specs": [
+        "cloudant-cloudant-gen2"
+      ]
+    },
+    {
+      "package": "cloudfoundry",
+      "matched": 0,
+      "resources": 19,
+      "overlay_attrs": 0,
+      "specs": [
+        "cloudfoundry"
+      ]
+    },
+    {
+      "package": "cloudshell",
+      "matched": 2,
+      "resources": 2,
+      "overlay_attrs": 9,
+      "specs": [
+        "cloudshell"
+      ]
+    },
+    {
+      "package": "codeengine",
+      "matched": 22,
+      "resources": 22,
+      "overlay_attrs": 182,
+      "specs": [
+        "codeengine-v2"
+      ]
+    },
+    {
+      "package": "configurationaggregator",
+      "matched": 4,
+      "resources": 4,
+      "overlay_attrs": 15,
+      "specs": [
+        "app-configuration"
+      ]
+    },
+    {
+      "package": "contextbasedrestrictions",
+      "matched": 6,
+      "resources": 6,
+      "overlay_attrs": 24,
+      "specs": [
+        "context-based-restrictions"
+      ]
+    },
+    {
+      "package": "cos",
+      "matched": 12,
+      "resources": 12,
+      "overlay_attrs": 25,
+      "specs": [
+        "cos-cos-configuration",
+        "cos-cos-compatibility",
+        "cos-cos-configuration-f2019",
+        "cos-cos-compatibility-f2019"
+      ]
+    },
+    {
+      "package": "database",
+      "matched": 6,
+      "resources": 9,
+      "overlay_attrs": 7,
+      "specs": [
+        "cloud-databases-api-cloud-databases-api-v5",
+        "cloud-databases-api-cloud-databases-api-v4"
+      ]
+    },
+    {
+      "package": "db2",
+      "matched": 6,
+      "resources": 9,
+      "overlay_attrs": 9,
+      "specs": [
+        "db2-on-cloud-db2-on-cloud-v4",
+        "db2-on-cloud-db2-on-cloud-byoc",
+        "db2-on-cloud-db2-saas-perf-v4",
+        "db2-warehouse-on-cloud-db2-warehouse-on-cloud-v5",
+        "db2-warehouse-on-cloud-db2-warehouse-on-cloud-v4",
+        "db2-warehouse-on-cloud-db2-warehouse-on-cloud-byoc"
+      ]
+    },
+    {
+      "package": "directlink",
+      "matched": 20,
+      "resources": 25,
+      "overlay_attrs": 92,
+      "specs": [
+        "direct_link",
+        "direct_link_provider_api"
+      ]
+    },
+    {
+      "package": "dnsservices",
+      "matched": 19,
+      "resources": 19,
+      "overlay_attrs": 102,
+      "specs": [
+        "dns-svcs"
+      ]
+    },
+    {
+      "package": "drautomationservice",
+      "matched": 10,
+      "resources": 19,
+      "overlay_attrs": 39,
+      "specs": [
+        "dr-automation-powervs"
+      ]
+    },
+    {
+      "package": "enterprise",
+      "matched": 6,
+      "resources": 6,
+      "overlay_attrs": 14,
+      "specs": [
+        "enterprise-apis-enterprise",
+        "enterprise-apis-billing-unit",
+        "enterprise-apis-resource-usage-reports"
+      ]
+    },
+    {
+      "package": "eventnotification",
+      "matched": 102,
+      "resources": 115,
+      "overlay_attrs": 401,
+      "specs": [
+        "event-notifications"
+      ]
+    },
+    {
+      "package": "eventstreams",
+      "matched": 8,
+      "resources": 10,
+      "overlay_attrs": 9,
+      "specs": [
+        "event-streams-adminrest",
+        "event-streams-schemaregistry",
+        "event-streams-restproducer",
+        "event-streams-restproducer_v2"
+      ]
+    },
+    {
+      "package": "functions",
+      "matched": 0,
+      "resources": 10,
+      "overlay_attrs": 0,
+      "specs": []
+    },
+    {
+      "package": "globaltagging",
+      "matched": 4,
+      "resources": 4,
+      "overlay_attrs": 6,
+      "specs": [
+        "tagging"
+      ]
+    },
+    {
+      "package": "hpcs",
+      "matched": 10,
+      "resources": 10,
+      "overlay_attrs": 73,
+      "specs": [
+        "hs-crypto",
+        "uko"
+      ]
+    },
+    {
+      "package": "iamaccessgroup",
+      "matched": 10,
+      "resources": 10,
+      "overlay_attrs": 46,
+      "specs": [
+        "iam-access-groups"
+      ]
+    },
+    {
+      "package": "iamidentity",
+      "matched": 42,
+      "resources": 44,
+      "overlay_attrs": 131,
+      "specs": [
+        "iam-identity-token-api"
+      ]
+    },
+    {
+      "package": "iampolicy",
+      "matched": 37,
+      "resources": 38,
+      "overlay_attrs": 202,
+      "specs": [
+        "iam-policy-management"
+      ]
+    },
+    {
+      "package": "kms",
+      "matched": 22,
+      "resources": 22,
+      "overlay_attrs": 51,
+      "specs": [
+        "key-protect",
+        "hs-crypto",
+        "uko"
+      ]
+    },
+    {
+      "package": "kubernetes",
+      "matched": 46,
+      "resources": 49,
+      "overlay_attrs": 101,
+      "specs": [
+        "kubernetes-containers-v1-v2"
+      ]
+    },
+    {
+      "package": "logs",
+      "matched": 33,
+      "resources": 43,
+      "overlay_attrs": 400,
+      "specs": [
+        "logs-service-api"
+      ]
+    },
+    {
+      "package": "logsrouter",
+      "matched": 5,
+      "resources": 5,
+      "overlay_attrs": 8,
+      "specs": [
+        "logs-router-service-api-logs-router-v1"
+      ]
+    },
+    {
+      "package": "logsrouting",
+      "matched": 2,
+      "resources": 2,
+      "overlay_attrs": 7,
+      "specs": [
+        "logs-router-service-api-logs-router-v1"
+      ]
+    },
+    {
+      "package": "metricsrouter",
+      "matched": 5,
+      "resources": 5,
+      "overlay_attrs": 18,
+      "specs": [
+        "metrics-router-metrics-router-v3"
+      ]
+    },
+    {
+      "package": "mqcloud",
+      "matched": 13,
+      "resources": 15,
+      "overlay_attrs": 21,
+      "specs": [
+        "mq-on-cloud"
+      ]
+    },
+    {
+      "package": "pag",
+      "matched": 0,
+      "resources": 2,
+      "overlay_attrs": 0,
+      "specs": [
+        "privileged-access-gateway"
+      ]
+    },
+    {
+      "package": "partnercentersell",
+      "matched": 7,
+      "resources": 7,
+      "overlay_attrs": 46,
+      "specs": [
+        "partner-center-sell"
+      ]
+    },
+    {
+      "package": "platformnotifications",
+      "matched": 1,
+      "resources": 1,
+      "overlay_attrs": 2,
+      "specs": [
+        "platform-notifications"
+      ]
+    },
+    {
+      "package": "power",
+      "matched": 85,
+      "resources": 124,
+      "overlay_attrs": 30,
+      "specs": [
+        "power-cloud",
+        "power-cloud-metadata-identity"
+      ]
+    },
+    {
+      "package": "powerhaautomationservice",
+      "matched": 0,
+      "resources": 8,
+      "overlay_attrs": 0,
+      "specs": []
+    },
+    {
+      "package": "project",
+      "matched": 6,
+      "resources": 6,
+      "overlay_attrs": 70,
+      "specs": [
+        "projects"
+      ]
+    },
+    {
+      "package": "pushnotification",
+      "matched": 0,
+      "resources": 2,
+      "overlay_attrs": 0,
+      "specs": []
+    },
+    {
+      "package": "registry",
+      "matched": 2,
+      "resources": 3,
+      "overlay_attrs": 3,
+      "specs": [
+        "container-registry",
+        "vulnerability-advisor"
+      ]
+    },
+    {
+      "package": "resourcecontroller",
+      "matched": 7,
+      "resources": 7,
+      "overlay_attrs": 10,
+      "specs": [
+        "resource-controller-resource-controller",
+        "resource-controller-ibm-cloud-osb-api"
+      ]
+    },
+    {
+      "package": "resourcemanager",
+      "matched": 3,
+      "resources": 3,
+      "overlay_attrs": 3,
+      "specs": [
+        "resource-controller-resource-manager"
+      ]
+    },
+    {
+      "package": "satellite",
+      "matched": 0,
+      "resources": 20,
+      "overlay_attrs": 0,
+      "specs": []
+    },
+    {
+      "package": "scc",
+      "matched": 35,
+      "resources": 37,
+      "overlay_attrs": 103,
+      "specs": [
+        "security-compliance",
+        "workload-protection"
+      ]
+    },
+    {
+      "package": "schematics",
+      "matched": 25,
+      "resources": 25,
+      "overlay_attrs": 581,
+      "specs": [
+        "schematics-schematics"
+      ]
+    },
+    {
+      "package": "sdsaas",
+      "matched": 3,
+      "resources": 3,
+      "overlay_attrs": 22,
+      "specs": [
+        "block-storage",
+        "object-storage"
+      ]
+    },
+    {
+      "package": "secretsmanager",
+      "matched": 50,
+      "resources": 53,
+      "overlay_attrs": 320,
+      "specs": [
+        "secrets-manager-secrets-manager-v2"
+      ]
+    },
+    {
+      "package": "secretsmanagerinstancemanagement",
+      "matched": 2,
+      "resources": 2,
+      "overlay_attrs": 0,
+      "specs": [
+        "secrets-manager-secrets-manager-instance-management-v2"
+      ]
+    },
+    {
+      "package": "transitgateway",
+      "matched": 9,
+      "resources": 14,
+      "overlay_attrs": 50,
+      "specs": [
+        "transit-gateway"
+      ]
+    },
+    {
+      "package": "usagereports",
+      "matched": 2,
+      "resources": 2,
+      "overlay_attrs": 7,
+      "specs": [
+        "metering-reporting",
+        "usage-metering"
+      ]
+    },
+    {
+      "package": "vmware",
+      "matched": 3,
+      "resources": 4,
+      "overlay_attrs": 17,
+      "specs": [
+        "vmware-service",
+        "vmware-solutions"
+      ]
+    },
+    {
+      "package": "vpc",
+      "matched": 251,
+      "resources": 294,
+      "overlay_attrs": 975,
+      "specs": [
+        "vpc-latest",
+        "vpc-identity-latest",
+        "vpc-metadata-latest"
+      ]
+    }
+  ],
+  "matched": 1188,
+  "overlay_attrs": 5708,
+  "specs_used": [
+    "app-configuration",
+    "app-id-auth",
+    "app-id-management",
+    "app-id-profiles",
+    "atracker",
+    "baas-backup-recovery",
+    "baas-ibm_reporting_api",
+    "block-storage",
+    "bss-account-management",
+    "cis",
+    "cloud-databases-api-cloud-databases-api-v4",
+    "cloud-databases-api-cloud-databases-api-v5",
+    "cloudant-cloudant-gen2",
+    "cloudfoundry",
+    "cloudshell",
+    "codeengine-v2",
+    "container-registry",
+    "context-based-restrictions",
+    "cos-cos-compatibility",
+    "cos-cos-compatibility-f2019",
+    "cos-cos-configuration",
+    "cos-cos-configuration-f2019",
+    "db2-on-cloud-db2-on-cloud-byoc",
+    "db2-on-cloud-db2-on-cloud-v4",
+    "db2-on-cloud-db2-saas-perf-v4",
+    "db2-warehouse-on-cloud-db2-warehouse-on-cloud-byoc",
+    "db2-warehouse-on-cloud-db2-warehouse-on-cloud-v4",
+    "db2-warehouse-on-cloud-db2-warehouse-on-cloud-v5",
+    "direct_link",
+    "direct_link_provider_api",
+    "dns-svcs",
+    "dr-automation-powervs",
+    "enterprise-apis-billing-unit",
+    "enterprise-apis-enterprise",
+    "enterprise-apis-resource-usage-reports",
+    "event-notifications",
+    "event-streams-adminrest",
+    "event-streams-restproducer",
+    "event-streams-restproducer_v2",
+    "event-streams-schemaregistry",
+    "hs-crypto",
+    "iam-access-groups",
+    "iam-identity-token-api",
+    "iam-policy-management",
+    "key-protect",
+    "kubernetes-containers-v1-v2",
+    "logs-router-service-api-logs-router-v1",
+    "logs-service-api",
+    "metering-reporting",
+    "metrics-router-metrics-router-v3",
+    "mq-on-cloud",
+    "object-storage",
+    "partner-center-sell",
+    "platform-notifications",
+    "power-cloud",
+    "power-cloud-metadata-identity",
+    "privileged-access-gateway",
+    "projects",
+    "resource-catalog-global-catalog",
+    "resource-catalog-private-catalog",
+    "resource-controller-ibm-cloud-osb-api",
+    "resource-controller-resource-controller",
+    "resource-controller-resource-manager",
+    "schematics-schematics",
+    "search",
+    "secrets-manager-secrets-manager-instance-management-v2",
+    "secrets-manager-secrets-manager-v2",
+    "security-compliance",
+    "support-center-case-management",
+    "support-center-case-management-v2",
+    "tagging",
+    "tekton-pipeline",
+    "toolchain",
+    "transit-gateway",
+    "uko",
+    "usage-metering",
+    "user-management",
+    "vmware-service",
+    "vmware-solutions",
+    "vpc-identity-latest",
+    "vpc-latest",
+    "vpc-metadata-latest",
+    "vulnerability-advisor",
+    "workload-protection"
+  ]
+}

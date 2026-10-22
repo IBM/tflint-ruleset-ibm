@@ -1,0 +1,1076 @@
+{
+  "package": "atracker",
+  "resources": [
+    {
+      "name": "ibm_atracker_route",
+      "function": "ResourceIBMAtrackerRoute",
+      "package": "atracker",
+      "kind": "resource",
+      "description": "Manages ibm_atracker_route. The name of the route.",
+      "attributes": {
+        "api_version": {
+          "name": "api_version",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The API version of the route."
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The timestamp of the route creation time."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the route resource.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "managed_by": {
+          "name": "managed_by",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Present when the route is enterprise-managed (`managed_by: enterprise`).",
+          "default": "account",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "account",
+              "enterprise"
+            ]
+          }
+        },
+        "message": {
+          "name": "message",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An optional message containing information about the route."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name of the route.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 1000,
+            "regexp": "^[a-zA-Z0-9 -._:]+$"
+          }
+        },
+        "rules": {
+          "name": "rules",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The routing rules that will be evaluated in their order of the array. Once a rule is matched, the remaining rules in the route definition will be skipped.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "locations": {
+                "name": "locations",
+                "type": "list",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Logs from these locations will be sent to the targets specified. Locations is a superset of regions including global and *.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "target_ids": {
+                "name": "target_ids",
+                "type": "list",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The target ID List. All the events will be send to all targets listed in the rule. You can include targets from other regions.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The timestamp of the route last updated time."
+        },
+        "version": {
+          "name": "version",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The version of the route."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "managed_by",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "account, enterprise"
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9 -._:]+$",
+          "min_len": 1,
+          "max_len": 1000
+        }
+      ]
+    },
+    {
+      "name": "ibm_atracker_settings",
+      "function": "ResourceIBMAtrackerSettings",
+      "package": "atracker",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_atracker_settings resource.",
+      "attributes": {
+        "api_version": {
+          "name": "api_version",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "API version used for configuring IBM Cloud Activity Tracker Event Routing resources in the account."
+        },
+        "default_targets": {
+          "name": "default_targets",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The target ID List. In the event that no routing rule causes the event to be sent to a target, these targets will receive the event. Enterprise-managed targets are not supported.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "message": {
+          "name": "message",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An optional message containing information about the audit log locations."
+        },
+        "metadata_region_backup": {
+          "name": "metadata_region_backup",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "To store all your meta data in a backup region.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 3,
+            "max_len": 256,
+            "regexp": "^[a-zA-Z0-9 -_]"
+          }
+        },
+        "metadata_region_primary": {
+          "name": "metadata_region_primary",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "To store all your meta data in a single region.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 3,
+            "max_len": 256,
+            "regexp": "^[a-zA-Z0-9 -_]"
+          }
+        },
+        "permitted_target_regions": {
+          "name": "permitted_target_regions",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "If present then only these regions may be used to define a target.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "private_api_endpoint_only": {
+          "name": "private_api_endpoint_only",
+          "type": "bool",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "If you set this true then you cannot access api through public network."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "metadata_region_backup",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9 -_]",
+          "min_len": 3,
+          "max_len": 256
+        },
+        {
+          "identifier": "metadata_region_primary",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9 -_]",
+          "min_len": 3,
+          "max_len": 256
+        }
+      ]
+    },
+    {
+      "name": "ibm_atracker_target",
+      "function": "ResourceIBMAtrackerTarget",
+      "package": "atracker",
+      "kind": "resource",
+      "description": "Manages ibm_atracker_target. The name of the target.",
+      "attributes": {
+        "api_version": {
+          "name": "api_version",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The API version of the target."
+        },
+        "appconfig_endpoint": {
+          "name": "appconfig_endpoint",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "Property values for the IBM Cloud App Configuration endpoint.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "target_crn": {
+                "name": "target_crn",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The CRN of the IBM Cloud App Configuration instance.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              }
+            }
+          }
+        },
+        "cloudlogs_endpoint": {
+          "name": "cloudlogs_endpoint",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "Property values for the IBM Cloud Logs endpoint.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "target_crn": {
+                "name": "target_crn",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The CRN of the IBM Cloud Logs instance.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              }
+            }
+          }
+        },
+        "cos_endpoint": {
+          "name": "cos_endpoint",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "Property values for a Cloud Object Storage endpoint.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "api_key": {
+                "name": "api_key",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "sensitive": true,
+                "description": "The IAM API key that has writer access to the Cloud Object Storage instance. This credential is masked in the response. This is required if service_to_service is not enabled."
+              },
+              "bucket": {
+                "name": "bucket",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The bucket name under the Cloud Object Storage instance."
+              },
+              "endpoint": {
+                "name": "endpoint",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The host name of the Cloud Object Storage endpoint."
+              },
+              "service_to_service_enabled": {
+                "name": "service_to_service_enabled",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Determines if IBM Cloud Activity Tracker Event Routing has service to service authentication enabled. Set this flag to true if service to service is enabled and do not supply an apikey."
+              },
+              "target_crn": {
+                "name": "target_crn",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The CRN of the Cloud Object Storage instance.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              }
+            }
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The timestamp of the target creation time."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the target resource.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "eventstreams_endpoint": {
+          "name": "eventstreams_endpoint",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "Property values for the Event Streams endpoint.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "api_key": {
+                "name": "api_key",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "sensitive": true,
+                "description": "The user password (api key) for the message hub topic in the Event Streams instance. This is required if service_to_service is not enabled."
+              },
+              "brokers": {
+                "name": "brokers",
+                "type": "list",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "List of broker endpoints.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "service_to_service_enabled": {
+                "name": "service_to_service_enabled",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Determines if IBM Cloud Activity Tracker Event Routing has service to service authentication enabled. Set this flag to true if service to service is enabled and do not supply an apikey."
+              },
+              "target_crn": {
+                "name": "target_crn",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The CRN of the Event Streams instance.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "topic": {
+                "name": "topic",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The messsage hub topic defined in the Event Streams instance."
+              }
+            }
+          }
+        },
+        "managed_by": {
+          "name": "managed_by",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Identifies who manages the target.",
+          "default": "account",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "account",
+              "enterprise"
+            ]
+          }
+        },
+        "message": {
+          "name": "message",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An optional message containing information about the target."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name of the target. The name must be 1000 characters or less, and cannot include any special characters other than `(space) - . _ :`.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 1000,
+            "regexp": "^[a-zA-Z0-9 -._:]+$"
+          }
+        },
+        "region": {
+          "name": "region",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "Include this optional field if you want to create a target in a different region other than the one you are connected.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 3,
+            "max_len": 1000,
+            "regexp": "^[a-zA-Z0-9 -._:]+$"
+          }
+        },
+        "target_type": {
+          "name": "target_type",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The type of the target. It can be cloud_object_storage, event_streams, cloud_logs, or app_config. Based on this type you must include cos_endpoint, eventstreams_endpoint, cloudlogs_endpoint, or appconfig_endpoint.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "app_config",
+              "cloud_logs",
+              "cloud_object_storage",
+              "event_streams"
+            ]
+          }
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The timestamp of the target last updated time."
+        },
+        "write_status": {
+          "name": "write_status",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the write attempt to the target with the provided endpoint parameters.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "last_failure": {
+                "name": "last_failure",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The timestamp of the failure."
+              },
+              "reason_for_last_failure": {
+                "name": "reason_for_last_failure",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Detailed description of the cause of the failure."
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status such as failed or success."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "managed_by",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "account, enterprise"
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9 -._:]+$",
+          "min_len": 1,
+          "max_len": 1000
+        },
+        {
+          "identifier": "region",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9 -._:]+$",
+          "min_len": 3,
+          "max_len": 1000
+        },
+        {
+          "identifier": "target_type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "app_config, cloud_logs, cloud_object_storage, event_streams"
+        }
+      ]
+    },
+    {
+      "name": "ibm_atracker_routes",
+      "function": "DataSourceIBMAtrackerRoutes",
+      "package": "atracker",
+      "kind": "data",
+      "description": "Reads ibm_atracker_routes. The name of the route.",
+      "attributes": {
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The name of the route."
+        },
+        "routes": {
+          "name": "routes",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A list of route resources.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "api_version": {
+                "name": "api_version",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The API version of the route."
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The timestamp of the route creation time."
+              },
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The crn of the route resource.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The uuid of the route resource."
+              },
+              "managed_by": {
+                "name": "managed_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Present when the route is enterprise-managed (`managed_by: enterprise`)."
+              },
+              "message": {
+                "name": "message",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "An optional message containing information about the route."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the route."
+              },
+              "rules": {
+                "name": "rules",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The routing rules that will be evaluated in their order of the array. Once a rule is matched, the remaining rules in the route definition will be skipped.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "locations": {
+                      "name": "locations",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Logs from these locations will be sent to the targets specified. Locations is a superset of regions including global and *.",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    },
+                    "target_ids": {
+                      "name": "target_ids",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The target ID List. All the events will be send to all targets listed in the rule. You can include targets from other regions.",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The timestamp of the route last updated time."
+              },
+              "version": {
+                "name": "version",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The version of the route."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_atracker_targets",
+      "function": "DataSourceIBMAtrackerTargets",
+      "package": "atracker",
+      "kind": "data",
+      "description": "Reads ibm_atracker_targets. The name of the target resource.",
+      "attributes": {
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The name of the target resource."
+        },
+        "region": {
+          "name": "region",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Limit the query to the specified region."
+        },
+        "targets": {
+          "name": "targets",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A list of target resources.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "api_version": {
+                "name": "api_version",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The API version of the target."
+              },
+              "appconfig_endpoint": {
+                "name": "appconfig_endpoint",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Property values for the IBM Cloud App Configuration endpoint in responses.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "target_crn": {
+                      "name": "target_crn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The CRN of the IBM Cloud App Configuration instance.",
+                      "validate": {
+                        "kind": "crn",
+                        "func_name": "name_heuristic"
+                      }
+                    }
+                  }
+                }
+              },
+              "cloudlogs_endpoint": {
+                "name": "cloudlogs_endpoint",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Property values for the IBM Cloud Logs endpoint in responses.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "target_crn": {
+                      "name": "target_crn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The CRN of the IBM Cloud Logs instance.",
+                      "validate": {
+                        "kind": "crn",
+                        "func_name": "name_heuristic"
+                      }
+                    }
+                  }
+                }
+              },
+              "cos_endpoint": {
+                "name": "cos_endpoint",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Property values for a Cloud Object Storage Endpoint in responses.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "bucket": {
+                      "name": "bucket",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The bucket name under the Cloud Object Storage instance."
+                    },
+                    "endpoint": {
+                      "name": "endpoint",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The host name of the Cloud Object Storage endpoint."
+                    },
+                    "service_to_service_enabled": {
+                      "name": "service_to_service_enabled",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Determines if IBM Cloud Activity Tracker Event Routing has service to service authentication enabled. Set this flag to true if service to service is enabled and do not supply an apikey."
+                    },
+                    "target_crn": {
+                      "name": "target_crn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The CRN of the Cloud Object Storage instance.",
+                      "validate": {
+                        "kind": "crn",
+                        "func_name": "name_heuristic"
+                      }
+                    }
+                  }
+                }
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The timestamp of the target creation time."
+              },
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The crn of the target resource.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "eventstreams_endpoint": {
+                "name": "eventstreams_endpoint",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Property values for the Event Streams Endpoint in responses.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "api_key": {
+                      "name": "api_key",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The user password (api key) for the message hub topic in the Event Streams instance."
+                    },
+                    "brokers": {
+                      "name": "brokers",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "List of broker endpoints.",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    },
+                    "service_to_service_enabled": {
+                      "name": "service_to_service_enabled",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Determines if IBM Cloud Activity Tracker Event Routing has service to service authentication enabled. Set this flag to true if service to service is enabled and do not supply an apikey."
+                    },
+                    "target_crn": {
+                      "name": "target_crn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The CRN of the Event Streams instance.",
+                      "validate": {
+                        "kind": "crn",
+                        "func_name": "name_heuristic"
+                      }
+                    },
+                    "topic": {
+                      "name": "topic",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The messsage hub topic defined in the Event Streams instance."
+                    }
+                  }
+                }
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The uuid of the target resource."
+              },
+              "managed_by": {
+                "name": "managed_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Identifies who manages the target."
+              },
+              "message": {
+                "name": "message",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "An optional message containing information about the target."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the target resource."
+              },
+              "region": {
+                "name": "region",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Included this optional field if you used it to create a target in a different region other than the one you are connected."
+              },
+              "target_type": {
+                "name": "target_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The type of the target."
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The timestamp of the target last updated time."
+              },
+              "write_status": {
+                "name": "write_status",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of the write attempt to the target with the provided endpoint parameters.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "last_failure": {
+                      "name": "last_failure",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The timestamp of the failure."
+                    },
+                    "reason_for_last_failure": {
+                      "name": "reason_for_last_failure",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Detailed description of the cause of the failure."
+                    },
+                    "status": {
+                      "name": "status",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The status such as failed or success."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 5,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package atracker"
+}

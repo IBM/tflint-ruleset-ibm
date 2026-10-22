@@ -1,0 +1,32 @@
+{
+  "package": "pag",
+  "specs": [
+    {
+      "slug": "privileged-access-gateway",
+      "title": "Privileged Access Gateway API",
+      "schema_count": 11,
+      "path_count": 6
+    }
+  ],
+  "matched": 0,
+  "resource_count": 2,
+  "overlay_attrs": 0,
+  "resources": [
+    {
+      "name": "ibm_pag_instance",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pag_instance",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    }
+  ]
+}

@@ -1,0 +1,3206 @@
+{
+  "package": "appid",
+  "resources": [
+    {
+      "name": "ibm_appid_action_url",
+      "function": "ResourceIBMAppIDActionURL",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_action_url resource.",
+      "attributes": {
+        "action": {
+          "name": "action",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The type of the action: `on_user_verified` - the URL of your custom user verified page, `on_reset_password` - the URL of your custom reset password page",
+          "validate": {
+            "kind": "enum",
+            "func_name": "StringInSlice",
+            "enum": [
+              "on_user_verified",
+              "on_reset_password"
+            ]
+          }
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The AppID instance GUID"
+        },
+        "url": {
+          "name": "url",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The action URL"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_apm",
+      "function": "ResourceIBMAppIDAPM",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_apm resource.",
+      "attributes": {
+        "enabled": {
+          "name": "enabled",
+          "type": "bool",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "`true` if APM is enabled"
+        },
+        "lockout_policy": {
+          "name": "lockout_policy",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "max_items": 1,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": true,
+                "optional": false,
+                "computed": false
+              },
+              "lockout_time_sec": {
+                "name": "lockout_time_sec",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "default": "1800"
+              },
+              "num_of_attempts": {
+                "name": "num_of_attempts",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "default": "3"
+              }
+            }
+          }
+        },
+        "min_password_change_interval": {
+          "name": "min_password_change_interval",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "max_items": 1,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": true,
+                "optional": false,
+                "computed": false
+              },
+              "min_hours_to_change_password": {
+                "name": "min_hours_to_change_password",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "default": "0"
+              }
+            }
+          }
+        },
+        "password_expiration": {
+          "name": "password_expiration",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "max_items": 1,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "days_to_expire": {
+                "name": "days_to_expire",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "default": "30"
+              },
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": true,
+                "optional": false,
+                "computed": false
+              }
+            }
+          }
+        },
+        "password_reuse": {
+          "name": "password_reuse",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "max_items": 1,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": true,
+                "optional": false,
+                "computed": false
+              },
+              "max_password_reuse": {
+                "name": "max_password_reuse",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "default": "8"
+              }
+            }
+          }
+        },
+        "prevent_password_with_username": {
+          "name": "prevent_password_with_username",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "default": "false"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_application",
+      "function": "ResourceIBMAppIDApplication",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Manages ibm_appid_application. The application name to be registered.",
+      "attributes": {
+        "client_id": {
+          "name": "client_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The `client_id` is a public identifier for applications"
+        },
+        "discovery_endpoint": {
+          "name": "discovery_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "This URL returns OAuth Authorization Server Metadata"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The application name to be registered. Application name cannot exceed 50 characters.",
+          "validate": {
+            "kind": "string_len",
+            "func_name": "StringLenBetween",
+            "min_len": 1,
+            "max_len": 50
+          }
+        },
+        "oauth_server_url": {
+          "name": "oauth_server_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Base URL for common OAuth endpoints, like `/authorization`, `/token` and `/publickeys`"
+        },
+        "profiles_url": {
+          "name": "profiles_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "secret": {
+          "name": "secret",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "The `secret` is a secret known only to the application and the authorization server"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The service `tenantId`"
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The type of application to be registered. Allowed types are `regularwebapp` and `singlepageapp`, default is `regularwebapp`.",
+          "default": "regularwebapp",
+          "validate": {
+            "kind": "enum",
+            "func_name": "StringInSlice",
+            "enum": [
+              "regularwebapp",
+              "singlepageapp"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_application_roles",
+      "function": "ResourceIBMAppIDApplicationRoles",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_application_roles resource.",
+      "attributes": {
+        "client_id": {
+          "name": "client_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The `client_id` is a public identifier for applications"
+        },
+        "roles": {
+          "name": "roles",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "A list of role IDs for roles that you want to be assigned to the application (this is different from AppID role access)",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The service `tenantId`"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_application_scopes",
+      "function": "ResourceIBMAppIDApplicationScopes",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_application_scopes resource.",
+      "attributes": {
+        "client_id": {
+          "name": "client_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The `client_id` is a public identifier for applications"
+        },
+        "scopes": {
+          "name": "scopes",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "A `scope` is a runtime action in your application that you register with IBM Cloud App ID to create an access permission",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The service `tenantId`"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_audit_status",
+      "function": "ResourceIBMAppIDAuditStatus",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_audit_status resource.",
+      "attributes": {
+        "is_active": {
+          "name": "is_active",
+          "type": "bool",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The auditing status of the tenant."
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_cloud_directory_template",
+      "function": "ResourceIBMAppIDCloudDirectoryTemplate",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_cloud_directory_template resource.",
+      "attributes": {
+        "base64_encoded_html_body": {
+          "name": "base64_encoded_html_body",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The HTML body of the email encoded in Base64"
+        },
+        "html_body": {
+          "name": "html_body",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The HTML body of the email"
+        },
+        "language": {
+          "name": "language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Preferred language for resource. Format as described at RFC5646. According to the configured languages codes returned from the `GET /management/v4/{tenantId}/config/ui/languages API`.",
+          "default": "en"
+        },
+        "plain_text_body": {
+          "name": "plain_text_body",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The text body of the email."
+        },
+        "subject": {
+          "name": "subject",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The subject of the email"
+        },
+        "template_name": {
+          "name": "template_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The type of email template. This can be `USER_VERIFICATION`, `WELCOME`, `PASSWORD_CHANGED`, `RESET_PASSWORD` or `MFA_VERIFICATION`",
+          "validate": {
+            "kind": "enum",
+            "func_name": "StringInSlice"
+          }
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_cloud_directory_user",
+      "function": "ResourceIBMAppIDCloudDirectoryUser",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_cloud_directory_user resource.",
+      "attributes": {
+        "active": {
+          "name": "active",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Determines if the user account is active or not",
+          "default": "true"
+        },
+        "create_profile": {
+          "name": "create_profile",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "A boolean indication if a profile should be created for the Cloud Directory user",
+          "default": "true"
+        },
+        "display_name": {
+          "name": "display_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Cloud Directory user display name"
+        },
+        "email": {
+          "name": "email",
+          "type": "set",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "A set of user emails",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "primary": {
+                "name": "primary",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "`true` if this is primary email"
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "User email"
+              }
+            }
+          }
+        },
+        "locked_until": {
+          "name": "locked_until",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Integer (epoch time in milliseconds), determines till when the user account will be locked"
+        },
+        "meta": {
+          "name": "meta",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Cloud Directory user metadata",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created": {
+                "name": "created",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "User creation date"
+              },
+              "last_modified": {
+                "name": "last_modified",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Last user modification date"
+              }
+            }
+          }
+        },
+        "password": {
+          "name": "password",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "sensitive": true,
+          "description": "User password"
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Accepted values `PENDING` or `CONFIRMED`",
+          "default": "PENDING",
+          "validate": {
+            "kind": "enum",
+            "func_name": "StringInSlice",
+            "enum": [
+              "PENDING",
+              "CONFIRMED"
+            ]
+          }
+        },
+        "subject": {
+          "name": "subject",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The user's identifier ('subject' in identity token)"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The AppID instance GUID"
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Cloud Directory user ID"
+        },
+        "user_name": {
+          "name": "user_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Optional username"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_idp_cloud_directory",
+      "function": "ResourceIBMAppIDIDPCloudDirectory",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_idp_cloud_directory resource.",
+      "attributes": {
+        "identity_confirm_access_mode": {
+          "name": "identity_confirm_access_mode",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "default": "FULL",
+          "validate": {
+            "kind": "enum",
+            "func_name": "StringInSlice",
+            "enum": [
+              "FULL",
+              "RESTRICTIVE",
+              "OFF"
+            ]
+          }
+        },
+        "identity_confirm_methods": {
+          "name": "identity_confirm_methods",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "identity_field": {
+          "name": "identity_field",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "bool",
+          "required": true,
+          "optional": false,
+          "computed": false
+        },
+        "reset_password_enabled": {
+          "name": "reset_password_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "default": "true"
+        },
+        "reset_password_notification_enabled": {
+          "name": "reset_password_notification_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "default": "true"
+        },
+        "self_service_enabled": {
+          "name": "self_service_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "default": "true"
+        },
+        "signup_enabled": {
+          "name": "signup_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "default": "true"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true
+        },
+        "welcome_enabled": {
+          "name": "welcome_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "default": "true"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_idp_custom",
+      "function": "ResourceIBMAppIDIDPCustom",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_idp_custom resource.",
+      "attributes": {
+        "is_active": {
+          "name": "is_active",
+          "type": "bool",
+          "required": true,
+          "optional": false,
+          "computed": false
+        },
+        "public_key": {
+          "name": "public_key",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "This is the public key used to validate your signed JWT. It is required to be a PEM in the RS256 or greater format."
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The service `tenantId`"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_idp_facebook",
+      "function": "ResourceIBMAppIDIDPFacebook",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_idp_facebook resource.",
+      "attributes": {
+        "config": {
+          "name": "config",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "Facebook IDP configuration",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "application_id": {
+                "name": "application_id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Facebook application id"
+              },
+              "application_secret": {
+                "name": "application_secret",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "sensitive": true,
+                "description": "Facebook application secret"
+              }
+            }
+          }
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "bool",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "`true` if Facebook IDP configuration is active"
+        },
+        "redirect_url": {
+          "name": "redirect_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Paste the URI into the Valid OAuth redirect URIs field in the Facebook Login section of the Facebook Developers Portal"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_idp_google",
+      "function": "ResourceIBMAppIDIDPGoogle",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_idp_google resource.",
+      "attributes": {
+        "config": {
+          "name": "config",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "Google IDP configuration",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "application_id": {
+                "name": "application_id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Google application id"
+              },
+              "application_secret": {
+                "name": "application_secret",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "sensitive": true,
+                "description": "Google application secret"
+              }
+            }
+          }
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "bool",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "`true` if Google IDP configuration is active"
+        },
+        "redirect_url": {
+          "name": "redirect_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Paste the URI into the Authorized redirect URIs field in the Google Developer Console"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_idp_saml",
+      "function": "ResourceIBMAppIDIDPSAML",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_idp_saml resource.",
+      "attributes": {
+        "config": {
+          "name": "config",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "SAML IDP configuration",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authn_context": {
+                "name": "authn_context",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "description": "SAML authNContext configuration",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "class": {
+                      "name": "class",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "List of `authnContext` classes",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    },
+                    "comparison": {
+                      "name": "comparison",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "validate": {
+                        "kind": "enum",
+                        "func_name": "StringInSlice",
+                        "enum": [
+                          "exact",
+                          "maximum",
+                          "minimum",
+                          "better"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "certificates": {
+                "name": "certificates",
+                "type": "list",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "max_items": 2,
+                "description": "List of certificates, primary and optional secondary",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "display_name": {
+                "name": "display_name",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Provider name"
+              },
+              "encrypt_response": {
+                "name": "encrypt_response",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "`true` if SAML responses should be encrypted",
+                "default": "false"
+              },
+              "entity_id": {
+                "name": "entity_id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Unique name for an Identity Provider"
+              },
+              "include_scoping": {
+                "name": "include_scoping",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "`true` if scopes are included",
+                "default": "false"
+              },
+              "sign_in_url": {
+                "name": "sign_in_url",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "SAML SSO url"
+              },
+              "sign_request": {
+                "name": "sign_request",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "`true` if SAML requests should be signed",
+                "default": "false"
+              }
+            }
+          }
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "bool",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "SAML IDP activation"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_languages",
+      "function": "ResourceIBMAppIDLanguages",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_languages resource.",
+      "attributes": {
+        "languages": {
+          "name": "languages",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The list of languages that can be used to customize email templates for Cloud Directory",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The service `tenantId`"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_mfa",
+      "function": "ResourceIBMAppIDMFA",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_mfa resource.",
+      "attributes": {
+        "is_active": {
+          "name": "is_active",
+          "type": "bool",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "`true` if MFA is active"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_mfa_channel",
+      "function": "ResourceIBMAppIDMFAChannel",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_mfa_channel resource.",
+      "attributes": {
+        "active": {
+          "name": "active",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Allowed values: `email`, `sms`",
+          "validate": {
+            "kind": "enum",
+            "func_name": "StringInSlice",
+            "enum": [
+              "email",
+              "sms"
+            ]
+          }
+        },
+        "sms_config": {
+          "name": "sms_config",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "sensitive": true,
+          "description": "Configuration for `sms` channel. Create Vonage account (https://dashboard.nexmo.com/sign-up) to get an API key",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "from": {
+                "name": "from",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Sender's phone number"
+              },
+              "key": {
+                "name": "key",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "sensitive": true,
+                "description": "API key"
+              },
+              "secret": {
+                "name": "secret",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "sensitive": true,
+                "description": "API secret"
+              }
+            }
+          }
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_password_regex",
+      "function": "ResourceIBMAppIDPasswordRegex",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_password_regex resource.",
+      "attributes": {
+        "base64_encoded_regex": {
+          "name": "base64_encoded_regex",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The regex expression rule for acceptable password encoded in base64"
+        },
+        "error_message": {
+          "name": "error_message",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Custom error message"
+        },
+        "regex": {
+          "name": "regex",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The escaped regex expression rule for acceptable password"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The service `tenantId`"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_redirect_urls",
+      "function": "ResourceIBMAppIDRedirectURLs",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_redirect_urls resource.",
+      "attributes": {
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The service `tenantId`"
+        },
+        "urls": {
+          "name": "urls",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "A list of redirect URLs",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_role",
+      "function": "ResourceIBMAppIDRole",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Manages ibm_appid_role. Unique role name",
+      "attributes": {
+        "access": {
+          "name": "access",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "application_id": {
+                "name": "application_id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Application `client_id`"
+              },
+              "scopes": {
+                "name": "scopes",
+                "type": "list",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Optional role description"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Unique role name"
+        },
+        "role_id": {
+          "name": "role_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Role ID"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The service `tenantId`"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_theme_color",
+      "function": "ResourceIBMAppIDThemeColor",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_theme_color resource.",
+      "attributes": {
+        "header_color": {
+          "name": "header_color",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_theme_text",
+      "function": "ResourceIBMAppIDThemeText",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_theme_text resource.",
+      "attributes": {
+        "footnote": {
+          "name": "footnote",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false
+        },
+        "tab_title": {
+          "name": "tab_title",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_token_config",
+      "function": "ResourceIBMAppIDTokenConfig",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_token_config resource.",
+      "attributes": {
+        "access_token_claim": {
+          "name": "access_token_claim",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "A set of objects that are created when claims that are related to access tokens are mapped",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "destination_claim": {
+                "name": "destination_claim",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Optional: Defines the custom attribute that can override the current claim in token."
+              },
+              "source": {
+                "name": "source",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Defines the source of the claim. Options include: `saml`, `cloud_directory`, `facebook`, `google`, `appid_custom`, and `attributes`.",
+                "validate": {
+                  "kind": "enum",
+                  "func_name": "StringInSlice",
+                  "enum": [
+                    "saml",
+                    "cloud_directory",
+                    "appid_custom",
+                    "facebook",
+                    "google",
+                    "ibmid",
+                    "attributes",
+                    "roles"
+                  ]
+                }
+              },
+              "source_claim": {
+                "name": "source_claim",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Defines the claim as provided by the source. It can refer to the identity provider's user information or the user's App ID custom attributes."
+              }
+            }
+          }
+        },
+        "access_token_expires_in": {
+          "name": "access_token_expires_in",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The length of time for which access tokens are valid in seconds"
+        },
+        "anonymous_access_enabled": {
+          "name": "anonymous_access_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The length of time for which an anonymous token is valid in seconds"
+        },
+        "anonymous_token_expires_in": {
+          "name": "anonymous_token_expires_in",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "default": "2592000"
+        },
+        "id_token_claim": {
+          "name": "id_token_claim",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "A set of objects that are created when claims that are related to identity tokens are mapped",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "destination_claim": {
+                "name": "destination_claim",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false
+              },
+              "source": {
+                "name": "source",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "validate": {
+                  "kind": "enum",
+                  "func_name": "StringInSlice",
+                  "enum": [
+                    "saml",
+                    "cloud_directory",
+                    "appid_custom",
+                    "facebook",
+                    "google",
+                    "ibmid",
+                    "attributes",
+                    "roles"
+                  ]
+                }
+              },
+              "source_claim": {
+                "name": "source_claim",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false
+              }
+            }
+          }
+        },
+        "refresh_token_enabled": {
+          "name": "refresh_token_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": true
+        },
+        "refresh_token_expires_in": {
+          "name": "refresh_token_expires_in",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The length of time for which refresh tokens are valid in seconds",
+          "default": "2592000"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The service `tenantId`"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_user_roles",
+      "function": "ResourceIBMAppIDUserRoles",
+      "package": "appid",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_appid_user_roles resource.",
+      "attributes": {
+        "role_ids": {
+          "name": "role_ids",
+          "type": "set",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "A set of AppID role IDs that should be assigned to the user",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "subject": {
+          "name": "subject",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The user's identifier ('subject' in identity token)"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_action_url",
+      "function": "DataSourceIBMAppIDActionURL",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_action_url data source.",
+      "attributes": {
+        "action": {
+          "name": "action",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The type of the action: `on_user_verified` - the URL of your custom user verified page, `on_reset_password` - the URL of your custom reset password page",
+          "validate": {
+            "kind": "enum",
+            "func_name": "StringInSlice",
+            "enum": [
+              "on_user_verified",
+              "on_reset_password"
+            ]
+          }
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        },
+        "url": {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The action URL"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_apm",
+      "function": "DataSourceIBMAppIDAPM",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_apm data source.",
+      "attributes": {
+        "enabled": {
+          "name": "enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "`true` if APM is enabled"
+        },
+        "lockout_policy": {
+          "name": "lockout_policy",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "lockout_time_sec": {
+                "name": "lockout_time_sec",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "num_of_attempts": {
+                "name": "num_of_attempts",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        },
+        "min_password_change_interval": {
+          "name": "min_password_change_interval",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "min_hours_to_change_password": {
+                "name": "min_hours_to_change_password",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        },
+        "password_expiration": {
+          "name": "password_expiration",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "days_to_expire": {
+                "name": "days_to_expire",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        },
+        "password_reuse": {
+          "name": "password_reuse",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "max_password_reuse": {
+                "name": "max_password_reuse",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        },
+        "prevent_password_with_username": {
+          "name": "prevent_password_with_username",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_application",
+      "function": "DataSourceIBMAppIDApplication",
+      "package": "appid",
+      "kind": "data",
+      "description": "Reads ibm_appid_application. The application name",
+      "attributes": {
+        "client_id": {
+          "name": "client_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The `client_id` is a public identifier for applications"
+        },
+        "discovery_endpoint": {
+          "name": "discovery_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "This URL returns OAuth Authorization Server Metadata"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The application name"
+        },
+        "oauth_server_url": {
+          "name": "oauth_server_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Base URL for common OAuth endpoints, like `/authorization`, `/token` and `/publickeys`"
+        },
+        "profiles_url": {
+          "name": "profiles_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "secret": {
+          "name": "secret",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "The `secret` is a secret known only to the application and the authorization server"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The service `tenantId`"
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The type of application. Allowed types are `regularwebapp` and `singlepageapp`."
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_application_roles",
+      "function": "DataSourceIBMAppIDApplicationRoles",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_application_roles data source.",
+      "attributes": {
+        "client_id": {
+          "name": "client_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The `client_id` is a public identifier for applications"
+        },
+        "roles": {
+          "name": "roles",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defined roles for an application that is registered with an App ID instance",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Application role ID"
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Application role name"
+              }
+            }
+          }
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The service `tenantId`"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_application_scopes",
+      "function": "DataSourceIBMAppIDApplicationScopes",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_application_scopes data source.",
+      "attributes": {
+        "client_id": {
+          "name": "client_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The `client_id` is a public identifier for applications"
+        },
+        "scopes": {
+          "name": "scopes",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A `scope` is a runtime action in your application that you register with IBM Cloud App ID to create an access permission",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The service `tenantId`"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_applications",
+      "function": "DataSourceIBMAppIDApplications",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_applications data source.",
+      "attributes": {
+        "applications": {
+          "name": "applications",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "client_id": {
+                "name": "client_id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The `client_id` is a public identifier for applications"
+              },
+              "discovery_endpoint": {
+                "name": "discovery_endpoint",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "This URL returns OAuth Authorization Server Metadata"
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The application name"
+              },
+              "oauth_server_url": {
+                "name": "oauth_server_url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Base URL for common OAuth endpoints, like `/authorization`, `/token` and `/publickeys`"
+              },
+              "profiles_url": {
+                "name": "profiles_url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "secret": {
+                "name": "secret",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "sensitive": true,
+                "description": "The `secret` is a secret known only to the application and the authorization server"
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The type of application to be registered. Allowed types are `regularwebapp` and `singlepageapp`."
+              }
+            }
+          }
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_audit_status",
+      "function": "DataSourceIBMAppIDAuditStatus",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_audit_status data source.",
+      "attributes": {
+        "is_active": {
+          "name": "is_active",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The auditing status of the tenant."
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_cloud_directory_template",
+      "function": "DataSourceIBMAppIDCloudDirectoryTemplate",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_cloud_directory_template data source.",
+      "attributes": {
+        "base64_encoded_html_body": {
+          "name": "base64_encoded_html_body",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The HTML body of the email encoded in Base64"
+        },
+        "html_body": {
+          "name": "html_body",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The HTML body of the email"
+        },
+        "language": {
+          "name": "language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Preferred language for resource. Format as described at RFC5646. According to the configured languages codes returned from the `GET /management/v4/{tenantId}/config/ui/languages API`.",
+          "default": "en"
+        },
+        "plain_text_body": {
+          "name": "plain_text_body",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The text body of the email."
+        },
+        "subject": {
+          "name": "subject",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject of the email"
+        },
+        "template_name": {
+          "name": "template_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The type of email template. This can be `USER_VERIFICATION`, `WELCOME`, `PASSWORD_CHANGED`, `RESET_PASSWORD` or `MFA_VERIFICATION`",
+          "validate": {
+            "kind": "enum",
+            "func_name": "StringInSlice"
+          }
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_cloud_directory_user",
+      "function": "DataSourceIBMAppIDCloudDirectoryUser",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_cloud_directory_user data source.",
+      "attributes": {
+        "active": {
+          "name": "active",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Determines if the user account is active or not"
+        },
+        "display_name": {
+          "name": "display_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Cloud Directory user display name"
+        },
+        "email": {
+          "name": "email",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A set of user emails",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "primary": {
+                "name": "primary",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "`true` if this is primary email"
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "User email"
+              }
+            }
+          }
+        },
+        "locked_until": {
+          "name": "locked_until",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Integer (epoch time in milliseconds), determines till when the user account will be locked"
+        },
+        "meta": {
+          "name": "meta",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Cloud Directory user metadata",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created": {
+                "name": "created",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "User creation date"
+              },
+              "last_modified": {
+                "name": "last_modified",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Last user modification date"
+              }
+            }
+          }
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Current user status: `PENDING` or `CONFIRMED`"
+        },
+        "subject": {
+          "name": "subject",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The user's identifier ('subject' in identity token)"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Cloud Directory user ID"
+        },
+        "user_name": {
+          "name": "user_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Optional username"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_idp_cloud_directory",
+      "function": "DataSourceIBMAppIDIDPCloudDirectory",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_idp_cloud_directory data source.",
+      "attributes": {
+        "identity_confirm_access_mode": {
+          "name": "identity_confirm_access_mode",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "identity_confirm_methods": {
+          "name": "identity_confirm_methods",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "identity_field": {
+          "name": "identity_field",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "reset_password_enabled": {
+          "name": "reset_password_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "reset_password_notification_enabled": {
+          "name": "reset_password_notification_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "self_service_enabled": {
+          "name": "self_service_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Allow users to manage their account from your app"
+        },
+        "signup_enabled": {
+          "name": "signup_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Allow users to sign-up to your app"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The service `tenantId`"
+        },
+        "welcome_enabled": {
+          "name": "welcome_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_idp_custom",
+      "function": "DataSourceIBMAppIDIDPCustom",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_idp_custom data source.",
+      "attributes": {
+        "is_active": {
+          "name": "is_active",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "public_key": {
+          "name": "public_key",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "This is the public key used to validate your signed JWT. It is required to be a PEM in the RS256 or greater format."
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_idp_facebook",
+      "function": "DataSourceIBMAppIDIDPFacebook",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_idp_facebook data source.",
+      "attributes": {
+        "config": {
+          "name": "config",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Facebook IDP configuration",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "application_id": {
+                "name": "application_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Facebook application id"
+              },
+              "application_secret": {
+                "name": "application_secret",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "sensitive": true,
+                "description": "Facebook application secret"
+              }
+            }
+          }
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "`true` if Facebook IDP configuration is active"
+        },
+        "redirect_url": {
+          "name": "redirect_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Paste the URI into the Valid OAuth redirect URIs field in the Facebook Login section of the Facebook Developers Portal"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_idp_google",
+      "function": "DataSourceIBMAppIDIDPGoogle",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_idp_google data source.",
+      "attributes": {
+        "config": {
+          "name": "config",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Google IDP configuration",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "application_id": {
+                "name": "application_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Google application id"
+              },
+              "application_secret": {
+                "name": "application_secret",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Google application secret"
+              }
+            }
+          }
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "`true` if Google IDP configuration is active"
+        },
+        "redirect_url": {
+          "name": "redirect_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Paste the URI into the Authorized redirect URIs field in the Google Developer Console"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_idp_saml",
+      "function": "DataSourceIBMAppIDIDPSAML",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_idp_saml data source.",
+      "attributes": {
+        "config": {
+          "name": "config",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "SAML IDP configuration",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authn_context": {
+                "name": "authn_context",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "SAML authNContext configuration",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "class": {
+                      "name": "class",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "List of `authnContext` classes",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    },
+                    "comparison": {
+                      "name": "comparison",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    }
+                  }
+                }
+              },
+              "certificates": {
+                "name": "certificates",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of certificates, primary and optional secondary",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "display_name": {
+                "name": "display_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Provider name"
+              },
+              "encrypt_response": {
+                "name": "encrypt_response",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "`true` if SAML responses should be encrypted"
+              },
+              "entity_id": {
+                "name": "entity_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique name for an Identity Provider"
+              },
+              "include_scoping": {
+                "name": "include_scoping",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "`true` if scopes are included"
+              },
+              "sign_in_url": {
+                "name": "sign_in_url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "SAML SSO url"
+              },
+              "sign_request": {
+                "name": "sign_request",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "`true` if SAML requests should be signed"
+              }
+            }
+          }
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "SAML IDP activation"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_idp_saml_metadata",
+      "function": "DataSourceIBMAppIDIDPSAMLMetadata",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_idp_saml_metadata data source.",
+      "attributes": {
+        "metadata": {
+          "name": "metadata",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "SAML Metadata"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_languages",
+      "function": "DataSourceIBMAppIDLanguages",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_languages data source.",
+      "attributes": {
+        "languages": {
+          "name": "languages",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The list of languages that can be used to customize email templates for Cloud Directory",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_mfa",
+      "function": "DataSourceIBMAppIDMFA",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_mfa data source.",
+      "attributes": {
+        "is_active": {
+          "name": "is_active",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "`true` if MFA is active"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_mfa_channel",
+      "function": "DataSourceIBMAppIDMFAChannel",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_mfa_channel data source.",
+      "attributes": {
+        "active": {
+          "name": "active",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Possible values: `email`, `sms`"
+        },
+        "sms_config": {
+          "name": "sms_config",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "Configuration for `sms` channel",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "from": {
+                "name": "from",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Sender's phone number"
+              },
+              "key": {
+                "name": "key",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "sensitive": true,
+                "description": "API Key"
+              },
+              "secret": {
+                "name": "secret",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "sensitive": true,
+                "description": "API Secret"
+              }
+            }
+          }
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_password_regex",
+      "function": "DataSourceIBMAppIDPasswordRegex",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_password_regex data source.",
+      "attributes": {
+        "base64_encoded_regex": {
+          "name": "base64_encoded_regex",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The regex expression rule for acceptable password encoded in base64"
+        },
+        "error_message": {
+          "name": "error_message",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Custom error message"
+        },
+        "regex": {
+          "name": "regex",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The escaped regex expression rule for acceptable password"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The service `tenantId`"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_redirect_urls",
+      "function": "DataSourceIBMAppIDRedirectURLs",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_redirect_urls data source.",
+      "attributes": {
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The service `tenantId`"
+        },
+        "urls": {
+          "name": "urls",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A list of redirect URLs",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_role",
+      "function": "DataSourceIBMAppIDRole",
+      "package": "appid",
+      "kind": "data",
+      "description": "Reads ibm_appid_role. Unique role name",
+      "attributes": {
+        "access": {
+          "name": "access",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A set of access policies that bind specific application scopes to the role",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "application_id": {
+                "name": "application_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "scopes": {
+                "name": "scopes",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Optional role description"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Unique role name"
+        },
+        "role_id": {
+          "name": "role_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Role ID"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The service `tenantId`"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_roles",
+      "function": "DataSourceIBMAppIDRoles",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_roles data source.",
+      "attributes": {
+        "roles": {
+          "name": "roles",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "access": {
+                "name": "access",
+                "type": "set",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "application_id": {
+                      "name": "application_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    },
+                    "scopes": {
+                      "name": "scopes",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Optional role description"
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique role name"
+              },
+              "role_id": {
+                "name": "role_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Role ID"
+              }
+            }
+          }
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_theme_color",
+      "function": "DataSourceIBMAppIDThemeColor",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_theme_color data source.",
+      "attributes": {
+        "header_color": {
+          "name": "header_color",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_theme_text",
+      "function": "DataSourceIBMAppIDThemeText",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_theme_text data source.",
+      "attributes": {
+        "footnote": {
+          "name": "footnote",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "tab_title": {
+          "name": "tab_title",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_token_config",
+      "function": "DataSourceIBMAppIDTokenConfig",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_token_config data source.",
+      "attributes": {
+        "access_token_claim": {
+          "name": "access_token_claim",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A set of objects that are created when claims that are related to access tokens are mapped",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "destination_claim": {
+                "name": "destination_claim",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Optional: Defines the custom attribute that can override the current claim in token."
+              },
+              "source": {
+                "name": "source",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Defines the source of the claim. Options include: `saml`, `cloud_directory`, `facebook`, `google`, `appid_custom`, and `attributes`."
+              },
+              "source_claim": {
+                "name": "source_claim",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Defines the claim as provided by the source. It can refer to the identity provider's user information or the user's App ID custom attributes."
+              }
+            }
+          }
+        },
+        "access_token_expires_in": {
+          "name": "access_token_expires_in",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The length of time for which access tokens are valid in seconds"
+        },
+        "anonymous_access_enabled": {
+          "name": "anonymous_access_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "anonymous_token_expires_in": {
+          "name": "anonymous_token_expires_in",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The length of time for which an anonymous token is valid in seconds"
+        },
+        "id_token_claim": {
+          "name": "id_token_claim",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A set of objects that are created when claims that are related to identity tokens are mapped",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "destination_claim": {
+                "name": "destination_claim",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "source": {
+                "name": "source",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "source_claim": {
+                "name": "source_claim",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        },
+        "refresh_token_enabled": {
+          "name": "refresh_token_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "refresh_token_expires_in": {
+          "name": "refresh_token_expires_in",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The length of time for which refresh tokens are valid in seconds"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The service `tenantId`"
+        }
+      }
+    },
+    {
+      "name": "ibm_appid_user_roles",
+      "function": "DataSourceIBMAppIDUserRoles",
+      "package": "appid",
+      "kind": "data",
+      "description": "Schema validation for the ibm_appid_user_roles data source.",
+      "attributes": {
+        "roles": {
+          "name": "roles",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A set of user roles",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Role ID"
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Role name"
+              }
+            }
+          }
+        },
+        "subject": {
+          "name": "subject",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The user's identifier ('subject' in identity token)"
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The AppID instance GUID"
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 49,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package appid"
+}

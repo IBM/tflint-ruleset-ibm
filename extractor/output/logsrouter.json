@@ -1,0 +1,872 @@
+{
+  "package": "logsrouter",
+  "resources": [
+    {
+      "name": "ibm_logs_router_route",
+      "function": "ResourceIBMLogsRouterRoute",
+      "package": "logsrouter",
+      "kind": "resource",
+      "description": "Manages ibm_logs_router_route. The name of the route.",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The timestamp of the route creation time."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the route resource.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "managed_by": {
+          "name": "managed_by",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Identifies who manages the target.",
+          "default": "account",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "account",
+              "enterprise"
+            ]
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name of the route.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 1000,
+            "regexp": "^[a-zA-Z0-9 \\-._:]+$"
+          }
+        },
+        "rules": {
+          "name": "rules",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The routing rules that will be evaluated in their order of the array. Once a rule is matched, the remaining rules in the route definition will be skipped.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "action": {
+                "name": "action",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The action if the inclusion_filters matches, default is `send` action."
+              },
+              "inclusion_filters": {
+                "name": "inclusion_filters",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "A list of conditions to be satisfied for routing platform logs to pre-defined target.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "operand": {
+                      "name": "operand",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "Part of CRN that can be compared with values. Currently only location is supported."
+                    },
+                    "operator": {
+                      "name": "operator",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "The operation to be performed between operand and the provided values. 'is' to be used with one value and 'in' can support up to 20 values in the array."
+                    },
+                    "values": {
+                      "name": "values",
+                      "type": "list",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "The provided string values of the operand to be compared with.",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "targets": {
+                "name": "targets",
+                "type": "list",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The target ID List. Platform logs will be sent to all targets listed in the rule. You can include targets from other regions.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "The target uuid for a pre-defined platform logs router target."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The timestamp of the route last updated time."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "managed_by",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "account, enterprise"
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9 \\-._:]+$",
+          "min_len": 1,
+          "max_len": 1000
+        }
+      ]
+    },
+    {
+      "name": "ibm_logs_router_settings",
+      "function": "ResourceIBMLogsRouterSettings",
+      "package": "logsrouter",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_logs_router_settings resource.",
+      "attributes": {
+        "api_version": {
+          "name": "api_version",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "API version used for IBM Cloud Logs Routing service under the account."
+        },
+        "backup_metadata_region": {
+          "name": "backup_metadata_region",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "To backup all your meta data in a different region.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 3,
+            "max_len": 256,
+            "regexp": "^[a-zA-Z0-9 \\-_]+$"
+          }
+        },
+        "default_targets": {
+          "name": "default_targets",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "A list of default target references. Enterprise-managed targets are not supported.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The target uuid for a pre-defined platform logs router target."
+              }
+            }
+          }
+        },
+        "permitted_target_regions": {
+          "name": "permitted_target_regions",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "If present then only these regions may be used to define a target.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "primary_metadata_region": {
+          "name": "primary_metadata_region",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "To store all your meta data in a single region.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 3,
+            "max_len": 256,
+            "regexp": "^[a-zA-Z0-9 \\-_]+$"
+          }
+        },
+        "private_api_endpoint_only": {
+          "name": "private_api_endpoint_only",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "If you set this true then you cannot access api through public network."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "backup_metadata_region",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9 \\-_]+$",
+          "min_len": 3,
+          "max_len": 256
+        },
+        {
+          "identifier": "primary_metadata_region",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9 \\-_]+$",
+          "min_len": 3,
+          "max_len": 256
+        }
+      ]
+    },
+    {
+      "name": "ibm_logs_router_target",
+      "function": "ResourceIBMLogsRouterTarget",
+      "package": "logsrouter",
+      "kind": "resource",
+      "description": "Manages ibm_logs_router_target. The name of the target resource.",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The timestamp of the target creation time."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the target resource.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "destination_crn": {
+          "name": "destination_crn",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Cloud Resource Name (CRN) of the destination resource. Ensure you have a service authorization between IBM Cloud Logs Routing and your Cloud resource. See [service-to-service authorization](https://cloud.ibm.com/docs/logs-router?topic=logs-router-target-monitoring\u0026interface=ui#target-monitoring-ui) for details.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 3,
+            "max_len": 1000,
+            "regexp": "^[a-zA-Z0-9 \\-._:\\/]+$"
+          }
+        },
+        "managed_by": {
+          "name": "managed_by",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Present when the target is enterprise-managed (`managed_by: enterprise`). For account-managed targets this field is omitted.",
+          "default": "account",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "account",
+              "enterprise"
+            ]
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name of the target resource.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 1000,
+            "regexp": "^[a-zA-Z0-9 \\-._:]+$"
+          }
+        },
+        "region": {
+          "name": "region",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Include this optional field if you used it to create a target in a different region other than the one you are connected.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 3,
+            "max_len": 1000,
+            "regexp": "^[a-zA-Z0-9 \\-._:]+$"
+          }
+        },
+        "target_type": {
+          "name": "target_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The type of the target."
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The timestamp of the target last updated time."
+        },
+        "write_status": {
+          "name": "write_status",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the write attempt to the target with the provided endpoint parameters.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "last_failure": {
+                "name": "last_failure",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The timestamp of the failure."
+              },
+              "reason_for_last_failure": {
+                "name": "reason_for_last_failure",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Detailed description of the cause of the failure."
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status such as failed or success."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "destination_crn",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9 \\-._:\\/]+$",
+          "min_len": 3,
+          "max_len": 1000
+        },
+        {
+          "identifier": "managed_by",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "account, enterprise"
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9 \\-._:]+$",
+          "min_len": 1,
+          "max_len": 1000
+        },
+        {
+          "identifier": "region",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9 \\-._:]+$",
+          "min_len": 3,
+          "max_len": 1000
+        }
+      ]
+    },
+    {
+      "name": "ibm_logs_router_routes",
+      "function": "DataSourceIBMLogsRouterRoutes",
+      "package": "logsrouter",
+      "kind": "data",
+      "description": "Reads ibm_logs_router_routes. The name of the route.",
+      "attributes": {
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The name of the route."
+        },
+        "routes": {
+          "name": "routes",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A list of route resources.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The timestamp of the route creation time."
+              },
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The crn of the route resource.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The UUID of the route resource."
+              },
+              "managed_by": {
+                "name": "managed_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Present when the route is enterprise-managed (`managed_by: enterprise`)."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the route."
+              },
+              "rules": {
+                "name": "rules",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The routing rules that will be evaluated in their order of the array. Once a rule is matched, the remaining rules in the route definition will be skipped.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "action": {
+                      "name": "action",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The action if the inclusion_filters matches, default is `send` action."
+                    },
+                    "inclusion_filters": {
+                      "name": "inclusion_filters",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A list of conditions to be satisfied for routing platform logs to pre-defined target.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "operand": {
+                            "name": "operand",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Part of CRN that can be compared with values. Currently only location is supported."
+                          },
+                          "operator": {
+                            "name": "operator",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The operation to be performed between operand and the provided values. 'is' to be used with one value and 'in' can support up to 20 values in the array."
+                          },
+                          "values": {
+                            "name": "values",
+                            "type": "list",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The provided string values of the operand to be compared with.",
+                            "elem": {
+                              "kind": "schema",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "targets": {
+                      "name": "targets",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The target ID List. Platform logs will be sent to all targets listed in the rule. You can include targets from other regions.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "crn": {
+                            "name": "crn",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The CRN of a pre-defined logs-router target.",
+                            "validate": {
+                              "kind": "crn",
+                              "func_name": "name_heuristic"
+                            }
+                          },
+                          "id": {
+                            "name": "id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The target uuid for a pre-defined platform logs router target."
+                          },
+                          "name": {
+                            "name": "name",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The name of a pre-defined logs-router target."
+                          },
+                          "target_type": {
+                            "name": "target_type",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The type of the target."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The timestamp of the route last updated time."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_router_targets",
+      "function": "CombinedDataSourceIBMLogsRouterTargets",
+      "package": "logsrouter",
+      "kind": "data",
+      "description": "Reads ibm_logs_router_targets. The name of the target resource.",
+      "attributes": {
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The name of the target resource."
+        },
+        "region": {
+          "name": "region",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The region of the v1 tenant."
+        },
+        "targets": {
+          "name": "targets",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A list of target resources.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The timestamp of the target creation time."
+              },
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The crn of the target resource.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "destination_crn": {
+                "name": "destination_crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Cloud Resource Name (CRN) of the destination resource. Ensure you have a service authorization between IBM Cloud Logs Routing and your Cloud resource. See [service-to-service authorization](https://cloud.ibm.com/docs/logs-router?topic=logs-router-target-monitoring\u0026interface=ui#target-monitoring-ui) for details.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "etag": {
+                "name": "etag",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Resource version identifier."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The UUID of the target resource."
+              },
+              "log_sink_crn": {
+                "name": "log_sink_crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Cloud resource name of the log-sink target instance.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "managed_by": {
+                "name": "managed_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Present when the target is enterprise-managed (`managed_by: enterprise`). For account-managed targets this field is omitted."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the target resource."
+              },
+              "parameters": {
+                "name": "parameters",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of properties returned from a successful list operation for a log-sink of type IBM Log Analysis (logdna).",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "host": {
+                      "name": "host",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Host name of the log-sink."
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Network port of the log-sink.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "region": {
+                "name": "region",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Include this optional field if you used it to create a target in a different region other than the one you are connected."
+              },
+              "target_type": {
+                "name": "target_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The type of the target."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of log-sink. Identical to the \u003ccode\u003eservice-name\u003c/code\u003e segment of \u003ccode\u003elog_sink_crn\u003c/code\u003e."
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The timestamp of the target last updated time."
+              },
+              "write_status": {
+                "name": "write_status",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of the write attempt to the target with the provided endpoint parameters.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "last_failure": {
+                      "name": "last_failure",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The timestamp of the failure."
+                    },
+                    "reason_for_last_failure": {
+                      "name": "reason_for_last_failure",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Detailed description of the cause of the failure."
+                    },
+                    "status": {
+                      "name": "status",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The status such as failed or success."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tenant_id": {
+          "name": "tenant_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The instance ID of the v1 tenant."
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 5,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package logsrouter"
+}

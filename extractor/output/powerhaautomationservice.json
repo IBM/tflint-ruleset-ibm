@@ -1,0 +1,2135 @@
+{
+  "package": "powerhaautomationservice",
+  "resources": [
+    {
+      "name": "ibm_pha_api_key",
+      "function": "ResourceIBMPhaAPIKey",
+      "package": "powerhaautomationservice",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_pha_api_key resource.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The language requested for the return document.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$"
+          }
+        },
+        "api_key": {
+          "name": "api_key",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "sensitive": true,
+          "description": "The API key associated with the request.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 2048,
+            "regexp": "^[A-Za-z0-9._:-]+$"
+          }
+        },
+        "etag": {
+          "name": "etag",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "id": {
+          "name": "id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Unique identifier for the API key record."
+        },
+        "if_none_match": {
+          "name": "if_none_match",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "ETag for conditional requests (optional).",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$"
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Unique identifier of the provisioned instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9-]+$"
+          }
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Status of the API key retrieval request"
+        }
+      },
+      "validators": [
+        {
+          "identifier": "accept_language",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$",
+          "min_len": 1,
+          "max_len": 50
+        },
+        {
+          "identifier": "api_key",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9._:-]+$",
+          "min_len": 1,
+          "max_len": 2048
+        },
+        {
+          "identifier": "if_none_match",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$",
+          "min_len": 1,
+          "max_len": 50
+        },
+        {
+          "identifier": "instance_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9-]+$",
+          "min_len": 1,
+          "max_len": 50
+        }
+      ]
+    },
+    {
+      "name": "ibm_pha_cluster_nodes",
+      "function": "ResourceIBMPhaClusterNodes",
+      "package": "powerhaautomationservice",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_pha_cluster_nodes resource.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$"
+          }
+        },
+        "etag": {
+          "name": "etag",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "id": {
+          "name": "id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Identifier for this cluster node response."
+        },
+        "if_none_match": {
+          "name": "if_none_match",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "ETag for conditional requests (optional).",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$"
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Unique identifier of the provisioned instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9-]+$"
+          }
+        },
+        "primary_cluster_nodes": {
+          "name": "primary_cluster_nodes",
+          "type": "set",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "min_items": 0,
+          "max_items": 8,
+          "description": "List of primary cluster node VM IDs.",
+          "elem": {
+            "kind": "schema",
+            "type": "string",
+            "validate": {
+              "kind": "regexp",
+              "func_name": "StringMatch",
+              "regexp": "^[a-zA-Z0-9._:-]+$"
+            }
+          }
+        },
+        "primary_node_details": {
+          "name": "primary_node_details",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Details of the primary cluster nodes.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "agent_status": {
+                "name": "agent_status",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Status of the PHA agent running on the node."
+              },
+              "cores": {
+                "name": "cores",
+                "type": "float",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Number of CPU cores allocated to the VM."
+              },
+              "ip_addresses": {
+                "name": "ip_addresses",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of IP addresses assigned to the VM.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "memory": {
+                "name": "memory",
+                "type": "float",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Amount of memory allocated to the VM (in GB)."
+              },
+              "pha_level": {
+                "name": "pha_level",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "PowerHA version level installed on the node."
+              },
+              "region": {
+                "name": "region",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Region where the VM is deployed."
+              },
+              "vm_id": {
+                "name": "vm_id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Unique identifier of the VM."
+              },
+              "vm_name": {
+                "name": "vm_name",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Name of the VM."
+              },
+              "vm_status": {
+                "name": "vm_status",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Current status of the VM."
+              },
+              "workspace_id": {
+                "name": "workspace_id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "ID of the workspace associated with the VM."
+              }
+            }
+          }
+        },
+        "secondary_cluster_nodes": {
+          "name": "secondary_cluster_nodes",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "min_items": 0,
+          "max_items": 100,
+          "description": "List of secondary cluster node VM IDs.",
+          "elem": {
+            "kind": "schema",
+            "type": "string",
+            "validate": {
+              "kind": "regexp",
+              "func_name": "StringMatch",
+              "regexp": "^[a-zA-Z0-9._:-]+$"
+            }
+          }
+        },
+        "secondary_node_details": {
+          "name": "secondary_node_details",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Details of the secondary cluster nodes.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "agent_status": {
+                "name": "agent_status",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Status of the PHA agent running on the node."
+              },
+              "cores": {
+                "name": "cores",
+                "type": "float",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Number of CPU cores allocated to the VM."
+              },
+              "ip_addresses": {
+                "name": "ip_addresses",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of IP addresses assigned to the VM.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "memory": {
+                "name": "memory",
+                "type": "float",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Amount of memory allocated to the VM (in GB)."
+              },
+              "pha_level": {
+                "name": "pha_level",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "PowerHA version level installed on the node."
+              },
+              "region": {
+                "name": "region",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Region where the VM is deployed."
+              },
+              "vm_id": {
+                "name": "vm_id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Unique identifier of the VM."
+              },
+              "vm_name": {
+                "name": "vm_name",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Name of the VM."
+              },
+              "vm_status": {
+                "name": "vm_status",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Current status of the VM."
+              },
+              "workspace_id": {
+                "name": "workspace_id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "ID of the workspace associated with the VM."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "accept_language",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$",
+          "min_len": 1,
+          "max_len": 50
+        },
+        {
+          "identifier": "if_none_match",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$",
+          "min_len": 1,
+          "max_len": 50
+        },
+        {
+          "identifier": "instance_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9-]+$",
+          "min_len": 1,
+          "max_len": 50
+        }
+      ]
+    },
+    {
+      "name": "ibm_pha_deployment",
+      "function": "ResourceIBMPhaDeployment",
+      "package": "powerhaautomationservice",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_pha_deployment resource.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$"
+          }
+        },
+        "api_key": {
+          "name": "api_key",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "sensitive": true,
+          "description": "The API key associated with the request.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "StringMatch",
+            "regexp": "^[a-zA-Z0-9._:-]+$"
+          }
+        },
+        "apikey": {
+          "name": "apikey",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "API key used for authentication to the deployment service."
+        },
+        "cloud_account_id": {
+          "name": "cloud_account_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Cloud account identifier."
+        },
+        "cluster_type": {
+          "name": "cluster_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Type of PowerHA cluster being deployed.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "StringMatch",
+            "regexp": "^[a-zA-Z0-9._:-]+$"
+          }
+        },
+        "configure_type": {
+          "name": "configure_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Configuration type for the deployment.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "StringMatch",
+            "regexp": "^[a-zA-Z0-9._:-]+$"
+          }
+        },
+        "connectivity_type": {
+          "name": "connectivity_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of network connectivity."
+        },
+        "creation_time": {
+          "name": "creation_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Timestamp expressing creation time."
+        },
+        "custom_network": {
+          "name": "custom_network",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of custom network CIDRs.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "deprovision_time": {
+          "name": "deprovision_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Timestamp expressing deprovision time."
+        },
+        "etag": {
+          "name": "etag",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Global unique identifier."
+        },
+        "id": {
+          "name": "id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Provision request identifier."
+        },
+        "if_none_match": {
+          "name": "if_none_match",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "ETag for conditional requests (optional).",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$"
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "instance id of instance to provision.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9-]+$"
+          }
+        },
+        "is_duplicate": {
+          "name": "is_duplicate",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Indicates whether deployment is duplicate."
+        },
+        "location_id": {
+          "name": "location_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Identifier for the deployment location.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "StringMatch",
+            "regexp": "^[a-zA-Z0-9._:-]+$"
+          }
+        },
+        "plan_id": {
+          "name": "plan_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Identifier for the service plan."
+        },
+        "plan_name": {
+          "name": "plan_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of service plan."
+        },
+        "powerha_cluster_name": {
+          "name": "powerha_cluster_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of the PowerHA cluster."
+        },
+        "powerha_cluster_type": {
+          "name": "powerha_cluster_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of PowerHA cluster."
+        },
+        "powerha_level": {
+          "name": "powerha_level",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "PowerHA version level."
+        },
+        "primary_cluster_nodes": {
+          "name": "primary_cluster_nodes",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 100,
+          "description": "List of primary cluster node VM IDs (input).",
+          "elem": {
+            "kind": "schema",
+            "type": "string",
+            "validate": {
+              "kind": "string_len",
+              "func_name": "StringLenBetween",
+              "min_len": 1,
+              "max_len": 36
+            }
+          }
+        },
+        "primary_cluster_nodes_details": {
+          "name": "primary_cluster_nodes_details",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Detailed information of primary cluster nodes (output).",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "agent_status": {
+                "name": "agent_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Status of the PHA agent running on the node."
+              },
+              "cores": {
+                "name": "cores",
+                "type": "float",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Number of CPU cores allocated to the node."
+              },
+              "ip_address": {
+                "name": "ip_address",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "IP address assigned to the virtual machine.",
+                "validate": {
+                  "kind": "ipv4",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "memory": {
+                "name": "memory",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Memory allocated to the virtual machine."
+              },
+              "pha_level": {
+                "name": "pha_level",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "PowerHA version level installed on the node."
+              },
+              "region": {
+                "name": "region",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Region where the virtual machine is deployed."
+              },
+              "vm_id": {
+                "name": "vm_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique identifier of the virtual machine."
+              },
+              "vm_name": {
+                "name": "vm_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the virtual machine."
+              },
+              "vm_status": {
+                "name": "vm_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Current operational status of the virtual machine."
+              },
+              "workspace_id": {
+                "name": "workspace_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Workspace identifier associated with the node."
+              }
+            }
+          }
+        },
+        "primary_region_name": {
+          "name": "primary_region_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "name of the primary workspace region."
+        },
+        "primary_workspace": {
+          "name": "primary_workspace",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Primary workspace identifier.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 2048,
+            "regexp": "^[a-zA-Z0-9._:-]+$"
+          }
+        },
+        "primary_workspace_name": {
+          "name": "primary_workspace_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "name of the primary workspace."
+        },
+        "provision_end_time": {
+          "name": "provision_end_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Time stamp provisioning completed."
+        },
+        "provision_start_time": {
+          "name": "provision_start_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Time stamp provisioning started."
+        },
+        "provision_status": {
+          "name": "provision_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Current provision status."
+        },
+        "region_id": {
+          "name": "region_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Deployment region identifier."
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of the resource group."
+        },
+        "resource_group_crn": {
+          "name": "resource_group_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "CRN of associated resource group.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "resource_instance": {
+          "name": "resource_instance",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Resource instance identifier."
+        },
+        "secondary_cluster_nodes": {
+          "name": "secondary_cluster_nodes",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of secondary cluster nodes.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "agent_status": {
+                "name": "agent_status",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Status of the PHA agent running on the node."
+              },
+              "cores": {
+                "name": "cores",
+                "type": "float",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Number of CPU cores allocated to the node."
+              },
+              "ip_address": {
+                "name": "ip_address",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "IP address assigned to the virtual machine.",
+                "validate": {
+                  "kind": "ipv4",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "memory": {
+                "name": "memory",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Memory allocated to the virtual machine in MB or GB."
+              },
+              "pha_level": {
+                "name": "pha_level",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "PowerHA version level installed on the node."
+              },
+              "region": {
+                "name": "region",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Region where the virtual machine is deployed."
+              },
+              "vm_id": {
+                "name": "vm_id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Unique identifier of the virtual machine."
+              },
+              "vm_name": {
+                "name": "vm_name",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Name of the virtual machine."
+              },
+              "vm_status": {
+                "name": "vm_status",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Current operational status of the virtual machine."
+              },
+              "workspace_id": {
+                "name": "workspace_id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Workspace identifier associated with the node."
+              }
+            }
+          }
+        },
+        "secondary_location": {
+          "name": "secondary_location",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Secondary cluster location.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 16,
+            "regexp": "^[a-zA-Z0-9._:-]+$"
+          }
+        },
+        "secondary_workspace": {
+          "name": "secondary_workspace",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Secondary workspace identifier.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 2048,
+            "regexp": "^[a-zA-Z0-9._:-]+$"
+          }
+        },
+        "service_description": {
+          "name": "service_description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Description of provisioned service."
+        },
+        "service_id": {
+          "name": "service_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Identifier for the service."
+        },
+        "service_name": {
+          "name": "service_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of service."
+        },
+        "standby_cluster_nodes": {
+          "name": "standby_cluster_nodes",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 50,
+          "description": "List of standby cluster node VM IDs.",
+          "elem": {
+            "kind": "schema",
+            "type": "string",
+            "validate": {
+              "kind": "string_len",
+              "func_name": "StringLenBetween",
+              "min_len": 0,
+              "max_len": 36
+            }
+          }
+        },
+        "standby_region_name": {
+          "name": "standby_region_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "name of the standby workspace region."
+        },
+        "standby_workspace_name": {
+          "name": "standby_workspace_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "name of the standby workspace."
+        },
+        "user_tags": {
+          "name": "user_tags",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "User defined tags."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "accept_language",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$",
+          "min_len": 1,
+          "max_len": 50
+        },
+        {
+          "identifier": "if_none_match",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$",
+          "min_len": 1,
+          "max_len": 50
+        },
+        {
+          "identifier": "instance_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9-]+$",
+          "min_len": 1,
+          "max_len": 50
+        },
+        {
+          "identifier": "primary_workspace",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9._:-]+$",
+          "min_len": 1,
+          "max_len": 2048
+        },
+        {
+          "identifier": "secondary_location",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9._:-]+$",
+          "min_len": 1,
+          "max_len": 16
+        },
+        {
+          "identifier": "secondary_workspace",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9._:-]+$",
+          "min_len": 1,
+          "max_len": 2048
+        }
+      ]
+    },
+    {
+      "name": "ibm_pha_cluster_nodes",
+      "function": "DataSourceIBMPhaClusterNodes",
+      "package": "powerhaautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pha_cluster_nodes data source.",
+      "attributes": {
+        "if_none_match": {
+          "name": "if_none_match",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "ETag for conditional requests (optional).",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$"
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Unique identifier of the provisioned instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9-]+$"
+          }
+        },
+        "primary_node_details": {
+          "name": "primary_node_details",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Details of the primary cluster nodes.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "agent_status": {
+                "name": "agent_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Status of the PHA agent running on the node."
+              },
+              "cores": {
+                "name": "cores",
+                "type": "float",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Number of CPU cores allocated to the VM."
+              },
+              "ip_addresses": {
+                "name": "ip_addresses",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of IP addresses assigned to the VM.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "memory": {
+                "name": "memory",
+                "type": "float",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Amount of memory allocated to the VM (in GB)."
+              },
+              "pha_level": {
+                "name": "pha_level",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "PowerHA version level installed on the node."
+              },
+              "region": {
+                "name": "region",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Region where the VM is deployed."
+              },
+              "vm_id": {
+                "name": "vm_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique identifier of the VM."
+              },
+              "vm_name": {
+                "name": "vm_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the VM."
+              },
+              "vm_status": {
+                "name": "vm_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Current status of the VM."
+              },
+              "workspace_id": {
+                "name": "workspace_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "ID of the workspace associated with the VM."
+              }
+            }
+          }
+        },
+        "secondary_node_details": {
+          "name": "secondary_node_details",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Details of the secondary cluster nodes.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "agent_status": {
+                "name": "agent_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Status of the PHA agent running on the node."
+              },
+              "cores": {
+                "name": "cores",
+                "type": "float",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Number of CPU cores allocated to the VM."
+              },
+              "ip_addresses": {
+                "name": "ip_addresses",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of IP addresses assigned to the VM.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "memory": {
+                "name": "memory",
+                "type": "float",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Amount of memory allocated to the VM (in GB)."
+              },
+              "pha_level": {
+                "name": "pha_level",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "PowerHA version level installed on the node."
+              },
+              "region": {
+                "name": "region",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Region where the VM is deployed."
+              },
+              "vm_id": {
+                "name": "vm_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique identifier of the VM."
+              },
+              "vm_name": {
+                "name": "vm_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the VM."
+              },
+              "vm_status": {
+                "name": "vm_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Current status of the VM."
+              },
+              "workspace_id": {
+                "name": "workspace_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "ID of the workspace associated with the VM."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "accept_language",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$",
+          "min_len": 1,
+          "max_len": 50
+        },
+        {
+          "identifier": "if_none_match",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$",
+          "min_len": 1,
+          "max_len": 50
+        },
+        {
+          "identifier": "instance_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9-]+$",
+          "min_len": 1,
+          "max_len": 50
+        }
+      ]
+    },
+    {
+      "name": "ibm_pha_deployment",
+      "function": "DataSourceIBMPhaDeployment",
+      "package": "powerhaautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pha_deployment data source.",
+      "attributes": {
+        "cloud_account_id": {
+          "name": "cloud_account_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Cloud account identifier."
+        },
+        "connectivity_type": {
+          "name": "connectivity_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of network connectivity."
+        },
+        "creation_time": {
+          "name": "creation_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Timestamp expressing creation time."
+        },
+        "custom_network": {
+          "name": "custom_network",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of custom network CIDRs.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "deprovision_time": {
+          "name": "deprovision_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Timestamp expressing deprovision time."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Global unique identifier."
+        },
+        "if_none_match": {
+          "name": "if_none_match",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "ETag for conditional requests (optional).",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$"
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Unique identifier of the provisioned instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9-]+$"
+          }
+        },
+        "is_duplicate": {
+          "name": "is_duplicate",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Indicates whether deployment is duplicate."
+        },
+        "plan_id": {
+          "name": "plan_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Identifier for the service plan."
+        },
+        "plan_name": {
+          "name": "plan_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of service plan."
+        },
+        "powerha_cluster_name": {
+          "name": "powerha_cluster_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of the PowerHA cluster."
+        },
+        "powerha_cluster_type": {
+          "name": "powerha_cluster_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of PowerHA cluster."
+        },
+        "powerha_level": {
+          "name": "powerha_level",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "PowerHA version level."
+        },
+        "primary_cluster_nodes_details": {
+          "name": "primary_cluster_nodes_details",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of primary cluster nodes.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "agent_status": {
+                "name": "agent_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Status of the PHA agent running on the node."
+              },
+              "cores": {
+                "name": "cores",
+                "type": "float",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Number of CPU cores allocated to the node."
+              },
+              "ip_address": {
+                "name": "ip_address",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "IP address assigned to the virtual machine.",
+                "validate": {
+                  "kind": "ipv4",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "memory": {
+                "name": "memory",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Memory allocated to the virtual machine in MB or GB."
+              },
+              "pha_level": {
+                "name": "pha_level",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "PowerHA version level installed on the node."
+              },
+              "region": {
+                "name": "region",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Region where the virtual machine is deployed."
+              },
+              "vm_id": {
+                "name": "vm_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique identifier of the virtual machine."
+              },
+              "vm_name": {
+                "name": "vm_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the virtual machine."
+              },
+              "vm_status": {
+                "name": "vm_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Current operational status of the virtual machine."
+              },
+              "workspace_id": {
+                "name": "workspace_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Workspace identifier associated with the node."
+              }
+            }
+          }
+        },
+        "primary_location": {
+          "name": "primary_location",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Primary cluster location."
+        },
+        "primary_region_name": {
+          "name": "primary_region_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "name of the primary workspace region."
+        },
+        "primary_workspace": {
+          "name": "primary_workspace",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Primary workspace identifier.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 2048,
+            "regexp": "^[a-zA-Z0-9._:-]+$"
+          }
+        },
+        "primary_workspace_name": {
+          "name": "primary_workspace_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "name of the primary workspace."
+        },
+        "provision_end_time": {
+          "name": "provision_end_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Time stamp provisioning completed."
+        },
+        "provision_start_time": {
+          "name": "provision_start_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Time stamp provisioning started."
+        },
+        "provision_status": {
+          "name": "provision_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Current provision status."
+        },
+        "region_id": {
+          "name": "region_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Deployment region identifier."
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of the resource group."
+        },
+        "resource_group_crn": {
+          "name": "resource_group_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "CRN of associated resource group.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "resource_instance": {
+          "name": "resource_instance",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Resource instance identifier."
+        },
+        "secondary_cluster_nodes": {
+          "name": "secondary_cluster_nodes",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of secondary cluster nodes.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "agent_status": {
+                "name": "agent_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Status of the PHA agent running on the node."
+              },
+              "cores": {
+                "name": "cores",
+                "type": "float",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Number of CPU cores allocated to the node."
+              },
+              "ip_address": {
+                "name": "ip_address",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "IP address assigned to the virtual machine.",
+                "validate": {
+                  "kind": "ipv4",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "memory": {
+                "name": "memory",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Memory allocated to the virtual machine in MB or GB."
+              },
+              "pha_level": {
+                "name": "pha_level",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "PowerHA version level installed on the node."
+              },
+              "region": {
+                "name": "region",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Region where the virtual machine is deployed."
+              },
+              "vm_id": {
+                "name": "vm_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique identifier of the virtual machine."
+              },
+              "vm_name": {
+                "name": "vm_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the virtual machine."
+              },
+              "vm_status": {
+                "name": "vm_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Current operational status of the virtual machine."
+              },
+              "workspace_id": {
+                "name": "workspace_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Workspace identifier associated with the node."
+              }
+            }
+          }
+        },
+        "secondary_location": {
+          "name": "secondary_location",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Secondary cluster location.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 16,
+            "regexp": "^[a-zA-Z0-9._:-]+$"
+          }
+        },
+        "secondary_workspace": {
+          "name": "secondary_workspace",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Secondary workspace identifier.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 2048,
+            "regexp": "^[a-zA-Z0-9._:-]+$"
+          }
+        },
+        "service_description": {
+          "name": "service_description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Description of provisioned service."
+        },
+        "service_id": {
+          "name": "service_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Identifier for the service."
+        },
+        "service_name": {
+          "name": "service_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of service."
+        },
+        "standby_region_name": {
+          "name": "standby_region_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "name of the standby workspace region."
+        },
+        "standby_workspace_name": {
+          "name": "standby_workspace_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "name of the standby workspace."
+        },
+        "user_tags": {
+          "name": "user_tags",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "User defined tags."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "accept_language",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$",
+          "min_len": 1,
+          "max_len": 50
+        },
+        {
+          "identifier": "if_none_match",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9\\-_,;=.*]+$",
+          "min_len": 1,
+          "max_len": 50
+        },
+        {
+          "identifier": "instance_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9-]+$",
+          "min_len": 1,
+          "max_len": 50
+        },
+        {
+          "identifier": "primary_workspace",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9._:-]+$",
+          "min_len": 1,
+          "max_len": 2048
+        },
+        {
+          "identifier": "secondary_location",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9._:-]+$",
+          "min_len": 1,
+          "max_len": 16
+        },
+        {
+          "identifier": "secondary_workspace",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9._:-]+$",
+          "min_len": 1,
+          "max_len": 2048
+        }
+      ]
+    },
+    {
+      "name": "ibm_pha_last_operation",
+      "function": "DataSourceIBMPhaLastOperation",
+      "package": "powerhaautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pha_last_operation data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "deployment_name": {
+          "name": "deployment_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of the deployment associated with the service instance."
+        },
+        "if_none_match": {
+          "name": "if_none_match",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "ETag for conditional requests (optional)."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of instance to provision."
+        },
+        "provision_id": {
+          "name": "provision_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Unique identifier for the provisioning operation."
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Resource Group."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Current operational status of the service instance."
+        }
+      }
+    },
+    {
+      "name": "ibm_pha_powervs_workspaces",
+      "function": "DataSourceIBMPhaPowervsWorkspace",
+      "package": "powerhaautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pha_powervs_workspaces data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "if_none_match": {
+          "name": "if_none_match",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "ETag for conditional requests (optional)."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Unique identifier of the provisioned instance."
+        },
+        "location_id": {
+          "name": "location_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Location ID value."
+        },
+        "workspaces": {
+          "name": "workspaces",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Array of workspace summaries within the region.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique identifier of the workspace."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the workspace."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_pha_supported_locations",
+      "function": "DataSourceIBMPhaSupportedLocation",
+      "package": "powerhaautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pha_supported_locations data source.",
+      "attributes": {
+        "if_none_match": {
+          "name": "if_none_match",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "ETag for conditional requests (optional)."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Unique identifier of the provisioned instance."
+        },
+        "locations": {
+          "name": "locations",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Array of PowerVS locations where PowerHA service is supported.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique identifier for the location."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Human-readable name of the location."
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 8,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package powerhaautomationservice"
+}

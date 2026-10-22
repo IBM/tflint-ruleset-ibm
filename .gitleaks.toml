@@ -1,0 +1,11 @@
+# Secret-scanner configuration (gitleaks). Generated rule tests use fake
+# PEM placeholders that are not usable keys; real secrets are still reported.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Fake PEM placeholders in generated fixtures"
+regexes = [
+  '''MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC0example''',
+  '''MIIEpAIBAAKCAQEA0examplekeymaterialhere''',
+]

@@ -1,0 +1,2324 @@
+{
+  "package": "iamaccessgroup",
+  "resources": [
+    {
+      "name": "ibm_iam_access_group",
+      "function": "ResourceIBMIAMAccessGroup",
+      "package": "iamaccessgroup",
+      "kind": "resource",
+      "description": "Manages ibm_iam_access_group. Name of the access group",
+      "attributes": {
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "CRN of the access group",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Description of the access group"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of the access group"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "version": {
+          "name": "version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        }
+      },
+      "validators": [
+        {
+          "identifier": "access_group_name",
+          "kind": "ValidateCloudData"
+        }
+      ]
+    },
+    {
+      "name": "ibm_iam_access_group_account_settings",
+      "function": "ResourceIBMIAMAccessGroupAccountSettings",
+      "package": "iamaccessgroup",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_iam_access_group_account_settings resource.",
+      "attributes": {
+        "account_id": {
+          "name": "account_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Id of the account"
+        },
+        "public_access_enabled": {
+          "name": "public_access_enabled",
+          "type": "bool",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Flag to enable/disable public access groups"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_access_group_dynamic_rule",
+      "function": "ResourceIBMIAMDynamicRule",
+      "package": "iamaccessgroup",
+      "kind": "resource",
+      "description": "Manages ibm_iam_access_group_dynamic_rule. The name of the Rule",
+      "attributes": {
+        "access_group_id": {
+          "name": "access_group_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Unique identifier of the access group",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "access_group_id"
+          }
+        },
+        "conditions": {
+          "name": "conditions",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "conditions info",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "claim": {
+                "name": "claim",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false
+              },
+              "operator": {
+                "name": "operator",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "validate": {
+                  "kind": "enum",
+                  "func_name": "ValidateAllowedStringValues",
+                  "enum": [
+                    "EQUALS",
+                    "EQUALS_IGNORE_CASE",
+                    "IN",
+                    "NOT_EQUALS_IGNORE_CASE",
+                    "NOT_EQUALS",
+                    "CONTAINS"
+                  ]
+                }
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false
+              }
+            }
+          }
+        },
+        "expiration": {
+          "name": "expiration",
+          "type": "int",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The expiration in hours",
+          "validate": {
+            "kind": "port",
+            "func_name": "ValidatePortRange",
+            "min": 1,
+            "max": 65535
+          }
+        },
+        "identity_provider": {
+          "name": "identity_provider",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The realm name or identity proivider url"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name of the Rule"
+        },
+        "rule_id": {
+          "name": "rule_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "id of the rule"
+        }
+      },
+      "validators": [
+        {
+          "identifier": "access_group_id",
+          "kind": "ValidateCloudData"
+        }
+      ]
+    },
+    {
+      "name": "ibm_iam_access_group_members",
+      "function": "ResourceIBMIAMAccessGroupMembers",
+      "package": "iamaccessgroup",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_iam_access_group_members resource.",
+      "attributes": {
+        "access_group_id": {
+          "name": "access_group_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Unique identifier of the access group",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "access_group_id"
+          }
+        },
+        "iam_profile_ids": {
+          "name": "iam_profile_ids",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "iam_service_ids": {
+          "name": "iam_service_ids",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "ibm_ids": {
+          "name": "ibm_ids",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "members": {
+          "name": "members",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "iam_id": {
+                "name": "iam_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "access_group_id",
+          "kind": "ValidateCloudData"
+        }
+      ]
+    },
+    {
+      "name": "ibm_iam_access_group_template",
+      "function": "ResourceIBMIAMAccessGroupTemplate",
+      "package": "iamaccessgroup",
+      "kind": "resource",
+      "description": "Manages ibm_iam_access_group_template. The name of the access group template.",
+      "attributes": {
+        "account_id": {
+          "name": "account_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the account to which the access group template is assigned."
+        },
+        "committed": {
+          "name": "committed",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "A boolean indicating whether the access group template is committed. You must commit a template before you can assign it to child accounts."
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date and time when the access group template was created."
+        },
+        "created_by_id": {
+          "name": "created_by_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the user who created the access group template."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The description of the access group template.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 250,
+            "regexp": "^[a-zA-Z0-9!@#$%^\u0026*()_+{}:;\"'\u003c\u003e,.?\\/|\\-\\s]+$"
+          }
+        },
+        "group": {
+          "name": "group",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "Access Group Component.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "action_controls": {
+                "name": "action_controls",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "max_items": 1,
+                "description": "Access group action controls component.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "access": {
+                      "name": "access",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "max_items": 1,
+                      "description": "Control whether or not access group administrators in child accounts can add access policies to the enterprise-managed access group in their account.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "add": {
+                            "name": "add",
+                            "type": "bool",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "Action control for adding access policies to an enterprise-managed access group in a child account. If an access group administrator in a child account adds a policy, they can always update or remove it."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "assertions": {
+                "name": "assertions",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "max_items": 1,
+                "description": "Assertions Input Component.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "action_controls": {
+                      "name": "action_controls",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "max_items": 1,
+                      "description": "Control whether or not access group administrators in child accounts can add, remove, and update dynamic rules for the enterprise-managed access group in their account. The inner level RuleActionControls override these action controls.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "add": {
+                            "name": "add",
+                            "type": "bool",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "Action control for adding dynamic rules to an enterprise-managed access group. If an access group administrator in a child account adds a dynamic rule, they can always update or remove it."
+                          },
+                          "remove": {
+                            "name": "remove",
+                            "type": "bool",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "Action control for removing enterprise-managed dynamic rules in an enterprise-managed access group."
+                          }
+                        }
+                      }
+                    },
+                    "rules": {
+                      "name": "rules",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "Dynamic rules to automatically add federated users to access groups based on specific identity attributes.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "action_controls": {
+                            "name": "action_controls",
+                            "type": "list",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "max_items": 1,
+                            "description": "Control whether or not access group administrators in child accounts can update and remove this dynamic rule in the enterprise-managed access group in their account.This overrides outer level AssertionsActionControls.",
+                            "elem": {
+                              "kind": "resource",
+                              "attributes": {
+                                "remove": {
+                                  "name": "remove",
+                                  "type": "bool",
+                                  "required": false,
+                                  "optional": true,
+                                  "computed": false,
+                                  "description": "Action control for removing this enterprise-managed dynamic rule."
+                                }
+                              }
+                            }
+                          },
+                          "conditions": {
+                            "name": "conditions",
+                            "type": "list",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "Conditions of membership. You can think of this as a key:value pair.",
+                            "elem": {
+                              "kind": "resource",
+                              "attributes": {
+                                "claim": {
+                                  "name": "claim",
+                                  "type": "string",
+                                  "required": false,
+                                  "optional": true,
+                                  "computed": false,
+                                  "description": "The key in the key:value pair."
+                                },
+                                "operator": {
+                                  "name": "operator",
+                                  "type": "string",
+                                  "required": false,
+                                  "optional": true,
+                                  "computed": false,
+                                  "description": "Compares the claim and the value."
+                                },
+                                "value": {
+                                  "name": "value",
+                                  "type": "string",
+                                  "required": false,
+                                  "optional": true,
+                                  "computed": false,
+                                  "description": "The value in the key:value pair."
+                                }
+                              }
+                            }
+                          },
+                          "expiration": {
+                            "name": "expiration",
+                            "type": "int",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "Session duration in hours. Access group membership is revoked after this time period expires. Users must log back in to refresh their access group membership."
+                          },
+                          "name": {
+                            "name": "name",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "Dynamic rule name."
+                          },
+                          "realm_name": {
+                            "name": "realm_name",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "The identity provider (IdP) URL."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Access group description. This is shown in child accounts."
+              },
+              "members": {
+                "name": "members",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "max_items": 1,
+                "description": "Array of enterprise users to add to the template. All enterprise users that you add to the template must be invited to the child accounts where the template is assigned.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "action_controls": {
+                      "name": "action_controls",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "max_items": 1,
+                      "description": "Control whether or not access group administrators in child accounts can add and remove members from the enterprise-managed access group in their account.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "add": {
+                            "name": "add",
+                            "type": "bool",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "Action control for adding child account members to an enterprise-managed access group. If an access group administrator in a child account adds a member, they can always remove them."
+                          },
+                          "remove": {
+                            "name": "remove",
+                            "type": "bool",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "Action control for removing enterprise-managed members from an enterprise-managed access group."
+                          }
+                        }
+                      }
+                    },
+                    "services": {
+                      "name": "services",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "Array of service IDs to add to the template.",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    },
+                    "users": {
+                      "name": "users",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "Array of enterprise users to add to the template. All enterprise users that you add to the template must be invited to the child accounts where the template is assigned.",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Give the access group a unique name that doesn't conflict with other templates access group name in the given account. This is shown in child accounts."
+              }
+            }
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the access group template resource."
+        },
+        "last_modified_at": {
+          "name": "last_modified_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date and time when the access group template was last modified."
+        },
+        "last_modified_by_id": {
+          "name": "last_modified_by_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the user who last modified the access group template."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name of the access group template.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 100,
+            "regexp": "^[a-zA-Z0-9!@#$%^\u0026*()_+{}:;\"'\u003c\u003e,.?\\/|\\-\\s]+$"
+          }
+        },
+        "policy_template_references": {
+          "name": "policy_template_references",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "References to policy templates assigned to the access group template.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Policy template ID."
+              },
+              "version": {
+                "name": "version",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Policy template version."
+              }
+            }
+          }
+        },
+        "template_id": {
+          "name": "template_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Template ID."
+        },
+        "transaction_id": {
+          "name": "transaction_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "An optional transaction id for the request.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9_-]+$"
+          }
+        },
+        "version": {
+          "name": "version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The version of the access group template."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "description",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9!@#$%^\u0026*()_+{}:;\"'\u003c\u003e,.?\\/|\\-\\s]+$",
+          "max_len": 250
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9!@#$%^\u0026*()_+{}:;\"'\u003c\u003e,.?\\/|\\-\\s]+$",
+          "min_len": 1,
+          "max_len": 100
+        },
+        {
+          "identifier": "transaction_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 50
+        }
+      ]
+    },
+    {
+      "name": "ibm_iam_access_group_template_assignment",
+      "function": "ResourceIBMIAMAccessGroupTemplateAssignment",
+      "package": "iamaccessgroup",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_iam_access_group_template_assignment resource.",
+      "attributes": {
+        "account_id": {
+          "name": "account_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the account that the assignment belongs to."
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date and time when the assignment was created."
+        },
+        "created_by_id": {
+          "name": "created_by_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The user or system that created the assignment."
+        },
+        "etag": {
+          "name": "etag",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the assignment resource."
+        },
+        "last_modified_at": {
+          "name": "last_modified_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date and time when the assignment was last updated."
+        },
+        "last_modified_by_id": {
+          "name": "last_modified_by_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The user or system that last updated the assignment."
+        },
+        "operation": {
+          "name": "operation",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The operation that the assignment applies to (e.g. 'assign', 'update', 'remove')."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the assignment (e.g. 'accepted', 'in_progress', 'succeeded', 'failed', 'superseded')."
+        },
+        "target": {
+          "name": "target",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The ID of the entity that the assignment applies to.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9_-]+$"
+          }
+        },
+        "target_type": {
+          "name": "target_type",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The type of the entity that the assignment applies to.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "Account",
+              "AccountGroup"
+            ]
+          }
+        },
+        "template_id": {
+          "name": "template_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The ID of the template that the assignment is based on.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 100,
+            "regexp": "^[a-zA-Z0-9_-]+$"
+          }
+        },
+        "template_version": {
+          "name": "template_version",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The version of the template that the assignment is based on.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 2,
+            "regexp": "^[0-9]+$"
+          }
+        },
+        "transaction_id": {
+          "name": "transaction_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "An optional transaction id for the request.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9_-]+$"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "target",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 50
+        },
+        {
+          "identifier": "target_type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "Account, AccountGroup",
+          "regexp": "^[a-zA-Z-]+$",
+          "min_len": 7,
+          "max_len": 12
+        },
+        {
+          "identifier": "template_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 100
+        },
+        {
+          "identifier": "template_version",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9]+$",
+          "min_len": 1,
+          "max_len": 2
+        },
+        {
+          "identifier": "transaction_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 50
+        }
+      ]
+    },
+    {
+      "name": "ibm_iam_access_group_template_version",
+      "function": "ResourceIBMIAMAccessGroupTemplateVersion",
+      "package": "iamaccessgroup",
+      "kind": "resource",
+      "description": "Manages ibm_iam_access_group_template_version. The name of the access group template.",
+      "attributes": {
+        "account_id": {
+          "name": "account_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the account to which the access group template is assigned."
+        },
+        "committed": {
+          "name": "committed",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "A boolean indicating whether the access group template is committed. You must commit a template before you can assign it to child accounts."
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date and time when the access group template was created."
+        },
+        "created_by_id": {
+          "name": "created_by_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the user who created the access group template."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The description of the access group template.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 250,
+            "regexp": "^[a-zA-Z0-9!@#$%^\u0026*()_+{}:;\"'\u003c\u003e,.?\\/|\\-\\s]+$"
+          }
+        },
+        "group": {
+          "name": "group",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "max_items": 1,
+          "description": "Access Group Component.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "action_controls": {
+                "name": "action_controls",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "max_items": 1,
+                "description": "Access group action controls component.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "access": {
+                      "name": "access",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "max_items": 1,
+                      "description": "Control whether or not access group administrators in child accounts can add access policies to the enterprise-managed access group in their account.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "add": {
+                            "name": "add",
+                            "type": "bool",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "Action control for adding access policies to an enterprise-managed access group in a child account. If an access group administrator in a child account adds a policy, they can always update or remove it."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "assertions": {
+                "name": "assertions",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "max_items": 1,
+                "description": "Assertions Input Component.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "action_controls": {
+                      "name": "action_controls",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "max_items": 1,
+                      "description": "Control whether or not access group administrators in child accounts can add, remove, and update dynamic rules for the enterprise-managed access group in their account. The inner level RuleActionControls override these `remove` and `update` action controls.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "add": {
+                            "name": "add",
+                            "type": "bool",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "Action control for adding dynamic rules to an enterprise-managed access group. If an access group administrator in a child account adds a dynamic rule, they can always update or remove it."
+                          },
+                          "remove": {
+                            "name": "remove",
+                            "type": "bool",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "Action control for removing enterprise-managed dynamic rules in an enterprise-managed access group."
+                          }
+                        }
+                      }
+                    },
+                    "rules": {
+                      "name": "rules",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "Dynamic rules to automatically add federated users to access groups based on specific identity attributes.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "action_controls": {
+                            "name": "action_controls",
+                            "type": "list",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "max_items": 1,
+                            "description": "Control whether or not access group administrators in child accounts can update and remove this dynamic rule in the enterprise-managed access group in their account.This overrides outer level AssertionsActionControls.",
+                            "elem": {
+                              "kind": "resource",
+                              "attributes": {
+                                "remove": {
+                                  "name": "remove",
+                                  "type": "bool",
+                                  "required": false,
+                                  "optional": true,
+                                  "computed": false,
+                                  "description": "Action control for removing this enterprise-managed dynamic rule."
+                                }
+                              }
+                            }
+                          },
+                          "conditions": {
+                            "name": "conditions",
+                            "type": "list",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "Conditions of membership. You can think of this as a key:value pair.",
+                            "elem": {
+                              "kind": "resource",
+                              "attributes": {
+                                "claim": {
+                                  "name": "claim",
+                                  "type": "string",
+                                  "required": false,
+                                  "optional": true,
+                                  "computed": false,
+                                  "description": "The key in the key:value pair."
+                                },
+                                "operator": {
+                                  "name": "operator",
+                                  "type": "string",
+                                  "required": false,
+                                  "optional": true,
+                                  "computed": false,
+                                  "description": "Compares the claim and the value."
+                                },
+                                "value": {
+                                  "name": "value",
+                                  "type": "string",
+                                  "required": false,
+                                  "optional": true,
+                                  "computed": false,
+                                  "description": "The value in the key:value pair."
+                                }
+                              }
+                            }
+                          },
+                          "expiration": {
+                            "name": "expiration",
+                            "type": "int",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "Session duration in hours. Access group membership is revoked after this time period expires. Users must log back in to refresh their access group membership."
+                          },
+                          "name": {
+                            "name": "name",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": true,
+                            "description": "Dynamic rule name."
+                          },
+                          "realm_name": {
+                            "name": "realm_name",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "The identity provider (IdP) URL."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Access group description. This is shown in child accounts."
+              },
+              "members": {
+                "name": "members",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "max_items": 1,
+                "description": "Array of enterprise users to add to the template. All enterprise users that you add to the template must be invited to the child accounts where the template is assigned.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "action_controls": {
+                      "name": "action_controls",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "max_items": 1,
+                      "description": "Control whether or not access group administrators in child accounts can add and remove members from the enterprise-managed access group in their account.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "add": {
+                            "name": "add",
+                            "type": "bool",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "Action control for adding child account members to an enterprise-managed access group. If an access group administrator in a child account adds a member, they can always remove them."
+                          },
+                          "remove": {
+                            "name": "remove",
+                            "type": "bool",
+                            "required": false,
+                            "optional": true,
+                            "computed": false,
+                            "description": "Action control for removing enterprise-managed members from an enterprise-managed access group."
+                          }
+                        }
+                      }
+                    },
+                    "services": {
+                      "name": "services",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "Array of service IDs to add to the template.",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    },
+                    "users": {
+                      "name": "users",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "Array of enterprise users to add to the template. All enterprise users that you add to the template must be invited to the child accounts where the template is assigned.",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Give the access group a unique name that doesn't conflict with other templates access group name in the given account. This is shown in child accounts."
+              }
+            }
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the access group template resource."
+        },
+        "last_modified_at": {
+          "name": "last_modified_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date and time when the access group template was last modified."
+        },
+        "last_modified_by_id": {
+          "name": "last_modified_by_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the user who last modified the access group template."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The name of the access group template.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 100,
+            "regexp": "^[a-zA-Z0-9!@#$%^\u0026*()_+{}:;\"'\u003c\u003e,.?\\/|\\-\\s]+$"
+          }
+        },
+        "policy_template_references": {
+          "name": "policy_template_references",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "References to policy templates assigned to the access group template.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Policy template ID."
+              },
+              "version": {
+                "name": "version",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Policy template version."
+              }
+            }
+          }
+        },
+        "template_id": {
+          "name": "template_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "ID of the template that you want to create a new version of.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 100,
+            "regexp": "^[a-zA-Z0-9_-]+$"
+          }
+        },
+        "transaction_id": {
+          "name": "transaction_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "An optional transaction id for the request.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9_-]+$"
+          }
+        },
+        "version": {
+          "name": "version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The version of the access group template."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "description",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9!@#$%^\u0026*()_+{}:;\"'\u003c\u003e,.?\\/|\\-\\s]+$",
+          "max_len": 250
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9!@#$%^\u0026*()_+{}:;\"'\u003c\u003e,.?\\/|\\-\\s]+$",
+          "min_len": 1,
+          "max_len": 100
+        },
+        {
+          "identifier": "template_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 100
+        },
+        {
+          "identifier": "transaction_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 50
+        }
+      ]
+    },
+    {
+      "name": "ibm_iam_access_group",
+      "function": "DataSourceIBMIAMAccessGroup",
+      "package": "iamaccessgroup",
+      "kind": "data",
+      "description": "Schema validation for the ibm_iam_access_group data source.",
+      "attributes": {
+        "access_group_name": {
+          "name": "access_group_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Name of the access group",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "access_group_name"
+          }
+        },
+        "groups": {
+          "name": "groups",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "CRN of the access group",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Description of the access group"
+              },
+              "iam_profile_ids": {
+                "name": "iam_profile_ids",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "iam_service_ids": {
+                "name": "iam_service_ids",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "ibm_ids": {
+                "name": "ibm_ids",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "rules": {
+                "name": "rules",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "conditions": {
+                      "name": "conditions",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "claim": {
+                            "name": "claim",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "operator": {
+                            "name": "operator",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "value": {
+                            "name": "value",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          }
+                        }
+                      }
+                    },
+                    "expiration": {
+                      "name": "expiration",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The expiration in hours"
+                    },
+                    "identity_provider": {
+                      "name": "identity_provider",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The realm name or identity proivider url"
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The name of the Rule"
+                    },
+                    "rule_id": {
+                      "name": "rule_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "id of the rule"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "access_group_name",
+          "kind": "ValidateCloudData"
+        }
+      ]
+    },
+    {
+      "name": "ibm_iam_access_group_template_assignment",
+      "function": "DataSourceIBMIAMAccessGroupTemplateAssignment",
+      "package": "iamaccessgroup",
+      "kind": "data",
+      "description": "Schema validation for the ibm_iam_access_group_template_assignment data source.",
+      "attributes": {
+        "account_id": {
+          "name": "account_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Enterprise account ID."
+        },
+        "assignments": {
+          "name": "assignments",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of template assignments.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "account_id": {
+                "name": "account_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the account that the assignment belongs to."
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date and time when the assignment was created."
+              },
+              "created_by_id": {
+                "name": "created_by_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The user or system that created the assignment."
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The URL of the assignment resource."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the assignment."
+              },
+              "last_modified_at": {
+                "name": "last_modified_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date and time when the assignment was last updated."
+              },
+              "last_modified_by_id": {
+                "name": "last_modified_by_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The user or system that last updated the assignment."
+              },
+              "operation": {
+                "name": "operation",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The operation that the assignment applies to (e.g. 'assign', 'update', 'remove')."
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of the assignment (e.g. 'accepted', 'in_progress', 'succeeded', 'failed', 'superseded')."
+              },
+              "target": {
+                "name": "target",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the entity that the assignment applies to."
+              },
+              "target_type": {
+                "name": "target_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The type of the entity that the assignment applies to."
+              },
+              "template_id": {
+                "name": "template_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the template that the assignment is based on."
+              },
+              "template_version": {
+                "name": "template_version",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The version of the template that the assignment is based on."
+              }
+            }
+          }
+        },
+        "first": {
+          "name": "first",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A link object.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A string containing the link’s URL."
+              }
+            }
+          }
+        },
+        "last": {
+          "name": "last",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A link object.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A string containing the link’s URL."
+              }
+            }
+          }
+        },
+        "limit": {
+          "name": "limit",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Maximum number of items returned in the response."
+        },
+        "offset": {
+          "name": "offset",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Index of the first item returned in the response."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filter results by the assignment status."
+        },
+        "target": {
+          "name": "target",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filter results by the assignment target.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9_-]+$"
+          }
+        },
+        "template_id": {
+          "name": "template_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filter results by Template Id.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 100,
+            "regexp": "^[a-zA-Z0-9_-]+$"
+          }
+        },
+        "template_version": {
+          "name": "template_version",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filter results by Template Version.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 2,
+            "regexp": "^[0-9]+$"
+          }
+        },
+        "total_count": {
+          "name": "total_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Total number of items matching the query."
+        },
+        "transaction_id": {
+          "name": "transaction_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "An optional transaction id for the request.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 50,
+            "regexp": "^[a-zA-Z0-9_-]+$"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "target",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 50
+        },
+        {
+          "identifier": "target_type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "Account, AccountGroup",
+          "regexp": "^[a-zA-Z-]+$",
+          "min_len": 7,
+          "max_len": 12
+        },
+        {
+          "identifier": "template_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 100
+        },
+        {
+          "identifier": "template_version",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9]+$",
+          "min_len": 1,
+          "max_len": 2
+        },
+        {
+          "identifier": "transaction_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9_-]+$",
+          "min_len": 1,
+          "max_len": 50
+        }
+      ]
+    },
+    {
+      "name": "ibm_iam_access_group_template_versions",
+      "function": "DataSourceIBMIAMAccessGroupTemplateVersions",
+      "package": "iamaccessgroup",
+      "kind": "data",
+      "description": "Schema validation for the ibm_iam_access_group_template_versions data source.",
+      "attributes": {
+        "first": {
+          "name": "first",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A link object.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A string containing the link’s URL."
+              }
+            }
+          }
+        },
+        "group_template_versions": {
+          "name": "group_template_versions",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A list of access group template versions.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "account_id": {
+                "name": "account_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the account associated with the template."
+              },
+              "committed": {
+                "name": "committed",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A boolean indicating whether the template is committed or not."
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date and time the template was created."
+              },
+              "created_by_id": {
+                "name": "created_by_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the user who created the template."
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The description of the template."
+              },
+              "group": {
+                "name": "group",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Access Group Component.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "action_controls": {
+                      "name": "action_controls",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Access group action controls component.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "access": {
+                            "name": "access",
+                            "type": "list",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Control whether or not access group administrators in child accounts can add access policies to the enterprise-managed access group in their account.",
+                            "elem": {
+                              "kind": "resource",
+                              "attributes": {
+                                "add": {
+                                  "name": "add",
+                                  "type": "bool",
+                                  "required": false,
+                                  "optional": false,
+                                  "computed": true,
+                                  "description": "Action control for adding access policies to an enterprise-managed access group in a child account. If an access group administrator in a child account adds a policy, they can always update or remove it."
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "assertions": {
+                      "name": "assertions",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Assertions Input Component.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "action_controls": {
+                            "name": "action_controls",
+                            "type": "list",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Control whether or not access group administrators in child accounts can add and remove dynamic rules for the enterprise-managed access group in their account. The inner level RuleActionControls override these action controls.",
+                            "elem": {
+                              "kind": "resource",
+                              "attributes": {
+                                "add": {
+                                  "name": "add",
+                                  "type": "bool",
+                                  "required": false,
+                                  "optional": false,
+                                  "computed": true,
+                                  "description": "Action control for adding dynamic rules to an enterprise-managed access group. If an access group administrator in a child account adds a dynamic rule, they can always update or remove it."
+                                },
+                                "remove": {
+                                  "name": "remove",
+                                  "type": "bool",
+                                  "required": false,
+                                  "optional": false,
+                                  "computed": true,
+                                  "description": "Action control for removing enterprise-managed dynamic rules in an enterprise-managed access group."
+                                }
+                              }
+                            }
+                          },
+                          "rules": {
+                            "name": "rules",
+                            "type": "list",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Dynamic rules to automatically add federated users to access groups based on specific identity attributes.",
+                            "elem": {
+                              "kind": "resource",
+                              "attributes": {
+                                "action_controls": {
+                                  "name": "action_controls",
+                                  "type": "list",
+                                  "required": false,
+                                  "optional": false,
+                                  "computed": true,
+                                  "description": "Control whether or not access group administrators in child accounts can update and remove this dynamic rule in the enterprise-managed access group in their account.This overrides outer level AssertionsActionControls.",
+                                  "elem": {
+                                    "kind": "resource"
+                                  }
+                                },
+                                "conditions": {
+                                  "name": "conditions",
+                                  "type": "list",
+                                  "required": false,
+                                  "optional": false,
+                                  "computed": true,
+                                  "description": "Conditions of membership. You can think of this as a key:value pair.",
+                                  "elem": {
+                                    "kind": "resource"
+                                  }
+                                },
+                                "expiration": {
+                                  "name": "expiration",
+                                  "type": "int",
+                                  "required": false,
+                                  "optional": false,
+                                  "computed": true,
+                                  "description": "Session duration in hours. Access group membership is revoked after this time period expires. Users must log back in to refresh their access group membership."
+                                },
+                                "name": {
+                                  "name": "name",
+                                  "type": "string",
+                                  "required": false,
+                                  "optional": false,
+                                  "computed": true,
+                                  "description": "Dynamic rule name."
+                                },
+                                "realm_name": {
+                                  "name": "realm_name",
+                                  "type": "string",
+                                  "required": false,
+                                  "optional": false,
+                                  "computed": true,
+                                  "description": "The identity provider (IdP) URL."
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "description": {
+                      "name": "description",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Access group description. This is shown in child accounts."
+                    },
+                    "members": {
+                      "name": "members",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Array of enterprise users to add to the template. All enterprise users that you add to the template must be invited to the child accounts where the template is assigned.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "action_controls": {
+                            "name": "action_controls",
+                            "type": "list",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Control whether or not access group administrators in child accounts can add and remove members from the enterprise-managed access group in their account.",
+                            "elem": {
+                              "kind": "resource",
+                              "attributes": {
+                                "add": {
+                                  "name": "add",
+                                  "type": "bool",
+                                  "required": false,
+                                  "optional": false,
+                                  "computed": true,
+                                  "description": "Action control for adding child account members to an enterprise-managed access group. If an access group administrator in a child account adds a member, they can always remove them."
+                                },
+                                "remove": {
+                                  "name": "remove",
+                                  "type": "bool",
+                                  "required": false,
+                                  "optional": false,
+                                  "computed": true,
+                                  "description": "Action control for removing enterprise-managed members from an enterprise-managed access group."
+                                }
+                              }
+                            }
+                          },
+                          "services": {
+                            "name": "services",
+                            "type": "list",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Array of service IDs to add to the template.",
+                            "elem": {
+                              "kind": "schema",
+                              "type": "string"
+                            }
+                          },
+                          "users": {
+                            "name": "users",
+                            "type": "list",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Array of enterprise users to add to the template. All enterprise users that you add to the template must be invited to the child accounts where the template is assigned.",
+                            "elem": {
+                              "kind": "schema",
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Give the access group a unique name that doesn't conflict with other templates access group name in the given account. This is shown in child accounts."
+                    }
+                  }
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The URL to the template resource."
+              },
+              "last_modified_at": {
+                "name": "last_modified_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date and time the template was last modified."
+              },
+              "last_modified_by_id": {
+                "name": "last_modified_by_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the user who last modified the template."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the template."
+              },
+              "policy_template_references": {
+                "name": "policy_template_references",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A list of policy templates associated with the template.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Policy template ID."
+                    },
+                    "version": {
+                      "name": "version",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Policy template version."
+                    }
+                  }
+                }
+              },
+              "version": {
+                "name": "version",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The version number of the template."
+              }
+            }
+          }
+        },
+        "last": {
+          "name": "last",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A link object.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A string containing the link’s URL."
+              }
+            }
+          }
+        },
+        "previous": {
+          "name": "previous",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A link object.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A string containing the link’s URL."
+              }
+            }
+          }
+        },
+        "template_id": {
+          "name": "template_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "ID of the template that you want to list all versions of."
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 10,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package iamaccessgroup"
+}

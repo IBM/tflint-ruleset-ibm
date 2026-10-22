@@ -1,0 +1,573 @@
+{
+  "package": "kms",
+  "specs": [
+    {
+      "slug": "key-protect",
+      "title": "IBM Key Protect API",
+      "schema_count": 158,
+      "path_count": 33
+    },
+    {
+      "slug": "hs-crypto",
+      "title": "IBM Cloud Hyper Protect Crypto Services KMS API",
+      "schema_count": 145,
+      "path_count": 27
+    },
+    {
+      "slug": "uko",
+      "title": "Unified Key Orchestrator API for IBM Cloud Hyper Protect Crypto Services",
+      "schema_count": 153,
+      "path_count": 23
+    }
+  ],
+  "matched": 22,
+  "resource_count": 22,
+  "overlay_attrs": 51,
+  "resources": [
+    {
+      "name": "ibm_kms_cryptounits",
+      "kind": "resource",
+      "schema": "leaf-unique",
+      "spec": "hs-crypto",
+      "score": 0.08,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_instance_policies",
+      "kind": "resource",
+      "schema": "InstancePolicyAllAttributes",
+      "spec": "hs-crypto",
+      "score": 0.42,
+      "attrs": {
+        "key_create_import_access.create_root_key": {
+          "description": "If set to `false`, the service prevents you or any authorized users from using Hyper Protect Crypto Services to create root keys in the specified service instance. If set to `true`, Hyper Protect Crypto Services allows you or any authorized users to create root keys in the instance. **Note:** If omitted, `POST /instance/policies` will set this attribute to the default value (`true`).",
+          "source": "hs-crypto",
+          "schema": "InstancePolicyAllAttributes"
+        },
+        "key_create_import_access.create_standard_key": {
+          "description": "If set to `false`, the service prevents you or any authorized users from using Hyper Protect Crypto Services to create standard keys in the specified service instance. If set to `true`, Hyper Protect Crypto Services allows you or any authorized users to create standard keys in the instance. **Note:** If omitted, `POST /instance/policies` will set this attribute to the default value (`true`).",
+          "source": "hs-crypto",
+          "schema": "InstancePolicyAllAttributes"
+        },
+        "key_create_import_access.enforce_token": {
+          "description": "If set to `true`, the service prevents you or any authorized users from importing key material into the specified service instance without using an import token. If set to `false`, Hyper Protect Crypto Services allows you or any authorized users to import key material into the instance without the use of an import token. **Note:** If omitted, `POST /instance/policies` will set this attribute to th",
+          "source": "hs-crypto",
+          "schema": "InstancePolicyAllAttributes"
+        },
+        "key_create_import_access.import_root_key": {
+          "description": "If set to `false`, the service prevents you or any authorized users from importing root keys into the specified service instance. If set to `true`, Hyper Protect Crypto Services allows you or any authorized users to import root keys into the instance. **Note:** If omitted, `POST /instance/policies` will set this attribute to the default value (`true`).",
+          "source": "hs-crypto",
+          "schema": "InstancePolicyAllAttributes"
+        },
+        "key_create_import_access.import_standard_key": {
+          "description": "If set to `false`, the service prevents you or any authorized users from importing standard keys into the specified service instance. If set to `true`, Hyper Protect Crypto Services allows you or any authorized users to import standard keys into the instance. **Note:** If omitted, `POST /instance/policies` will set this attribute to the default value (`true`).",
+          "source": "hs-crypto",
+          "schema": "InstancePolicyAllAttributes"
+        },
+        "rotation.interval_month": {
+          "min": 1,
+          "max": 12,
+          "description": "Specifies the key rotation time interval in approximate months, where a month is equivalent to 30 days. A minimum of 1 and a maximum of 12 can be set.",
+          "source": "hs-crypto",
+          "schema": "InstancePolicyAllAttributes"
+        },
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_key",
+      "kind": "resource",
+      "schema": "Key",
+      "spec": "key-protect",
+      "score": 0.21,
+      "attrs": {
+        "description": {
+          "pattern": "^.{2,240}$",
+          "min_len": 2,
+          "max_len": 240,
+          "description": "A text field used to provide a more detailed description of the key. The maximum length is 240 characters. To protect your privacy, do not use personal data, such as your name or location, as a description for your key.",
+          "source": "key-protect",
+          "schema": "Key"
+        },
+        "payload": {
+          "pattern": "^.{16,32}$",
+          "format": "byte",
+          "min_len": 16,
+          "max_len": 32,
+          "description": "The key material that you can export to external apps or services. **Note:** If the key has been designated as a root key, the system cannot return the key material.",
+          "source": "key-protect",
+          "schema": "Key"
+        },
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_key_alias",
+      "kind": "resource",
+      "schema": "Key",
+      "spec": "key-protect",
+      "score": 0.21,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_key_policies",
+      "kind": "resource",
+      "schema": "RotationKeyMetadata",
+      "spec": "key-protect",
+      "score": 0.2333,
+      "attrs": {
+        "dual_auth_delete.enabled": {
+          "description": "If set to `true`, Key Protect enables a rotation policy on a single key.",
+          "api_required": true,
+          "source": "key-protect",
+          "schema": "RotationKeyMetadata"
+        },
+        "rotation.enabled": {
+          "description": "If set to `true`, Key Protect enables a rotation policy on a single key.",
+          "api_required": true,
+          "source": "key-protect",
+          "schema": "RotationKeyMetadata"
+        },
+        "rotation.interval_month": {
+          "min": 1,
+          "max": 12,
+          "description": "Specifies the key rotation time interval in approximate months, where a month is equivalent to 30 days. A minimum of 1 and a maximum of 12 can be set.",
+          "source": "key-protect",
+          "schema": "RotationKeyMetadata"
+        },
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_key_rings",
+      "kind": "resource",
+      "schema": "Key",
+      "spec": "key-protect",
+      "score": 0.21,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_key_with_policy_overrides",
+      "kind": "resource",
+      "schema": "Key",
+      "spec": "key-protect",
+      "score": 0.21,
+      "attrs": {
+        "description": {
+          "pattern": "^.{2,240}$",
+          "min_len": 2,
+          "max_len": 240,
+          "description": "A text field used to provide a more detailed description of the key. The maximum length is 240 characters. To protect your privacy, do not use personal data, such as your name or location, as a description for your key.",
+          "source": "key-protect",
+          "schema": "Key"
+        },
+        "dual_auth_delete.enabled": {
+          "description": "The status of a dual authorization policy on the key. If `true`, dual authorization is required to delete the key. If `false`, no prior authorization is required to delete the key.",
+          "api_required": true,
+          "source": "key-protect",
+          "schema": "Key"
+        },
+        "payload": {
+          "pattern": "^.{16,32}$",
+          "format": "byte",
+          "min_len": 16,
+          "max_len": 32,
+          "description": "The key material that you can export to external apps or services. **Note:** If the key has been designated as a root key, the system cannot return the key material.",
+          "source": "key-protect",
+          "schema": "Key"
+        },
+        "rotation.enabled": {
+          "description": "The status of a dual authorization policy on the key. If `true`, dual authorization is required to delete the key. If `false`, no prior authorization is required to delete the key.",
+          "api_required": true,
+          "source": "key-protect",
+          "schema": "Key"
+        },
+        "rotation.interval_month": {
+          "min": 1,
+          "max": 12,
+          "description": "Specifies the key rotation time interval in approximate months, where a month is equivalent to 30 days. A minimum of 1 and a maximum of 12 can be set.",
+          "source": "key-protect",
+          "schema": "Key"
+        },
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_kmip_adapter",
+      "kind": "resource",
+      "schema": "CreateKMIPAdapterRequestBodyResources",
+      "spec": "key-protect",
+      "score": 0.4667,
+      "attrs": {
+        "description": {
+          "pattern": "^.{2,240}$",
+          "min_len": 2,
+          "max_len": 240,
+          "description": "The optional description of the KMIP adapter. The maximum length is 240 characters. To protect your privacy, do not use personal data, such as your name or location, as a description for your KMIP adapter.",
+          "source": "key-protect",
+          "schema": "CreateKMIPAdapterRequestBodyResources"
+        },
+        "name": {
+          "pattern": "^[a-zA-Z0-9-_]{2,40}$",
+          "min_len": 2,
+          "max_len": 40,
+          "description": "A human-readable name of the KMIP adapter unique within the kms instance. If one is not specified, one will be autogenerated of the format `kmip_adapter_<random_string>`. To protect your privacy do not use personal data, such as your name or location, as a name for your KMIP adapter. The name must be alphanumeric and cannot contain spaces or special characters other than `-` or `_`. The name canno",
+          "source": "key-protect",
+          "schema": "CreateKMIPAdapterRequestBodyResources"
+        },
+        "profile": {
+          "enum": [
+            "native_1.0"
+          ],
+          "min_len": 10,
+          "max_len": 10,
+          "description": "The profile of KMIP adapter to be created",
+          "api_required": true,
+          "source": "key-protect",
+          "schema": "CreateKMIPAdapterRequestBodyResources"
+        },
+        "profile_data": {
+          "description": "The data specific to the KMIP Adapter profile. This is a required field for profile `native_1.0`",
+          "source": "key-protect",
+          "schema": "CreateKMIPAdapterRequestBodyResources"
+        },
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_kmip_client_cert",
+      "kind": "resource",
+      "schema": "CreateKMIPClientCertificateObject",
+      "spec": "key-protect",
+      "score": 0.28,
+      "attrs": {
+        "certificate": {
+          "pattern": "^\\s*-----BEGIN CERTIFICATE-----[A-Za-z0-9+/\\=\\r\\\\n]+-----END CERTIFICATE-----\\s*$",
+          "min_len": 50,
+          "max_len": 100000,
+          "description": "The client certificate to be associated with the KMIP Adapter. It should explicitly have the BEGIN CERTIFICATE and END CERTIFICATE tags.",
+          "api_required": true,
+          "source": "key-protect",
+          "schema": "CreateKMIPClientCertificateObject"
+        },
+        "name": {
+          "pattern": "^[a-zA-Z0-9-_]{2,40}$",
+          "min_len": 2,
+          "max_len": 40,
+          "description": "A human-readable name that uniquely identifies a certificate within the given adapter. If one is not specified, one will be autogenerated of the format `kmip_cert_<random_string>`. To protect your privacy do not use personal data, such as your name or location, as a name for your client certificate. The name must be alphanumeric and cannot contain spaces or special characters other than `-` or `_`",
+          "source": "key-protect",
+          "schema": "CreateKMIPClientCertificateObject"
+        },
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_kp_key",
+      "kind": "resource",
+      "schema": "Key",
+      "spec": "key-protect",
+      "score": 0.21,
+      "attrs": {
+        "payload": {
+          "pattern": "^.{16,32}$",
+          "format": "byte",
+          "min_len": 16,
+          "max_len": 32,
+          "description": "The key material that you can export to external apps or services. **Note:** If the key has been designated as a root key, the system cannot return the key material.",
+          "source": "key-protect",
+          "schema": "Key"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_instance_policies",
+      "kind": "data",
+      "schema": "InstanceConnectionRead",
+      "spec": "hs-crypto",
+      "score": 0.2333,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_key",
+      "kind": "data",
+      "schema": "Key",
+      "spec": "key-protect",
+      "score": 0.21,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        },
+        "limit": {
+          "format": "int32",
+          "min": 1,
+          "max": 1000,
+          "description": "The number of resources that were requested in this query.",
+          "source": "uko",
+          "schema": "managedKeyList"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_key_policies",
+      "kind": "data",
+      "schema": "Key",
+      "spec": "key-protect",
+      "score": 0.21,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_key_rings",
+      "kind": "data",
+      "schema": "InstanceConnectionRead",
+      "spec": "hs-crypto",
+      "score": 0.2333,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_keys",
+      "kind": "data",
+      "schema": "/api/v2/keys/{id}:patch",
+      "spec": "key-protect",
+      "score": 0.155,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        },
+        "limit": {
+          "format": "int32",
+          "min": 1,
+          "max": 1000,
+          "description": "The number of resources that were requested in this query.",
+          "source": "uko",
+          "schema": "managedKeyList"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_kmip_adapter",
+      "kind": "data",
+      "schema": "InstanceConnectionRead",
+      "spec": "hs-crypto",
+      "score": 0.2333,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_kmip_adapters",
+      "kind": "data",
+      "schema": "metadata",
+      "spec": "uko",
+      "score": 0.14,
+      "attrs": {
+        "limit": {
+          "format": "int32",
+          "min": 1,
+          "max": 1000,
+          "description": "The number of resources that were requested in this query.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "metadata"
+        },
+        "offset": {
+          "format": "int32",
+          "min": 0,
+          "max": 2147483647,
+          "description": "The number of resources that were skipped in this query.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "metadata"
+        },
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_kmip_client_cert",
+      "kind": "data",
+      "schema": "InstanceConnectionRead",
+      "spec": "hs-crypto",
+      "score": 0.14,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_kmip_client_certs",
+      "kind": "data",
+      "schema": "leaf-unique",
+      "spec": "hs-crypto",
+      "score": 0.1167,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        },
+        "limit": {
+          "format": "int32",
+          "min": 1,
+          "max": 1000,
+          "description": "The number of resources that were requested in this query.",
+          "source": "uko",
+          "schema": "managedKeyList"
+        },
+        "offset": {
+          "format": "int32",
+          "min": 0,
+          "max": 2147483647,
+          "description": "The number of resources that were skipped in this query.",
+          "source": "uko",
+          "schema": "managedKeyList"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_kmip_object",
+      "kind": "data",
+      "schema": "InstanceConnectionRead",
+      "spec": "hs-crypto",
+      "score": 0.14,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_kmip_objects",
+      "kind": "data",
+      "schema": "leaf-unique",
+      "spec": "hs-crypto",
+      "score": 0.1077,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        },
+        "limit": {
+          "format": "int32",
+          "min": 1,
+          "max": 1000,
+          "description": "The number of resources that were requested in this query.",
+          "source": "uko",
+          "schema": "managedKeyList"
+        },
+        "offset": {
+          "format": "int32",
+          "min": 0,
+          "max": 2147483647,
+          "description": "The number of resources that were skipped in this query.",
+          "source": "uko",
+          "schema": "managedKeyList"
+        }
+      }
+    },
+    {
+      "name": "ibm_kp_key",
+      "kind": "data",
+      "schema": "Key",
+      "spec": "key-protect",
+      "score": 0.21,
+      "attrs": {}
+    }
+  ]
+}

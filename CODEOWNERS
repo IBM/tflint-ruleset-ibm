@@ -1,0 +1,15 @@
+# Default owners for everything in the repository.
+*                 @hkantare @uibm @kavya498
+
+# Release, CI and supply-chain inputs. Changes here can alter shipped
+# binaries; keep "Require review from Code Owners" on for main.
+/.github/         @hkantare @uibm @kavya498
+/.goreleaser.yml  @hkantare @uibm @kavya498
+/.gitleaks.toml   @hkantare @uibm @kavya498
+/go.mod           @hkantare @uibm @kavya498
+/go.sum           @hkantare @uibm @kavya498
+/Makefile         @hkantare @uibm @kavya498
+/generator/       @hkantare @uibm @kavya498
+/extractor/       @hkantare @uibm @kavya498
+/internal/        @hkantare @uibm @kavya498
+/scripts/         @hkantare @uibm @kavya498

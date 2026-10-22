@@ -1,0 +1,56 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  # Pull requests opened by the regenerate workflow use GITHUB_TOKEN, which
+  # does not trigger this workflow. Maintainers run it on chore/regen-rules.
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - name: Set up Go
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
+        with:
+          go-version-file: "go.mod"
+          cache: true
+      - name: Hygiene
+        if: runner.os != 'Windows'
+        run: make hygiene
+      - name: Format
+        if: runner.os != 'Windows'
+        run: test -z "$(gofmt -l .)"
+      - name: Vet
+        run: go vet ./...
+      - name: Test
+        run: go test ./...
+      - name: Race
+        if: runner.os != 'Windows'
+        run: go test -race ./ibm ./project ./extractor ./generator ./coverage ./rules -count=1
+      - name: Build
+        run: go build -o tflint-ruleset-ibm .
+      - name: Vulnerability scan
+        if: runner.os != 'Windows'
+        run: go run golang.org/x/vuln/cmd/govulncheck@v1.8.0 ./...

@@ -1,0 +1,851 @@
+{
+  "package": "hpcs",
+  "specs": [
+    {
+      "slug": "hs-crypto",
+      "title": "IBM Cloud Hyper Protect Crypto Services KMS API",
+      "schema_count": 145,
+      "path_count": 27
+    },
+    {
+      "slug": "uko",
+      "title": "Unified Key Orchestrator API for IBM Cloud Hyper Protect Crypto Services",
+      "schema_count": 153,
+      "path_count": 23
+    }
+  ],
+  "matched": 10,
+  "resource_count": 10,
+  "overlay_attrs": 73,
+  "resources": [
+    {
+      "name": "ibm_hpcs",
+      "kind": "resource",
+      "schema": "/v4/templates/{id}:patch",
+      "spec": "uko",
+      "score": 0.1675,
+      "attrs": {
+        "admins.key": {
+          "description": "Updated key related properties",
+          "source": "uko",
+          "schema": "/v4/templates/{id}:patch"
+        },
+        "admins.name": {
+          "pattern": "^[A-Za-z0-9#@!$%'_-][A-Za-z0-9#@!$% '_-]*$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "A human-readable name to assign to your template.",
+          "source": "uko",
+          "schema": "/v4/templates/{id}:patch"
+        },
+        "name": {
+          "pattern": "^[A-Za-z0-9#@!$%'_-][A-Za-z0-9#@!$% '_-]*$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "A human-readable name to assign to your template.",
+          "source": "uko",
+          "schema": "/v4/templates/{id}:patch"
+        },
+        "location": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9 ._-]*$",
+          "min_len": 0,
+          "max_len": 100,
+          "description": "Geographic location of the keystore, if available",
+          "source": "uko",
+          "schema": "keystoreList"
+        }
+      }
+    },
+    {
+      "name": "ibm_hpcs_key_template",
+      "kind": "resource",
+      "schema": "keyPropertiesUpdate",
+      "spec": "uko",
+      "score": 0.255,
+      "attrs": {
+        "key.activation_date": {
+          "pattern": "P^[0-9YMWD]+$",
+          "min_len": 3,
+          "max_len": 100,
+          "description": "Key activation date can be provided as a period definition (e.g. P1Y means 1 year).",
+          "source": "uko",
+          "schema": "keyPropertiesUpdate"
+        },
+        "key.expiration_date": {
+          "pattern": "P^[0-9YMWD]+$",
+          "min_len": 3,
+          "max_len": 100,
+          "description": "Key expiration date can be provided as a period definition (e.g. P1Y means 1 year).",
+          "source": "uko",
+          "schema": "keyPropertiesUpdate"
+        },
+        "key.size": {
+          "pattern": "^[A-Za-z0-9]+$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "The size of the underlying cryptographic key or key pair. E.g. \"256\" for AES keys, or \"2048\" for RSA",
+          "source": "uko",
+          "schema": "keyPropertiesUpdate"
+        },
+        "key.state": {
+          "enum": [
+            "pre_activation",
+            "active"
+          ],
+          "description": "The state that the key will be in after generation",
+          "source": "uko",
+          "schema": "keyPropertiesUpdate"
+        },
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        },
+        "key.algorithm": {
+          "enum": [
+            "aes",
+            "rsa",
+            "hmac",
+            "ec",
+            "des",
+            "dilithium"
+          ],
+          "description": "The algorithm of the key",
+          "api_required": true,
+          "source": "uko",
+          "schema": "/v4/templates:post"
+        },
+        "keystores.google_key_protection_level": {
+          "enum": [
+            "software",
+            "hsm"
+          ],
+          "source": "uko",
+          "schema": "/v4/templates:post"
+        },
+        "keystores.google_key_purpose": {
+          "enum": [
+            "encrypt_decrypt",
+            "asymmetric_decrypt",
+            "asymmetric_sign",
+            "mac"
+          ],
+          "source": "uko",
+          "schema": "/v4/templates:post"
+        },
+        "keystores.google_kms_algorithm": {
+          "enum": [
+            "google_symmetric_encryption",
+            "ec_sign_p256_sha256",
+            "ec_sign_p384_sha384",
+            "ec_sign_secp256k1_sha256",
+            "rsa_sign_pss_2048_sha256",
+            "rsa_sign_pss_3072_sha256",
+            "rsa_sign_pss_4096_sha256",
+            "rsa_sign_pss_4096_sha512",
+            "rsa_sign_pkcs1_2048_sha256",
+            "rsa_sign_pkcs1_3072_sha256",
+            "rsa_sign_pkcs1_4096_sha256",
+            "rsa_sign_pkcs1_4096_sha512",
+            "rsa_sign_raw_pkcs1_2048",
+            "rsa_sign_raw_pkcs1_3072",
+            "rsa_sign_raw_pkcs1_4096",
+            "rsa_decrypt_oaep_2048_sha1",
+            "rsa_decrypt_oaep_2048_sha256",
+            "rsa_decrypt_oaep_3072_sha1",
+            "rsa_decrypt_oaep_3072_sha256",
+            "rsa_decrypt_oaep_4096_sha1",
+            "rsa_decrypt_oaep_4096_sha256",
+            "rsa_decrypt_oaep_4096_sha512",
+            "hmac_sha256"
+          ],
+          "source": "uko",
+          "schema": "/v4/templates:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_hpcs_keystore",
+      "kind": "resource",
+      "schema": "keystore",
+      "spec": "uko",
+      "score": 0.6395,
+      "attrs": {
+        "aws_access_key_id": {
+          "pattern": "^[A-Za-z0-9-_]*$",
+          "min_len": 1,
+          "max_len": 512,
+          "description": "The access key id used for connecting to this instance of AWS KMS.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "aws_region": {
+          "enum": [
+            "af_south_1",
+            "ap_east_1",
+            "ap_northeast_1",
+            "ap_northeast_2",
+            "ap_south_1",
+            "ap_southeast_1",
+            "ap_southeast_2",
+            "aws_cn_global",
+            "aws_global",
+            "aws_iso_global",
+            "aws_iso_b_global",
+            "aws_us_gov_global",
+            "ca_central_1",
+            "cn_north_1",
+            "cn_northwest_1",
+            "eu-central-1",
+            "eu_west_1",
+            "eu_west_2",
+            "eu_west_3",
+            "me_south_1",
+            "sa_east_1",
+            "us_east_1",
+            "us_east_2",
+            "us_gov_east_1",
+            "us_gov_west_1",
+            "us_iso_east_1",
+            "us_isob_east_1",
+            "us_west_1",
+            "us_west_2"
+          ],
+          "description": "AWS Region",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "aws_secret_access_key": {
+          "min_len": 1,
+          "max_len": 512,
+          "description": "The secret access key used for connecting to this instance of AWS KMS.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "azure_environment": {
+          "enum": [
+            "azure",
+            "azure_china",
+            "azure_germany",
+            "azure_us_government"
+          ],
+          "description": "Azure environment, usually 'Azure'",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "azure_location": {
+          "enum": [
+            "asia_east",
+            "asia_southeast",
+            "australia_central",
+            "australia_central_2",
+            "australia_east",
+            "australia_southeast",
+            "brazil_south",
+            "canada_central",
+            "canada_east",
+            "china_east",
+            "china_east_2",
+            "china_north",
+            "china_north_2",
+            "europe_north",
+            "europe_west",
+            "france_central",
+            "france_south",
+            "germany_central",
+            "germany_northeast",
+            "india_central",
+            "india_south",
+            "india_west",
+            "japan_east",
+            "japan_west",
+            "korea_central",
+            "korea_south",
+            "south_africa_north",
+            "south_africa_west",
+            "uk_south",
+            "uk_west",
+            "us_central",
+            "us_dod_central",
+            "us_dod_east",
+            "us_east",
+            "us_east_2",
+            "us_gov_arizona",
+            "us_gov_iowa",
+            "us_gov_texas",
+            "us_gov_virginia",
+            "us_north_central",
+            "us_south_central",
+            "us_west",
+            "us_west_2",
+            "us_west_central"
+          ],
+          "description": "Location of the Azure Key Vault",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "azure_resource_group": {
+          "pattern": "^[-\\w\\._\\(\\)]*[^\\.]$",
+          "min_len": 1,
+          "max_len": 90,
+          "description": "Resource group in Azure.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "azure_service_name": {
+          "pattern": "^[A-Za-z0-9-]+$",
+          "min_len": 3,
+          "max_len": 24,
+          "description": "Service name of the key vault instance from the Azure portal",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "azure_service_principal_client_id": {
+          "pattern": "^[-0-9a-zA-Z]+$",
+          "min_len": 1,
+          "max_len": 36,
+          "description": "Azure service principal client ID",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "azure_service_principal_password": {
+          "min_len": 1,
+          "max_len": 256,
+          "description": "Azure service principal password",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "azure_subscription_id": {
+          "pattern": "^[-0-9a-zA-Z]+$",
+          "min_len": 1,
+          "max_len": 36,
+          "description": "Subscription ID in Azure.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "azure_tenant": {
+          "pattern": "^[-0-9a-zA-Z]+$",
+          "min_len": 1,
+          "max_len": 36,
+          "description": "Azure tenant that the Key Vault is associated with,",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "description": {
+          "pattern": "(.|\\n)*",
+          "min_len": 0,
+          "max_len": 200,
+          "description": "Description of the keystore",
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "google_credentials": {
+          "pattern": "^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$",
+          "min_len": 1,
+          "max_len": 524288,
+          "description": "The value of the JSON key represented in the Base64 format",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "google_key_ring": {
+          "pattern": "^[A-Za-z0-9-]*$",
+          "min_len": 1,
+          "max_len": 1024,
+          "description": "A key ring organizes keys in a specific Google Cloud location and allows you to manage access control on groups of keys.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "google_location": {
+          "pattern": "^[A-Za-z0-9-]*$",
+          "min_len": 1,
+          "max_len": 512,
+          "description": "Location represents the geographical region where a Cloud KMS resource is stored and can be accessed. A key's location impacts the performance of applications using the key.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "google_private_key_id": {
+          "pattern": "^[A-Za-z0-9-_]*$",
+          "min_len": 1,
+          "max_len": 512,
+          "description": "The private key id associated with this keystore",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "google_project_id": {
+          "pattern": "^[A-Za-z0-9-_]*$",
+          "min_len": 1,
+          "max_len": 512,
+          "description": "The project id associated with this keystore",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "groups": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9-_ ]+$",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "List of groups that this keystore belongs to",
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "ibm_api_endpoint": {
+          "pattern": "^[A-Za-z0-9._~:/-]+$",
+          "min_len": 1,
+          "max_len": 512,
+          "description": "API endpoint of the IBM Cloud keystore",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "ibm_api_key": {
+          "pattern": "^[A-Za-z0-9-_&.]*$",
+          "format": "password",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The IBM Cloud API key to be used for connecting to this IBM Cloud keystore",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "ibm_iam_endpoint": {
+          "pattern": "^[A-Za-z0-9._~:/-]+$",
+          "min_len": 1,
+          "max_len": 512,
+          "description": "Endpoint of the IAM service for this IBM Cloud keystore",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "ibm_instance_id": {
+          "pattern": "^[A-Za-z0-9-]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The instance ID of the IBM Cloud keystore",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "ibm_key_ring": {
+          "pattern": "^[a-zA-Z0-9-]*$",
+          "min_len": 2,
+          "max_len": 100,
+          "description": "The key ring of an IBM Cloud KMS Keystore",
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "ibm_variant": {
+          "enum": [
+            "hpcs",
+            "internal",
+            "key_protect"
+          ],
+          "description": "Possible IBM Cloud KMS variants",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "name": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9 ._-]*$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Name of the target keystore. It can be changed in the future.",
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "type": {
+          "enum": [
+            "aws_kms",
+            "azure_key_vault",
+            "google_kms",
+            "ibm_cloud_kms",
+            "cca"
+          ],
+          "description": "Type of keystore",
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "vault.id": {
+          "pattern": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "keystore"
+        },
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_hpcs_managed_key",
+      "kind": "resource",
+      "schema": "template",
+      "spec": "uko",
+      "score": 0.23,
+      "attrs": {
+        "description": {
+          "min_len": 0,
+          "max_len": 1000,
+          "description": "Description of the key template",
+          "api_required": true,
+          "source": "uko",
+          "schema": "template"
+        },
+        "instances.google_key_protection_level": {
+          "enum": [
+            "software",
+            "hsm"
+          ],
+          "source": "uko",
+          "schema": "template"
+        },
+        "instances.google_key_purpose": {
+          "enum": [
+            "encrypt_decrypt",
+            "asymmetric_decrypt",
+            "asymmetric_sign",
+            "mac"
+          ],
+          "source": "uko",
+          "schema": "template"
+        },
+        "instances.google_kms_algorithm": {
+          "enum": [
+            "google_symmetric_encryption",
+            "ec_sign_p256_sha256",
+            "ec_sign_p384_sha384",
+            "ec_sign_secp256k1_sha256",
+            "rsa_sign_pss_2048_sha256",
+            "rsa_sign_pss_3072_sha256",
+            "rsa_sign_pss_4096_sha256",
+            "rsa_sign_pss_4096_sha512",
+            "rsa_sign_pkcs1_2048_sha256",
+            "rsa_sign_pkcs1_3072_sha256",
+            "rsa_sign_pkcs1_4096_sha256",
+            "rsa_sign_pkcs1_4096_sha512",
+            "rsa_sign_raw_pkcs1_2048",
+            "rsa_sign_raw_pkcs1_3072",
+            "rsa_sign_raw_pkcs1_4096",
+            "rsa_decrypt_oaep_2048_sha1",
+            "rsa_decrypt_oaep_2048_sha256",
+            "rsa_decrypt_oaep_3072_sha1",
+            "rsa_decrypt_oaep_3072_sha256",
+            "rsa_decrypt_oaep_4096_sha1",
+            "rsa_decrypt_oaep_4096_sha256",
+            "rsa_decrypt_oaep_4096_sha512",
+            "hmac_sha256"
+          ],
+          "source": "uko",
+          "schema": "template"
+        },
+        "instances.id": {
+          "pattern": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "template"
+        },
+        "instances.keystore.group": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9-_ ]+$",
+          "min_len": 1,
+          "max_len": 200,
+          "description": "Which keystore group to distribute the key to",
+          "source": "uko",
+          "schema": "template"
+        },
+        "instances.keystore.type": {
+          "enum": [
+            "user_defined",
+            "shadow"
+          ],
+          "description": "Type of the template which determines template origins. Ones created by user are 'user_defined' where 'shadow' means it was created under the hood by the UKO.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "template"
+        },
+        "instances.type": {
+          "enum": [
+            "user_defined",
+            "shadow"
+          ],
+          "description": "Type of the template which determines template origins. Ones created by user are 'user_defined' where 'shadow' means it was created under the hood by the UKO.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "template"
+        },
+        "referenced_keystores.href": {
+          "pattern": "^[A-Za-z0-9._~:/?&=-]+$",
+          "min_len": 1,
+          "max_len": 200,
+          "description": "A URL that uniquely identifies your cloud resource.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "template"
+        },
+        "referenced_keystores.id": {
+          "pattern": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "template"
+        },
+        "referenced_keystores.name": {
+          "pattern": "^[A-Za-z0-9#@!$%'_-][A-Za-z0-9#@!$% '_-]*$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Name of the referenced vault",
+          "api_required": true,
+          "source": "uko",
+          "schema": "template"
+        },
+        "referenced_keystores.type": {
+          "enum": [
+            "user_defined",
+            "shadow"
+          ],
+          "description": "Type of the template which determines template origins. Ones created by user are 'user_defined' where 'shadow' means it was created under the hood by the UKO.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "template"
+        },
+        "state": {
+          "enum": [
+            "archived",
+            "unarchived"
+          ],
+          "description": "State of the template which determines if the template is archived or unarchived.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "template"
+        },
+        "tags.name": {
+          "pattern": "^[A-Za-z0-9#@!$%'_-][A-Za-z0-9#@!$% '_-]*$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Name of the referenced vault",
+          "api_required": true,
+          "source": "uko",
+          "schema": "template"
+        },
+        "template.href": {
+          "pattern": "^[A-Za-z0-9._~:/?&=-]+$",
+          "min_len": 1,
+          "max_len": 200,
+          "description": "A URL that uniquely identifies your cloud resource.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "template"
+        },
+        "template.id": {
+          "pattern": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "template"
+        },
+        "template.name": {
+          "pattern": "^[A-Za-z0-9#@!$%'_-][A-Za-z0-9#@!$% '_-]*$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Name of the referenced vault",
+          "api_required": true,
+          "source": "uko",
+          "schema": "template"
+        },
+        "vault.id": {
+          "pattern": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "template"
+        },
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        },
+        "instances.label_in_keystore": {
+          "pattern": "^[A-Za-z0-9._ /-]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The label of the key.",
+          "api_required": true,
+          "source": "uko",
+          "schema": "managedKeyList"
+        },
+        "label": {
+          "pattern": "^[A-Za-z0-9._ /-]+$",
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The label of the key.",
+          "source": "uko",
+          "schema": "/v4/managed_keys:post"
+        },
+        "template_name": {
+          "pattern": "^[A-Za-z0-9#@!$%'_-][A-Za-z0-9#@!$% '_-]*$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Name of the key template to use when creating a key",
+          "api_required": true,
+          "source": "uko",
+          "schema": "/v4/managed_keys:post"
+        },
+        "verification_patterns.method": {
+          "pattern": "^[A-Za-z0-9-]+$",
+          "min_len": 0,
+          "max_len": 100,
+          "description": "The method used for calculating the verification pattern",
+          "api_required": true,
+          "source": "uko",
+          "schema": "managedKeyList"
+        }
+      }
+    },
+    {
+      "name": "ibm_hpcs_vault",
+      "kind": "resource",
+      "schema": "/v4/vaults/{id}:patch",
+      "spec": "uko",
+      "score": 0.36,
+      "attrs": {
+        "description": {
+          "pattern": "(.|\\n)*",
+          "min_len": 0,
+          "max_len": 200,
+          "description": "Updated description of the vault",
+          "source": "uko",
+          "schema": "/v4/vaults/{id}:patch"
+        },
+        "name": {
+          "pattern": "^[A-Za-z0-9#@!$%'_-][A-Za-z0-9#@!$% '_-]*$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Updated name of the vault",
+          "source": "uko",
+          "schema": "/v4/vaults/{id}:patch"
+        },
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_hpcs",
+      "kind": "data",
+      "schema": "/v4/vaults/{id}:patch",
+      "spec": "uko",
+      "score": 0.1967,
+      "attrs": {
+        "name": {
+          "pattern": "^[A-Za-z0-9#@!$%'_-][A-Za-z0-9#@!$% '_-]*$",
+          "min_len": 1,
+          "max_len": 100,
+          "description": "Updated name of the vault",
+          "source": "uko",
+          "schema": "/v4/vaults/{id}:patch"
+        },
+        "location": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9 ._-]*$",
+          "min_len": 0,
+          "max_len": 100,
+          "description": "Geographic location of the keystore, if available",
+          "source": "uko",
+          "schema": "keystoreList"
+        }
+      }
+    },
+    {
+      "name": "ibm_hpcs_key_template",
+      "kind": "data",
+      "schema": "Key",
+      "spec": "hs-crypto",
+      "score": 0.21,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_hpcs_keystore",
+      "kind": "data",
+      "schema": "keystore",
+      "spec": "uko",
+      "score": 0.21,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_hpcs_managed_key",
+      "kind": "data",
+      "schema": "Key",
+      "spec": "hs-crypto",
+      "score": 0.21,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    },
+    {
+      "name": "ibm_hpcs_vault",
+      "kind": "data",
+      "schema": "vault",
+      "spec": "uko",
+      "score": 0.21,
+      "attrs": {
+        "instance_id": {
+          "format": "byte",
+          "description": "The v4 UUID used to uniquely identify the instance in IBM Cloud.",
+          "source": "hs-crypto",
+          "schema": "InstanceConnectionRead"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+{
+  "package": "contextbasedrestrictions",
+  "specs": [
+    {
+      "slug": "context-based-restrictions",
+      "title": "Context Based Restrictions",
+      "schema_count": 33,
+      "path_count": 8
+    }
+  ],
+  "matched": 6,
+  "resource_count": 6,
+  "overlay_attrs": 24,
+  "resources": [
+    {
+      "name": "ibm_cbr_rule",
+      "kind": "resource",
+      "schema": "Rule",
+      "spec": "context-based-restrictions",
+      "score": 0.2837,
+      "attrs": {
+        "contexts.attributes.name": {
+          "pattern": "^[a-zA-Z0-9]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The attribute name",
+          "api_required": true,
+          "source": "context-based-restrictions",
+          "schema": "Rule"
+        },
+        "contexts.attributes.value": {
+          "pattern": "^[\\S\\s]+$",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The attribute value",
+          "api_required": true,
+          "source": "context-based-restrictions",
+          "schema": "Rule"
+        },
+        "description": {
+          "pattern": "^[^\u0000-\u001f\u007f\u0080-\u009f]*$",
+          "min_len": 0,
+          "max_len": 300,
+          "description": "The description of the rule.",
+          "api_required": true,
+          "source": "context-based-restrictions",
+          "schema": "Rule"
+        },
+        "enforcement_mode": {
+          "enum": [
+            "enabled",
+            "disabled",
+            "report"
+          ],
+          "description": "The rule enforcement mode: * `enabled` - The restrictions are enforced and reported. This is the default. * `disabled` - The restrictions are disabled. Nothing is enforced or reported. * `report` - The restrictions are evaluated and reported, but not enforced.",
+          "source": "context-based-restrictions",
+          "schema": "Rule"
+        },
+        "operations.api_types.api_type_id": {
+          "pattern": "^[a-zA-Z0-9_.\\-:]+$",
+          "min_len": 1,
+          "max_len": 128,
+          "api_required": true,
+          "source": "context-based-restrictions",
+          "schema": "Rule"
+        },
+        "operations.api_types.description": {
+          "pattern": "^[^\u0000-\u001f\u007f\u0080-\u009f]*$",
+          "min_len": 0,
+          "max_len": 300,
+          "description": "The description of the rule.",
+          "api_required": true,
+          "source": "context-based-restrictions",
+          "schema": "Rule"
+        },
+        "resources.attributes.name": {
+          "pattern": "^[a-zA-Z0-9_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The attribute name",
+          "api_required": true,
+          "source": "context-based-restrictions",
+          "schema": "Rule"
+        },
+        "resources.attributes.operator": {
+          "pattern": "^[a-zA-Z0-9]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The attribute operator",
+          "source": "context-based-restrictions",
+          "schema": "Rule"
+        },
+        "resources.attributes.value": {
+          "pattern": "^[\\S\\s]+$",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The attribute value",
+          "api_required": true,
+          "source": "context-based-restrictions",
+          "schema": "Rule"
+        },
+        "resources.tags.name": {
+          "pattern": "^[a-zA-Z0-9 _.-]+$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "The tag attribute name",
+          "api_required": true,
+          "source": "context-based-restrictions",
+          "schema": "Rule"
+        },
+        "resources.tags.operator": {
+          "pattern": "^[a-zA-Z0-9]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The attribute operator",
+          "source": "context-based-restrictions",
+          "schema": "Rule"
+        },
+        "resources.tags.value": {
+          "pattern": "^[a-zA-Z0-9 _*?.-]+$",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The tag attribute value",
+          "api_required": true,
+          "source": "context-based-restrictions",
+          "schema": "Rule"
+        }
+      }
+    },
+    {
+      "name": "ibm_cbr_zone",
+      "kind": "resource",
+      "schema": "ServiceRefValue",
+      "spec": "context-based-restrictions",
+      "score": 0.3182,
+      "attrs": {
+        "account_id": {
+          "pattern": "^[a-zA-Z0-9\\-]+$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "The id of the account owning the service",
+          "api_required": true,
+          "source": "context-based-restrictions",
+          "schema": "ServiceRefValue"
+        },
+        "addresses.ref.account_id": {
+          "pattern": "^[a-zA-Z0-9\\-]+$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "The id of the account owning the service",
+          "api_required": true,
+          "source": "context-based-restrictions",
+          "schema": "ServiceRefValue"
+        },
+        "addresses.ref.location": {
+          "pattern": "^[0-9a-z\\-]+$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "The location",
+          "source": "context-based-restrictions",
+          "schema": "ServiceRefValue"
+        },
+        "addresses.ref.service_instance": {
+          "pattern": "^[0-9a-z\\-/]+$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "The service instance",
+          "source": "context-based-restrictions",
+          "schema": "ServiceRefValue"
+        },
+        "addresses.ref.service_name": {
+          "pattern": "^[0-9a-z\\-]+$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "The service name",
+          "source": "context-based-restrictions",
+          "schema": "ServiceRefValue"
+        },
+        "addresses.ref.service_type": {
+          "pattern": "^[0-9a-z_]+$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "The service type",
+          "source": "context-based-restrictions",
+          "schema": "ServiceRefValue"
+        },
+        "description": {
+          "pattern": "^[^\u0000-\u001f\u007f\u0080-\u009f]*$",
+          "min_len": 0,
+          "max_len": 300,
+          "description": "The description of the zone.",
+          "source": "context-based-restrictions",
+          "schema": "/v1/zones:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_cbr_zone_addresses",
+      "kind": "resource",
+      "schema": "ServiceRefValue",
+      "spec": "context-based-restrictions",
+      "score": 0.35,
+      "attrs": {
+        "addresses.ref.account_id": {
+          "pattern": "^[a-zA-Z0-9\\-]+$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "The id of the account owning the service",
+          "api_required": true,
+          "source": "context-based-restrictions",
+          "schema": "ServiceRefValue"
+        },
+        "addresses.ref.location": {
+          "pattern": "^[0-9a-z\\-]+$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "The location",
+          "source": "context-based-restrictions",
+          "schema": "ServiceRefValue"
+        },
+        "addresses.ref.service_instance": {
+          "pattern": "^[0-9a-z\\-/]+$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "The service instance",
+          "source": "context-based-restrictions",
+          "schema": "ServiceRefValue"
+        },
+        "addresses.ref.service_name": {
+          "pattern": "^[0-9a-z\\-]+$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "The service name",
+          "source": "context-based-restrictions",
+          "schema": "ServiceRefValue"
+        },
+        "addresses.ref.service_type": {
+          "pattern": "^[0-9a-z_]+$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "The service type",
+          "source": "context-based-restrictions",
+          "schema": "ServiceRefValue"
+        }
+      }
+    },
+    {
+      "name": "ibm_cbr_rule",
+      "kind": "data",
+      "schema": "Rule",
+      "spec": "context-based-restrictions",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cbr_zone",
+      "kind": "data",
+      "schema": "Zone",
+      "spec": "context-based-restrictions",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cbr_zone_addresses",
+      "kind": "data",
+      "schema": "Zone",
+      "spec": "context-based-restrictions",
+      "score": 0.21,
+      "attrs": {}
+    }
+  ]
+}

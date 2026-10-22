@@ -1,0 +1,1603 @@
+{
+  "package": "cdtoolchain",
+  "specs": [
+    {
+      "slug": "toolchain",
+      "title": "CD Toolchain",
+      "schema_count": 47,
+      "path_count": 5
+    }
+  ],
+  "matched": 49,
+  "resource_count": 49,
+  "overlay_attrs": 145,
+  "resources": [
+    {
+      "name": "ibm_cd_toolchain",
+      "kind": "resource",
+      "schema": "ToolchainPrototype",
+      "spec": "toolchain",
+      "score": 0.605,
+      "attrs": {
+        "description": {
+          "pattern": "^(.*?)$",
+          "min_len": 0,
+          "max_len": 500,
+          "description": "Describes the toolchain",
+          "source": "toolchain",
+          "schema": "ToolchainPrototype"
+        },
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "ToolchainPrototype"
+        },
+        "resource_group_id": {
+          "pattern": "^[0-9a-f]{32}$",
+          "min_len": 32,
+          "max_len": 32,
+          "description": "Resource group where toolchain will be created",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "ToolchainPrototype"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_appconfig",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.3267,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.location": {
+          "description": "Toolchain region",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_artifactory",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.2709,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_bitbucketgit",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.26,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_cos",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.2767,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_custom",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.315,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.description": {
+          "pattern": "^(.*?)$",
+          "min_len": 0,
+          "max_len": 500,
+          "description": "Describes the toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_devopsinsights",
+      "kind": "resource",
+      "schema": "ToolModelReferent",
+      "spec": "toolchain",
+      "score": 0.35,
+      "attrs": {
+        "referent.api_href": {
+          "description": "URI representing this resource through an API",
+          "source": "toolchain",
+          "schema": "ToolModelReferent"
+        },
+        "referent.ui_href": {
+          "description": "URI representing this resource through the UI",
+          "source": "toolchain",
+          "schema": "ToolModelReferent"
+        },
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "/toolchains:post"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_eventnotifications",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.3033,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_githubconsolidated",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.2512,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "initialization.title": {
+          "pattern": "^(.*?)$",
+          "min_len": 0,
+          "max_len": 256,
+          "description": "Event title",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "/toolchains/{toolchain_id}/events:post"
+        },
+        "parameters.title": {
+          "pattern": "^(.*?)$",
+          "min_len": 0,
+          "max_len": 256,
+          "description": "Event title",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "/toolchains/{toolchain_id}/events:post"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_gitlab",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.2524,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "initialization.title": {
+          "pattern": "^(.*?)$",
+          "min_len": 0,
+          "max_len": 256,
+          "description": "Event title",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "/toolchains/{toolchain_id}/events:post"
+        },
+        "parameters.title": {
+          "pattern": "^(.*?)$",
+          "min_len": 0,
+          "max_len": 256,
+          "description": "Event title",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "/toolchains/{toolchain_id}/events:post"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_hashicorpvault",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.266,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_hostedgit",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.2567,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_jenkins",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.2878,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_jira",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.2837,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_keyprotect",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.3412,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.location": {
+          "description": "Toolchain region",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_nexus",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.2767,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_pagerduty",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.2924,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_pipeline",
+      "kind": "resource",
+      "schema": "ToolModelReferent",
+      "spec": "toolchain",
+      "score": 0.35,
+      "attrs": {
+        "referent.api_href": {
+          "description": "URI representing this resource through an API",
+          "source": "toolchain",
+          "schema": "ToolModelReferent"
+        },
+        "referent.ui_href": {
+          "description": "URI representing this resource through the UI",
+          "source": "toolchain",
+          "schema": "ToolModelReferent"
+        },
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "/toolchains:post"
+        },
+        "parameters.name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "/toolchains:post"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_privateworker",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.2975,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_saucelabs",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.2975,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_secretsmanager",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.3267,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.location": {
+          "description": "Toolchain region",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_securitycompliance",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.2683,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_slack",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.2736,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_sonarqube",
+      "kind": "resource",
+      "schema": "Toolchain",
+      "spec": "toolchain",
+      "score": 0.2878,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "parameters.name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "referent.ui_href": {
+          "description": "URL of a user-facing user interface for this toolchain",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "Toolchain"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}",
+      "spec": "toolchain",
+      "score": 0.775,
+      "attrs": {
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_appconfig",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_artifactory",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_bitbucketgit",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_cos",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_custom",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_devopsinsights",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_eventnotifications",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_githubconsolidated",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_gitlab",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_hashicorpvault",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_hostedgit",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_jenkins",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_jira",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_keyprotect",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_nexus",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_pagerduty",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_pipeline",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_privateworker",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_saucelabs",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_secretsmanager",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_securitycompliance",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_slack",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchain_tool_sonarqube",
+      "kind": "data",
+      "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}",
+      "spec": "toolchain",
+      "score": 0.7857,
+      "attrs": {
+        "tool_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        },
+        "toolchain_id": {
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-4[a-fA-F0-9]{3}-[89abAB][a-fA-F0-9]{3}-[a-fA-F0-9]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "params:patch:/toolchains/{toolchain_id}/tools/{tool_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_toolchains",
+      "kind": "data",
+      "schema": "/toolchains:post",
+      "spec": "toolchain",
+      "score": 0.5667,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9-._ ])+$",
+          "min_len": 0,
+          "max_len": 128,
+          "description": "Toolchain name",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "/toolchains:post"
+        },
+        "resource_group_id": {
+          "pattern": "^[0-9a-f]{32}$",
+          "min_len": 32,
+          "max_len": 32,
+          "description": "Resource group where toolchain will be created",
+          "api_required": true,
+          "source": "toolchain",
+          "schema": "/toolchains:post"
+        }
+      }
+    }
+  ]
+}

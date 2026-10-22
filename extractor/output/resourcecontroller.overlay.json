@@ -1,0 +1,142 @@
+{
+  "package": "resourcecontroller",
+  "specs": [
+    {
+      "slug": "resource-controller-resource-controller",
+      "title": "Resource Controller",
+      "schema_count": 15,
+      "path_count": 9
+    },
+    {
+      "slug": "resource-controller-ibm-cloud-osb-api",
+      "title": "IBM Cloud Open Service Broker API",
+      "schema_count": 18,
+      "path_count": 5
+    }
+  ],
+  "matched": 7,
+  "resource_count": 7,
+  "overlay_attrs": 10,
+  "resources": [
+    {
+      "name": "ibm_resource_instance",
+      "kind": "resource",
+      "schema": "/v2/service_instances/{instance_id}:patch",
+      "spec": "resource-controller-ibm-cloud-osb-api",
+      "score": 0.3438,
+      "attrs": {
+        "name": {
+          "description": "Name of the instance",
+          "api_required": true,
+          "source": "resource-controller-ibm-cloud-osb-api",
+          "schema": "/v2/service_instances/{instance_id}:patch"
+        },
+        "parameters": {
+          "description": "Configuration options for the service instance or binding operation. Brokers should ensure that the client has provided valid configuration parameters and values for the operation. If this field is not present in the request message, then the broker must NOT change the parameters of the instance or binindg as a result of this request.",
+          "source": "resource-controller-ibm-cloud-osb-api",
+          "schema": "/v2/service_instances/{instance_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_resource_key",
+      "kind": "resource",
+      "schema": "/v2/resource_keys:post",
+      "spec": "resource-controller-resource-controller",
+      "score": 0.3,
+      "attrs": {
+        "name": {
+          "pattern": "^([\\p{L}\\p{N}._: -]{1,256})$",
+          "description": "The name of the key.",
+          "api_required": true,
+          "source": "resource-controller-resource-controller",
+          "schema": "/v2/resource_keys:post"
+        },
+        "parameters": {
+          "description": "Configuration options represented as key-value pairs. Service defined options are passed through to the target resource brokers, whereas platform defined options are not.",
+          "source": "resource-controller-resource-controller",
+          "schema": "/v2/resource_keys:post"
+        },
+        "role": {
+          "description": "The base IAM service role name (Reader, Writer, or Manager), or the service or custom role CRN. Refer to service\u2019s documentation for supported roles.",
+          "source": "resource-controller-resource-controller",
+          "schema": "/v2/resource_keys:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_resource_reclamation_delete",
+      "kind": "resource",
+      "schema": "/v1/reclamations/{id}/actions/{action_name}:post",
+      "spec": "resource-controller-resource-controller",
+      "score": 0.4667,
+      "attrs": {
+        "comment": {
+          "description": "A comment to describe the action.",
+          "source": "resource-controller-resource-controller",
+          "schema": "/v1/reclamations/{id}/actions/{action_name}:post"
+        },
+        "request_by": {
+          "description": "The request initiator, if different from the request token.",
+          "source": "resource-controller-resource-controller",
+          "schema": "/v1/reclamations/{id}/actions/{action_name}:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_resource_instance",
+      "kind": "data",
+      "schema": "/v2/service_instances/{instance_id}:patch",
+      "spec": "resource-controller-ibm-cloud-osb-api",
+      "score": 0.29,
+      "attrs": {
+        "name": {
+          "description": "Name of the instance",
+          "api_required": true,
+          "source": "resource-controller-ibm-cloud-osb-api",
+          "schema": "/v2/service_instances/{instance_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_resource_key",
+      "kind": "data",
+      "schema": "/v2/resource_keys/{id}:patch",
+      "spec": "resource-controller-resource-controller",
+      "score": 0.255,
+      "attrs": {
+        "name": {
+          "pattern": "^([\\p{L}\\p{N}._: -]{1,256})$",
+          "description": "The new name of the key.",
+          "api_required": true,
+          "source": "resource-controller-resource-controller",
+          "schema": "/v2/resource_keys/{id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_resource_quota",
+      "kind": "data",
+      "schema": "/v2/resource_keys/{id}:patch",
+      "spec": "resource-controller-resource-controller",
+      "score": 0.78,
+      "attrs": {
+        "name": {
+          "pattern": "^([\\p{L}\\p{N}._: -]{1,256})$",
+          "description": "The new name of the key.",
+          "api_required": true,
+          "source": "resource-controller-resource-controller",
+          "schema": "/v2/resource_keys/{id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_resource_reclamations",
+      "kind": "data",
+      "schema": "/v1/reclamations/{id}/actions/{action_name}:post",
+      "spec": "resource-controller-resource-controller",
+      "score": 0.21,
+      "attrs": {}
+    }
+  ]
+}

@@ -1,0 +1,979 @@
+{
+  "package": "cloudant",
+  "resources": [
+    {
+      "name": "ibm_cloudant",
+      "function": "ResourceIBMCloudant",
+      "package": "cloudant",
+      "kind": "resource",
+      "description": "Manages ibm_cloudant. A name for the resource instance",
+      "attributes": {
+        "account_id": {
+          "name": "account_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An alpha-numeric value identifying the account ID."
+        },
+        "allow_cleanup": {
+          "name": "allow_cleanup",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A boolean that dictates if the resource instance should be deleted (cleaned up) during the processing of a region instance delete call."
+        },
+        "capacity": {
+          "name": "capacity",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "A number of blocks of throughput units. A block consists of 100 reads/sec, 50 writes/sec, and 5 global queries/sec of provisioned throughput capacity.",
+          "default": "1",
+          "validate": {
+            "kind": "int_min",
+            "func_name": "IntAtLeast",
+            "min": 1
+          }
+        },
+        "cors_config": {
+          "name": "cors_config",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "min_items": 1,
+          "max_items": 1,
+          "description": "Configuration for CORS.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "allow_credentials": {
+                "name": "allow_credentials",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Boolean value to allow authentication credentials. If set to true, browser requests must be done by using withCredentials = true.",
+                "default": "true"
+              },
+              "origins": {
+                "name": "origins",
+                "type": "list",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "An array of strings that contain allowed origin domains. You have to specify the full URL including the protocol. It is recommended that only the HTTPS protocol is used. Subdomains count as separate domains, so you have to specify all subdomains used.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the instance was created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who created the instance."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "CRN of resource instance",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "dashboard_url": {
+          "name": "dashboard_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Dashboard URL to access resource."
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the instance was deleted."
+        },
+        "deleted_by": {
+          "name": "deleted_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who deleted the instance."
+        },
+        "enable_cors": {
+          "name": "enable_cors",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Boolean value to turn CORS on and off.",
+          "default": "true"
+        },
+        "environment_crn": {
+          "name": "environment_crn",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Only available for IBM Cloudant Gen 1. CRN of the IBM Cloudant Dedicated Hardware plan instance.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "extensions": {
+          "name": "extensions",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The extended metadata as a map associated with the resource instance."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Guid of resource instance"
+        },
+        "include_data_events": {
+          "name": "include_data_events",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Include data event types in events sent to IBM Cloud Activity Tracker Event Routing for the IBM Cloudant instance. By default only emitted events are of \"management\" type. For Gen 1 instances this is applied via the Activity Tracker API; for Gen 2 instances it is set via the broker parameter `dataservices.cloudant.configuration.audit.data_events`.",
+          "default": "false"
+        },
+        "last_operation": {
+          "name": "last_operation",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the last operation requested on the instance"
+        },
+        "legacy_credentials": {
+          "name": "legacy_credentials",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Only available for IBM Cloudant Gen 1. Use both legacy credentials and IAM for authentication.",
+          "default": "false"
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The location where the instance available",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "location"
+          }
+        },
+        "locked": {
+          "name": "locked",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A boolean that dictates if the resource instance should be deleted (cleaned up) during the processing of a region instance delete call."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "A name for the resource instance"
+        },
+        "onetime_credentials": {
+          "name": "onetime_credentials",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A boolean that dictates if the onetime_credentials is true or false."
+        },
+        "parameters": {
+          "name": "parameters",
+          "type": "map",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Arbitrary parameters to pass. Must be a JSON object",
+          "conflicts_with": [
+            "parameters_json"
+          ]
+        },
+        "parameters_json": {
+          "name": "parameters_json",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "plan": {
+          "name": "plan",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The plan type of the service"
+        },
+        "plan_history": {
+          "name": "plan_history",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The plan history of the instance.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "resource_plan_id": {
+                "name": "resource_plan_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "start_date": {
+                "name": "start_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        },
+        "resource_aliases_url": {
+          "name": "resource_aliases_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The relative path to the resource aliases for the instance."
+        },
+        "resource_bindings_url": {
+          "name": "resource_bindings_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The relative path to the resource bindings for the instance."
+        },
+        "resource_controller_url": {
+          "name": "resource_controller_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the IBM Cloud dashboard that can be used to explore and view details about the resource"
+        },
+        "resource_crn": {
+          "name": "resource_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the resource",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "resource_group_crn": {
+          "name": "resource_group_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The long ID (full CRN) of the resource group",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The resource group id",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "resource_group_id"
+          }
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group name in which resource is provisioned"
+        },
+        "resource_id": {
+          "name": "resource_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The unique ID of the offering"
+        },
+        "resource_keys_url": {
+          "name": "resource_keys_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The relative path to the resource keys for the instance."
+        },
+        "resource_name": {
+          "name": "resource_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The name of the resource"
+        },
+        "resource_plan_id": {
+          "name": "resource_plan_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The unique ID of the plan associated with the offering"
+        },
+        "resource_status": {
+          "name": "resource_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the resource"
+        },
+        "restored_at": {
+          "name": "restored_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the instance under reclamation was restored."
+        },
+        "restored_by": {
+          "name": "restored_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who restored the instance back from reclamation."
+        },
+        "scheduled_reclaim_at": {
+          "name": "scheduled_reclaim_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the instance was scheduled for reclamation."
+        },
+        "scheduled_reclaim_by": {
+          "name": "scheduled_reclaim_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who initiated the instance reclamation."
+        },
+        "service": {
+          "name": "service",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The service type of the instance"
+        },
+        "service_endpoints": {
+          "name": "service_endpoints",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private",
+              "public-and-private"
+            ]
+          }
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The current state of the instance."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Status of resource instance"
+        },
+        "sub_type": {
+          "name": "sub_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The sub-type of instance, e.g. cfaas ."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "validate": {
+            "kind": "invoke",
+            "func_name": "tags"
+          },
+          "elem": {
+            "kind": "schema",
+            "type": "string",
+            "validate": {
+              "kind": "invoke",
+              "func_name": "tags"
+            }
+          }
+        },
+        "target_crn": {
+          "name": "target_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The full deployment CRN as defined in the global catalog",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "throughput": {
+          "name": "throughput",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Schema for detailed information about throughput capacity with breakdown by specific throughput requests classes. This is only available for IBM Cloudant Gen 1.",
+          "elem": {
+            "kind": "schema",
+            "type": "int"
+          }
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The type of the instance, e.g. service_instance."
+        },
+        "update_at": {
+          "name": "update_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the instance was last updated."
+        },
+        "update_by": {
+          "name": "update_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who updated the instance."
+        }
+      }
+    },
+    {
+      "name": "ibm_cloudant_database",
+      "function": "ResourceIBMCloudantDatabase",
+      "package": "cloudant",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_cloudant_database resource.",
+      "attributes": {
+        "db": {
+          "name": "db",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Path parameter to specify the database name."
+        },
+        "instance_crn": {
+          "name": "instance_crn",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Cloudant Instance CRN.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "partitioned": {
+          "name": "partitioned",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "Query parameter to specify whether to enable database partitions when creating a database."
+        },
+        "shards": {
+          "name": "shards",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The number of shards in the database. Each shard is a partition of the hash value range. You are encouraged to talk to support about appropriate values before changing this."
+        }
+      }
+    },
+    {
+      "name": "ibm_cloudant",
+      "function": "DataSourceIBMCloudant",
+      "package": "cloudant",
+      "kind": "data",
+      "description": "Reads ibm_cloudant. Resource instance name for example, myobjectstorage",
+      "attributes": {
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "CRN of resource instance",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "extensions": {
+          "name": "extensions",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The extended metadata as a map associated with the resource instance."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Guid of resource instance"
+        },
+        "identifier": {
+          "name": "identifier",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Resource instance guid",
+          "conflicts_with": [
+            "resource_group_id",
+            "name",
+            "location",
+            "service"
+          ]
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The location or the environment in which instance exists",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "location"
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Resource instance name for example, myobjectstorage"
+        },
+        "onetime_credentials": {
+          "name": "onetime_credentials",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "onetime_credentials of resource instance"
+        },
+        "parameters_json": {
+          "name": "parameters_json",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Parameters asociated with instance in json string"
+        },
+        "plan": {
+          "name": "plan",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The plan type of the instance"
+        },
+        "resource_controller_url": {
+          "name": "resource_controller_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the IBM Cloud dashboard that can be used to explore and view details about the resource"
+        },
+        "resource_crn": {
+          "name": "resource_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the resource",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The id of the resource group in which the instance is present",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "resource_group_id"
+          }
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group name in which resource is provisioned"
+        },
+        "resource_name": {
+          "name": "resource_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The name of the resource"
+        },
+        "resource_status": {
+          "name": "resource_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the resource"
+        },
+        "service": {
+          "name": "service",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The service type of the instance"
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource instance status"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Tags of Resource Instance",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_cloudant_database",
+      "function": "DataSourceIBMCloudantDatabase",
+      "package": "cloudant",
+      "kind": "data",
+      "description": "Schema validation for the ibm_cloudant_database data source.",
+      "attributes": {
+        "cluster": {
+          "name": "cluster",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Database cluster information.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "read_quorum": {
+                "name": "read_quorum",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Read quorum. The number of consistent copies of a document that need to be read before a successful reply."
+              },
+              "replicas": {
+                "name": "replicas",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The number of replicas of a database in a cluster."
+              },
+              "shards": {
+                "name": "shards",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The number of shards in a database. Each shard is a partition of the hash value range."
+              },
+              "write_quorum": {
+                "name": "write_quorum",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Write quorum. The number of copies of a document that need to be written before a successful reply."
+              }
+            }
+          }
+        },
+        "committed_update_seq": {
+          "name": "committed_update_seq",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An opaque string that describes the committed state of the database."
+        },
+        "compact_running": {
+          "name": "compact_running",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "True if the database compaction routine is operating on this database."
+        },
+        "compacted_seq": {
+          "name": "compacted_seq",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An opaque string that describes the compaction state of the database."
+        },
+        "db": {
+          "name": "db",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Path parameter to specify the database name."
+        },
+        "disk_format_version": {
+          "name": "disk_format_version",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The version of the physical format used for the data when it is stored on disk."
+        },
+        "doc_count": {
+          "name": "doc_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A count of the documents in the specified database."
+        },
+        "doc_del_count": {
+          "name": "doc_del_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Number of deleted documents."
+        },
+        "engine": {
+          "name": "engine",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The engine used for the database."
+        },
+        "instance_crn": {
+          "name": "instance_crn",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Cloudant Instance CRN.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "props": {
+          "name": "props",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The database properties.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "partitioned": {
+                "name": "partitioned",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The value is `true` for a partitioned database."
+              }
+            }
+          }
+        },
+        "sizes": {
+          "name": "sizes",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Database size information.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "active": {
+                "name": "active",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The active size of the data in the database, in bytes."
+              },
+              "external": {
+                "name": "external",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The total uncompressed size of the data in the database, in bytes."
+              },
+              "file": {
+                "name": "file",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The total size of the database as stored on disk, in bytes."
+              }
+            }
+          }
+        },
+        "update_seq": {
+          "name": "update_seq",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An opaque string that describes the state of the database. Do not rely on this string for counting the number of updates."
+        },
+        "uuid": {
+          "name": "uuid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The UUID of the database."
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 4,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package cloudant"
+}

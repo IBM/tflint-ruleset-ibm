@@ -1,0 +1,1231 @@
+{
+  "package": "power",
+  "specs": [
+    {
+      "slug": "power-cloud",
+      "title": "Power Cloud API",
+      "schema_count": 330,
+      "path_count": 138
+    },
+    {
+      "slug": "power-cloud-metadata-identity",
+      "title": "Power Virtual Servers Metadata Service",
+      "schema_count": 12,
+      "path_count": 3
+    }
+  ],
+  "matched": 85,
+  "resource_count": 124,
+  "overlay_attrs": 30,
+  "resources": [
+    {
+      "name": "ibm_pi_capture",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_cloud_connection",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_cloud_connection_network_attach",
+      "kind": "resource",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_console_language",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_dhcp",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_host",
+      "kind": "resource",
+      "schema": "Host",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_host_group",
+      "kind": "resource",
+      "schema": "Host",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {
+        "pi_secondaries.name": {
+          "description": "Name of the host group",
+          "source": "power-cloud",
+          "schema": "Host"
+        }
+      }
+    },
+    {
+      "name": "ibm_pi_ike_policy",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_image",
+      "kind": "resource",
+      "schema": "Image",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {
+        "pi_image_import_details.product": {
+          "enum": [
+            "Hana",
+            "Netweaver"
+          ],
+          "description": "Product within the image",
+          "api_required": true,
+          "source": "power-cloud",
+          "schema": "/pcloud/v1/cloud-instances/{cloud_instance_id}/cos-images:post"
+        },
+        "pi_image_import_details.vendor": {
+          "enum": [
+            "SAP"
+          ],
+          "description": "Vendor supporting the product",
+          "api_required": true,
+          "source": "power-cloud",
+          "schema": "/pcloud/v1/cloud-instances/{cloud_instance_id}/cos-images:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_pi_image_export",
+      "kind": "resource",
+      "schema": "Image",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_instance",
+      "kind": "resource",
+      "schema": "leaf-unique",
+      "spec": "power-cloud",
+      "score": 0.1055,
+      "attrs": {
+        "pi_default_trusted_profile.target.id": {
+          "pattern": "^(Profile-[-0-9a-z_]+)?$",
+          "max_len": 64,
+          "description": "Unique identifier for the trusted profile",
+          "source": "power-cloud",
+          "schema": "/pcloud/v1/cloud-instances/{cloud_instance_id}/pvm-instances:post"
+        },
+        "pi_deployment_target.id": {
+          "pattern": "^(Profile-[-0-9a-z_]+)?$",
+          "max_len": 64,
+          "description": "Unique identifier for the trusted profile",
+          "source": "power-cloud",
+          "schema": "/pcloud/v1/cloud-instances/{cloud_instance_id}/pvm-instances:post"
+        },
+        "pi_virtual_serial_number.description": {
+          "max_len": 255,
+          "description": "Description of the PVM instance snapshot",
+          "source": "power-cloud",
+          "schema": "/pcloud/v1/cloud-instances/{cloud_instance_id}/pvm-instances/{pvm_instance_id}/snapshots:post"
+        },
+        "pi_vpmem_volumes.size": {
+          "min": 1,
+          "description": "Volume size (GiB)",
+          "api_required": true,
+          "source": "power-cloud",
+          "schema": "/pcloud/v1/cloud-instances/{cloud_instance_id}/pvm-instances:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_pi_instance_action",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_instance_snapshot",
+      "kind": "resource",
+      "schema": "Snapshot",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_instance_vpmem_volumes",
+      "kind": "resource",
+      "schema": "VPMemVolumeCreate",
+      "spec": "power-cloud",
+      "score": 0.36,
+      "attrs": {
+        "pi_vpmem_volumes.name": {
+          "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-_]*$",
+          "min_len": 1,
+          "max_len": 20,
+          "description": "Volume base name",
+          "api_required": true,
+          "source": "power-cloud",
+          "schema": "VPMemVolumeCreate"
+        },
+        "pi_vpmem_volumes.size": {
+          "min": 1,
+          "description": "Volume size (GiB)",
+          "api_required": true,
+          "source": "power-cloud",
+          "schema": "VPMemVolumeCreate"
+        }
+      }
+    },
+    {
+      "name": "ibm_pi_ipsec_policy",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_key",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network",
+      "kind": "resource",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.2306,
+      "attrs": {
+        "pi_network_peer.type": {
+          "enum": [
+            "vlan",
+            "pub-vlan",
+            "dhcp-vlan"
+          ],
+          "description": "Type of Network - 'vlan' (private network) 'pub-vlan' (public network) 'dhcp-vlan' (for satellite locations only)",
+          "api_required": true,
+          "source": "power-cloud",
+          "schema": "Network"
+        },
+        "pi_network_peer.id": {
+          "pattern": "^(Profile-[-0-9a-z_]+)?$",
+          "max_len": 64,
+          "description": "Unique identifier for the trusted profile",
+          "source": "power-cloud",
+          "schema": "/pcloud/v1/cloud-instances/{cloud_instance_id}/pvm-instances:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_pi_network_address_group",
+      "kind": "resource",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_address_group_member",
+      "kind": "resource",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_interface",
+      "kind": "resource",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_peer",
+      "kind": "resource",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_peer_route_filter",
+      "kind": "resource",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_port_attach",
+      "kind": "resource",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_security_group",
+      "kind": "resource",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_security_group_action",
+      "kind": "resource",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_security_group_member",
+      "kind": "resource",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_security_group_rule",
+      "kind": "resource",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.235,
+      "attrs": {
+        "pi_protocol.type": {
+          "enum": [
+            "vlan",
+            "pub-vlan",
+            "dhcp-vlan"
+          ],
+          "description": "Type of Network - 'vlan' (private network) 'pub-vlan' (public network) 'dhcp-vlan' (for satellite locations only)",
+          "api_required": true,
+          "source": "power-cloud",
+          "schema": "Network"
+        },
+        "pi_remote.type": {
+          "enum": [
+            "vlan",
+            "pub-vlan",
+            "dhcp-vlan"
+          ],
+          "description": "Type of Network - 'vlan' (private network) 'pub-vlan' (public network) 'dhcp-vlan' (for satellite locations only)",
+          "api_required": true,
+          "source": "power-cloud",
+          "schema": "Network"
+        },
+        "pi_destination_port.maximum": {
+          "max": 65535,
+          "description": "The end of the port range, if applicable. If the value is not present then the default value of 65535 will be the maximum port number.",
+          "source": "power-cloud",
+          "schema": "/v1/network-security-groups/{network_security_group_id}/rules:post"
+        },
+        "pi_destination_port.minimum": {
+          "min": 1,
+          "description": "The start of the port range, if applicable. If the value is not present then the default value of 1 will be the minimum port number.",
+          "source": "power-cloud",
+          "schema": "/v1/network-security-groups/{network_security_group_id}/rules:post"
+        },
+        "pi_destination_ports.maximum": {
+          "max": 65535,
+          "description": "The end of the port range, if applicable. If the value is not present then the default value of 65535 will be the maximum port number.",
+          "source": "power-cloud",
+          "schema": "/v1/network-security-groups/{network_security_group_id}/rules:post"
+        },
+        "pi_destination_ports.minimum": {
+          "min": 1,
+          "description": "The start of the port range, if applicable. If the value is not present then the default value of 1 will be the minimum port number.",
+          "source": "power-cloud",
+          "schema": "/v1/network-security-groups/{network_security_group_id}/rules:post"
+        },
+        "pi_protocol.tcp_flags.flag": {
+          "enum": [
+            "syn",
+            "ack",
+            "fin",
+            "rst"
+          ],
+          "description": "TCP flag",
+          "source": "power-cloud",
+          "schema": "/v1/network-security-groups/{network_security_group_id}/rules:post"
+        },
+        "pi_remote.id": {
+          "pattern": "^(Profile-[-0-9a-z_]+)?$",
+          "max_len": 64,
+          "description": "Unique identifier for the trusted profile",
+          "source": "power-cloud",
+          "schema": "/pcloud/v1/cloud-instances/{cloud_instance_id}/pvm-instances:post"
+        },
+        "pi_source_port.maximum": {
+          "max": 65535,
+          "description": "The end of the port range, if applicable. If the value is not present then the default value of 65535 will be the maximum port number.",
+          "source": "power-cloud",
+          "schema": "/v1/network-security-groups/{network_security_group_id}/rules:post"
+        },
+        "pi_source_port.minimum": {
+          "min": 1,
+          "description": "The start of the port range, if applicable. If the value is not present then the default value of 1 will be the minimum port number.",
+          "source": "power-cloud",
+          "schema": "/v1/network-security-groups/{network_security_group_id}/rules:post"
+        },
+        "pi_source_ports.maximum": {
+          "max": 65535,
+          "description": "The end of the port range, if applicable. If the value is not present then the default value of 65535 will be the maximum port number.",
+          "source": "power-cloud",
+          "schema": "/v1/network-security-groups/{network_security_group_id}/rules:post"
+        },
+        "pi_source_ports.minimum": {
+          "min": 1,
+          "description": "The start of the port range, if applicable. If the value is not present then the default value of 1 will be the minimum port number.",
+          "source": "power-cloud",
+          "schema": "/v1/network-security-groups/{network_security_group_id}/rules:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_pi_placement_group",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_route",
+      "kind": "resource",
+      "schema": "Route",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_shared_processor_pool",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0818,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_snapshot",
+      "kind": "resource",
+      "schema": "Snapshot",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_spp_placement_group",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_virtual_serial_number",
+      "kind": "resource",
+      "schema": "/v1/virtual-serial-number/{virtual_serial_number}:put",
+      "spec": "power-cloud",
+      "score": 0.18,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume",
+      "kind": "resource",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_attach",
+      "kind": "resource",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_clone",
+      "kind": "resource",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_group",
+      "kind": "resource",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_group_action",
+      "kind": "resource",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_onboarding",
+      "kind": "resource",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_vpn_connection",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_workspace",
+      "kind": "resource",
+      "schema": "Workspace",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_available_hosts",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_catalog_images",
+      "kind": "data",
+      "schema": "Images",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_cloud_connection",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_cloud_connections",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_cloud_instance",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_console_languages",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_datacenter",
+      "kind": "data",
+      "schema": "Datacenter",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_datacenters",
+      "kind": "data",
+      "schema": "Datacenters",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_dhcp",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_dhcps",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_disaster_recovery_location",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_disaster_recovery_locations",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_host",
+      "kind": "data",
+      "schema": "Host",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_host_group",
+      "kind": "data",
+      "schema": "Host",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_host_groups",
+      "kind": "data",
+      "schema": "Host",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_hosts",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.1,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_image",
+      "kind": "data",
+      "schema": "Image",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_images",
+      "kind": "data",
+      "schema": "Images",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_instance",
+      "kind": "data",
+      "schema": "NetworkAddressGroupUpdate",
+      "spec": "power-cloud",
+      "score": 0.255,
+      "attrs": {
+        "default_trusted_profile.target.name": {
+          "description": "Replaces the current Network Address Group Name",
+          "source": "power-cloud",
+          "schema": "NetworkAddressGroupUpdate"
+        }
+      }
+    },
+    {
+      "name": "ibm_pi_instance_ip",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_instance_network",
+      "kind": "data",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_instance_networks",
+      "kind": "data",
+      "schema": "Networks",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_instance_snapshot",
+      "kind": "data",
+      "schema": "Snapshot",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_instance_snapshots",
+      "kind": "data",
+      "schema": "Snapshots",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_instance_volumes",
+      "kind": "data",
+      "schema": "Volumes",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_instance_vpmem_volume",
+      "kind": "data",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_instance_vpmem_volumes",
+      "kind": "data",
+      "schema": "Volumes",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_instances",
+      "kind": "data",
+      "schema": "NetworkAddressGroupUpdate",
+      "spec": "power-cloud",
+      "score": 0.43,
+      "attrs": {
+        "pvm_instances.default_trusted_profile.target.name": {
+          "description": "Replaces the current Network Address Group Name",
+          "source": "power-cloud",
+          "schema": "NetworkAddressGroupUpdate"
+        }
+      }
+    },
+    {
+      "name": "ibm_pi_key",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_keys",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network",
+      "kind": "data",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_address_group",
+      "kind": "data",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_address_groups",
+      "kind": "data",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_interface",
+      "kind": "data",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_interfaces",
+      "kind": "data",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_peer",
+      "kind": "data",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_peer_interfaces",
+      "kind": "data",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_peer_route_filter",
+      "kind": "data",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_peers",
+      "kind": "data",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_port",
+      "kind": "data",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_security_group",
+      "kind": "data",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_network_security_groups",
+      "kind": "data",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_networks",
+      "kind": "data",
+      "schema": "Networks",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_placement_group",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_placement_groups",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_public_network",
+      "kind": "data",
+      "schema": "Network",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_pvm_snapshots",
+      "kind": "data",
+      "schema": "Snapshots",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_route",
+      "kind": "data",
+      "schema": "Route",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_route_report",
+      "kind": "data",
+      "schema": "Route",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_routes",
+      "kind": "data",
+      "schema": "Routes",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_sap_profile",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_sap_profiles",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_shared_processor_pool",
+      "kind": "data",
+      "schema": "SharedProcessorPoolServer",
+      "spec": "power-cloud",
+      "score": 0.2692,
+      "attrs": {
+        "instances.id": {
+          "description": "The server ID",
+          "source": "power-cloud",
+          "schema": "SharedProcessorPoolServer"
+        },
+        "instances.memory": {
+          "description": "The amount of memory for the server",
+          "source": "power-cloud",
+          "schema": "SharedProcessorPoolServer"
+        },
+        "instances.name": {
+          "description": "The server name",
+          "source": "power-cloud",
+          "schema": "SharedProcessorPoolServer"
+        },
+        "instances.status": {
+          "description": "Status of the server",
+          "source": "power-cloud",
+          "schema": "SharedProcessorPoolServer"
+        },
+        "instances.vcpus": {
+          "description": "The amout of vcpus for the server",
+          "source": "power-cloud",
+          "schema": "SharedProcessorPoolServer"
+        }
+      }
+    },
+    {
+      "name": "ibm_pi_shared_processor_pools",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.09,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_software_tiers",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_spp_placement_group",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_spp_placement_groups",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.09,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_storage_pool_capacity",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_storage_pools_capacity",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_storage_tiers",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_storage_type_capacity",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_storage_types_capacity",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_system_pools",
+      "kind": "data",
+      "schema": "System",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_tenant",
+      "kind": "data",
+      "schema": "Tenant",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_virtual_serial_number",
+      "kind": "data",
+      "schema": "/v1/virtual-serial-number/{virtual_serial_number}:put",
+      "spec": "power-cloud",
+      "score": 0.18,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_virtual_serial_numbers",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.1,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume",
+      "kind": "data",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_clone",
+      "kind": "data",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_flash_copy_mappings",
+      "kind": "data",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_group",
+      "kind": "data",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_group_details",
+      "kind": "data",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_group_remote_copy_relationships",
+      "kind": "data",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_group_storage_details",
+      "kind": "data",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_groups",
+      "kind": "data",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_groups_details",
+      "kind": "data",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_onboarding",
+      "kind": "data",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_onboardings",
+      "kind": "data",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_remote_copy_relationship",
+      "kind": "data",
+      "schema": "Volume",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_snapshot",
+      "kind": "data",
+      "schema": "Snapshot",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volume_snapshots",
+      "kind": "data",
+      "schema": "Snapshots",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_volumes",
+      "kind": "data",
+      "schema": "Volumes",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_workspace",
+      "kind": "data",
+      "schema": "Workspace",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pi_workspaces",
+      "kind": "data",
+      "schema": "Workspaces",
+      "spec": "power-cloud",
+      "score": 0.21,
+      "attrs": {}
+    }
+  ]
+}

@@ -1,0 +1,1893 @@
+{
+  "package": "cis",
+  "specs": [
+    {
+      "slug": "cis",
+      "title": "Cloud Internet Services API",
+      "schema_count": 426,
+      "path_count": 179
+    }
+  ],
+  "matched": 68,
+  "resource_count": 79,
+  "overlay_attrs": 168,
+  "resources": [
+    {
+      "name": "ibm_cis",
+      "kind": "resource",
+      "schema": "purge_tags_body",
+      "spec": "cis",
+      "score": 0.1967,
+      "attrs": {
+        "tags": {
+          "description": "Array of tags",
+          "api_required": true,
+          "source": "cis",
+          "schema": "purge_tags_body"
+        },
+        "name": {
+          "enum": [
+            "url"
+          ],
+          "description": "Rate limit name",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_advanced_certificate_pack_order",
+      "kind": "resource",
+      "schema": "/v2/{crn}/zones/{zone_identifier}/ssl/certificate_packs/order:post",
+      "spec": "cis",
+      "score": 0.4389,
+      "attrs": {
+        "certificate_authority": {
+          "enum": [
+            "lets_encrypt",
+            "google",
+            "ssl_com"
+          ],
+          "description": "Certificate Authority selected for the order. Selecting Let's Encrypt reduces customization of other fields: validation_method must be 'txt', validity_days must be 90, `cloudflare_branding` must be omitted, and hosts must contain only 2 entries, one for the zone name and one for the subdomain wildcard of the zone name (for example, example.com, *.example.com).",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v2/{crn}/zones/{zone_identifier}/ssl/certificate_packs/order:post"
+        },
+        "cloudflare_branding": {
+          "description": "Indicates whether or not to add Cloudflare Branding for the order. This will add sni.cloudflaressl.com as the Common Name if set to `true`.",
+          "source": "cis",
+          "schema": "/v2/{crn}/zones/{zone_identifier}/ssl/certificate_packs/order:post"
+        },
+        "hosts": {
+          "description": "Host name",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v2/{crn}/zones/{zone_identifier}/ssl/certificate_packs/order:post"
+        },
+        "type": {
+          "enum": [
+            "advanced"
+          ],
+          "description": "Certificate type",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v2/{crn}/zones/{zone_identifier}/ssl/certificate_packs/order:post"
+        },
+        "validation_method": {
+          "enum": [
+            "txt",
+            "http",
+            "email"
+          ],
+          "description": "Validation Method selected for the order.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v2/{crn}/zones/{zone_identifier}/ssl/certificate_packs/order:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_alert",
+      "kind": "resource",
+      "schema": "create_alert_policy_input",
+      "spec": "cis",
+      "score": 0.52,
+      "attrs": {
+        "alert_type": {
+          "enum": [
+            "dos_attack_l7",
+            "g6_pool_toggle_alert",
+            "clickhouse_alert_fw_anomaly",
+            "clickhouse_alert_fw_ent_anomaly",
+            "universal_ssl_event_type",
+            "dedicated_ssl_certificate_event_type",
+            "health_check_status_notification",
+            "web_analytics_metrics_update",
+            "maintenance_event_notification"
+          ],
+          "description": "Condition for the alert",
+          "api_required": true,
+          "source": "cis",
+          "schema": "create_alert_policy_input"
+        },
+        "conditions": {
+          "description": "Conditions depending on the alert type. HTTP DDOS Attack Alerter does not have any conditions. The Load Balancing Pool Enablement Alerter takes conditions that describe for all pools whether the pool is being enabled, disabled, or both. This field is not required when creating a new alert.",
+          "source": "cis",
+          "schema": "create_alert_policy_input"
+        },
+        "description": {
+          "description": "Policy description",
+          "source": "cis",
+          "schema": "create_alert_policy_input"
+        },
+        "enabled": {
+          "description": "Is the alert policy active",
+          "api_required": true,
+          "source": "cis",
+          "schema": "create_alert_policy_input"
+        },
+        "filters": {
+          "description": "Optional filters depending for the alert type",
+          "source": "cis",
+          "schema": "create_alert_policy_input"
+        },
+        "name": {
+          "description": "Policy name",
+          "api_required": true,
+          "source": "cis",
+          "schema": "create_alert_policy_input"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_bot_management",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_cache_settings",
+      "kind": "resource",
+      "schema": "/v1/{crn}/zones/{zone_id}/settings/cache_level:patch",
+      "spec": "cis",
+      "score": 0.155,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_certificate_order",
+      "kind": "resource",
+      "schema": "certificate_req",
+      "spec": "cis",
+      "score": 0.425,
+      "attrs": {
+        "hosts": {
+          "description": "Host name",
+          "api_required": true,
+          "source": "cis",
+          "schema": "certificate_req"
+        },
+        "type": {
+          "enum": [
+            "dedicated"
+          ],
+          "description": "Priorities",
+          "api_required": true,
+          "source": "cis",
+          "schema": "certificate_req"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_certificate_upload",
+      "kind": "resource",
+      "schema": "/v1/{crn}/zones/{zone_identifier}/custom_certificates/{custom_cert_id}:patch",
+      "spec": "cis",
+      "score": 0.38,
+      "attrs": {
+        "bundle_method": {
+          "enum": [
+            "ubiquitous",
+            "optimal",
+            "force"
+          ],
+          "description": "Methods shown in UI mapping to API: Compatible(ubiquitous), Modern(optimal), User Defined(force)",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/custom_certificates/{custom_cert_id}:patch"
+        },
+        "certificate": {
+          "description": "Certificates",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/custom_certificates/{custom_cert_id}:patch"
+        },
+        "private_key": {
+          "description": "Private key",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/custom_certificates/{custom_cert_id}:patch"
+        },
+        "priority": {
+          "format": "int32",
+          "description": "Priority",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_id}/pagerules/{rule_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_custom_list",
+      "kind": "resource",
+      "schema": "create_custom_list_req",
+      "spec": "cis",
+      "score": 0.625,
+      "attrs": {
+        "description": {
+          "description": "An informative summary of the list.",
+          "source": "cis",
+          "schema": "create_custom_list_req"
+        },
+        "kind": {
+          "enum": [
+            "ip",
+            "hostname",
+            "asn"
+          ],
+          "description": "The type of list. Each type supports specific list items based on plan type (IP addresses, ASNs, or hostnames).",
+          "api_required": true,
+          "source": "cis",
+          "schema": "create_custom_list_req"
+        },
+        "name": {
+          "description": "An informative name for the list. Use this name in rule expressions.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "create_custom_list_req"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_custom_list_items",
+      "kind": "resource",
+      "schema": "list_item",
+      "spec": "cis",
+      "score": 0.3111,
+      "attrs": {
+        "items.asn": {
+          "description": "An autonomous system number.",
+          "source": "cis",
+          "schema": "list_item"
+        },
+        "items.comment": {
+          "description": "An informative summary of the list item.",
+          "source": "cis",
+          "schema": "list_item"
+        },
+        "items.hostname": {
+          "description": "Valid characters for hostnames are ASCII(7) letters from a to z, the digits from 0 to 9, wildcards (*), and the hyphen (-).",
+          "source": "cis",
+          "schema": "list_item"
+        },
+        "items.ip": {
+          "description": "An IPv4 address, an IPv4 CIDR, or an IPv6 CIDR. IPv6 CIDRs are limited to a maximum of /64.",
+          "source": "cis",
+          "schema": "list_item"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_custom_page",
+      "kind": "resource",
+      "schema": "custom_page_request",
+      "spec": "cis",
+      "score": 0.43,
+      "attrs": {
+        "url": {
+          "description": "A URL that is associated with the Custom Page",
+          "api_required": true,
+          "source": "cis",
+          "schema": "custom_page_request"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_dns_record",
+      "kind": "resource",
+      "schema": "/v1/{crn}/zones/{zone_identifier}/dns_records:post",
+      "spec": "cis",
+      "score": 0.5778,
+      "attrs": {
+        "content": {
+          "description": "DNS record content",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/dns_records:post"
+        },
+        "data": {
+          "description": "For LOC, SRV, CAA, DS records only",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/dns_records:post"
+        },
+        "name": {
+          "description": "Required for all record types except SRV.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/dns_records:post"
+        },
+        "priority": {
+          "description": "For MX records only",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/dns_records:post"
+        },
+        "proxied": {
+          "description": "proxied",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/dns_records:post"
+        },
+        "ttl": {
+          "description": "DNS record TTL value",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/dns_records:post"
+        },
+        "type": {
+          "enum": [
+            "A",
+            "AAAA",
+            "CNAME",
+            "NS",
+            "MX",
+            "TXT",
+            "LOC",
+            "SRV",
+            "PTR",
+            "CAA",
+            "DS"
+          ],
+          "description": "DNS record type",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/dns_records:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_dns_records_batch",
+      "kind": "resource",
+      "schema": "batch_dns_records_request",
+      "spec": "cis",
+      "score": 0.305,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_dns_records_import",
+      "kind": "resource",
+      "schema": "/v1/{crn}/zones/{zone_identifier}/dns_records_bulk:post",
+      "spec": "cis",
+      "score": 0.2933,
+      "attrs": {
+        "file": {
+          "format": "binary",
+          "description": "File to upload",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/dns_records_bulk:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_domain",
+      "kind": "resource",
+      "schema": "/v1/{crn}/zones:post",
+      "spec": "cis",
+      "score": 0.175,
+      "attrs": {
+        "type": {
+          "enum": [
+            "full",
+            "partial"
+          ],
+          "description": "A zone implies that DNS is hosted with CIS authoritative nameservers. A partial zone is typically a CNAME setup.",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_domain_settings",
+      "kind": "resource",
+      "schema": "/v1/{crn}/zones/{zone_identifier}/ssl/universal/settings:patch",
+      "spec": "cis",
+      "score": 0.1273,
+      "attrs": {
+        "security_header.enabled": {
+          "description": "Enabled",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/ssl/universal/settings:patch"
+        },
+        "minify.css": {
+          "enum": [
+            "on",
+            "off"
+          ],
+          "description": "Automatically minify all CSS for your website.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/settings/minify:patch"
+        },
+        "minify.html": {
+          "enum": [
+            "on",
+            "off"
+          ],
+          "description": "Automatically minify all HTML for your website.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/settings/minify:patch"
+        },
+        "minify.js": {
+          "enum": [
+            "on",
+            "off"
+          ],
+          "description": "Automatically minify all JavaScript for your website.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/settings/minify:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_edge_functions_action",
+      "kind": "resource",
+      "schema": "edge_functions_action_resp",
+      "spec": "cis",
+      "score": 0.2578,
+      "attrs": {
+        "script": {
+          "description": "Raw script content, as a string",
+          "source": "cis",
+          "schema": "edge_functions_action_resp"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_edge_functions_trigger",
+      "kind": "resource",
+      "schema": "edge_functions_trigger_req",
+      "spec": "cis",
+      "score": 0.18,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_filter",
+      "kind": "resource",
+      "schema": "filter_input",
+      "spec": "cis",
+      "score": 0.63,
+      "attrs": {
+        "description": {
+          "description": "To briefly describe the filter, omitted from object if empty.",
+          "source": "cis",
+          "schema": "filter_input"
+        },
+        "expression": {
+          "description": "A filter expression",
+          "api_required": true,
+          "source": "cis",
+          "schema": "filter_input"
+        },
+        "paused": {
+          "description": "Indicates if the filter is active.",
+          "source": "cis",
+          "schema": "filter_input"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_firewall",
+      "kind": "resource",
+      "schema": "/v1/{crn}/zones/{zone_identifier}/firewall/lockdowns:post",
+      "spec": "cis",
+      "score": 0.2529,
+      "attrs": {
+        "access_rule.configuration.target": {
+          "enum": [
+            "ip",
+            "ip_range"
+          ],
+          "description": "Properties",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/firewall/lockdowns:post"
+        },
+        "access_rule.configuration.value": {
+          "description": "IP addresses or CIDR, if target is \"ip\", then value should be an IP addresses, otherwise CIDR.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/firewall/lockdowns:post"
+        },
+        "lockdown.configurations.target": {
+          "enum": [
+            "ip",
+            "ip_range"
+          ],
+          "description": "Properties",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/firewall/lockdowns:post"
+        },
+        "lockdown.configurations.value": {
+          "description": "IP addresses or CIDR, if target is \"ip\", then value should be an IP addresses, otherwise CIDR.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/firewall/lockdowns:post"
+        },
+        "lockdown.description": {
+          "description": "A note that you can use to describe the reason for a Lockdown rule.",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/firewall/lockdowns:post"
+        },
+        "lockdown.paused": {
+          "description": "Whether this zone lockdown is currently paused",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/firewall/lockdowns:post"
+        },
+        "lockdown.priority": {
+          "description": "Firewall priority",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/firewall/lockdowns:post"
+        },
+        "lockdown.urls": {
+          "description": "URLs to be included in this rule definition. Wildcards are permitted. The URL pattern entered here will be escaped before use. This limits the URL to just simple wildcard patterns.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/firewall/lockdowns:post"
+        },
+        "ua_rule.configuration.target": {
+          "enum": [
+            "ip",
+            "ip_range"
+          ],
+          "description": "Properties",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/firewall/lockdowns:post"
+        },
+        "ua_rule.configuration.value": {
+          "description": "IP addresses or CIDR, if target is \"ip\", then value should be an IP addresses, otherwise CIDR.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/firewall/lockdowns:post"
+        },
+        "ua_rule.description": {
+          "description": "A note that you can use to describe the reason for a Lockdown rule.",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/firewall/lockdowns:post"
+        },
+        "ua_rule.paused": {
+          "description": "Whether this zone lockdown is currently paused",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/firewall/lockdowns:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_firewall_rule",
+      "kind": "resource",
+      "schema": "firewall_rule_update_input",
+      "spec": "cis",
+      "score": 0.4725,
+      "attrs": {
+        "action": {
+          "enum": [
+            "log",
+            "allow",
+            "challenge",
+            "js_challenge",
+            "block"
+          ],
+          "description": "The firewall action to perform, \"log\" action is only available for enterprise plan instances.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "firewall_rule_update_input"
+        },
+        "description": {
+          "description": "To briefly describe the firewall rule, omitted from object if empty.",
+          "source": "cis",
+          "schema": "firewall_rule_update_input"
+        },
+        "paused": {
+          "description": "Indicates if the firewall rule is active.",
+          "source": "cis",
+          "schema": "firewall_rule_update_input"
+        },
+        "priority": {
+          "format": "int32",
+          "description": "Priority",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_id}/pagerules/{rule_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_global_load_balancer",
+      "kind": "resource",
+      "schema": "load_balancer_req",
+      "spec": "cis",
+      "score": 0.3922,
+      "attrs": {
+        "description": {
+          "description": "Desc",
+          "source": "cis",
+          "schema": "load_balancer_req"
+        },
+        "enabled": {
+          "description": "Enabled/disabled",
+          "source": "cis",
+          "schema": "load_balancer_req"
+        },
+        "name": {
+          "description": "Name",
+          "api_required": true,
+          "source": "cis",
+          "schema": "load_balancer_req"
+        },
+        "proxied": {
+          "description": "Proxied",
+          "source": "cis",
+          "schema": "load_balancer_req"
+        },
+        "session_affinity": {
+          "enum": [
+            "",
+            "none",
+            "cookie",
+            "ip_cookie"
+          ],
+          "description": "Session affinity",
+          "source": "cis",
+          "schema": "load_balancer_req"
+        },
+        "steering_policy": {
+          "enum": [
+            "",
+            "off",
+            "geo",
+            "random",
+            "dynamic_latency"
+          ],
+          "description": "Steering policy",
+          "source": "cis",
+          "schema": "load_balancer_req"
+        },
+        "ttl": {
+          "description": "TTL",
+          "source": "cis",
+          "schema": "load_balancer_req"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_healthcheck",
+      "kind": "resource",
+      "schema": "/v1/{crn}/load_balancers/monitors:post",
+      "spec": "cis",
+      "score": 0.6067,
+      "attrs": {
+        "allow_insecure": {
+          "description": "Allow insecure",
+          "source": "cis",
+          "schema": "/v1/{crn}/load_balancers/monitors:post"
+        },
+        "description": {
+          "description": "Login page monitor",
+          "source": "cis",
+          "schema": "/v1/{crn}/load_balancers/monitors:post"
+        },
+        "expected_body": {
+          "description": "Expected body",
+          "source": "cis",
+          "schema": "/v1/{crn}/load_balancers/monitors:post"
+        },
+        "expected_codes": {
+          "description": "Expected codes",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/load_balancers/monitors:post"
+        },
+        "follow_redirects": {
+          "description": "Follow redirects",
+          "source": "cis",
+          "schema": "/v1/{crn}/load_balancers/monitors:post"
+        },
+        "headers.header": {
+          "description": "Header",
+          "source": "cis",
+          "schema": "/v1/{crn}/load_balancers/monitors:post"
+        },
+        "interval": {
+          "description": "Interval",
+          "source": "cis",
+          "schema": "/v1/{crn}/load_balancers/monitors:post"
+        },
+        "method": {
+          "description": "Method",
+          "source": "cis",
+          "schema": "/v1/{crn}/load_balancers/monitors:post"
+        },
+        "path": {
+          "description": "Path",
+          "source": "cis",
+          "schema": "/v1/{crn}/load_balancers/monitors:post"
+        },
+        "port": {
+          "description": "Port number",
+          "source": "cis",
+          "schema": "/v1/{crn}/load_balancers/monitors:post"
+        },
+        "retries": {
+          "description": "Retry count",
+          "source": "cis",
+          "schema": "/v1/{crn}/load_balancers/monitors:post"
+        },
+        "timeout": {
+          "description": "Timeout count",
+          "source": "cis",
+          "schema": "/v1/{crn}/load_balancers/monitors:post"
+        },
+        "type": {
+          "description": "HTTP type",
+          "source": "cis",
+          "schema": "/v1/{crn}/load_balancers/monitors:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_logpush_job",
+      "kind": "resource",
+      "schema": "logpush_job_cos_req",
+      "spec": "cis",
+      "score": 0.47,
+      "attrs": {
+        "cos": {
+          "description": "Information to identify the COS bucket where the data will be pushed.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "logpush_job_cos_req"
+        },
+        "dataset": {
+          "enum": [
+            "http_requests",
+            "range_events",
+            "firewall_events",
+            "dns_logs"
+          ],
+          "description": "Dataset to be pulled.",
+          "source": "cis",
+          "schema": "logpush_job_cos_req"
+        },
+        "enabled": {
+          "description": "Indicates whether the logpush job is enabled or not.",
+          "source": "cis",
+          "schema": "logpush_job_cos_req"
+        },
+        "frequency": {
+          "enum": [
+            "high",
+            "low"
+          ],
+          "description": "The frequency at which CIS sends batches of logs to your destination.",
+          "source": "cis",
+          "schema": "logpush_job_cos_req"
+        },
+        "logpull_options": {
+          "description": "Configuration string",
+          "source": "cis",
+          "schema": "logpush_job_cos_req"
+        },
+        "name": {
+          "description": "Logpush job name",
+          "source": "cis",
+          "schema": "logpush_job_cos_req"
+        },
+        "ownership_challenge": {
+          "description": "Ownership challenge token to prove destination ownership.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "logpush_job_cos_req"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_mtls",
+      "kind": "resource",
+      "schema": "/v1/{crn}/zones/{zone_id}/access/certificates:post",
+      "spec": "cis",
+      "score": 0.42,
+      "attrs": {
+        "associated_hostnames": {
+          "kind": "hostname",
+          "format": "hostname",
+          "description": "The hostnames that are prompted for this certificate",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_id}/access/certificates:post"
+        },
+        "certificate": {
+          "description": "Access certificate",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_id}/access/certificates:post"
+        },
+        "name": {
+          "description": "Access certificate name",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_id}/access/certificates:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_mtls_app",
+      "kind": "resource",
+      "schema": "access_app_input",
+      "spec": "cis",
+      "score": 0.3083,
+      "attrs": {
+        "domain": {
+          "description": "The domain and path that Access blocks",
+          "api_required": true,
+          "source": "cis",
+          "schema": "access_app_input"
+        },
+        "name": {
+          "description": "Application name",
+          "api_required": true,
+          "source": "cis",
+          "schema": "access_app_input"
+        },
+        "session_duration": {
+          "enum": [
+            "30m",
+            "6h",
+            "12h",
+            "24h",
+            "168h",
+            "730h"
+          ],
+          "description": "The amount of time that the tokens issued for this application are valid.",
+          "source": "cis",
+          "schema": "access_app_input"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_origin_auth",
+      "kind": "resource",
+      "schema": "/v1/{crn}/zones/{zone_identifier}/origin_tls_client_auth:post",
+      "spec": "cis",
+      "score": 0.26,
+      "attrs": {
+        "certificate": {
+          "description": "the zone's leaf certificate",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/origin_tls_client_auth:post"
+        },
+        "private_key": {
+          "description": "the zone's private key",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/origin_tls_client_auth:post"
+        },
+        "hostname": {
+          "kind": "hostname",
+          "format": "hostname",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_id}/access/certificates/settings:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_origin_certificate_order",
+      "kind": "resource",
+      "schema": "origin_certificate_req",
+      "spec": "cis",
+      "score": 0.5867,
+      "attrs": {
+        "csr": {
+          "description": "The Certificate Signing Request (CSR)",
+          "source": "cis",
+          "schema": "origin_certificate_req"
+        },
+        "hostnames": {
+          "description": "Array of hostnames or wildcard names (for example, *.example.com) bound to the certificate",
+          "api_required": true,
+          "source": "cis",
+          "schema": "origin_certificate_req"
+        },
+        "request_type": {
+          "enum": [
+            "origin-rsa",
+            "origin-ecc"
+          ],
+          "description": "Signature type desired on certificate",
+          "api_required": true,
+          "source": "cis",
+          "schema": "origin_certificate_req"
+        },
+        "requested_validity": {
+          "enum": [
+            "7",
+            "30",
+            "90",
+            "365",
+            "730",
+            "1095",
+            "5475"
+          ],
+          "description": "The number of days that the certificate should be valid.",
+          "source": "cis",
+          "schema": "origin_certificate_req"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_origin_pool",
+      "kind": "resource",
+      "schema": "load_balancer_pool_req",
+      "spec": "cis",
+      "score": 0.4955,
+      "attrs": {
+        "check_regions": {
+          "description": "Geographic region code",
+          "api_required": true,
+          "source": "cis",
+          "schema": "load_balancer_pool_req"
+        },
+        "description": {
+          "description": "Desc",
+          "source": "cis",
+          "schema": "load_balancer_pool_req"
+        },
+        "enabled": {
+          "description": "Enabled/disabled",
+          "source": "cis",
+          "schema": "load_balancer_pool_req"
+        },
+        "minimum_origins": {
+          "description": "The minimum number of origins that must be healthy for this pool to serve traffic",
+          "source": "cis",
+          "schema": "load_balancer_pool_req"
+        },
+        "monitor": {
+          "description": "Monitor",
+          "source": "cis",
+          "schema": "load_balancer_pool_req"
+        },
+        "name": {
+          "description": "Name",
+          "api_required": true,
+          "source": "cis",
+          "schema": "load_balancer_pool_req"
+        },
+        "notification_email": {
+          "description": "Notification email",
+          "source": "cis",
+          "schema": "load_balancer_pool_req"
+        },
+        "origins.address": {
+          "description": "Address",
+          "source": "cis",
+          "schema": "load_balancer_pool_req"
+        },
+        "origins.enabled": {
+          "description": "Enabled/disabled",
+          "source": "cis",
+          "schema": "load_balancer_pool_req"
+        },
+        "origins.name": {
+          "description": "Name",
+          "source": "cis",
+          "schema": "load_balancer_pool_req"
+        },
+        "origins.weight": {
+          "description": "Weight",
+          "source": "cis",
+          "schema": "load_balancer_pool_req"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_page_rule",
+      "kind": "resource",
+      "schema": "rule_create",
+      "spec": "cis",
+      "score": 0.3233,
+      "attrs": {
+        "actions.id": {
+          "description": "Unique ID of the ruleset",
+          "source": "cis",
+          "schema": "rule_create"
+        },
+        "actions.status_code": {
+          "min": 400,
+          "max": 499,
+          "description": "The status code to return",
+          "api_required": true,
+          "source": "cis",
+          "schema": "rule_create"
+        },
+        "actions.css": {
+          "enum": [
+            "on",
+            "off"
+          ],
+          "description": "Automatically minify all CSS for your website.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/settings/minify:patch"
+        },
+        "actions.html": {
+          "enum": [
+            "on",
+            "off"
+          ],
+          "description": "Automatically minify all HTML for your website.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/settings/minify:patch"
+        },
+        "actions.js": {
+          "enum": [
+            "on",
+            "off"
+          ],
+          "description": "Automatically minify all JavaScript for your website.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/settings/minify:patch"
+        },
+        "actions.url": {
+          "max_len": 1024,
+          "description": "The URL pattern to match comprised of the host and path, i.e. example.org/path. Wildcard are expanded to match applicable traffic, query strings are not matched. Use * for all traffic to your zone.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits:post"
+        },
+        "priority": {
+          "format": "int32",
+          "description": "Priority",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_id}/pagerules/{rule_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_range_app",
+      "kind": "resource",
+      "schema": "range_app_req",
+      "spec": "cis",
+      "score": 0.57,
+      "attrs": {
+        "dns": {
+          "description": "Name and type of the DNS record for this application",
+          "api_required": true,
+          "source": "cis",
+          "schema": "range_app_req"
+        },
+        "ip_firewall": {
+          "description": "Enables the IP Firewall for this application. Only available for TCP applications.",
+          "source": "cis",
+          "schema": "range_app_req"
+        },
+        "origin_direct": {
+          "description": "IP address and port of the origin for this Range application. If configuring a load balancer, use\\ \\ 'origin_dns' and 'origin_port'. This cannot be combined with 'origin_dns' and 'origin_port'.",
+          "source": "cis",
+          "schema": "range_app_req"
+        },
+        "origin_dns": {
+          "description": "DNS record pointing to the origin for this Range application. This is used for configuring a load\\ \\ balancer. When specifying an individual IP address, use 'origin_direct'. This requires 'origin_port' and\\ \\ cannot be combined with 'origin_direct'.",
+          "source": "cis",
+          "schema": "range_app_req"
+        },
+        "origin_port": {
+          "description": "Port at the origin that listens to traffic from this Range application. Requires 'origin_dns' and\\ \\ cannot be combined with 'origin_direct'.",
+          "source": "cis",
+          "schema": "range_app_req"
+        },
+        "protocol": {
+          "description": "Defines the protocol (and optionally port) for this application. The currently supported protocols are `tcp`, `udp`, `ssh`, `rdp`, and `minecraft`.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "range_app_req"
+        },
+        "proxy_protocol": {
+          "enum": [
+            "off",
+            "v1",
+            "v2",
+            "simple"
+          ],
+          "description": "Allows for the true client IP to be passed to the service",
+          "source": "cis",
+          "schema": "range_app_req"
+        },
+        "tls": {
+          "enum": [
+            "off",
+            "flexible",
+            "full",
+            "strict"
+          ],
+          "description": "Configure if and how TLS connections are terminated at the edge.",
+          "source": "cis",
+          "schema": "range_app_req"
+        },
+        "traffic_type": {
+          "enum": [
+            "direct",
+            "http",
+            "https"
+          ],
+          "description": "Configure how traffic is handled at the edge. If set to \"direct\" traffic is passed through to the service. In the case of \"http\" or \"https\" HTTP/s features at the edge are applied ot this traffic.",
+          "source": "cis",
+          "schema": "range_app_req"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_rate_limit",
+      "kind": "resource",
+      "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put",
+      "spec": "cis",
+      "score": 0.1884,
+      "attrs": {
+        "action.mode": {
+          "enum": [
+            "simulate",
+            "ban",
+            "challenge",
+            "js_challenge"
+          ],
+          "description": "The type of action to perform.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "action.response.body": {
+          "max_len": 10240,
+          "description": "The body to return, the content here should conform to the content_type.",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "action.response.content_type": {
+          "enum": [
+            "text/plain",
+            "text/xml",
+            "application/json"
+          ],
+          "description": "The content type of the body",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "action.timeout": {
+          "min": 10,
+          "max": 86400,
+          "description": "The time in seconds as an integer to perform the mitigation action. Must be the same or greater than the period. This field is valid only when mode is \"simulate\" or \"ban\"",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "bypass.name": {
+          "enum": [
+            "url"
+          ],
+          "description": "Rate limit name",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "bypass.value": {
+          "description": "The URL to bypass.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "correlate.by": {
+          "enum": [
+            "nat"
+          ],
+          "description": "NAT rate limits by",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "description": {
+          "description": "A note that you can use to describe the reason for a rate limit.",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "disabled": {
+          "description": "Whether this ratelimit is currently disabled.",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "match.request.methods": {
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE",
+            "PATCH",
+            "HEAD",
+            "_ALL_"
+          ],
+          "description": "A subset of the list HTTP methods, or [\"_ALL_\"] for selecting all methods.",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "match.request.schemes": {
+          "enum": [
+            "HTTP",
+            "HTTPS",
+            "_ALL_"
+          ],
+          "description": "HTTP schemes list, or [\"_ALL_\"] for selecting all schemes.",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "match.request.url": {
+          "max_len": 1024,
+          "description": "The URL pattern to match comprised of the host and path, i.e. example.org/path. Wildcard are expanded to match applicable traffic, query strings are not matched. Use * for all traffic to your zone.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "match.response.headers.name": {
+          "description": "The name of the response header to match",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "match.response.headers.op": {
+          "enum": [
+            "eq",
+            "ne"
+          ],
+          "description": "The operator when matchin, eq means equals, ne means not equals",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "match.response.headers.value": {
+          "enum": [
+            "HIT"
+          ],
+          "description": "The value of the header, which will be exactly matched",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "match.response.origin_traffic": {
+          "description": "Deprecated, please use response headers instead and also provide \"origin_traffic:false\" to avoid legacy behaviour interacting with the response.headers property.",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "match.response.status": {
+          "min": 100,
+          "max": 999,
+          "description": "HTTP Status codes, can be one [403], many [401,403] or indicate all by not providing this value. This field is not required.",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "period": {
+          "min": 10,
+          "max": 86400,
+          "description": "The time in seconds to count matching traffic. If the count exceeds threshold within this period the action will be performed",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        },
+        "threshold": {
+          "min": 2,
+          "max": 1000000,
+          "description": "The threshold that triggers the rate limit mitigations, combine with period. i.e. threshold per period",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/rate_limits/{rate_limit_identifier}:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_routing",
+      "kind": "resource",
+      "schema": "/v1/{crn}/zones/{zone_identifier}/routing/smart_routing:patch",
+      "spec": "cis",
+      "score": 0.1229,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_ruleset",
+      "kind": "resource",
+      "schema": "ruleset_create",
+      "spec": "cis",
+      "score": 0.29,
+      "attrs": {
+        "rulesets": {
+          "description": "List of ruleset ids to apply action to. Use \"current\" to apply to the current ruleset.",
+          "source": "cis",
+          "schema": "ruleset_create"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_ruleset_entrypoint_version",
+      "kind": "resource",
+      "schema": "ruleset_create",
+      "spec": "cis",
+      "score": 0.3775,
+      "attrs": {
+        "phase": {
+          "enum": [
+            "ddos_l4",
+            "ddos_l7",
+            "http_config_settings",
+            "http_custom_errors",
+            "http_log_custom_fields",
+            "http_ratelimit",
+            "http_request_cache_settings",
+            "http_request_dynamic_redirect",
+            "http_request_firewall_custom",
+            "http_request_firewall_managed",
+            "http_request_late_transform",
+            "http_request_origin",
+            "http_request_redirect",
+            "http_request_sanitize",
+            "http_request_sbfm",
+            "http_request_select_configuration",
+            "http_request_transform",
+            "http_response_compression",
+            "http_response_firewall_managed",
+            "http_response_headers_transform"
+          ],
+          "description": "The phase of the ruleset.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "ruleset_create"
+        },
+        "rulesets": {
+          "description": "List of ruleset ids to apply action to. Use \"current\" to apply to the current ruleset.",
+          "source": "cis",
+          "schema": "ruleset_create"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_ruleset_rule",
+      "kind": "resource",
+      "schema": "ruleset_create",
+      "spec": "cis",
+      "score": 0.29,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_ruleset_version_detach",
+      "kind": "resource",
+      "schema": "ruleset_create",
+      "spec": "cis",
+      "score": 0.29,
+      "attrs": {
+        "version": {
+          "description": "The version of the ruleset. Use \"latest\" to get the latest version.",
+          "source": "cis",
+          "schema": "ruleset_create"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_tls_settings",
+      "kind": "resource",
+      "schema": "/v1/{crn}/zones/{zone_identifier}/settings/tls_1_3:patch",
+      "spec": "cis",
+      "score": 0.1657,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_waf_group",
+      "kind": "resource",
+      "schema": "waf-body",
+      "spec": "cis",
+      "score": 0.29,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_waf_package",
+      "kind": "resource",
+      "schema": "/v1/{crn}/zones/{zone_id}/firewall/waf/packages/{package_id}:patch",
+      "spec": "cis",
+      "score": 0.4267,
+      "attrs": {
+        "action_mode": {
+          "enum": [
+            "simulate",
+            "challenge",
+            "block"
+          ],
+          "description": "The default action that will be taken for rules under the firewall package.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_id}/firewall/waf/packages/{package_id}:patch"
+        },
+        "sensitivity": {
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "off"
+          ],
+          "description": "The sensitivity of the firewall package.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_id}/firewall/waf/packages/{package_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_waf_rule",
+      "kind": "resource",
+      "schema": "waf-groups-request",
+      "spec": "cis",
+      "score": 0.295,
+      "attrs": {
+        "mode": {
+          "enum": [
+            "on",
+            "off"
+          ],
+          "description": "Whether or not the rules contained within this group are configurable/usable",
+          "source": "cis",
+          "schema": "waf-groups-request"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_webhook",
+      "kind": "resource",
+      "schema": "alert_webhook_input",
+      "spec": "cis",
+      "score": 0.625,
+      "attrs": {
+        "name": {
+          "description": "Webhook Name",
+          "api_required": true,
+          "source": "cis",
+          "schema": "alert_webhook_input"
+        },
+        "secret": {
+          "description": "The optional secret or API key needed to use the webhook",
+          "source": "cis",
+          "schema": "alert_webhook_input"
+        },
+        "url": {
+          "description": "Webhook url",
+          "api_required": true,
+          "source": "cis",
+          "schema": "alert_webhook_input"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis",
+      "kind": "data",
+      "schema": "/v1/{crn}/zones:post",
+      "spec": "cis",
+      "score": 0.2333,
+      "attrs": {
+        "name": {
+          "description": "Name",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_alerts",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_bot_analytics",
+      "kind": "data",
+      "schema": "ratelimit_analytics_resp",
+      "spec": "cis",
+      "score": 0.2156,
+      "attrs": {
+        "since": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "The beginning time of analytics.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "ratelimit_analytics_resp"
+        },
+        "until": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "The end time of analytics.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "ratelimit_analytics_resp"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_bot_managements",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_cache_settings",
+      "kind": "data",
+      "schema": "/v1/{crn}/zones/{zone_id}/settings/cache_level:patch",
+      "spec": "cis",
+      "score": 0.155,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_certificates",
+      "kind": "data",
+      "schema": "purge_hosts_body",
+      "spec": "cis",
+      "score": 0.3133,
+      "attrs": {
+        "certificates.hosts": {
+          "description": "Hosts name",
+          "api_required": true,
+          "source": "cis",
+          "schema": "purge_hosts_body"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_custom_certificates",
+      "kind": "data",
+      "schema": "custom_page_request",
+      "spec": "cis",
+      "score": 0.155,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_custom_list_items",
+      "kind": "data",
+      "schema": "custom_page_request",
+      "spec": "cis",
+      "score": 0.155,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_custom_lists",
+      "kind": "data",
+      "schema": "custom_page_request",
+      "spec": "cis",
+      "score": 0.155,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_custom_pages",
+      "kind": "data",
+      "schema": "custom_page_request",
+      "spec": "cis",
+      "score": 0.155,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_dns_records",
+      "kind": "data",
+      "schema": "/v1/{crn}/zones/{zone_identifier}/dns_records_bulk:post",
+      "spec": "cis",
+      "score": 0.3,
+      "attrs": {
+        "file": {
+          "format": "binary",
+          "description": "File to upload",
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/dns_records_bulk:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_domain",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.1167,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_edge_functions_actions",
+      "kind": "data",
+      "schema": "list_edge_functions_actions_resp",
+      "spec": "cis",
+      "score": 0.18,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_edge_functions_triggers",
+      "kind": "data",
+      "schema": "list_edge_functions_triggers_resp",
+      "spec": "cis",
+      "score": 0.18,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_filters",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.1,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_firewall",
+      "kind": "data",
+      "schema": "/v1/{crn}/firewall/access_rules/rules/{accessrule_identifier}:patch",
+      "spec": "cis",
+      "score": 0.1229,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_firewall_rules",
+      "kind": "data",
+      "schema": "/v1/{crn}/firewall/access_rules/rules/{accessrule_identifier}:patch",
+      "spec": "cis",
+      "score": 0.1657,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_global_load_balancers",
+      "kind": "data",
+      "schema": "delete_load_balancers_resp",
+      "spec": "cis",
+      "score": 0.12,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_healthchecks",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_ip_addresses",
+      "kind": "data",
+      "schema": "ip-response",
+      "spec": "cis",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_logpush_jobs",
+      "kind": "data",
+      "schema": "params:put:/v2/{crn}/zones/{zone_id}/logpush/jobs/{job_id}",
+      "spec": "cis",
+      "score": 0.3,
+      "attrs": {
+        "job_id": {
+          "api_required": true,
+          "source": "cis",
+          "schema": "params:put:/v2/{crn}/zones/{zone_id}/logpush/jobs/{job_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_managed_lists",
+      "kind": "data",
+      "schema": "managed_lists_resp",
+      "spec": "cis",
+      "score": 0.15,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_mtls_apps",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_mtlss",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_origin_auths",
+      "kind": "data",
+      "schema": "hostname_origin_pull_settings",
+      "spec": "cis",
+      "score": 0.1667,
+      "attrs": {
+        "hostname": {
+          "description": "the hostname on the origin for which the client certificate uploaded will be used",
+          "api_required": true,
+          "source": "cis",
+          "schema": "hostname_origin_pull_settings"
+        },
+        "request_type": {
+          "enum": [
+            "origin-rsa",
+            "origin-ecc"
+          ],
+          "description": "Signature type desired on certificate",
+          "api_required": true,
+          "source": "cis",
+          "schema": "/v1/{crn}/zones/{zone_identifier}/origin_certificates:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_origin_certificates",
+      "kind": "data",
+      "schema": "list_origin_certificates_resp",
+      "spec": "cis",
+      "score": 0.15,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_origin_pools",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.1073,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_page_rules",
+      "kind": "data",
+      "schema": "custom_page_request",
+      "spec": "cis",
+      "score": 0.155,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_range_apps",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_rate_limit",
+      "kind": "data",
+      "schema": "delete_rate_limit_resp",
+      "spec": "cis",
+      "score": 0.15,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_ruleset_entrypoint_versions",
+      "kind": "data",
+      "schema": "ruleset_create",
+      "spec": "cis",
+      "score": 0.36,
+      "attrs": {
+        "phase": {
+          "enum": [
+            "ddos_l4",
+            "ddos_l7",
+            "http_config_settings",
+            "http_custom_errors",
+            "http_log_custom_fields",
+            "http_ratelimit",
+            "http_request_cache_settings",
+            "http_request_dynamic_redirect",
+            "http_request_firewall_custom",
+            "http_request_firewall_managed",
+            "http_request_late_transform",
+            "http_request_origin",
+            "http_request_redirect",
+            "http_request_sanitize",
+            "http_request_sbfm",
+            "http_request_select_configuration",
+            "http_request_transform",
+            "http_response_compression",
+            "http_response_firewall_managed",
+            "http_response_headers_transform"
+          ],
+          "description": "The phase of the ruleset.",
+          "api_required": true,
+          "source": "cis",
+          "schema": "ruleset_create"
+        },
+        "version": {
+          "description": "The version of the ruleset. Use \"latest\" to get the latest version.",
+          "source": "cis",
+          "schema": "ruleset_create"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_ruleset_rules_by_tag",
+      "kind": "data",
+      "schema": "ruleset_create",
+      "spec": "cis",
+      "score": 0.29,
+      "attrs": {
+        "version": {
+          "description": "The version of the ruleset. Use \"latest\" to get the latest version.",
+          "source": "cis",
+          "schema": "ruleset_create"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_ruleset_versions",
+      "kind": "data",
+      "schema": "ruleset_create",
+      "spec": "cis",
+      "score": 0.29,
+      "attrs": {
+        "version": {
+          "description": "The version of the ruleset. Use \"latest\" to get the latest version.",
+          "source": "cis",
+          "schema": "ruleset_create"
+        }
+      }
+    },
+    {
+      "name": "ibm_cis_rulesets",
+      "kind": "data",
+      "schema": "/v1/{crn}/rulesets/{ruleset_id}/rules/{rule_id}:patch",
+      "spec": "cis",
+      "score": 0.1229,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_waf_groups",
+      "kind": "data",
+      "schema": "waf-body",
+      "spec": "cis",
+      "score": 0.29,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_waf_packages",
+      "kind": "data",
+      "schema": "waf-body",
+      "spec": "cis",
+      "score": 0.29,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_waf_rules",
+      "kind": "data",
+      "schema": "waf-body",
+      "spec": "cis",
+      "score": 0.29,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cis_webhooks",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    }
+  ]
+}

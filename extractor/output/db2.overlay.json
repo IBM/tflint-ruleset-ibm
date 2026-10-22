@@ -1,0 +1,193 @@
+{
+  "package": "db2",
+  "specs": [
+    {
+      "slug": "db2-on-cloud-db2-on-cloud-v4",
+      "title": "IBM Db2 as a Service REST API",
+      "schema_count": 298,
+      "path_count": 161
+    },
+    {
+      "slug": "db2-on-cloud-db2-on-cloud-byoc",
+      "title": "IBM Db2 as a Service (Bring Your Own Cloud) REST API",
+      "schema_count": 306,
+      "path_count": 102
+    },
+    {
+      "slug": "db2-on-cloud-db2-saas-perf-v4",
+      "title": "IBM Db2 as a Service Perfomance REST API",
+      "schema_count": 335,
+      "path_count": 184
+    },
+    {
+      "slug": "db2-warehouse-on-cloud-db2-warehouse-on-cloud-v5",
+      "title": "Db2 Warehouse as Service v5",
+      "schema_count": 513,
+      "path_count": 299
+    },
+    {
+      "slug": "db2-warehouse-on-cloud-db2-warehouse-on-cloud-v4",
+      "title": "Db2 Warehouse on Cloud v4",
+      "schema_count": 328,
+      "path_count": 172
+    },
+    {
+      "slug": "db2-warehouse-on-cloud-db2-warehouse-on-cloud-byoc",
+      "title": "IBM Db2 Warehouse as a Service (Bring Your Own Cloud) REST API",
+      "schema_count": 488,
+      "path_count": 275
+    }
+  ],
+  "matched": 6,
+  "resource_count": 9,
+  "overlay_attrs": 9,
+  "resources": [
+    {
+      "name": "ibm_db2",
+      "kind": "resource",
+      "schema": "/manage/update_db2_licenses:put",
+      "spec": "db2-on-cloud-db2-saas-perf-v4",
+      "score": 0.21,
+      "attrs": {
+        "autoscale_config.auto_scaling_allow_plan_limit": {
+          "enum": [
+            "YES",
+            "NO"
+          ],
+          "source": "db2-on-cloud-db2-on-cloud-byoc",
+          "schema": "/scaling/auto:put"
+        },
+        "autoscale_config.auto_scaling_enabled": {
+          "enum": [
+            "YES",
+            "NO"
+          ],
+          "source": "db2-on-cloud-db2-on-cloud-byoc",
+          "schema": "/scaling/auto:put"
+        },
+        "autoscale_config.auto_scaling_over_time_period": {
+          "enum": [
+            "5",
+            "15",
+            "30",
+            "45",
+            "60"
+          ],
+          "source": "db2-on-cloud-db2-on-cloud-byoc",
+          "schema": "/scaling/auto:put"
+        },
+        "service_endpoints": {
+          "enum": [
+            "public",
+            "private",
+            "public-and-private"
+          ],
+          "description": "Service endpoint configuration",
+          "api_required": true,
+          "source": "db2-on-cloud-db2-saas-perf-v4",
+          "schema": "UpdateServiceEndpointsRequest"
+        },
+        "users_config.authentication.method": {
+          "enum": [
+            "internal"
+          ],
+          "description": "The authentication method to be used when the user logs in. Currently only 'internal' is allowed. Not needed for IBMid and will be ignored if set.",
+          "api_required": true,
+          "source": "db2-on-cloud-db2-on-cloud-v4",
+          "schema": "/users:post"
+        },
+        "users_config.locked": {
+          "enum": [
+            "yes",
+            "no"
+          ],
+          "description": "If set to 'yes', it indicates the user account is locked, which disallows the user from logging into the system",
+          "source": "db2-on-cloud-db2-on-cloud-v4",
+          "schema": "/users:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_db2",
+      "kind": "data",
+      "schema": "/manage/update_db2_licenses:put",
+      "spec": "db2-on-cloud-db2-saas-perf-v4",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_db2_allowlist_ip",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_db2_autoscale",
+      "kind": "data",
+      "schema": "SuccessTakeoverDRResponse",
+      "spec": "db2-on-cloud-db2-on-cloud-v4",
+      "score": 0.175,
+      "attrs": {
+        "deployment_id": {
+          "api_required": true,
+          "source": "db2-on-cloud-db2-on-cloud-v4",
+          "schema": "SuccessTakeoverDRResponse"
+        }
+      }
+    },
+    {
+      "name": "ibm_db2_backup",
+      "kind": "data",
+      "schema": "SuccessTakeoverDRResponse",
+      "spec": "db2-on-cloud-db2-on-cloud-v4",
+      "score": 0.175,
+      "attrs": {
+        "deployment_id": {
+          "api_required": true,
+          "source": "db2-on-cloud-db2-on-cloud-v4",
+          "schema": "SuccessTakeoverDRResponse"
+        }
+      }
+    },
+    {
+      "name": "ibm_db2_connection_info",
+      "kind": "data",
+      "schema": "SuccessTakeoverDRResponse",
+      "spec": "db2-on-cloud-db2-on-cloud-v4",
+      "score": 0.14,
+      "attrs": {
+        "deployment_id": {
+          "api_required": true,
+          "source": "db2-on-cloud-db2-on-cloud-v4",
+          "schema": "SuccessTakeoverDRResponse"
+        }
+      }
+    },
+    {
+      "name": "ibm_db2_tuneable_param",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_db2_users",
+      "kind": "data",
+      "schema": "Users",
+      "spec": "db2-on-cloud-db2-on-cloud-v4",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_db2_whitelist_ip",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    }
+  ]
+}

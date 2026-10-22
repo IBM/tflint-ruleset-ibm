@@ -1,0 +1,52 @@
+# ibm_cos_backup_vault
+
+Schema validation for the ibm_cos_backup_vault resource.
+
+This rule validates `ibm_cos_backup_vault` resources against the IBM Cloud provider schema and the published IBM Cloud API: required arguments, allowed values, numeric ranges, and format constraints.
+
+OpenAPI schema: `BackupVaultPrototype` (`cos-cos-configuration`).
+
+## Configuration
+
+```hcl
+rule "ibm_cos_backup_vault" {
+  enabled = true
+}
+```
+
+## Checks
+
+| Argument | Required | Constraints |
+| --- | --- | --- |
+| `activity_tracking_management_events` | no | — |
+| `backup_vault_crn` | no | — |
+| `backup_vault_name` | yes | API: The name given to a Bucket. Bucket names must be between 3 and 63 characters long must be made of lowercase letters, numbers, dots (periods), and dashes (hyphens). Bucket names must begin and end with a lowercase letter or number. Bucket names canâ€™t contain consecutive dots or dashes. Bucket names that resemble IP addresses are not allowed. Bucket and BackupVault names exist in a global namespac |
+| `kms_key_crn` | no | crn format |
+| `metrics_monitoring_usage_metrics` | no | — |
+| `region` | yes | pattern `^[\w\-]*$` |
+| `service_instance_id` | yes | pattern `^[0-9a-f]{32}$` |
+
+## Attribute rules
+
+Each writable argument has its own rule so checks can be enabled or disabled independently.
+
+| Rule | Argument |
+| --- | --- |
+| `ibm_cos_backup_vault_invalid_activity_tracking_management_events` | `activity_tracking_management_events` |
+| `ibm_cos_backup_vault_invalid_backup_vault_name` | `backup_vault_name` |
+| `ibm_cos_backup_vault_invalid_kms_key_crn` | `kms_key_crn` |
+| `ibm_cos_backup_vault_invalid_metrics_monitoring_usage_metrics` | `metrics_monitoring_usage_metrics` |
+| `ibm_cos_backup_vault_invalid_region` | `region` |
+| `ibm_cos_backup_vault_invalid_service_instance_id` | `service_instance_id` |
+
+## Example
+
+### Valid
+
+```hcl
+resource "ibm_cos_backup_vault" "test" {
+  backup_vault_name = "aaaaaaa"
+  region = "example-name"
+  service_instance_id = "0123456789abcdef0123456789abcdef"
+}
+```

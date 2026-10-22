@@ -1,0 +1,296 @@
+{
+  "package": "globaltagging",
+  "resources": [
+    {
+      "name": "ibm_iam_access_tag",
+      "function": "ResourceIBMIamAccessTag",
+      "package": "globaltagging",
+      "kind": "resource",
+      "description": "Manages ibm_iam_access_tag. Name of the access tag",
+      "attributes": {
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Name of the access tag",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^([A-Za-z0-9_.-]|[A-Za-z0-9_.-][A-Za-z0-9_ .-]*[A-Za-z0-9_.-]):([A-Za-z0-9_.-]|[A-Za-z0-9_.-][A-Za-z0-9_ .-]*[A-Za-z0-9_.-])$"
+          }
+        },
+        "tag_type": {
+          "name": "tag_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of the tag(access)"
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^([A-Za-z0-9_.-]|[A-Za-z0-9_.-][A-Za-z0-9_ .-]*[A-Za-z0-9_.-]):([A-Za-z0-9_.-]|[A-Za-z0-9_.-][A-Za-z0-9_ .-]*[A-Za-z0-9_.-])$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_resource_tag",
+      "function": "ResourceIBMResourceTag",
+      "package": "globaltagging",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_resource_tag resource.",
+      "attributes": {
+        "account_id": {
+          "name": "account_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the account that owns the resources to be tagged (required if tag-type is set to service)"
+        },
+        "replace": {
+          "name": "replace",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "If true, it indicates that the attaching operation is a replacement operation",
+          "default": "false"
+        },
+        "resource_id": {
+          "name": "resource_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "CRN of the resource on which the tags should be attached",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 1024,
+            "regexp": "^crn:v1(:[a-zA-Z0-9 \\-\\._~\\*\\+,;=!$\u0026'\\(\\)\\/\\?#\\[\\]@]*){8}$|^[0-9]+$"
+          }
+        },
+        "resource_type": {
+          "name": "resource_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Resource type on which the tags should be attached"
+        },
+        "tag_type": {
+          "name": "tag_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Type of the tag. Only allowed values are: user, or service or access (default value : user)",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "service",
+              "access",
+              "user"
+            ]
+          }
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "List of tags associated with resource instance",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^[A-Za-z0-9:_ .-]+$"
+          },
+          "elem": {
+            "kind": "schema",
+            "type": "string",
+            "validate": {
+              "kind": "invoke",
+              "func_name": "tags"
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "resource_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^crn:v1(:[a-zA-Z0-9 \\-\\._~\\*\\+,;=!$\u0026'\\(\\)\\/\\?#\\[\\]@]*){8}$|^[0-9]+$",
+          "min_len": 1,
+          "max_len": 1024
+        },
+        {
+          "identifier": "tag_type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "service,access,user"
+        },
+        {
+          "identifier": "tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9:_ .-]+$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_iam_access_tag",
+      "function": "DataSourceIBMIamAccessTag",
+      "package": "globaltagging",
+      "kind": "data",
+      "description": "Reads ibm_iam_access_tag. Name of the access tag to be fetched",
+      "attributes": {
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Name of the access tag to be fetched",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^([A-Za-z0-9_.-]|[A-Za-z0-9_.-][A-Za-z0-9_ .-]*[A-Za-z0-9_.-]):([A-Za-z0-9_.-]|[A-Za-z0-9_.-][A-Za-z0-9_ .-]*[A-Za-z0-9_.-])$"
+          }
+        },
+        "tag_type": {
+          "name": "tag_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of the tag(access)"
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^([A-Za-z0-9_.-]|[A-Za-z0-9_.-][A-Za-z0-9_ .-]*[A-Za-z0-9_.-]):([A-Za-z0-9_.-]|[A-Za-z0-9_.-][A-Za-z0-9_ .-]*[A-Za-z0-9_.-])$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_resource_tag",
+      "function": "DataSourceIBMResourceTag",
+      "package": "globaltagging",
+      "kind": "data",
+      "description": "Schema validation for the ibm_resource_tag data source.",
+      "attributes": {
+        "resource_id": {
+          "name": "resource_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "CRN of the resource on which the tags should be attached",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 1024,
+            "regexp": "^crn:v1(:[a-zA-Z0-9 \\-\\._~\\*\\+,;=!$\u0026'\\(\\)\\/\\?#\\[\\]@]*){8}$|^[0-9]+$"
+          }
+        },
+        "resource_type": {
+          "name": "resource_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Resource type on which the tags should be fetched"
+        },
+        "tag_type": {
+          "name": "tag_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Tag type on which the tags should be fetched",
+          "default": "user",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "service",
+              "access",
+              "user"
+            ]
+          }
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of tags associated with resource instance",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^[A-Za-z0-9:_ .-]+$"
+          },
+          "elem": {
+            "kind": "schema",
+            "type": "string",
+            "validate": {
+              "kind": "invoke",
+              "func_name": "tags"
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "resource_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^crn:v1(:[a-zA-Z0-9 \\-\\._~\\*\\+,;=!$\u0026'\\(\\)\\/\\?#\\[\\]@]*){8}$|^[0-9]+$",
+          "min_len": 1,
+          "max_len": 1024
+        },
+        {
+          "identifier": "tag_type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "service,access,user"
+        },
+        {
+          "identifier": "tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9:_ .-]+$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    }
+  ],
+  "skipped": [],
+  "extracted": 4,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package globaltagging"
+}

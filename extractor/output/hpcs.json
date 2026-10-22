@@ -1,0 +1,3205 @@
+{
+  "package": "hpcs",
+  "resources": [
+    {
+      "name": "ibm_hpcs",
+      "function": "ResourceIBMHPCS",
+      "package": "hpcs",
+      "kind": "resource",
+      "description": "Manages ibm_hpcs. A name for the HPCS instance",
+      "attributes": {
+        "admins": {
+          "name": "admins",
+          "type": "set",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Crypto Unit Administrators",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "key": {
+                "name": "key",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The administrator signature key"
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Admin Name"
+              },
+              "token": {
+                "name": "token",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "sensitive": true,
+                "description": "Credential giving access to the administrator signature key"
+              }
+            }
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the instance was created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who created the instance."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "CRN of HPCS instance",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "dashboard_url": {
+          "name": "dashboard_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Dashboard URL to access resource."
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the instance was deleted."
+        },
+        "deleted_by": {
+          "name": "deleted_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who deleted the instance."
+        },
+        "extensions": {
+          "name": "extensions",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The extended metadata as a map associated with the HPCS instance."
+        },
+        "failover_units": {
+          "name": "failover_units",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The number of failover crypto units for your service instance"
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Guid of HPCS instance"
+        },
+        "hsm_info": {
+          "name": "hsm_info",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "HSM Configuration",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "admins": {
+                "name": "admins",
+                "type": "set",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Crypto Unit Administrators",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Admin Name"
+                    },
+                    "ski": {
+                      "name": "ski",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    }
+                  }
+                }
+              },
+              "current_mk_status": {
+                "name": "current_mk_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "current_mkvp": {
+                "name": "current_mkvp",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "hsm_id": {
+                "name": "hsm_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "hsm_location": {
+                "name": "hsm_location",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "hsm_type": {
+                "name": "hsm_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "new_mk_status": {
+                "name": "new_mk_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "new_mkvp": {
+                "name": "new_mkvp",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "revocation_threshold": {
+                "name": "revocation_threshold",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Revocation Threshold Value"
+              },
+              "signature_threshold": {
+                "name": "signature_threshold",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Signature Threshold Value"
+              }
+            }
+          }
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The location where the HPCS instance available"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "A name for the HPCS instance"
+        },
+        "plan": {
+          "name": "plan",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The plan type of the HPCS Instance"
+        },
+        "resource_aliases_url": {
+          "name": "resource_aliases_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The relative path to the resource aliases for the instance."
+        },
+        "resource_bindings_url": {
+          "name": "resource_bindings_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The relative path to the resource bindings for the instance."
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The resource group id"
+        },
+        "resource_keys_url": {
+          "name": "resource_keys_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The relative path to the resource keys for the instance."
+        },
+        "restored_at": {
+          "name": "restored_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the instance under reclamation was restored."
+        },
+        "restored_by": {
+          "name": "restored_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who restored the instance back from reclamation."
+        },
+        "revocation_threshold": {
+          "name": "revocation_threshold",
+          "type": "int",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Revocation Threshold Value"
+        },
+        "scheduled_reclaim_at": {
+          "name": "scheduled_reclaim_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the instance was scheduled for reclamation."
+        },
+        "scheduled_reclaim_by": {
+          "name": "scheduled_reclaim_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who initiated the instance reclamation."
+        },
+        "service": {
+          "name": "service",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The name of the service offering `hs-crypto` ",
+          "default": "hs-crypto"
+        },
+        "service_endpoints": {
+          "name": "service_endpoints",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Types of the service endpoints. Possible values are `public-and-private`, `private-only`.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public-and-private",
+              "private-only"
+            ]
+          }
+        },
+        "signature_server_url": {
+          "name": "signature_server_url",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "URL of signing service"
+        },
+        "signature_threshold": {
+          "name": "signature_threshold",
+          "type": "int",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Signature Threshold Value"
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The current state of the instance."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Status of HPCS instance"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^[A-Za-z0-9:_ .-]+$"
+          },
+          "elem": {
+            "kind": "schema",
+            "type": "string",
+            "validate": {
+              "kind": "invoke",
+              "func_name": "tags"
+            }
+          }
+        },
+        "units": {
+          "name": "units",
+          "type": "int",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The number of operational crypto units for your service instance"
+        },
+        "update_at": {
+          "name": "update_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the instance was last updated."
+        },
+        "update_by": {
+          "name": "update_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who updated the instance."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9:_ .-]+$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_hpcs_key_template",
+      "function": "ResourceIbmKeyTemplate",
+      "package": "hpcs",
+      "kind": "resource",
+      "description": "Manages ibm_hpcs_key_template. Name of the template, it will be referenced when creating managed keys.",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the key template was created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the user that created the key template."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Description of the key template.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 200,
+            "regexp": "(.|\\\\n)*"
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A URL that uniquely identifies your cloud resource."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The ID of the UKO instance this resource exists in."
+        },
+        "key": {
+          "name": "key",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "min_items": 1,
+          "max_items": 1,
+          "description": "Properties describing the properties of the managed key.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "activation_date": {
+                "name": "activation_date",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Key activation date can be provided as a period definition (e.g. PY1 means 1 year)."
+              },
+              "algorithm": {
+                "name": "algorithm",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The algorithm of the key."
+              },
+              "expiration_date": {
+                "name": "expiration_date",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Key expiration date can be provided as a period definition (e.g. PY1 means 1 year)."
+              },
+              "size": {
+                "name": "size",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The size of the underlying cryptographic key or key pair. E.g. \"256\" for AES keys, or \"2048\" for RSA."
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The state that the key will be in after generation."
+              }
+            }
+          }
+        },
+        "keystores": {
+          "name": "keystores",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "An array describing the type and group of target keystores the managed key is to be installed in.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "google_key_protection_level": {
+                "name": "google_key_protection_level",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false
+              },
+              "google_key_purpose": {
+                "name": "google_key_purpose",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false
+              },
+              "google_kms_algorithm": {
+                "name": "google_kms_algorithm",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false
+              },
+              "group": {
+                "name": "group",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Which keystore group to distribute the key to."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Type of keystore."
+              }
+            }
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Name of the template, it will be referenced when creating managed keys.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 30,
+            "regexp": "^[A-Za-z][A-Za-z0-9-]*$"
+          }
+        },
+        "region": {
+          "name": "region",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The region of the UKO instance this resource exists in.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "au-syd",
+              "in-che",
+              "jp-osa",
+              "jp-tok",
+              "kr-seo",
+              "eu-de",
+              "eu-gb",
+              "ca-tor",
+              "us-south",
+              "us-south-test",
+              "us-east",
+              "br-sao"
+            ]
+          }
+        },
+        "uko_vault": {
+          "name": "uko_vault",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The UUID of the Vault in which the update is to take place."
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the key template was updated."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the user that updated the key."
+        },
+        "vault": {
+          "name": "vault",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "min_items": 1,
+          "max_items": 1,
+          "description": "ID of the Vault where the entity is to be created in.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122."
+              }
+            }
+          }
+        },
+        "version": {
+          "name": "version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Version of the key template. Every time the key template is updated, the version will be updated automatically."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "description",
+          "kind": "ValidateRegexpLen",
+          "regexp": "(.|\\\\n)*",
+          "max_len": 200
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z][A-Za-z0-9-]*$",
+          "min_len": 1,
+          "max_len": 30
+        },
+        {
+          "identifier": "region",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "au-syd, in-che, jp-osa, jp-tok, kr-seo, eu-de, eu-gb, ca-tor, us-south, us-south-test, us-east, br-sao"
+        }
+      ]
+    },
+    {
+      "name": "ibm_hpcs_keystore",
+      "function": "ResourceIbmKeystore",
+      "package": "hpcs",
+      "kind": "resource",
+      "description": "Manages ibm_hpcs_keystore. Name of the target keystore.",
+      "attributes": {
+        "aws_access_key_id": {
+          "name": "aws_access_key_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "sensitive": true,
+          "description": "The access key id used for connecting to this instance of AWS KMS."
+        },
+        "aws_region": {
+          "name": "aws_region",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "AWS Region."
+        },
+        "aws_secret_access_key": {
+          "name": "aws_secret_access_key",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "sensitive": true,
+          "description": "The secret access key used for connecting to this instance of AWS KMS."
+        },
+        "azure_environment": {
+          "name": "azure_environment",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Azure environment, usually 'Azure'."
+        },
+        "azure_location": {
+          "name": "azure_location",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Location of the Azure Key Vault."
+        },
+        "azure_resource_group": {
+          "name": "azure_resource_group",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Resource group in Azure."
+        },
+        "azure_service_name": {
+          "name": "azure_service_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Service name of the key vault instance from the Azure portal."
+        },
+        "azure_service_principal_client_id": {
+          "name": "azure_service_principal_client_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Azure service principal client ID."
+        },
+        "azure_service_principal_password": {
+          "name": "azure_service_principal_password",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "sensitive": true,
+          "description": "Azure service principal password."
+        },
+        "azure_subscription_id": {
+          "name": "azure_subscription_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Subscription ID in Azure."
+        },
+        "azure_tenant": {
+          "name": "azure_tenant",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Azure tenant that the Key Vault is associated with,."
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the target keystore was created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the user that created the key."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Description of the keystore."
+        },
+        "dry_run": {
+          "name": "dry_run",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Do not create a keystore, only verify if keystore created with given parameters can be communciated with successfully.",
+          "default": "false"
+        },
+        "etag": {
+          "name": "etag",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "google_credentials": {
+          "name": "google_credentials",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "sensitive": true,
+          "description": "The value of the JSON key represented in the Base64 format."
+        },
+        "google_key_ring": {
+          "name": "google_key_ring",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "A key ring organizes keys in a specific Google Cloud location and allows you to manage access control on groups of keys."
+        },
+        "google_location": {
+          "name": "google_location",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Location represents the geographical region where a Cloud KMS resource is stored and can be accessed. A key's location impacts the performance of applications using the key."
+        },
+        "google_private_key_id": {
+          "name": "google_private_key_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The private key id associated with this keystore."
+        },
+        "google_project_id": {
+          "name": "google_project_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The project id associated with this keystore."
+        },
+        "groups": {
+          "name": "groups",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "List of groups that this keystore belongs to.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A URL that uniquely identifies your cloud resource."
+        },
+        "ibm_api_endpoint": {
+          "name": "ibm_api_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "API endpoint of the IBM Cloud keystore."
+        },
+        "ibm_api_key": {
+          "name": "ibm_api_key",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "sensitive": true,
+          "description": "The IBM Cloud API key to be used for connecting to this IBM Cloud keystore."
+        },
+        "ibm_iam_endpoint": {
+          "name": "ibm_iam_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Endpoint of the IAM service for this IBM Cloud keystore."
+        },
+        "ibm_instance_id": {
+          "name": "ibm_instance_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The instance ID of the IBM Cloud keystore."
+        },
+        "ibm_key_ring": {
+          "name": "ibm_key_ring",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The key ring of an IBM Cloud KMS Keystore."
+        },
+        "ibm_variant": {
+          "name": "ibm_variant",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Possible IBM Cloud KMS variants."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The ID of the UKO instance this resource exists in."
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Geographic location of the keystore, if available."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Name of the target keystore. It can be changed in the future."
+        },
+        "region": {
+          "name": "region",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The region of the UKO instance this resource exists in.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "au-syd",
+              "in-che",
+              "jp-osa",
+              "jp-tok",
+              "kr-seo",
+              "eu-de",
+              "eu-gb",
+              "ca-tor",
+              "us-south",
+              "us-south-test",
+              "us-east",
+              "br-sao"
+            ]
+          }
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Type of keystore."
+        },
+        "uko_vault": {
+          "name": "uko_vault",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The UUID of the Vault in which the update is to take place."
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the target keystore was last updated."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the user that last updated the key."
+        },
+        "vault": {
+          "name": "vault",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Reference to a vault.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A URL that uniquely identifies your cloud resource."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the referenced vault."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "region",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "au-syd, in-che, jp-osa, jp-tok, kr-seo, eu-de, eu-gb, ca-tor, us-south, us-south-test, us-east, br-sao"
+        }
+      ]
+    },
+    {
+      "name": "ibm_hpcs_managed_key",
+      "function": "ResourceIbmManagedKey",
+      "package": "hpcs",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_hpcs_managed_key resource.",
+      "attributes": {
+        "activation_date": {
+          "name": "activation_date",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "First day when the key is active."
+        },
+        "algorithm": {
+          "name": "algorithm",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The algorithm of the key."
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the key was created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the user that created the key."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Description of the managed key.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 200,
+            "regexp": "(.|\\n)*"
+          }
+        },
+        "etag": {
+          "name": "etag",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "expiration_date": {
+          "name": "expiration_date",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last day when the key is active."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A URL that uniquely identifies your cloud resource."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The ID of the UKO instance this resource exists in."
+        },
+        "instances": {
+          "name": "instances",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "key instances.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "google_key_protection_level": {
+                "name": "google_key_protection_level",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false
+              },
+              "google_key_purpose": {
+                "name": "google_key_purpose",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false
+              },
+              "google_kms_algorithm": {
+                "name": "google_kms_algorithm",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122."
+              },
+              "keystore": {
+                "name": "keystore",
+                "type": "list",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "min_items": 1,
+                "max_items": 1,
+                "description": "Description of properties of a key within the context of keystores.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "group": {
+                      "name": "group",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "Type of keystore."
+                    }
+                  }
+                }
+              },
+              "label_in_keystore": {
+                "name": "label_in_keystore",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The label of the key."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Type of the key instance."
+              }
+            }
+          }
+        },
+        "key_id": {
+          "name": "key_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The UUID of the key."
+        },
+        "label": {
+          "name": "label",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The label of the key.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 255,
+            "regexp": "^[A-Za-z0-9._ \\/-]+$"
+          }
+        },
+        "referenced_keystores": {
+          "name": "referenced_keystores",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "referenced keystores.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "A URL that uniquely identifies your cloud resource."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Name of the target keystore."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Type of keystore."
+              }
+            }
+          }
+        },
+        "region": {
+          "name": "region",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The region of the UKO instance this resource exists in.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "au-syd",
+              "in-che",
+              "jp-osa",
+              "jp-tok",
+              "kr-seo",
+              "eu-de",
+              "eu-gb",
+              "ca-tor",
+              "us-south",
+              "us-south-test",
+              "us-east",
+              "br-sao"
+            ]
+          }
+        },
+        "size": {
+          "name": "size",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The size of the underlying cryptographic key or key pair. E.g. \"256\" for AES keys, or \"2048\" for RSA."
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The state of the key."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Key-value pairs associated with the key.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Name of a tag."
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Value of a tag."
+              }
+            }
+          }
+        },
+        "template": {
+          "name": "template",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Reference to a key template.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "A URL that uniquely identifies your cloud resource."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Name of the key template."
+              }
+            }
+          }
+        },
+        "template_name": {
+          "name": "template_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of the key template to use when creating a key.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 30,
+            "regexp": "^[A-Za-z][A-Za-z0-9-]+$"
+          }
+        },
+        "uko_vault": {
+          "name": "uko_vault",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The UUID of the Vault in which the update is to take place."
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the key was last updated."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the user that last updated the key."
+        },
+        "vault": {
+          "name": "vault",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "min_items": 1,
+          "max_items": 1,
+          "description": "ID of the Vault where the entity is to be created in.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122."
+              }
+            }
+          }
+        },
+        "verification_patterns": {
+          "name": "verification_patterns",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A list of verification patterns of the key (e.g. public key hash for RSA keys).",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "method": {
+                "name": "method",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The method used for calculating the verification pattern."
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The calculated value."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "description",
+          "kind": "ValidateRegexpLen",
+          "regexp": "(.|\\n)*",
+          "max_len": 200
+        },
+        {
+          "identifier": "label",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9._ \\/-]+$",
+          "min_len": 1,
+          "max_len": 255
+        },
+        {
+          "identifier": "region",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "au-syd, in-che, jp-osa, jp-tok, kr-seo, eu-de, eu-gb, ca-tor, us-south, us-south-test, us-east, br-sao"
+        },
+        {
+          "identifier": "template_name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z][A-Za-z0-9-]+$",
+          "min_len": 1,
+          "max_len": 30
+        }
+      ]
+    },
+    {
+      "name": "ibm_hpcs_vault",
+      "function": "ResourceIbmVault",
+      "package": "hpcs",
+      "kind": "resource",
+      "description": "Manages ibm_hpcs_vault. A human-readable name to assign to your vault.",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the vault was created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the user that created the vault."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Description of the vault.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 200,
+            "regexp": "(.|\\n)*"
+          }
+        },
+        "etag": {
+          "name": "etag",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A URL that uniquely identifies your cloud resource."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The ID of the UKO instance this resource exists in."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "A human-readable name to assign to your vault. To protect your privacy, do not use personal data, such as your name or location.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 100,
+            "regexp": "^[A-Za-z0-9#@!$%'_-][A-Za-z0-9#@!$% '_-]*$"
+          }
+        },
+        "region": {
+          "name": "region",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The region of the UKO instance this resource exists in.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "au-syd",
+              "in-che",
+              "jp-osa",
+              "jp-tok",
+              "kr-seo",
+              "eu-de",
+              "eu-gb",
+              "ca-tor",
+              "us-south",
+              "us-south-test",
+              "us-east",
+              "br-sao"
+            ]
+          }
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the vault was last updated."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the user that last updated the vault."
+        },
+        "vault_id": {
+          "name": "vault_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the vault."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "description",
+          "kind": "ValidateRegexpLen",
+          "regexp": "(.|\\n)*",
+          "max_len": 200
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9#@!$%'_-][A-Za-z0-9#@!$% '_-]*$",
+          "min_len": 1,
+          "max_len": 100
+        },
+        {
+          "identifier": "region",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "au-syd, in-che, jp-osa, jp-tok, kr-seo, eu-de, eu-gb, ca-tor, us-south, us-south-test, us-east, br-sao"
+        }
+      ]
+    },
+    {
+      "name": "ibm_hpcs",
+      "function": "DataSourceIBMHPCS",
+      "package": "hpcs",
+      "kind": "data",
+      "description": "Reads ibm_hpcs. Resource instance name for example, myobjectstorage",
+      "attributes": {
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "CRN of resource instance",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "extensions": {
+          "name": "extensions",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The extended metadata as a map associated with the resource instance."
+        },
+        "failover_units": {
+          "name": "failover_units",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The number of failover crypto units for your service instance"
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Guid of resource instance"
+        },
+        "hsm_info": {
+          "name": "hsm_info",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "HSM Info of HPCS CryptoUnits",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "admins": {
+                "name": "admins",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    },
+                    "ski": {
+                      "name": "ski",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    }
+                  }
+                }
+              },
+              "current_mk_status": {
+                "name": "current_mk_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "current_mkvp": {
+                "name": "current_mkvp",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "hsm_id": {
+                "name": "hsm_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "hsm_location": {
+                "name": "hsm_location",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "hsm_type": {
+                "name": "hsm_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "new_mk_status": {
+                "name": "new_mk_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "new_mkvp": {
+                "name": "new_mkvp",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "revocation_threshold": {
+                "name": "revocation_threshold",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "signature_threshold": {
+                "name": "signature_threshold",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The location or the environment in which instance exists"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Resource instance name for example, myobjectstorage"
+        },
+        "plan": {
+          "name": "plan",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The plan type of the instance"
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The id of the resource group in which the instance is present"
+        },
+        "service": {
+          "name": "service",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The service type of the instance",
+          "default": "hs-crypto"
+        },
+        "service_endpoints": {
+          "name": "service_endpoints",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Types of the service endpoints. Possible values are `public-and-private`, `private-only`."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource instance status"
+        },
+        "units": {
+          "name": "units",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The number of operational crypto units for your service instance"
+        }
+      },
+      "validators": [
+        {
+          "identifier": "tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9:_ .-]+$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_hpcs_key_template",
+      "function": "DataSourceIbmKeyTemplate",
+      "package": "hpcs",
+      "kind": "data",
+      "description": "Reads ibm_hpcs_key_template. Name of the key template.",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the key template was created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the user that created the key template."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Description of the key template.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 200,
+            "regexp": "(.|\\\\n)*"
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A URL that uniquely identifies your cloud resource."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The ID of the UKO instance this resource exists in."
+        },
+        "key": {
+          "name": "key",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Properties describing the properties of the managed key.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "activation_date": {
+                "name": "activation_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Key activation date can be provided as a period definition (e.g. PY1 means 1 year)."
+              },
+              "algorithm": {
+                "name": "algorithm",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The algorithm of the key."
+              },
+              "expiration_date": {
+                "name": "expiration_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Key expiration date can be provided as a period definition (e.g. PY1 means 1 year)."
+              },
+              "size": {
+                "name": "size",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The size of the underlying cryptographic key or key pair. E.g. \"256\" for AES keys, or \"2048\" for RSA."
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The state that the key will be in after generation."
+              }
+            }
+          }
+        },
+        "keystores": {
+          "name": "keystores",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "google_key_protection_level": {
+                "name": "google_key_protection_level",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "google_key_purpose": {
+                "name": "google_key_purpose",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "google_kms_algorithm": {
+                "name": "google_kms_algorithm",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "group": {
+                "name": "group",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Which keystore group to distribute the key to."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of keystore."
+              }
+            }
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of the key template.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 30,
+            "regexp": "^[A-Za-z][A-Za-z0-9-]*$"
+          }
+        },
+        "region": {
+          "name": "region",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The region of the UKO instance this resource exists in.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "au-syd",
+              "in-che",
+              "jp-osa",
+              "jp-tok",
+              "kr-seo",
+              "eu-de",
+              "eu-gb",
+              "ca-tor",
+              "us-south",
+              "us-south-test",
+              "us-east",
+              "br-sao"
+            ]
+          }
+        },
+        "template_id": {
+          "name": "template_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "UUID of the template."
+        },
+        "uko_vault": {
+          "name": "uko_vault",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The UUID of the Vault in which the update is to take place."
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the key template was updated."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the user that updated the key."
+        },
+        "vault": {
+          "name": "vault",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Reference to a vault.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A URL that uniquely identifies your cloud resource."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the referenced vault."
+              }
+            }
+          }
+        },
+        "version": {
+          "name": "version",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Version of the key template. Every time the key template is updated, the version will be updated automatically."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "description",
+          "kind": "ValidateRegexpLen",
+          "regexp": "(.|\\\\n)*",
+          "max_len": 200
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z][A-Za-z0-9-]*$",
+          "min_len": 1,
+          "max_len": 30
+        },
+        {
+          "identifier": "region",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "au-syd, in-che, jp-osa, jp-tok, kr-seo, eu-de, eu-gb, ca-tor, us-south, us-south-test, us-east, br-sao"
+        }
+      ]
+    },
+    {
+      "name": "ibm_hpcs_keystore",
+      "function": "DataSourceIbmKeystore",
+      "package": "hpcs",
+      "kind": "data",
+      "description": "Reads ibm_hpcs_keystore. Name of the target keystore.",
+      "attributes": {
+        "aws_access_key_id": {
+          "name": "aws_access_key_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "The access key id used for connecting to this instance of AWS KMS."
+        },
+        "aws_region": {
+          "name": "aws_region",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "AWS Region."
+        },
+        "aws_secret_access_key": {
+          "name": "aws_secret_access_key",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "The secret access key used for connecting to this instance of AWS KMS."
+        },
+        "azure_environment": {
+          "name": "azure_environment",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Azure environment, usually 'Azure'."
+        },
+        "azure_location": {
+          "name": "azure_location",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Location of the Azure Key Vault."
+        },
+        "azure_resource_group": {
+          "name": "azure_resource_group",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Resource group in Azure."
+        },
+        "azure_service_name": {
+          "name": "azure_service_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Service name of the key vault instance from the Azure portal."
+        },
+        "azure_service_principal_client_id": {
+          "name": "azure_service_principal_client_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Azure service principal client ID."
+        },
+        "azure_service_principal_password": {
+          "name": "azure_service_principal_password",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "Azure service principal password."
+        },
+        "azure_subscription_id": {
+          "name": "azure_subscription_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Subscription ID in Azure."
+        },
+        "azure_tenant": {
+          "name": "azure_tenant",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Azure tenant that the Key Vault is associated with,."
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the target keystore was created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the user that created the key."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Description of the keystore."
+        },
+        "google_credentials": {
+          "name": "google_credentials",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The value of the JSON key represented in the Base64 format."
+        },
+        "google_key_ring": {
+          "name": "google_key_ring",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A key ring organizes keys in a specific Google Cloud location and allows you to manage access control on groups of keys."
+        },
+        "google_location": {
+          "name": "google_location",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Location represents the geographical region where a Cloud KMS resource is stored and can be accessed. A key's location impacts the performance of applications using the key."
+        },
+        "google_private_key_id": {
+          "name": "google_private_key_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The private key id associated with this keystore."
+        },
+        "google_project_id": {
+          "name": "google_project_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The project id associated with this keystore."
+        },
+        "groups": {
+          "name": "groups",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of groups that this keystore belongs to.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A URL that uniquely identifies your cloud resource."
+        },
+        "ibm_api_endpoint": {
+          "name": "ibm_api_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "API endpoint of the IBM Cloud keystore."
+        },
+        "ibm_api_key": {
+          "name": "ibm_api_key",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "The IBM Cloud API key to be used for connecting to this IBM Cloud keystore."
+        },
+        "ibm_iam_endpoint": {
+          "name": "ibm_iam_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Endpoint of the IAM service for this IBM Cloud keystore."
+        },
+        "ibm_instance_id": {
+          "name": "ibm_instance_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The instance ID of the IBM Cloud keystore."
+        },
+        "ibm_key_ring": {
+          "name": "ibm_key_ring",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The key ring of an IBM Cloud KMS Keystore."
+        },
+        "ibm_variant": {
+          "name": "ibm_variant",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Possible IBM Cloud KMS variants."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The ID of the UKO instance this resource exists in."
+        },
+        "keystore_id": {
+          "name": "keystore_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "UUID of the keystore."
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Geographic location of the keystore, if available."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of the target keystore. It can be changed in the future."
+        },
+        "region": {
+          "name": "region",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The region of the UKO instance this resource exists in.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "au-syd",
+              "in-che",
+              "jp-osa",
+              "jp-tok",
+              "kr-seo",
+              "eu-de",
+              "eu-gb",
+              "ca-tor",
+              "us-south",
+              "us-south-test",
+              "us-east",
+              "br-sao"
+            ]
+          }
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of keystore."
+        },
+        "uko_vault": {
+          "name": "uko_vault",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The UUID of the Vault in which the update is to take place."
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the target keystore was last updated."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the user that last updated the key."
+        },
+        "vault": {
+          "name": "vault",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Reference to a vault.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A URL that uniquely identifies your cloud resource."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the referenced vault."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "region",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "au-syd, in-che, jp-osa, jp-tok, kr-seo, eu-de, eu-gb, ca-tor, us-south, us-south-test, us-east, br-sao"
+        }
+      ]
+    },
+    {
+      "name": "ibm_hpcs_managed_key",
+      "function": "DataSourceIbmManagedKey",
+      "package": "hpcs",
+      "kind": "data",
+      "description": "Schema validation for the ibm_hpcs_managed_key data source.",
+      "attributes": {
+        "activation_date": {
+          "name": "activation_date",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "First day when the key is active."
+        },
+        "algorithm": {
+          "name": "algorithm",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The algorithm of the key."
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the key was created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the user that created the key."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Description of the managed key.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 200,
+            "regexp": "(.|\\n)*"
+          }
+        },
+        "expiration_date": {
+          "name": "expiration_date",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Last day when the key is active."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A URL that uniquely identifies your cloud resource."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The ID of the UKO instance this resource exists in."
+        },
+        "instances": {
+          "name": "instances",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "key instances.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "google_key_protection_level": {
+                "name": "google_key_protection_level",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "google_key_purpose": {
+                "name": "google_key_purpose",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "google_kms_algorithm": {
+                "name": "google_kms_algorithm",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122."
+              },
+              "keystore": {
+                "name": "keystore",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Description of properties of a key within the context of keystores.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "group": {
+                      "name": "group",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Type of keystore."
+                    }
+                  }
+                }
+              },
+              "label_in_keystore": {
+                "name": "label_in_keystore",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The label of the key."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of the key instance."
+              }
+            }
+          }
+        },
+        "key_id": {
+          "name": "key_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "UUID of the key."
+        },
+        "label": {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The label of the key.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 255,
+            "regexp": "^[A-Za-z0-9._ \\/-]+$"
+          }
+        },
+        "referenced_keystores": {
+          "name": "referenced_keystores",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "referenced keystores.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A URL that uniquely identifies your cloud resource."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the target keystore."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of keystore."
+              }
+            }
+          }
+        },
+        "region": {
+          "name": "region",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The region of the UKO instance this resource exists in.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "au-syd",
+              "in-che",
+              "jp-osa",
+              "jp-tok",
+              "kr-seo",
+              "eu-de",
+              "eu-gb",
+              "ca-tor",
+              "us-south",
+              "us-south-test",
+              "us-east",
+              "br-sao"
+            ]
+          }
+        },
+        "size": {
+          "name": "size",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The size of the underlying cryptographic key or key pair. E.g. \"256\" for AES keys, or \"2048\" for RSA."
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The state of the key."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Key-value pairs associated with the key.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of a tag."
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Value of a tag."
+              }
+            }
+          }
+        },
+        "template": {
+          "name": "template",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Reference to a key template.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A URL that uniquely identifies your cloud resource."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the key template."
+              }
+            }
+          }
+        },
+        "uko_vault": {
+          "name": "uko_vault",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The UUID of the Vault in which the update is to take place."
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the key was last updated."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the user that last updated the key."
+        },
+        "vault": {
+          "name": "vault",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Reference to a vault.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A URL that uniquely identifies your cloud resource."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The v4 UUID used to uniquely identify the resource, as specified by RFC 4122."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the referenced vault."
+              }
+            }
+          }
+        },
+        "verification_patterns": {
+          "name": "verification_patterns",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A list of verification patterns of the key (e.g. public key hash for RSA keys).",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "method": {
+                "name": "method",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The method used for calculating the verification pattern."
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The calculated value."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "description",
+          "kind": "ValidateRegexpLen",
+          "regexp": "(.|\\n)*",
+          "max_len": 200
+        },
+        {
+          "identifier": "label",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9._ \\/-]+$",
+          "min_len": 1,
+          "max_len": 255
+        },
+        {
+          "identifier": "region",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "au-syd, in-che, jp-osa, jp-tok, kr-seo, eu-de, eu-gb, ca-tor, us-south, us-south-test, us-east, br-sao"
+        },
+        {
+          "identifier": "template_name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z][A-Za-z0-9-]+$",
+          "min_len": 1,
+          "max_len": 30
+        }
+      ]
+    },
+    {
+      "name": "ibm_hpcs_vault",
+      "function": "DataSourceIbmVault",
+      "package": "hpcs",
+      "kind": "data",
+      "description": "Reads ibm_hpcs_vault. Name of the vault.",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the vault was created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the user that created the vault."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Description of the vault.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 200,
+            "regexp": "(.|\\n)*"
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A URL that uniquely identifies your cloud resource."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The ID of the UKO instance this resource exists in."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Name of the vault.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 100,
+            "regexp": "^[A-Za-z0-9#@!$%'_-][A-Za-z0-9#@!$% '_-]*$"
+          }
+        },
+        "region": {
+          "name": "region",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The region of the UKO instance this resource exists in.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "au-syd",
+              "in-che",
+              "jp-osa",
+              "jp-tok",
+              "kr-seo",
+              "eu-de",
+              "eu-gb",
+              "ca-tor",
+              "us-south",
+              "us-south-test",
+              "us-east",
+              "br-sao"
+            ]
+          }
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the vault was last updated."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the user that last updated the vault."
+        },
+        "vault_id": {
+          "name": "vault_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "UUID of the vault."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "description",
+          "kind": "ValidateRegexpLen",
+          "regexp": "(.|\\n)*",
+          "max_len": 200
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9#@!$%'_-][A-Za-z0-9#@!$% '_-]*$",
+          "min_len": 1,
+          "max_len": 100
+        },
+        {
+          "identifier": "region",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "au-syd, in-che, jp-osa, jp-tok, kr-seo, eu-de, eu-gb, ca-tor, us-south, us-south-test, us-east, br-sao"
+        }
+      ]
+    }
+  ],
+  "skipped": [],
+  "extracted": 10,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package hpcs"
+}

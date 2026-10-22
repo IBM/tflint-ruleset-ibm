@@ -1,0 +1,92 @@
+{
+  "package": "globaltagging",
+  "specs": [
+    {
+      "slug": "tagging",
+      "title": "Global Tagging",
+      "schema_count": 29,
+      "path_count": 4
+    }
+  ],
+  "matched": 4,
+  "resource_count": 4,
+  "overlay_attrs": 6,
+  "resources": [
+    {
+      "name": "ibm_iam_access_tag",
+      "kind": "resource",
+      "schema": "Tag",
+      "spec": "tagging",
+      "score": 0.91,
+      "attrs": {
+        "name": {
+          "description": "The name of the tag.",
+          "api_required": true,
+          "source": "tagging",
+          "schema": "Tag"
+        }
+      }
+    },
+    {
+      "name": "ibm_resource_tag",
+      "kind": "resource",
+      "schema": "Tag",
+      "spec": "tagging",
+      "score": 0.3,
+      "attrs": {
+        "resource_id": {
+          "pattern": "^(crn:v1(:[^:]*){7}:.*|[a-zA-Z0-9_\\-\\.]+)$",
+          "max_len": 1024,
+          "description": "The CRN or IMS ID of the resource",
+          "api_required": true,
+          "source": "tagging",
+          "schema": "/v3/tags/attach:post"
+        },
+        "resource_type": {
+          "pattern": "^[A-Za-z0-9_ :.-]*$",
+          "description": "The IMS resource type of the resource. It can be one of SoftLayer_Virtual_DedicatedHost, SoftLayer_Hardware, SoftLayer_Hardware_Server, SoftLayer_Network_Application_Delivery_Controller, SoftLayer_Network_Vlan, SoftLayer_Network_Vlan_Firewall, SoftLayer_Network_Component_Firewall, SoftLayer_Network_Firewall_Module_Context, SoftLayer_Virtual_Guest",
+          "source": "tagging",
+          "schema": "/v3/tags/attach:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_access_tag",
+      "kind": "data",
+      "schema": "Tag",
+      "spec": "tagging",
+      "score": 0.91,
+      "attrs": {
+        "name": {
+          "description": "The name of the tag.",
+          "api_required": true,
+          "source": "tagging",
+          "schema": "Tag"
+        }
+      }
+    },
+    {
+      "name": "ibm_resource_tag",
+      "kind": "data",
+      "schema": "Resource",
+      "spec": "tagging",
+      "score": 0.4667,
+      "attrs": {
+        "resource_id": {
+          "pattern": "^(crn:v1(:[^:]*){7}:.*|[a-zA-Z0-9_\\-\\.]+)$",
+          "max_len": 1024,
+          "description": "The CRN or IMS ID of the resource",
+          "api_required": true,
+          "source": "tagging",
+          "schema": "Resource"
+        },
+        "resource_type": {
+          "pattern": "^[A-Za-z0-9_ :.-]*$",
+          "description": "The IMS resource type of the resource. It can be one of SoftLayer_Virtual_DedicatedHost, SoftLayer_Hardware, SoftLayer_Hardware_Server, SoftLayer_Network_Application_Delivery_Controller, SoftLayer_Network_Vlan, SoftLayer_Network_Vlan_Firewall, SoftLayer_Network_Component_Firewall, SoftLayer_Network_Firewall_Module_Context, SoftLayer_Virtual_Guest",
+          "source": "tagging",
+          "schema": "Resource"
+        }
+      }
+    }
+  ]
+}

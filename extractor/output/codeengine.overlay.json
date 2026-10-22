@@ -1,0 +1,1755 @@
+{
+  "package": "codeengine",
+  "specs": [
+    {
+      "slug": "codeengine-v2",
+      "title": "Code Engine",
+      "schema_count": 156,
+      "path_count": 42
+    }
+  ],
+  "matched": 22,
+  "resource_count": 22,
+  "overlay_attrs": 182,
+  "resources": [
+    {
+      "name": "ibm_code_engine_allowed_outbound_destination",
+      "kind": "resource",
+      "schema": "AllowedOutboundDestinationPrototype",
+      "spec": "codeengine-v2",
+      "score": 0.3133,
+      "attrs": {
+        "name": {
+          "description": "The name of the allowed outbound destination.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "AllowedOutboundDestinationPrototype"
+        },
+        "type": {
+          "enum": [
+            "cidr_block",
+            "private_path_service_gateway"
+          ],
+          "pattern": "^(cidr_block|private_path_service_gateway)$",
+          "description": "Specify the type of the allowed outbound destination. Allowed types are: `cidr_block` and `private_path_service_gateway`.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "AllowedOutboundDestinationPrototype"
+        },
+        "cidr_block": {
+          "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(/(3[0-2]|[1-2][0-9]|[0-9]))$",
+          "min_len": 9,
+          "max_len": 18,
+          "description": "The IPv4 address range.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "CidrBlockData"
+        },
+        "isolation_policy": {
+          "enum": [
+            "shared",
+            "dedicated"
+          ],
+          "description": "Optional property to specify the isolation policy of the private path service gateway. If set to `shared`, other projects within the same account or enterprise account family can connect to Private Path service, too. If set to `dedicated` the gateway can only be used by a single Code Engine project. If not specified the isolation policy will be set to `shared`.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "PrivatePathServiceGatewayData"
+        },
+        "private_path_service_gateway_crn": {
+          "pattern": "^crn\\:v1\\:[a-zA-Z0-9]*\\:(public|dedicated|local)\\:is\\:([a-z][\\-a-z0-9_]*[a-z0-9])?\\:((a|o|s)/[\\-a-z0-9]+)?\\:\\:private-path-service-gateway\\:[\\-a-zA-Z0-9/.]*$",
+          "min_len": 20,
+          "max_len": 253,
+          "description": "The CRN of the Private Path service.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "PrivatePathServiceGatewayData"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:post:/projects/{project_id}/allowed_outbound_destinations"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_app",
+      "kind": "resource",
+      "schema": "App",
+      "spec": "codeengine-v2",
+      "score": 0.4927,
+      "attrs": {
+        "computed_env_variables.key": {
+          "pattern": "^[\\-._a-zA-Z0-9]+$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The key to reference as environment variable.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "computed_env_variables.name": {
+          "pattern": "^[\\-._a-zA-Z0-9]+$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the environment variable.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "computed_env_variables.prefix": {
+          "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$",
+          "min_len": 0,
+          "max_len": 253,
+          "description": "A prefix that can be added to all keys of a full secret or config map reference.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "computed_env_variables.reference": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the secret or config map.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "computed_env_variables.value": {
+          "min_len": 0,
+          "max_len": 1048576,
+          "description": "The literal value of the environment variable.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "image_port": {
+          "format": "int32",
+          "min": 0,
+          "max": 65535,
+          "description": "Optional port the app listens on. While the app will always be exposed via port `443` for end users, this port is used to connect to the port that is exposed by the container image.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "image_reference": {
+          "pattern": "^([a-z0-9][a-z0-9\\-_.]+[a-z0-9][/])?([a-z0-9][a-z0-9\\-_]+[a-z0-9][/])?[a-z0-9][a-z0-9\\-_./]+[a-z0-9](:[\\w][\\w.\\-]{0,127})?(@sha256:[a-fA-F0-9]{64})?$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The name of the image that is used for this app. The format is `REGISTRY/NAMESPACE/REPOSITORY:TAG` where `REGISTRY` and `TAG` are optional. If `REGISTRY` is not specified, the default is `docker.io`. If `TAG` is not specified, the default is `latest`. If the image reference points to a registry that requires authentication, make sure to also specify the property `image_secret`.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "image_secret": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "Optional name of the image registry access secret. The image registry access secret is used to authenticate with a private registry when you download the container image. If the image reference points to a registry that requires authentication, the app will be created but cannot reach the ready status, until this property is provided, too.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "managed_domain_mappings": {
+          "enum": [
+            "local",
+            "local_private",
+            "local_public"
+          ],
+          "description": "Optional value controlling which of the system managed domain mappings will be setup for the application. Valid values are 'local_public', 'local_private' and 'local'. Visibility can only be 'local_private' if the project supports application private visibility.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "name": {
+          "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The name of the app.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "probe_liveness.failure_threshold": {
+          "format": "int32",
+          "min": 1,
+          "max": 10,
+          "description": "The number of consecutive, unsuccessful checks for the probe to be considered failed.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "probe_liveness.initial_delay": {
+          "format": "int32",
+          "min": 1,
+          "max": 10,
+          "description": "The amount of time in seconds to wait before the first probe check is performed.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "probe_liveness.interval": {
+          "format": "int32",
+          "min": 1,
+          "max": 60,
+          "description": "The amount of time in seconds between probe checks.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "probe_liveness.path": {
+          "pattern": "^\\/(([a-zA-Z0-9-._~!$&'()*+,;=:@]|%[a-fA-F0-9]{2})+(\\/([a-zA-Z0-9-._~!$&'()*+,;=:@]|%[a-fA-F0-9]{2})*)*)?(\\?([a-zA-Z0-9-._~!$&'()*+,;=:@\\/?]|%[a-fA-F0-9]{2})*)?$",
+          "min_len": 0,
+          "max_len": 2048,
+          "description": "The path of the HTTP request to the resource. A path is only supported for a probe with a `type` of `http`.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "probe_liveness.port": {
+          "format": "int32",
+          "min": 0,
+          "max": 65535,
+          "description": "The port on which to probe the resource, or 0 to probe the default app port 8080.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "probe_liveness.timeout": {
+          "format": "int32",
+          "min": 1,
+          "max": 3600,
+          "description": "The amount of time in seconds that the probe waits for a response from the application before it times out and fails.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "probe_liveness.type": {
+          "enum": [
+            "tcp",
+            "http"
+          ],
+          "description": "Specifies whether to use HTTP or TCP for the probe checks. The default is TCP.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "probe_readiness.failure_threshold": {
+          "format": "int32",
+          "min": 1,
+          "max": 10,
+          "description": "The number of consecutive, unsuccessful checks for the probe to be considered failed.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "probe_readiness.initial_delay": {
+          "format": "int32",
+          "min": 1,
+          "max": 10,
+          "description": "The amount of time in seconds to wait before the first probe check is performed.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "probe_readiness.interval": {
+          "format": "int32",
+          "min": 1,
+          "max": 60,
+          "description": "The amount of time in seconds between probe checks.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "probe_readiness.path": {
+          "pattern": "^\\/(([a-zA-Z0-9-._~!$&'()*+,;=:@]|%[a-fA-F0-9]{2})+(\\/([a-zA-Z0-9-._~!$&'()*+,;=:@]|%[a-fA-F0-9]{2})*)*)?(\\?([a-zA-Z0-9-._~!$&'()*+,;=:@\\/?]|%[a-fA-F0-9]{2})*)?$",
+          "min_len": 0,
+          "max_len": 2048,
+          "description": "The path of the HTTP request to the resource. A path is only supported for a probe with a `type` of `http`.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "probe_readiness.port": {
+          "format": "int32",
+          "min": 0,
+          "max": 65535,
+          "description": "The port on which to probe the resource, or 0 to probe the default app port 8080.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "probe_readiness.timeout": {
+          "format": "int32",
+          "min": 1,
+          "max": 3600,
+          "description": "The amount of time in seconds that the probe waits for a response from the application before it times out and fails.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "probe_readiness.type": {
+          "enum": [
+            "tcp",
+            "http"
+          ],
+          "description": "Specifies whether to use HTTP or TCP for the probe checks. The default is TCP.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The ID of the project in which the resource is located.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "run_arguments": {
+          "min_len": 0,
+          "max_len": 1048576,
+          "description": "Optional arguments for the app that are passed to start the container. If not specified an empty string array will be applied and the arguments specified by the container image, will be used to start the container.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "run_as_user": {
+          "format": "int64",
+          "description": "Optional user ID (UID) to run the app.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "run_commands": {
+          "min_len": 0,
+          "max_len": 1048576,
+          "description": "Optional commands for the app that are passed to start the container. If not specified an empty string array will be applied and the command specified by the container image, will be used to start the container.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "run_compute_resource_token_enabled": {
+          "description": "Optional flag to enable the use of a compute resource token mounted to the container file system.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "run_env_variables.key": {
+          "pattern": "^[\\-._a-zA-Z0-9]+$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The key to reference as environment variable.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "run_env_variables.name": {
+          "pattern": "^[\\-._a-zA-Z0-9]+$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the environment variable.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "run_env_variables.prefix": {
+          "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$",
+          "min_len": 0,
+          "max_len": 253,
+          "description": "A prefix that can be added to all keys of a full secret or config map reference.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "run_env_variables.reference": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the secret or config map.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "run_env_variables.type": {
+          "enum": [
+            "literal",
+            "config_map_full_reference",
+            "secret_full_reference",
+            "config_map_key_reference",
+            "secret_key_reference"
+          ],
+          "pattern": "^(literal|config_map_full_reference|secret_full_reference|config_map_key_reference|secret_key_reference)$",
+          "description": "Specify the type of the environment variable.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "run_env_variables.value": {
+          "min_len": 0,
+          "max_len": 1048576,
+          "description": "The literal value of the environment variable.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "run_service_account": {
+          "enum": [
+            "default",
+            "manager",
+            "reader",
+            "writer",
+            "none"
+          ],
+          "pattern": "^(manager|reader|writer|none|default)$",
+          "min_len": 0,
+          "description": "Optional name of the service account. For built-in service accounts, you can use the shortened names `manager` , `none`, `reader`, and `writer`.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "run_volume_mounts.mount_path": {
+          "pattern": "^\\/([^\\/\\0]+\\/?)+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The path that should be mounted.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "run_volume_mounts.read_only": {
+          "description": "Optional flag for a volume mount of type 'persistent_data_store' to specify whether it is read-only.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "run_volume_mounts.reference": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the referenced secret, config map, or persistent data store.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "run_volume_mounts.sub_path": {
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The path mounted at the mount path.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "run_volume_mounts.type": {
+          "enum": [
+            "config_map",
+            "persistent_data_store",
+            "secret"
+          ],
+          "pattern": "^(config_map|persistent_data_store|secret)$",
+          "description": "Specify the type of the volume mount. Allowed types are: 'config_map', 'persistent_data_store', 'secret'.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "scale_concurrency": {
+          "format": "int64",
+          "min": 1,
+          "max": 1000,
+          "description": "Optional maximum number of requests that can be processed concurrently per instance.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "scale_concurrency_target": {
+          "format": "int64",
+          "min": 1,
+          "max": 1000,
+          "description": "Optional threshold of concurrent requests per instance at which one or more additional instances are created. Use this value to scale up instances based on concurrent number of requests. This option defaults to the value of the `scale_concurrency` option, if not specified.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "scale_cpu_limit": {
+          "pattern": "^([0-9.]+)([eEinumkKMGTPB]*)$",
+          "min_len": 0,
+          "max_len": 10,
+          "description": "Optional number of CPU set for the instance of the app. For valid values see [Supported memory and CPU combinations](https://cloud.ibm.com/docs/codeengine?topic=codeengine-mem-cpu-combo).",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "scale_down_delay": {
+          "format": "int64",
+          "min": 0,
+          "max": 3600,
+          "description": "Optional amount of time in seconds that delays the scale-down behavior for an app instance.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "scale_ephemeral_storage_limit": {
+          "pattern": "^([0-9.]+)([eEinumkKMGTPB]*)$",
+          "min_len": 0,
+          "max_len": 10,
+          "description": "Optional amount of ephemeral storage to set for the instance of the app. The amount specified as ephemeral storage, must not exceed the amount of `scale_memory_limit`. The units for specifying ephemeral storage are Megabyte (M) or Gigabyte (G), whereas G and M are the shorthand expressions for GB and MB. For more information see [Units of measurement](https://cloud.ibm.com/docs/codeengine?topic=co",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "scale_initial_instances": {
+          "format": "int64",
+          "description": "Optional initial number of instances that are created upon app creation or app update.",
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "scale_max_instances": {
+          "format": "int64",
+          "description": "Optional maximum number of instances for this app. If you set this value to `0`, this property does not set a upper scaling limit. However, the app scaling is still limited by the project quota for instances. See [Limits and quotas for Code Engine](https://cloud.ibm.com/docs/codeengine?topic=codeengine-limits).",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "scale_memory_limit": {
+          "pattern": "^([0-9.]+)([eEinumkKMGTPB]*)$",
+          "min_len": 0,
+          "max_len": 10,
+          "description": "Optional amount of memory set for the instance of the app. For valid values see [Supported memory and CPU combinations](https://cloud.ibm.com/docs/codeengine?topic=codeengine-mem-cpu-combo). The units for specifying memory are Megabyte (M) or Gigabyte (G), whereas G and M are the shorthand expressions for GB and MB. For more information see [Units of measurement](https://cloud.ibm.com/docs/codeeng",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "scale_min_instances": {
+          "format": "int64",
+          "description": "Optional minimum number of instances for this app. If you set this value to `0`, the app will scale down to zero, if not hit by any request for some time.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        },
+        "scale_request_timeout": {
+          "format": "int64",
+          "description": "Optional amount of time in seconds that is allowed for a running app to respond to a request.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "App"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_binding",
+      "kind": "resource",
+      "schema": "Binding",
+      "spec": "codeengine-v2",
+      "score": 0.5211,
+      "attrs": {
+        "component.name": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The name of the referenced component.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Binding"
+        },
+        "component.resource_type": {
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The type of the referenced resource.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Binding"
+        },
+        "prefix": {
+          "pattern": "^[A-Z]([_A-Z0-9]*[A-Z0-9])*$",
+          "min_len": 0,
+          "max_len": 31,
+          "description": "The value that is set as a prefix in the component that is bound.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Binding"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The ID of the project in which the resource is located.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Binding"
+        },
+        "secret_name": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The service access secret that is bound to a component.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Binding"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_build",
+      "kind": "resource",
+      "schema": "Build",
+      "spec": "codeengine-v2",
+      "score": 0.56,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The name of the build.",
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "output_image": {
+          "pattern": "^([a-z0-9][a-z0-9\\-_.]+[a-z0-9][/])?([a-z0-9][a-z0-9\\-_]+[a-z0-9][/])?[a-z0-9][a-z0-9\\-_./]+[a-z0-9](:[\\w][\\w.\\-]{0,127})?(@sha256:[a-fA-F0-9]{64})?$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The name of the image.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "output_secret": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The secret that is required to access the image registry. Make sure that the secret is granted with push permissions towards the specified container registry namespace.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The ID of the project in which the resource is located.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "run_build_params.key": {
+          "pattern": "^[\\-._a-zA-Z][\\-._a-zA-Z0-9]*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The key to reference as build param.",
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "run_build_params.name": {
+          "pattern": "^[\\-._a-zA-Z][\\-._a-zA-Z0-9]*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the build param.",
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "run_build_params.reference": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the secret or config map.",
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "run_build_params.type": {
+          "enum": [
+            "literal",
+            "config_map_key_reference",
+            "secret_key_reference"
+          ],
+          "pattern": "^(literal|config_map_key_reference|secret_key_reference)$",
+          "description": "Specify the type of the build param.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "run_build_params.value": {
+          "min_len": 0,
+          "max_len": 1048576,
+          "description": "The literal value of the build param.",
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "source_context_dir": {
+          "pattern": "^(.*)+$",
+          "min_len": 0,
+          "max_len": 253,
+          "description": "Optional directory in the repository that contains the buildpacks file or the Dockerfile.",
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "source_revision": {
+          "pattern": "^[\\S]*$",
+          "min_len": 0,
+          "max_len": 253,
+          "description": "Commit, tag, or branch in the source repository to pull. This field is optional if the `source_type` is `git` and uses the HEAD of default branch if not specified. If the `source_type` value is `local`, this field must be omitted.",
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "source_secret": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "Name of the secret that is used access the repository source. This field is optional if the `source_type` is `git`. Additionally, if the `source_url` points to a repository that requires authentication, the build will be created but cannot access any source code, until this property is provided, too. If the `source_type` value is `local`, this field must be omitted.",
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "source_type": {
+          "enum": [
+            "local",
+            "git"
+          ],
+          "description": "Specifies the type of source to determine if your build source is in a repository or based on local source code. * local - For builds from local source code. * git - For builds from git version controlled source code.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "source_url": {
+          "pattern": "^((https:\\/\\/[a-z0-9]([\\-.]?[a-z0-9])+(:\\d{1,5})?)|((ssh:\\/\\/)?git@[a-z0-9]([\\-.]{0,1}[a-z0-9])+(:[a-zA-Z0-9\\/][\\w\\-.]*)?))(\\/([\\w\\-.]|%20)+)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The URL of the code repository. This field is required if the `source_type` is `git`. If the `source_type` value is `local`, this field must be omitted. If the repository is publicly available you can provide a 'https' URL like `https://github.com/IBM/CodeEngine`. If the repository requires authentication, you need to provide a 'ssh' URL like `git@github.com:IBM/CodeEngine.git` along with a `sourc",
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "strategy_size": {
+          "enum": [
+            "small",
+            "medium",
+            "large",
+            "xlarge",
+            "xxlarge"
+          ],
+          "pattern": "[\\S]*",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "Optional size for the build, which determines the amount of resources used. Build sizes are `small`, `medium`, `large`, `xlarge`, `xxlarge`.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "strategy_spec_file": {
+          "pattern": "^[\\S]*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "Optional path to the specification file that is used for build strategies for building an image.",
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "strategy_type": {
+          "enum": [
+            "dockerfile",
+            "buildpacks"
+          ],
+          "pattern": "[\\S]*",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The strategy to use for building the image.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Build"
+        },
+        "timeout": {
+          "format": "int32",
+          "min": 1,
+          "max": 3600,
+          "description": "The maximum amount of time, in seconds, that can pass before the build must succeed or fail.",
+          "source": "codeengine-v2",
+          "schema": "Build"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_config_map",
+      "kind": "resource",
+      "schema": "ConfigMapPrototype",
+      "spec": "codeengine-v2",
+      "score": 0.5467,
+      "attrs": {
+        "data": {
+          "description": "The key-value pair for the config map. Values must be specified in `KEY=VALUE` format. Each `KEY` field must consist of alphanumeric characters, `-`, `_` or `.` and must not be exceed a max length of 253 characters. Each `VALUE` field can consists of any character and must not be exceed a max length of 1048576 characters.",
+          "source": "codeengine-v2",
+          "schema": "ConfigMapPrototype"
+        },
+        "name": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the configmap. Use a name that is unique within the project.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "ConfigMapPrototype"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:post:/projects/{project_id}/allowed_outbound_destinations"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_domain_mapping",
+      "kind": "resource",
+      "schema": "DomainMappingPrototype",
+      "spec": "codeengine-v2",
+      "score": 0.36,
+      "attrs": {
+        "component.name": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The name of the referenced component.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "DomainMappingPrototype"
+        },
+        "component.resource_type": {
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The type of the referenced resource.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "DomainMappingPrototype"
+        },
+        "name": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)+$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the domain mapping.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "DomainMappingPrototype"
+        },
+        "tls_secret": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the TLS secret that includes the certificate and private key of this domain mapping.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "DomainMappingPrototype"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:post:/projects/{project_id}/allowed_outbound_destinations"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_function",
+      "kind": "resource",
+      "schema": "FunctionPrototype",
+      "spec": "codeengine-v2",
+      "score": 0.535,
+      "attrs": {
+        "code_binary": {
+          "description": "Specifies whether the code is binary or not. Defaults to false when `code_reference` is set to a data URL. When `code_reference` is set to a code bundle URL, this field is always true.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "code_main": {
+          "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "Specifies the name of the function that should be invoked.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "code_reference": {
+          "pattern": "^([a-z0-9][a-z0-9\\-_.]+[a-z0-9][/])?([a-z0-9][a-z0-9\\-_]+[a-z0-9][/])?[a-z0-9][a-z0-9\\-_./]+[a-z0-9](:[\\w][\\w.\\-]{0,127})?(@sha256:[a-fA-F0-9]{64})?$|data:([-\\w]+\\/[-+\\w.]+)?(;?\\w+=[-\\w]+)*;base64,.*",
+          "min_len": 1,
+          "max_len": 1048576,
+          "description": "Specifies either a reference to a code bundle or the source code itself. To specify the source code, use the data URL scheme and include the source code as base64 encoded. The data URL scheme is defined in [RFC 2397](https://tools.ietf.org/html/rfc2397).",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "code_secret": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the secret that is used to access the specified `code_reference`. The secret is used to authenticate with a non-public endpoint that is specified as`code_reference`.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "computed_env_variables.key": {
+          "pattern": "^[\\-._a-zA-Z0-9]+$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The key to reference as environment variable.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "computed_env_variables.name": {
+          "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The name of the function. Use a name that is unique within the project.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "computed_env_variables.prefix": {
+          "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$",
+          "min_len": 0,
+          "max_len": 253,
+          "description": "A prefix that can be added to all keys of a full secret or config map reference.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "computed_env_variables.reference": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the secret or config map.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "computed_env_variables.value": {
+          "min_len": 0,
+          "max_len": 1048576,
+          "description": "The literal value of the environment variable.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "managed_domain_mappings": {
+          "enum": [
+            "local",
+            "local_private",
+            "local_public"
+          ],
+          "description": "Optional value controlling which of the system managed domain mappings will be setup for the function. Valid values are 'local_public', 'local_private' and 'local'. Visibility can only be 'local_private' if the project supports function private visibility.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "name": {
+          "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The name of the function. Use a name that is unique within the project.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "run_compute_resource_token_enabled": {
+          "description": "Optional flag to enable the use of a compute resource token mounted to the container file system.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "run_env_variables.key": {
+          "pattern": "^[\\-._a-zA-Z0-9]+$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The key to reference as environment variable.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "run_env_variables.name": {
+          "pattern": "^[\\-._a-zA-Z0-9]+$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the environment variable.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "run_env_variables.prefix": {
+          "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$",
+          "min_len": 0,
+          "max_len": 253,
+          "description": "A prefix that can be added to all keys of a full secret or config map reference.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "run_env_variables.reference": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the secret or config map.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "run_env_variables.type": {
+          "enum": [
+            "literal",
+            "config_map_full_reference",
+            "secret_full_reference",
+            "config_map_key_reference",
+            "secret_key_reference"
+          ],
+          "pattern": "^(literal|config_map_full_reference|secret_full_reference|config_map_key_reference|secret_key_reference)$",
+          "description": "Specify the type of the environment variable.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "run_env_variables.value": {
+          "min_len": 0,
+          "max_len": 1048576,
+          "description": "The literal value of the environment variable.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "runtime": {
+          "pattern": "^[a-z]*\\-[0-9]*(\\.[0-9]*)?$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The managed runtime used to execute the injected code.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "scale_concurrency": {
+          "format": "int32",
+          "min": 1,
+          "max": 100,
+          "description": "Number of parallel requests handled by a single instance, supported only by Node.js, default is `1`.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "scale_cpu_limit": {
+          "pattern": "^([0-9.]+)([eEinumkKMGTPB]*)$",
+          "min_len": 0,
+          "max_len": 10,
+          "description": "Optional amount of CPU set for the instance of the function. For valid values see [Supported memory and CPU combinations](https://cloud.ibm.com/docs/codeengine?topic=codeengine-mem-cpu-combo).",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "scale_down_delay": {
+          "format": "int32",
+          "min": 0,
+          "max": 600,
+          "description": "Optional amount of time in seconds that delays the scale down behavior for a function.",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "scale_max_execution_time": {
+          "format": "int32",
+          "min": 1,
+          "max": 120,
+          "description": "Timeout in secs after which the function is terminated",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "scale_memory_limit": {
+          "pattern": "^([0-9.]+)([eEinumkKMGTPB]*)$",
+          "min_len": 0,
+          "max_len": 10,
+          "description": "Optional amount of memory set for the instance of the function. For valid values see [Supported memory and CPU combinations](https://cloud.ibm.com/docs/codeengine?topic=codeengine-mem-cpu-combo). The units for specifying memory are Megabyte (M) or Gigabyte (G), whereas G and M are the shorthand expressions for GB and MB. For more information see [Units of measurement](https://cloud.ibm.com/docs/co",
+          "source": "codeengine-v2",
+          "schema": "FunctionPrototype"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:post:/projects/{project_id}/allowed_outbound_destinations"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_job",
+      "kind": "resource",
+      "schema": "Job",
+      "spec": "codeengine-v2",
+      "score": 0.53,
+      "attrs": {
+        "computed_env_variables.key": {
+          "pattern": "^[\\-._a-zA-Z0-9]+$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The key to reference as environment variable.",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "computed_env_variables.name": {
+          "pattern": "^[\\-._a-zA-Z0-9]+$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the environment variable.",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "computed_env_variables.prefix": {
+          "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$",
+          "min_len": 0,
+          "max_len": 253,
+          "description": "A prefix that can be added to all keys of a full secret or config map reference.",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "computed_env_variables.reference": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the secret or config map.",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "computed_env_variables.value": {
+          "min_len": 0,
+          "max_len": 1048576,
+          "description": "The literal value of the environment variable.",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "image_reference": {
+          "pattern": "^([a-z0-9][a-z0-9\\-_.]+[a-z0-9][/])?([a-z0-9][a-z0-9\\-_]+[a-z0-9][/])?[a-z0-9][a-z0-9\\-_./]+[a-z0-9](:[\\w][\\w.\\-]{0,127})?(@sha256:[a-fA-F0-9]{64})?$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The name of the image that is used for this job. The format is `REGISTRY/NAMESPACE/REPOSITORY:TAG` where `REGISTRY` and `TAG` are optional. If `REGISTRY` is not specified, the default is `docker.io`. If `TAG` is not specified, the default is `latest`. If the image reference points to a registry that requires authentication, make sure to also specify the property `image_secret`.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "image_secret": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the image registry access secret. The image registry access secret is used to authenticate with a private registry when you download the container image. If the image reference points to a registry that requires authentication, the job / job runs will be created but submitted job runs will fail, until this property is provided, too. This property must not be set on a job run, which ref",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "name": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The name of the job.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The ID of the project in which the resource is located.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_arguments": {
+          "min_len": 0,
+          "max_len": 1048576,
+          "description": "Set arguments for the job that are passed to start job run containers. If not specified an empty string array will be applied and the arguments specified by the container image, will be used to start the container.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_as_user": {
+          "format": "int64",
+          "description": "The user ID (UID) to run the job.",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_commands": {
+          "min_len": 0,
+          "max_len": 1048576,
+          "description": "Set commands for the job that are passed to start job run containers. If not specified an empty string array will be applied and the command specified by the container image, will be used to start the container.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_compute_resource_token_enabled": {
+          "description": "Optional flag to enable the use of a compute resource token mounted to the container file system.",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_env_variables.key": {
+          "pattern": "^[\\-._a-zA-Z0-9]+$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The key to reference as environment variable.",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_env_variables.name": {
+          "pattern": "^[\\-._a-zA-Z0-9]+$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the environment variable.",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_env_variables.prefix": {
+          "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$",
+          "min_len": 0,
+          "max_len": 253,
+          "description": "A prefix that can be added to all keys of a full secret or config map reference.",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_env_variables.reference": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the secret or config map.",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_env_variables.type": {
+          "enum": [
+            "literal",
+            "config_map_full_reference",
+            "secret_full_reference",
+            "config_map_key_reference",
+            "secret_key_reference"
+          ],
+          "pattern": "^(literal|config_map_full_reference|secret_full_reference|config_map_key_reference|secret_key_reference)$",
+          "description": "Specify the type of the environment variable.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_env_variables.value": {
+          "min_len": 0,
+          "max_len": 1048576,
+          "description": "The literal value of the environment variable.",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_mode": {
+          "enum": [
+            "task",
+            "daemon"
+          ],
+          "pattern": "^(task|daemon)$",
+          "min_len": 0,
+          "description": "The mode for runs of the job. Valid values are `task` and `daemon`. In `task` mode, the `max_execution_time` and `retry_limit` properties apply. In `daemon` mode, since there is no timeout and failed instances are restarted indefinitely, the `max_execution_time` and `retry_limit` properties are not allowed.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_service_account": {
+          "enum": [
+            "default",
+            "manager",
+            "reader",
+            "writer",
+            "none"
+          ],
+          "pattern": "^(manager|reader|writer|none|default)$",
+          "min_len": 0,
+          "description": "The name of the service account. For built-in service accounts, you can use the shortened names `manager`, `none`, `reader`, and `writer`. This property must not be set on a job run, which references a job template.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_volume_mounts.mount_path": {
+          "pattern": "^\\/([^\\/\\0]+\\/?)+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The path that should be mounted.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_volume_mounts.read_only": {
+          "description": "Optional flag for a volume mount of type 'persistent_data_store' to specify whether it is read-only.",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_volume_mounts.reference": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the referenced secret, config map, or persistent data store.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_volume_mounts.sub_path": {
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The path mounted at the mount path.",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "run_volume_mounts.type": {
+          "enum": [
+            "config_map",
+            "persistent_data_store",
+            "secret"
+          ],
+          "pattern": "^(config_map|persistent_data_store|secret)$",
+          "description": "Specify the type of the volume mount. Allowed types are: 'config_map', 'persistent_data_store', 'secret'.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "scale_array_spec": {
+          "pattern": "^(?:[1-9]\\d\\d\\d\\d\\d\\d|[1-9]\\d\\d\\d\\d\\d|[1-9]\\d\\d\\d\\d|[1-9]\\d\\d\\d|[1-9]\\d\\d|[1-9]?\\d)(?:-(?:[1-9]\\d\\d\\d\\d\\d\\d|[1-9]\\d\\d\\d\\d\\d|[1-9]\\d\\d\\d\\d|[1-9]\\d\\d\\d|[1-9]\\d\\d|[1-9]?\\d))?(?:,(?:[1-9]\\d\\d\\d\\d\\d\\d|[1-9]\\d\\d\\d\\d\\d|[1-9]\\d\\d\\d\\d|[1-9]\\d\\d\\d|[1-9]\\d\\d|[1-9]?\\d)(?:-(?:[1-9]\\d\\d\\d\\d\\d\\d|[1-9]\\d\\d\\d\\d\\d|[1-9]\\d\\d\\d\\d|[1-9]\\d\\d\\d|[1-9]\\d\\d|[1-9]?\\d))?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "Define a custom set of array indices as a comma-separated list containing single values and hyphen-separated ranges, such as 5,12-14,23,27. Each instance gets its array index value from the environment variable JOB_INDEX. The number of unique array indices that you specify with this parameter determines the number of job instances to run.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "scale_cpu_limit": {
+          "pattern": "^([0-9.]+)([eEinumkKMGTPB]*)$",
+          "min_len": 0,
+          "max_len": 10,
+          "description": "Optional amount of CPU set for the instance of the job. For valid values see [Supported memory and CPU combinations](https://cloud.ibm.com/docs/codeengine?topic=codeengine-mem-cpu-combo).",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "scale_ephemeral_storage_limit": {
+          "pattern": "^([0-9.]+)([eEinumkKMGTPB]*)$",
+          "min_len": 0,
+          "max_len": 10,
+          "description": "Optional amount of ephemeral storage to set for the instance of the job. The amount specified as ephemeral storage, must not exceed the amount of `scale_memory_limit`. The units for specifying ephemeral storage are Megabyte (M) or Gigabyte (G), whereas G and M are the shorthand expressions for GB and MB. For more information see [Units of measurement](https://cloud.ibm.com/docs/codeengine?topic=co",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "scale_max_execution_time": {
+          "format": "int64",
+          "min": 1,
+          "max": 86400,
+          "description": "The maximum execution time in seconds for runs of the job. This property can only be specified if `run_mode` is `task`.",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "scale_memory_limit": {
+          "pattern": "^([0-9.]+)([eEinumkKMGTPB]*)$",
+          "min_len": 0,
+          "max_len": 10,
+          "description": "Optional amount of memory set for the instance of the job. For valid values see [Supported memory and CPU combinations](https://cloud.ibm.com/docs/codeengine?topic=codeengine-mem-cpu-combo). The units for specifying memory are Megabyte (M) or Gigabyte (G), whereas G and M are the shorthand expressions for GB and MB. For more information see [Units of measurement](https://cloud.ibm.com/docs/codeeng",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Job"
+        },
+        "scale_retry_limit": {
+          "format": "int64",
+          "min": 0,
+          "max": 5,
+          "description": "The number of times to rerun an instance of the job before the job is marked as failed. This property can only be specified if `run_mode` is `task`.",
+          "source": "codeengine-v2",
+          "schema": "Job"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_persistent_data_store",
+      "kind": "resource",
+      "schema": "ObjectStorageData",
+      "spec": "codeengine-v2",
+      "score": 0.35,
+      "attrs": {
+        "data.bucket_location": {
+          "pattern": "^[a-zA-Z0-9-]+$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "Specify the location of the bucket.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "ObjectStorageData"
+        },
+        "data.bucket_name": {
+          "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$",
+          "min_len": 3,
+          "max_len": 63,
+          "description": "Specify the name of the bucket",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "ObjectStorageData"
+        },
+        "data.secret_name": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "Specify the name of the HMAC secret.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "ObjectStorageData"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:post:/projects/{project_id}/allowed_outbound_destinations"
+        },
+        "storage_type": {
+          "enum": [
+            "object_storage"
+          ],
+          "pattern": "^(object_storage)$",
+          "description": "Specify the storage type of the persistent data store.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "/projects/{project_id}/persistent_data_stores:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_project",
+      "kind": "resource",
+      "schema": "ProjectPrototype",
+      "spec": "codeengine-v2",
+      "score": 0.5467,
+      "attrs": {
+        "name": {
+          "pattern": "^([^\\x00-\\x7F]|[a-zA-Z0-9\\-._: ])+$",
+          "min_len": 1,
+          "max_len": 128,
+          "description": "The name of the project.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "ProjectPrototype"
+        },
+        "resource_group_id": {
+          "pattern": "^[a-z0-9]*$",
+          "min_len": 32,
+          "max_len": 32,
+          "description": "Optional ID of the resource group for your project deployment. If this field is not defined, the default resource group of the account will be used.",
+          "source": "codeengine-v2",
+          "schema": "ProjectPrototype"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_secret",
+      "kind": "resource",
+      "schema": "Secret",
+      "spec": "codeengine-v2",
+      "score": 0.4433,
+      "attrs": {
+        "data": {
+          "description": "Data container that allows to specify config parameters and their values as a key-value map. Each key field must consist of alphanumeric characters, `-`, `_` or `.` and must not exceed a max length of 253 characters. Each value field can consists of any character and must not exceed a max length of 1048576 characters.",
+          "source": "codeengine-v2",
+          "schema": "Secret"
+        },
+        "format": {
+          "enum": [
+            "generic",
+            "ssh_auth",
+            "basic_auth",
+            "hmac_auth",
+            "tls",
+            "service_access",
+            "registry",
+            "service_operator",
+            "other"
+          ],
+          "pattern": "^(generic|ssh_auth|basic_auth|hmac_auth|tls|service_access|registry|service_operator|other)$",
+          "description": "Specify the format of the secret.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Secret"
+        },
+        "name": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The name of the secret.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Secret"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The ID of the project in which the resource is located.",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Secret"
+        },
+        "service_access.resource_key.id": {
+          "pattern": "^[a-z0-9][\\-a-z0-9]*[a-z0-9]$",
+          "min_len": 0,
+          "max_len": 36,
+          "description": "ID of the service credential associated with the secret.",
+          "source": "codeengine-v2",
+          "schema": "Secret"
+        },
+        "service_access.role.crn": {
+          "pattern": "^[A-Z][a-zA-Z() ]*[a-z)]$|^crn\\:v1\\:[a-zA-Z0-9]*\\:(public|dedicated|local)\\:[\\-a-z0-9]*\\:([a-z][\\-a-z0-9_]*[a-z0-9])?\\:((a|o|s)/[\\-a-z0-9]+)?\\:[\\-a-z0-9/]*\\:[\\-a-zA-Z0-9]*(\\:[\\-a-zA-Z0-9/.]*)?$",
+          "min_len": 0,
+          "max_len": 253,
+          "description": "CRN of the IAM Role for this service access secret",
+          "source": "codeengine-v2",
+          "schema": "Secret"
+        },
+        "service_access.service_instance.id": {
+          "pattern": "^[a-z0-9][\\-a-z0-9]*[a-z0-9]$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "ID of the IBM Cloud service instance associated with the secret.",
+          "source": "codeengine-v2",
+          "schema": "Secret"
+        },
+        "service_access.serviceid.id": {
+          "pattern": "^ServiceId-[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 46,
+          "max_len": 46,
+          "description": "The ID of the Service ID",
+          "source": "codeengine-v2",
+          "schema": "Secret"
+        },
+        "service_operator.resource_group_ids": {
+          "pattern": "^[a-z0-9]*$",
+          "min_len": 32,
+          "max_len": 32,
+          "description": "The list of resource groups (by ID) that the operator secret can bind services in",
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "Secret"
+        },
+        "service_operator.serviceid.id": {
+          "pattern": "^ServiceId-[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 46,
+          "max_len": 46,
+          "description": "The ID of the Service ID",
+          "source": "codeengine-v2",
+          "schema": "Secret"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_allowed_outbound_destination",
+      "kind": "data",
+      "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}",
+      "spec": "codeengine-v2",
+      "score": 0.5267,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+          "min_len": 1,
+          "max_len": 63,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_app",
+      "kind": "data",
+      "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}",
+      "spec": "codeengine-v2",
+      "score": 0.4667,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+          "min_len": 1,
+          "max_len": 63,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_binding",
+      "kind": "data",
+      "schema": "params:post:/projects/{project_id}/allowed_outbound_destinations",
+      "spec": "codeengine-v2",
+      "score": 0.35,
+      "attrs": {
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:post:/projects/{project_id}/allowed_outbound_destinations"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_build",
+      "kind": "data",
+      "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}",
+      "spec": "codeengine-v2",
+      "score": 0.4667,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+          "min_len": 1,
+          "max_len": 63,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_config_map",
+      "kind": "data",
+      "schema": "params:put:/projects/{project_id}/config_maps/{name}",
+      "spec": "codeengine-v2",
+      "score": 0.4967,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)*$",
+          "min_len": 1,
+          "max_len": 253,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:put:/projects/{project_id}/config_maps/{name}"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:put:/projects/{project_id}/config_maps/{name}"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_domain_mapping",
+      "kind": "data",
+      "schema": "params:patch:/projects/{project_id}/domain_mappings/{name}",
+      "spec": "codeengine-v2",
+      "score": 0.5,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-z0-9]([\\-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([\\-a-z0-9]*[a-z0-9])?)+$",
+          "min_len": 1,
+          "max_len": 253,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:patch:/projects/{project_id}/domain_mappings/{name}"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:patch:/projects/{project_id}/domain_mappings/{name}"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_function",
+      "kind": "data",
+      "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}",
+      "spec": "codeengine-v2",
+      "score": 0.4667,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+          "min_len": 1,
+          "max_len": 63,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_job",
+      "kind": "data",
+      "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}",
+      "spec": "codeengine-v2",
+      "score": 0.4667,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+          "min_len": 1,
+          "max_len": 63,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_persistent_data_store",
+      "kind": "data",
+      "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}",
+      "spec": "codeengine-v2",
+      "score": 0.4667,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+          "min_len": 1,
+          "max_len": 63,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_project",
+      "kind": "data",
+      "schema": "params:post:/projects/{project_id}/apps",
+      "spec": "codeengine-v2",
+      "score": 0.7429,
+      "attrs": {
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:post:/projects/{project_id}/apps"
+        }
+      }
+    },
+    {
+      "name": "ibm_code_engine_secret",
+      "kind": "data",
+      "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}",
+      "spec": "codeengine-v2",
+      "score": 0.4667,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-z]([-a-z0-9]*[a-z0-9])?$",
+          "min_len": 1,
+          "max_len": 63,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}"
+        },
+        "project_id": {
+          "pattern": "^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "api_required": true,
+          "source": "codeengine-v2",
+          "schema": "params:patch:/projects/{project_id}/allowed_outbound_destinations/{name}"
+        }
+      }
+    }
+  ]
+}

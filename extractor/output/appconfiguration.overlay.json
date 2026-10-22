@@ -1,0 +1,816 @@
+{
+  "package": "appconfiguration",
+  "specs": [
+    {
+      "slug": "app-configuration",
+      "title": "App Configuration API",
+      "schema_count": 147,
+      "path_count": 40
+    }
+  ],
+  "matched": 23,
+  "resource_count": 23,
+  "overlay_attrs": 89,
+  "resources": [
+    {
+      "name": "ibm_app_config_collection",
+      "kind": "resource",
+      "schema": "ImportCollectionSchema",
+      "spec": "app-configuration",
+      "score": 0.56,
+      "attrs": {
+        "collection_id": {
+          "max_len": 256,
+          "description": "Collection id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "ImportCollectionSchema"
+        },
+        "description": {
+          "max_len": 255,
+          "description": "Description of the collection",
+          "source": "app-configuration",
+          "schema": "ImportCollectionSchema"
+        },
+        "name": {
+          "max_len": 256,
+          "description": "Collection name. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "ImportCollectionSchema"
+        },
+        "tags": {
+          "pattern": "^[a-zA-Z0-9_\\. ,\\-]+(:[a-zA-Z0-9_\\. ,\\-]+)*$",
+          "description": "Tags associated with the collection, allowed special characters are [_. ,-:]",
+          "source": "app-configuration",
+          "schema": "ImportCollectionSchema"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_environment",
+      "kind": "resource",
+      "schema": "Environment",
+      "spec": "app-configuration",
+      "score": 0.4792,
+      "attrs": {
+        "color_code": {
+          "description": "Color code to distinguish the environment. The Hex code for the color. For example `#FF0000` for `red`.",
+          "source": "app-configuration",
+          "schema": "Environment"
+        },
+        "description": {
+          "max_len": 255,
+          "description": "Environment description",
+          "source": "app-configuration",
+          "schema": "Environment"
+        },
+        "environment_id": {
+          "max_len": 256,
+          "description": "Environment id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Environment"
+        },
+        "name": {
+          "max_len": 256,
+          "description": "Environment name. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Environment"
+        },
+        "tags": {
+          "pattern": "^[a-zA-Z0-9_\\. ,\\-]+(:[a-zA-Z0-9_\\. ,\\-]+)*$",
+          "description": "Tags associated with the environment, allowed special characters are [_. ,-:]",
+          "source": "app-configuration",
+          "schema": "Environment"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_feature",
+      "kind": "resource",
+      "schema": "Feature",
+      "spec": "app-configuration",
+      "score": 0.4514,
+      "attrs": {
+        "collections.collection_id": {
+          "description": "Collection id.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Feature"
+        },
+        "description": {
+          "max_len": 255,
+          "description": "Feature description",
+          "source": "app-configuration",
+          "schema": "Feature"
+        },
+        "disabled_value": {
+          "description": "Value of the feature when it is disabled. The value can be Boolean, Numeric, String - TEXT, String - JSON, String - YAML value as per the `type` and `format` attributes.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Feature"
+        },
+        "enabled": {
+          "description": "The state of the feature flag.",
+          "source": "app-configuration",
+          "schema": "Feature"
+        },
+        "enabled_value": {
+          "description": "Value of the feature when it is enabled. The value can be Boolean, Numeric, String - TEXT, String - JSON, String - YAML value as per the `type` and `format` attributes.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Feature"
+        },
+        "environment_id": {
+          "description": "Environment identifier. Only present for FEATURE, PROPERTY and ENVIRONMENT. Not present for SEGMENT and COLLECTION.",
+          "source": "app-configuration",
+          "schema": "Feature"
+        },
+        "feature_id": {
+          "max_len": 256,
+          "description": "Feature id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Feature"
+        },
+        "format": {
+          "enum": [
+            "TEXT",
+            "JSON",
+            "YAML"
+          ],
+          "description": "Format of the feature (TEXT, JSON, YAML) and it is a required attribute when `type` is `STRING`. It is not required for `BOOLEAN` and `NUMERIC` types. This property is populated in the response body of `POST, PUT and GET` calls if the type `STRING` is used and not populated for `BOOLEAN` and `NUMERIC` types.",
+          "source": "app-configuration",
+          "schema": "Feature"
+        },
+        "name": {
+          "max_len": 256,
+          "description": "Feature name. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Feature"
+        },
+        "rollout_percentage": {
+          "min": 0,
+          "max": 100,
+          "description": "Rollout percentage associated with feature flag. Supported only for Lite and Enterprise plans.",
+          "source": "app-configuration",
+          "schema": "Feature"
+        },
+        "segment_rules.order": {
+          "format": "int32",
+          "description": "Order of the rule, used during evaluation. The evaluation is performed in the order defined and the value associated with the first matching rule is used for evaluation.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Feature"
+        },
+        "segment_rules.rollout_percentage": {
+          "min": 0,
+          "max": 100,
+          "description": "Rollout percentage associated with feature flag. Supported only for Lite and Enterprise plans.",
+          "source": "app-configuration",
+          "schema": "Feature"
+        },
+        "segment_rules.rules.segments": {
+          "description": "List of segment ids that are used for targeting using the rule.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Feature"
+        },
+        "segment_rules.value": {
+          "description": "Value to be used for evaluation for this rule. The value can be Boolean, SecretRef, String - TEXT , String - JSON , String - YAML or a Numeric value as per the `type` and `format` attributes.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Feature"
+        },
+        "tags": {
+          "pattern": "^[a-zA-Z0-9_\\. ,\\-]+(:[a-zA-Z0-9_\\. ,\\-]+)*$",
+          "description": "Tags associated with the feature, allowed special characters are [_. ,-:]",
+          "source": "app-configuration",
+          "schema": "Feature"
+        },
+        "type": {
+          "enum": [
+            "BOOLEAN",
+            "STRING",
+            "NUMERIC"
+          ],
+          "description": "Type of the feature (BOOLEAN, STRING, NUMERIC). If `type` is `STRING`, then `format` attribute is required.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Feature"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_integration_en",
+      "kind": "resource",
+      "schema": "Integration",
+      "spec": "app-configuration",
+      "score": 0.2736,
+      "attrs": {
+        "integration_id": {
+          "description": "Integration id.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Integration"
+        },
+        "description": {
+          "max_len": 255,
+          "description": "Environment description",
+          "source": "app-configuration",
+          "schema": "Environment"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_integration_kms",
+      "kind": "resource",
+      "schema": "CreateKmsIntegrationMetadata",
+      "spec": "app-configuration",
+      "score": 0.42,
+      "attrs": {
+        "kms_endpoint": {
+          "description": "The URL endpoint of Key Protect instance.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateKmsIntegrationMetadata"
+        },
+        "kms_instance_crn": {
+          "description": "The CRN of the Key Protect service instance.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateKmsIntegrationMetadata"
+        },
+        "root_key_id": {
+          "description": "The rootkey id of Key Protect instance.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateKmsIntegrationMetadata"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_property",
+      "kind": "resource",
+      "schema": "Property",
+      "spec": "app-configuration",
+      "score": 0.4433,
+      "attrs": {
+        "collections.collection_id": {
+          "description": "Collection id.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Property"
+        },
+        "description": {
+          "max_len": 255,
+          "description": "Property description",
+          "source": "app-configuration",
+          "schema": "Property"
+        },
+        "environment_id": {
+          "description": "Environment identifier. Only present for FEATURE, PROPERTY and ENVIRONMENT. Not present for SEGMENT and COLLECTION.",
+          "source": "app-configuration",
+          "schema": "Property"
+        },
+        "format": {
+          "enum": [
+            "TEXT",
+            "JSON",
+            "YAML"
+          ],
+          "description": "Format of the property (TEXT, JSON, YAML) and it is a required attribute when `type` is `STRING`. It is not required for `BOOLEAN`, `NUMERIC` or `SECRETREF` types. This attribute is populated in the response body of `POST, PUT and GET` calls if the type `STRING` is used and not populated for `BOOLEAN`, `NUMERIC` and `SECRETREF` types.",
+          "source": "app-configuration",
+          "schema": "Property"
+        },
+        "name": {
+          "max_len": 256,
+          "description": "Property name. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Property"
+        },
+        "property_id": {
+          "max_len": 256,
+          "description": "Property id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Property"
+        },
+        "segment_rules.order": {
+          "format": "int32",
+          "description": "Order of the rule, used during evaluation. The evaluation is performed in the order defined and the value associated with the first matching rule is used for evaluation.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Property"
+        },
+        "segment_rules.rules.segments": {
+          "description": "List of segment ids that are used for targeting using the rule.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Property"
+        },
+        "segment_rules.value": {
+          "description": "Value to be used for evaluation for this rule. The value can be Boolean, SecretRef, String - TEXT , String - JSON , String - YAML or a Numeric value as per the `type` and `format` attributes.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Property"
+        },
+        "tags": {
+          "pattern": "^[a-zA-Z0-9_\\. ,\\-]+(:[a-zA-Z0-9_\\. ,\\-]+)*$",
+          "description": "Tags associated with the property, allowed special characters are [_. ,-:]",
+          "source": "app-configuration",
+          "schema": "Property"
+        },
+        "type": {
+          "enum": [
+            "BOOLEAN",
+            "STRING",
+            "NUMERIC",
+            "SECRETREF"
+          ],
+          "description": "Type of the property (BOOLEAN, STRING, NUMERIC, SECRETREF). If `type` is `STRING`, then `format` attribute is required.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Property"
+        },
+        "value": {
+          "description": "Value of the Property. The value can be Boolean, Numeric, SecretRef, String - TEXT, String - JSON, String - YAML as per the `type` and `format` attributes.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Property"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_segment",
+      "kind": "resource",
+      "schema": "Segment",
+      "spec": "app-configuration",
+      "score": 0.3967,
+      "attrs": {
+        "description": {
+          "max_len": 255,
+          "description": "Segment description",
+          "source": "app-configuration",
+          "schema": "Segment"
+        },
+        "name": {
+          "max_len": 256,
+          "description": "Segment name. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Segment"
+        },
+        "rules.attribute_name": {
+          "description": "Attribute name.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Segment"
+        },
+        "rules.operator": {
+          "enum": [
+            "is",
+            "isNot",
+            "contains",
+            "notContains",
+            "startsWith",
+            "notStartsWith",
+            "endsWith",
+            "notEndsWith",
+            "greaterThan",
+            "lesserThan",
+            "greaterThanEquals",
+            "lesserThanEquals"
+          ],
+          "description": "Operator to be used for the evaluation if the entity belongs to the segment.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Segment"
+        },
+        "rules.values": {
+          "description": "Value to be used to evaluate if the entity belongs to the segment.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Segment"
+        },
+        "segment_id": {
+          "max_len": 256,
+          "description": "Segment id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Segment"
+        },
+        "tags": {
+          "pattern": "^[a-zA-Z0-9_\\. ,\\-]+(:[a-zA-Z0-9_\\. ,\\-]+)*$",
+          "description": "Tags associated with the segments, allowed special characters are [_. ,-:]",
+          "source": "app-configuration",
+          "schema": "Segment"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_snapshot",
+      "kind": "resource",
+      "schema": "CreateGitConfig",
+      "spec": "app-configuration",
+      "score": 0.56,
+      "attrs": {
+        "collection_id": {
+          "description": "Collection Id.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateGitConfig"
+        },
+        "environment_id": {
+          "description": "Environment Id.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateGitConfig"
+        },
+        "git_branch": {
+          "description": "Branch name to which you need to write or update the configuration. Just provide the branch name, do not provide any /(slashes) in the beginning or at the end of the branch name. Note make sure branch exists in your repository.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateGitConfig"
+        },
+        "git_config_id": {
+          "max_len": 256,
+          "description": "Git config id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateGitConfig"
+        },
+        "git_config_name": {
+          "max_len": 256,
+          "description": "Git config name. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateGitConfig"
+        },
+        "git_file_path": {
+          "description": "Git file path, this is a path where your configuration file will be written. The path must contain the file name with `json` extension. We only create or update `json` extension file. Note do not provide any /(slashes) in the beginning or at the end of the file path.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateGitConfig"
+        },
+        "git_token": {
+          "description": "Git token, this needs to be provided with enough permission to write and update the file",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateGitConfig"
+        },
+        "git_url": {
+          "description": "Git url which will be used to connect to the github account. The url must be formed in this format, https://api.github.com/repos/{owner}/{repo_name} for the personal git account. If you are using the organization account then url must be in this format https://github.{organization_name}.com/api/v3/repos/{owner}/{repo_name} . Note do not provide /(slash) in the beginning or at the end of the url.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateGitConfig"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_collection",
+      "kind": "data",
+      "schema": "Config",
+      "spec": "app-configuration",
+      "score": 0.21,
+      "attrs": {
+        "collection_id": {
+          "max_len": 256,
+          "description": "Collection Id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Collection"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_collections",
+      "kind": "data",
+      "schema": "Config",
+      "spec": "app-configuration",
+      "score": 0.21,
+      "attrs": {
+        "offset": {
+          "format": "int32",
+          "description": "The number of records that are skipped in a list.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "EnvironmentList"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_environment",
+      "kind": "data",
+      "schema": "Environment",
+      "spec": "app-configuration",
+      "score": 0.26,
+      "attrs": {
+        "environment_id": {
+          "max_len": 256,
+          "description": "Environment id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Environment"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_environments",
+      "kind": "data",
+      "schema": "Config",
+      "spec": "app-configuration",
+      "score": 0.21,
+      "attrs": {
+        "offset": {
+          "format": "int32",
+          "description": "The number of records that are skipped in a list.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "EnvironmentList"
+        },
+        "tags": {
+          "pattern": "^[a-zA-Z0-9_\\. ,\\-]+(:[a-zA-Z0-9_\\. ,\\-]+)*$",
+          "description": "Tags associated with the environment, allowed special characters are [_. ,-:]",
+          "source": "app-configuration",
+          "schema": "Environment"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_feature",
+      "kind": "data",
+      "schema": "Feature",
+      "spec": "app-configuration",
+      "score": 0.238,
+      "attrs": {
+        "environment_id": {
+          "description": "Environment identifier. Only present for FEATURE, PROPERTY and ENVIRONMENT. Not present for SEGMENT and COLLECTION.",
+          "source": "app-configuration",
+          "schema": "Feature"
+        },
+        "feature_id": {
+          "max_len": 256,
+          "description": "Feature id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Feature"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_features",
+      "kind": "data",
+      "schema": "Config",
+      "spec": "app-configuration",
+      "score": 0.21,
+      "attrs": {
+        "environment_id": {
+          "max_len": 256,
+          "description": "Environment id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Environment"
+        },
+        "offset": {
+          "format": "int32",
+          "description": "The number of records that are skipped in a list.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "EnvironmentList"
+        },
+        "tags": {
+          "pattern": "^[a-zA-Z0-9_\\. ,\\-]+(:[a-zA-Z0-9_\\. ,\\-]+)*$",
+          "description": "Tags associated with the environment, allowed special characters are [_. ,-:]",
+          "source": "app-configuration",
+          "schema": "Environment"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_integration_en",
+      "kind": "data",
+      "schema": "Integration",
+      "spec": "app-configuration",
+      "score": 0.31,
+      "attrs": {
+        "integration_id": {
+          "description": "Integration id.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Integration"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_integration_kms",
+      "kind": "data",
+      "schema": "Integration",
+      "spec": "app-configuration",
+      "score": 0.31,
+      "attrs": {
+        "integration_id": {
+          "description": "Integration id.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Integration"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_integrations",
+      "kind": "data",
+      "schema": "Config",
+      "spec": "app-configuration",
+      "score": 0.21,
+      "attrs": {
+        "offset": {
+          "format": "int32",
+          "description": "The number of records that are skipped in a list.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "EnvironmentList"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_properties",
+      "kind": "data",
+      "schema": "Config",
+      "spec": "app-configuration",
+      "score": 0.21,
+      "attrs": {
+        "environment_id": {
+          "max_len": 256,
+          "description": "Environment id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Environment"
+        },
+        "offset": {
+          "format": "int32",
+          "description": "The number of records that are skipped in a list.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "EnvironmentList"
+        },
+        "tags": {
+          "pattern": "^[a-zA-Z0-9_\\. ,\\-]+(:[a-zA-Z0-9_\\. ,\\-]+)*$",
+          "description": "Tags associated with the environment, allowed special characters are [_. ,-:]",
+          "source": "app-configuration",
+          "schema": "Environment"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_property",
+      "kind": "data",
+      "schema": "Property",
+      "spec": "app-configuration",
+      "score": 0.2489,
+      "attrs": {
+        "environment_id": {
+          "description": "Environment identifier. Only present for FEATURE, PROPERTY and ENVIRONMENT. Not present for SEGMENT and COLLECTION.",
+          "source": "app-configuration",
+          "schema": "Property"
+        },
+        "property_id": {
+          "max_len": 256,
+          "description": "Property id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Property"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_segment",
+      "kind": "data",
+      "schema": "Segment",
+      "spec": "app-configuration",
+      "score": 0.2638,
+      "attrs": {
+        "segment_id": {
+          "max_len": 256,
+          "description": "Segment id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "Segment"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_segments",
+      "kind": "data",
+      "schema": "Config",
+      "spec": "app-configuration",
+      "score": 0.21,
+      "attrs": {
+        "offset": {
+          "format": "int32",
+          "description": "The number of records that are skipped in a list.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "EnvironmentList"
+        },
+        "segments.description": {
+          "max_len": 255,
+          "description": "Environment description",
+          "source": "app-configuration",
+          "schema": "Environment"
+        },
+        "segments.tags": {
+          "pattern": "^[a-zA-Z0-9_\\. ,\\-]+(:[a-zA-Z0-9_\\. ,\\-]+)*$",
+          "description": "Tags associated with the environment, allowed special characters are [_. ,-:]",
+          "source": "app-configuration",
+          "schema": "Environment"
+        },
+        "tags": {
+          "pattern": "^[a-zA-Z0-9_\\. ,\\-]+(:[a-zA-Z0-9_\\. ,\\-]+)*$",
+          "description": "Tags associated with the environment, allowed special characters are [_. ,-:]",
+          "source": "app-configuration",
+          "schema": "Environment"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_snapshot",
+      "kind": "data",
+      "schema": "SnapshotOutput",
+      "spec": "app-configuration",
+      "score": 0.2333,
+      "attrs": {
+        "git_config_id": {
+          "description": "Git Config id.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "SnapshotOutput"
+        }
+      }
+    },
+    {
+      "name": "ibm_app_config_snapshots",
+      "kind": "data",
+      "schema": "CreateGitConfig",
+      "spec": "app-configuration",
+      "score": 0.4455,
+      "attrs": {
+        "collection_id": {
+          "description": "Collection Id.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateGitConfig"
+        },
+        "environment_id": {
+          "description": "Environment Id.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateGitConfig"
+        },
+        "git_config.git_branch": {
+          "description": "Branch name to which you need to write or update the configuration. Just provide the branch name, do not provide any /(slashes) in the beginning or at the end of the branch name. Note make sure branch exists in your repository.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateGitConfig"
+        },
+        "git_config.git_config_id": {
+          "max_len": 256,
+          "description": "Git config id. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateGitConfig"
+        },
+        "git_config.git_config_name": {
+          "max_len": 256,
+          "description": "Git config name. Allowed special characters are dot ( . ), hyphen( - ), underscore ( _ ) only",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateGitConfig"
+        },
+        "git_config.git_file_path": {
+          "description": "Git file path, this is a path where your configuration file will be written. The path must contain the file name with `json` extension. We only create or update `json` extension file. Note do not provide any /(slashes) in the beginning or at the end of the file path.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateGitConfig"
+        },
+        "git_config.git_url": {
+          "description": "Git url which will be used to connect to the github account. The url must be formed in this format, https://api.github.com/repos/{owner}/{repo_name} for the personal git account. If you are using the organization account then url must be in this format https://github.{organization_name}.com/api/v3/repos/{owner}/{repo_name} . Note do not provide /(slash) in the beginning or at the end of the url.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "CreateGitConfig"
+        },
+        "offset": {
+          "format": "int32",
+          "description": "The number of records that are skipped in a list.",
+          "api_required": true,
+          "source": "app-configuration",
+          "schema": "EnvironmentList"
+        }
+      }
+    }
+  ]
+}

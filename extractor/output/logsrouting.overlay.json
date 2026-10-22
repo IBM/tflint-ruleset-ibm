@@ -1,0 +1,90 @@
+{
+  "package": "logsrouting",
+  "specs": [
+    {
+      "slug": "logs-router-service-api-logs-router-v1",
+      "title": "IBM Cloud Logs Routing",
+      "schema_count": 31,
+      "path_count": 4
+    }
+  ],
+  "matched": 2,
+  "resource_count": 2,
+  "overlay_attrs": 7,
+  "resources": [
+    {
+      "name": "ibm_logs_router_tenant",
+      "kind": "resource",
+      "schema": "/tenants/{tenant_id}/targets/{target_id}:patch",
+      "spec": "logs-router-service-api-logs-router-v1",
+      "score": 0.2784,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9-]*$",
+          "min_len": 1,
+          "max_len": 35,
+          "description": "The name for this tenant target. The name must be unique across all targets for this tenant.",
+          "source": "logs-router-service-api-logs-router-v1",
+          "schema": "/tenants/{tenant_id}/targets/{target_id}:patch"
+        },
+        "targets.log_sink_crn": {
+          "kind": "crn",
+          "format": "crn",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "Cloud resource name of the log-sink target instance. Must be a valid CRN",
+          "source": "logs-router-service-api-logs-router-v1",
+          "schema": "/tenants/{tenant_id}/targets/{target_id}:patch"
+        },
+        "targets.name": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9-]*$",
+          "min_len": 1,
+          "max_len": 35,
+          "description": "The name for this tenant target. The name must be unique across all targets for this tenant.",
+          "source": "logs-router-service-api-logs-router-v1",
+          "schema": "/tenants/{tenant_id}/targets/{target_id}:patch"
+        },
+        "targets.parameters.host": {
+          "pattern": "^[a-zA-Z0-9-.:/]+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "Host name of the log-sink",
+          "source": "logs-router-service-api-logs-router-v1",
+          "schema": "/tenants/{tenant_id}/targets/{target_id}:patch"
+        },
+        "targets.parameters.port": {
+          "format": "int32",
+          "min": 1,
+          "max": 65535,
+          "description": "Network port of the log-sink",
+          "source": "logs-router-service-api-logs-router-v1",
+          "schema": "/tenants/{tenant_id}/targets/{target_id}:patch"
+        },
+        "write_status.last_failure": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "The timestamp of the failure.",
+          "source": "logs-router-service-api-logs-router-v1",
+          "schema": "Tenant"
+        }
+      }
+    },
+    {
+      "name": "ibm_logs_router_tenants",
+      "kind": "data",
+      "schema": "/tenants/{tenant_id}:patch",
+      "spec": "logs-router-service-api-logs-router-v1",
+      "score": 0.49,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-zA-Z][a-zA-Z0-9-]*$",
+          "min_len": 1,
+          "max_len": 35,
+          "description": "The name for this tenant. The name is regionally unique across all tenants in the account.",
+          "source": "logs-router-service-api-logs-router-v1",
+          "schema": "/tenants/{tenant_id}:patch"
+        }
+      }
+    }
+  ]
+}

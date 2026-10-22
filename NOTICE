@@ -1,0 +1,52 @@
+TFLint Ruleset for terraform-provider-ibm
+
+Copyright IBM Corp. 2026
+
+This product includes software developed at
+International Business Machines Corporation.
+
+The Program is licensed under the Mozilla Public License, version 2.0.
+The Program includes some or all of the following that IBM obtained
+under the Mozilla Public License, version 2.0:
+
+* github.com/hashicorp/hcl/v2
+* github.com/hashicorp/go-plugin
+* github.com/hashicorp/go-version
+* github.com/hashicorp/yamux
+* github.com/terraform-linters/tflint-plugin-sdk
+* github.com/zclconf/go-cty
+
+Apache Software License 2.0
+The Program includes some or all of the following that IBM obtained
+under the Apache License Version 2.0:
+
+* github.com/agext/levenshtein
+* github.com/oklog/run
+* google.golang.org/genproto
+* google.golang.org/grpc
+
+BSD License
+The Program includes some or all of the following that IBM obtained
+under the BSD License:
+
+* github.com/golang/protobuf
+* github.com/google/go-cmp
+* github.com/vmihailenco/msgpack/v5
+* github.com/vmihailenco/tagparser/v2
+* golang.org/x/mod
+* golang.org/x/net
+* golang.org/x/sync
+* golang.org/x/sys
+* golang.org/x/text
+* golang.org/x/tools
+* google.golang.org/protobuf
+
+MIT License
+The Program includes some or all of the following that IBM obtained
+under the MIT License:
+
+* github.com/fatih/color
+* github.com/hashicorp/go-hclog
+* github.com/mattn/go-colorable
+* github.com/mattn/go-isatty
+* github.com/mitchellh/go-wordwrap

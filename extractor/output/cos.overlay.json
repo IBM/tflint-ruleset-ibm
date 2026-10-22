@@ -1,0 +1,317 @@
+{
+  "package": "cos",
+  "specs": [
+    {
+      "slug": "cos-cos-configuration",
+      "title": "COS Resource Configuration API",
+      "schema_count": 54,
+      "path_count": 9
+    },
+    {
+      "slug": "cos-cos-compatibility",
+      "title": "IBM Cloud Object Storage S3 API",
+      "schema_count": 285,
+      "path_count": 24
+    },
+    {
+      "slug": "cos-cos-configuration-f2019",
+      "title": "COS Resource Configuration API",
+      "schema_count": 54,
+      "path_count": 9
+    },
+    {
+      "slug": "cos-cos-compatibility-f2019",
+      "title": "IBM Cloud Object Storage S3 API",
+      "schema_count": 285,
+      "path_count": 24
+    }
+  ],
+  "matched": 12,
+  "resource_count": 12,
+  "overlay_attrs": 25,
+  "resources": [
+    {
+      "name": "ibm_cos_backup_policy",
+      "kind": "resource",
+      "schema": "BackupPolicyPrototype",
+      "spec": "cos-cos-configuration",
+      "score": 0.43,
+      "attrs": {
+        "backup_type": {
+          "enum": [
+            "continuous"
+          ],
+          "description": "The type of backup to support. For LA+GA this is limited to \"continuous\"",
+          "api_required": true,
+          "source": "cos-cos-configuration",
+          "schema": "BackupPolicyPrototype"
+        },
+        "policy_name": {
+          "pattern": "^[\\w\\d\\-\\_\\.]*$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The name granted to the policy. Validation : * chars limited to alphanumeric, underscore, hyphen and period",
+          "api_required": true,
+          "source": "cos-cos-configuration",
+          "schema": "BackupPolicyPrototype"
+        },
+        "target_backup_vault_crn": {
+          "pattern": "^crn:v1:bluemix:public:cloud-object-storage:global:[0-9a-f]{8}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:backup-vault:[a-z0-9][a-z0-9\\-\\.]{3,63}$",
+          "min_len": 102,
+          "max_len": 135,
+          "description": "The CRN for a COS BackupVault.",
+          "api_required": true,
+          "source": "cos-cos-configuration",
+          "schema": "BackupPolicyPrototype"
+        }
+      }
+    },
+    {
+      "name": "ibm_cos_backup_vault",
+      "kind": "resource",
+      "schema": "BackupVaultPrototype",
+      "spec": "cos-cos-configuration",
+      "score": 0.2356,
+      "attrs": {
+        "backup_vault_name": {
+          "pattern": "^(?!^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$)(^[a-z0-9][a-z0-9\\-\\.]{1,61}[a-z0-9]$)$",
+          "min_len": 3,
+          "max_len": 63,
+          "description": "The name given to a Bucket. Bucket names must be between 3 and 63 characters long must be made of lowercase letters, numbers, dots (periods), and dashes (hyphens). Bucket names must begin and end with a lowercase letter or number. Bucket names can\u00e2\u20ac\u2122t contain consecutive dots or dashes. Bucket names that resemble IP addresses are not allowed. Bucket and BackupVault names exist in a global namespac",
+          "api_required": true,
+          "source": "cos-cos-configuration",
+          "schema": "BackupVaultPrototype"
+        },
+        "region": {
+          "pattern": "^[\\w\\-]*$",
+          "min_len": 5,
+          "max_len": 30,
+          "description": "the region in which this backup-vault should be created within.",
+          "api_required": true,
+          "source": "cos-cos-configuration",
+          "schema": "BackupVaultPrototype"
+        },
+        "service_instance_id": {
+          "pattern": "^[0-9a-f]{32}$",
+          "min_len": 32,
+          "max_len": 32,
+          "description": "A COS ServiceInstance ID.",
+          "api_required": true,
+          "source": "cos-cos-configuration",
+          "schema": "params:post:/backup_vaults"
+        }
+      }
+    },
+    {
+      "name": "ibm_cos_bucket",
+      "kind": "resource",
+      "schema": "/b/{bucket}:patch",
+      "spec": "cos-cos-configuration",
+      "score": 0.3084,
+      "attrs": {
+        "activity_tracking.activity_tracker_crn": {
+          "description": "When the `activity_tracker_crn` is not populated, then enabled events are sent to the Activity Tracker Event Routing instance associated to the container's location unless otherwise specified in the Activity Tracker Event Routing Event Routing service configuration. If `activity_tracker_crn` is populated, then enabled events are sent to the Activity Tracker Event Routing instance specified and buc",
+          "source": "cos-cos-configuration",
+          "schema": "/b/{bucket}:patch"
+        },
+        "activity_tracking.management_events": {
+          "description": "This field only applies if `activity_tracker_crn` is not populated. If set to `true`, all bucket management events will be sent to Activity Tracker Event Routing.",
+          "source": "cos-cos-configuration",
+          "schema": "/b/{bucket}:patch"
+        },
+        "activity_tracking.read_data_events": {
+          "description": "If set to `true`, all object read events (i.e. downloads) will be sent to Activity Tracker Event Routing.",
+          "source": "cos-cos-configuration",
+          "schema": "/b/{bucket}:patch"
+        },
+        "activity_tracking.write_data_events": {
+          "description": "If set to `true`, all object write events (i.e. uploads) will be sent to Activity Tracker Event Routing.",
+          "source": "cos-cos-configuration",
+          "schema": "/b/{bucket}:patch"
+        },
+        "allowed_ip": {
+          "description": "Individual IP address or range of IP addresses. The entire array will be overwritten in a `PATCH` operation.",
+          "source": "cos-cos-configuration",
+          "schema": "/b/{bucket}:patch"
+        },
+        "hard_quota": {
+          "format": "int64",
+          "description": "Maximum bytes for this bucket.",
+          "source": "cos-cos-configuration",
+          "schema": "/b/{bucket}:patch"
+        },
+        "metrics_monitoring.metrics_monitoring_crn": {
+          "description": "When the `metrics_monitoring_crn` is not populated, then enabled metrics are sent to the monitoring instance associated to the container's location unless otherwise specified in the Metrics Router service configuration. If `metrics_monitoring_crn` is populated, then enabled events are sent to the Metrics Monitoring instance specified.",
+          "source": "cos-cos-configuration",
+          "schema": "/b/{bucket}:patch"
+        },
+        "metrics_monitoring.request_metrics_enabled": {
+          "description": "If set to `true`, all request metrics (i.e. `rest.object.head`) will be sent to the monitoring service.",
+          "source": "cos-cos-configuration",
+          "schema": "/b/{bucket}:patch"
+        },
+        "metrics_monitoring.usage_metrics_enabled": {
+          "description": "If set to `true`, all usage metrics (i.e. `bytes_used`) will be sent to the monitoring service.",
+          "source": "cos-cos-configuration",
+          "schema": "/b/{bucket}:patch"
+        },
+        "archive_rule.days": {
+          "min": 0,
+          "max": 365243,
+          "description": "Minimum number of days that an object may be protected.",
+          "source": "cos-cos-compatibility",
+          "schema": "/{Bucket}?protection:put"
+        },
+        "expire_rule.days": {
+          "min": 0,
+          "max": 365243,
+          "description": "Minimum number of days that an object may be protected.",
+          "source": "cos-cos-compatibility",
+          "schema": "/{Bucket}?protection:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_cos_bucket_lifecycle_configuration",
+      "kind": "resource",
+      "schema": "/b/{bucket}:patch",
+      "spec": "cos-cos-configuration",
+      "score": 0.29,
+      "attrs": {
+        "lifecycle_rule.expiration.days": {
+          "min": 0,
+          "max": 365243,
+          "description": "Minimum number of days that an object may be protected.",
+          "source": "cos-cos-compatibility",
+          "schema": "/{Bucket}?protection:put"
+        },
+        "lifecycle_rule.status": {
+          "enum": [
+            "Enabled"
+          ],
+          "description": "Indicator that the bucket has an active retention policy.",
+          "api_required": true,
+          "source": "cos-cos-compatibility",
+          "schema": "/{Bucket}?protection:put"
+        },
+        "lifecycle_rule.transition.days": {
+          "min": 0,
+          "max": 365243,
+          "description": "Minimum number of days that an object may be protected.",
+          "source": "cos-cos-compatibility",
+          "schema": "/{Bucket}?protection:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_cos_bucket_object",
+      "kind": "resource",
+      "schema": "/b/{bucket}:patch",
+      "spec": "cos-cos-configuration",
+      "score": 0.29,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cos_bucket_object_lock_configuration",
+      "kind": "resource",
+      "schema": "/b/{bucket}:patch",
+      "spec": "cos-cos-configuration",
+      "score": 0.29,
+      "attrs": {
+        "object_lock_configuration.object_lock_rule.default_retention.days": {
+          "min": 0,
+          "max": 365243,
+          "description": "Minimum number of days that an object may be protected.",
+          "source": "cos-cos-compatibility",
+          "schema": "/{Bucket}?protection:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_cos_bucket_replication_rule",
+      "kind": "resource",
+      "schema": "/b/{bucket}:patch",
+      "spec": "cos-cos-configuration",
+      "score": 0.29,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cos_bucket_website_configuration",
+      "kind": "resource",
+      "schema": "/b/{bucket}:patch",
+      "spec": "cos-cos-configuration",
+      "score": 0.29,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cos_backup_policy",
+      "kind": "data",
+      "schema": "/backup_vaults/{backup_vault_name}:patch",
+      "spec": "cos-cos-configuration",
+      "score": 0.13,
+      "attrs": {
+        "policy_id": {
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "A UUID that uniquely identifies a resource.",
+          "api_required": true,
+          "source": "cos-cos-configuration",
+          "schema": "BackupPolicy"
+        }
+      }
+    },
+    {
+      "name": "ibm_cos_backup_vault",
+      "kind": "data",
+      "schema": "params:post:/backup_vaults/{backup_vault_name}/restores",
+      "spec": "cos-cos-configuration",
+      "score": 0.319,
+      "attrs": {
+        "backup_vault_name": {
+          "pattern": "^(?!^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$)(^[a-z0-9][a-z0-9\\-\\.]{1,61}[a-z0-9]$)$",
+          "min_len": 3,
+          "max_len": 63,
+          "description": "The name given to a BackupVault. BackupVault names must be between 3 and 63 characters long must be made of lowercase letters, numbers, dots (periods), and dashes (hyphens). BackupVault names must begin and end with a lowercase letter or number. BackupVault names can\u00e2\u20ac\u2122t contain consecutive dots or dashes. BackupVault names that resemble IP addresses are not allowed. Bucket and BackupVault names e",
+          "api_required": true,
+          "source": "cos-cos-configuration",
+          "schema": "params:post:/backup_vaults/{backup_vault_name}/restores"
+        },
+        "region": {
+          "pattern": "^[\\w\\-]*$",
+          "min_len": 5,
+          "max_len": 30,
+          "description": "the region in which this backup-vault should be created within.",
+          "api_required": true,
+          "source": "cos-cos-configuration",
+          "schema": "/backup_vaults:post"
+        },
+        "service_instance_id": {
+          "pattern": "^[0-9a-f]{32}$",
+          "min_len": 32,
+          "max_len": 32,
+          "description": "A COS ServiceInstance ID.",
+          "api_required": true,
+          "source": "cos-cos-configuration",
+          "schema": "params:post:/backup_vaults"
+        }
+      }
+    },
+    {
+      "name": "ibm_cos_bucket",
+      "kind": "data",
+      "schema": "/b/{bucket}:patch",
+      "spec": "cos-cos-configuration",
+      "score": 0.29,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cos_bucket_object",
+      "kind": "data",
+      "schema": "/b/{bucket}:patch",
+      "spec": "cos-cos-configuration",
+      "score": 0.29,
+      "attrs": {}
+    }
+  ]
+}

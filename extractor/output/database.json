@@ -1,0 +1,4975 @@
+{
+  "package": "database",
+  "resources": [
+    {
+      "name": "ibm_database",
+      "function": "ResourceIBMDatabaseInstance",
+      "package": "database",
+      "kind": "resource",
+      "description": "Manages ibm_database. Resource instance name for example, my Database instance",
+      "attributes": {
+        "adminpassword": {
+          "name": "adminpassword",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "sensitive": true,
+          "description": "The admin user password for the instance. Gen2: Accepted but ignored. Gen2 instances do not have a default admin user. Use the ibm_resource_key resource to create service credentials for database access.",
+          "validate": {
+            "kind": "func",
+            "func_name": "All"
+          }
+        },
+        "adminuser": {
+          "name": "adminuser",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The admin user id for the instance. Gen2: Always empty. Gen2 instances do not have a default admin user. Use ibm_resource_key for credentials."
+        },
+        "allowlist": {
+          "name": "allowlist",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Allowlist for database access. Gen2: Plan fails if set. IP allowlist configuration is not available for Gen2 instances.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "address": {
+                "name": "address",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Allowlist IP address in CIDR notation",
+                "validate": {
+                  "kind": "cidr",
+                  "func_name": "ValidateCIDR"
+                }
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Unique allow list description",
+                "validate": {
+                  "kind": "string_len",
+                  "func_name": "StringLenBetween",
+                  "min_len": 1,
+                  "max_len": 32
+                }
+              }
+            }
+          }
+        },
+        "async_restore": {
+          "name": "async_restore",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Option to support FAST PG Restore. Only applicable when restoring a PostgreSQL instance from backup_id. Gen2: Accepted but ignored (Classic-only feature)."
+        },
+        "auto_scaling": {
+          "name": "auto_scaling",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "max_items": 1,
+          "description": "ICD Auto Scaling. Gen2: Accepted but ignored. Auto-scaling policies are not available in Gen2. Monitor your database and manually adjust scaling as needed.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "cpu": {
+                "name": "cpu",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "max_items": 1,
+                "description": "CPU Auto Scaling",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "rate_increase_percent": {
+                      "name": "rate_increase_percent",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Increase Percent"
+                    },
+                    "rate_limit_count_per_member": {
+                      "name": "rate_limit_count_per_member",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Limit count per number"
+                    },
+                    "rate_period_seconds": {
+                      "name": "rate_period_seconds",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Period Seconds"
+                    },
+                    "rate_units": {
+                      "name": "rate_units",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Units "
+                    }
+                  }
+                }
+              },
+              "disk": {
+                "name": "disk",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "max_items": 1,
+                "description": "Disk Auto Scaling",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "capacity_enabled": {
+                      "name": "capacity_enabled",
+                      "type": "bool",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: Capacity Enabled"
+                    },
+                    "free_space_less_than_percent": {
+                      "name": "free_space_less_than_percent",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: Capacity Free Space Less Than Percent"
+                    },
+                    "io_above_percent": {
+                      "name": "io_above_percent",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: IO Utilization Above Percent"
+                    },
+                    "io_enabled": {
+                      "name": "io_enabled",
+                      "type": "bool",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: IO Utilization Enabled"
+                    },
+                    "io_over_period": {
+                      "name": "io_over_period",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: IO Utilization Over Period"
+                    },
+                    "rate_increase_percent": {
+                      "name": "rate_increase_percent",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Increase Percent"
+                    },
+                    "rate_limit_mb_per_member": {
+                      "name": "rate_limit_mb_per_member",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Limit mb per member"
+                    },
+                    "rate_period_seconds": {
+                      "name": "rate_period_seconds",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Period Seconds"
+                    },
+                    "rate_units": {
+                      "name": "rate_units",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Units "
+                    }
+                  }
+                }
+              },
+              "memory": {
+                "name": "memory",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "max_items": 1,
+                "description": "Memory Auto Scaling",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "io_above_percent": {
+                      "name": "io_above_percent",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: IO Utilization Above Percent"
+                    },
+                    "io_enabled": {
+                      "name": "io_enabled",
+                      "type": "bool",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: IO Utilization Enabled"
+                    },
+                    "io_over_period": {
+                      "name": "io_over_period",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: IO Utilization Over Period"
+                    },
+                    "rate_increase_percent": {
+                      "name": "rate_increase_percent",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Increase Percent"
+                    },
+                    "rate_limit_mb_per_member": {
+                      "name": "rate_limit_mb_per_member",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Limit mb per member"
+                    },
+                    "rate_period_seconds": {
+                      "name": "rate_period_seconds",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Period Seconds"
+                    },
+                    "rate_units": {
+                      "name": "rate_units",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Units "
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "backup_encryption_key_crn": {
+          "name": "backup_encryption_key_crn",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The Backup Encryption Key CRN",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "backup_id": {
+          "name": "backup_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The CRN of backup source database. Gen2: Supports restoring from Classic backups, Gen2 coupled backups, and Gen2 decoupled backups (databases-independent-backups)."
+        },
+        "configuration": {
+          "name": "configuration",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The configuration in JSON format. Supported for both Classic and Gen2 plans. The accepted keys depend on the database service type (e.g. max_connections for PostgreSQL, maxmemory-policy for Redis)."
+        },
+        "configuration_schema": {
+          "name": "configuration_schema",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The configuration schema in JSON format. Gen2: Always empty (not available)."
+        },
+        "deletion_protection": {
+          "name": "deletion_protection",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Whether Terraform will be prevented from destroying the instance",
+          "default": "false"
+        },
+        "group": {
+          "name": "group",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "A set of group scaling values for the database. Gen2: Fully supported for members, disk, and host_flavor. Plan fails if memory or cpu allocations are set, as memory and CPU are determined by the dedicated host_flavor and cannot be set independently.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "cpu": {
+                "name": "cpu",
+                "type": "set",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "allocation_count": {
+                      "name": "allocation_count",
+                      "type": "int",
+                      "required": true,
+                      "optional": false,
+                      "computed": false
+                    }
+                  }
+                }
+              },
+              "disk": {
+                "name": "disk",
+                "type": "set",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "allocation_mb": {
+                      "name": "allocation_mb",
+                      "type": "int",
+                      "required": true,
+                      "optional": false,
+                      "computed": false
+                    }
+                  }
+                }
+              },
+              "group_id": {
+                "name": "group_id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "validate": {
+                  "kind": "invoke",
+                  "func_name": "group_id"
+                }
+              },
+              "host_flavor": {
+                "name": "host_flavor",
+                "type": "set",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "validate": {
+                        "kind": "enum",
+                        "func_name": "StringInSlice",
+                        "enum": [
+                          "multitenant",
+                          "b3c.4x16.encrypted",
+                          "b3c.8x32.encrypted",
+                          "m3c.8x64.encrypted",
+                          "b3c.16x64.encrypted",
+                          "b3c.32x128.encrypted",
+                          "m3c.30x240.encrypted",
+                          "bx3d.4x20",
+                          "bx3d.8x40",
+                          "bx3d.16x80",
+                          "bx3d.32x160",
+                          "bx3d.48x240",
+                          "bxf.16x64",
+                          "bxf.32x128",
+                          "bxf.48x192",
+                          "bxf.4x16",
+                          "bxf.8x32"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "members": {
+                "name": "members",
+                "type": "set",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "allocation_count": {
+                      "name": "allocation_count",
+                      "type": "int",
+                      "required": true,
+                      "optional": false,
+                      "computed": false
+                    }
+                  }
+                }
+              },
+              "memory": {
+                "name": "memory",
+                "type": "set",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "allocation_mb": {
+                      "name": "allocation_mb",
+                      "type": "int",
+                      "required": true,
+                      "optional": false,
+                      "computed": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "groups": {
+          "name": "groups",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "count": {
+                "name": "count",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Count of scaling groups for the instance"
+              },
+              "cpu": {
+                "name": "cpu",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "allocation_count": {
+                      "name": "allocation_count",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The current cpu allocation count"
+                    },
+                    "can_scale_down": {
+                      "name": "can_scale_down",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Can the number of CPUs be scaled down as well as up"
+                    },
+                    "is_adjustable": {
+                      "name": "is_adjustable",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Are the number of CPUs adjustable"
+                    },
+                    "minimum_count": {
+                      "name": "minimum_count",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The minimum number of cpus allowed"
+                    },
+                    "step_size_count": {
+                      "name": "step_size_count",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The number of CPUs allowed to step up or down by"
+                    },
+                    "units": {
+                      "name": "units",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The ."
+                    }
+                  }
+                }
+              },
+              "disk": {
+                "name": "disk",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "allocation_mb": {
+                      "name": "allocation_mb",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The current disk allocation"
+                    },
+                    "can_scale_down": {
+                      "name": "can_scale_down",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Can the disk size be scaled down as well as up"
+                    },
+                    "is_adjustable": {
+                      "name": "is_adjustable",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Is the disk size adjustable"
+                    },
+                    "minimum_mb": {
+                      "name": "minimum_mb",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The minimum disk size allowed"
+                    },
+                    "step_size_mb": {
+                      "name": "step_size_mb",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The step size disk increases or decreases in"
+                    },
+                    "units": {
+                      "name": "units",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The units disk is allocated in"
+                    }
+                  }
+                }
+              },
+              "group_id": {
+                "name": "group_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Scaling group name"
+              },
+              "host_flavor": {
+                "name": "host_flavor",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "hosting_size": {
+                      "name": "hosting_size",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The host flavor size"
+                    },
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The host flavor id"
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The host flavor name"
+                    }
+                  }
+                }
+              },
+              "memory": {
+                "name": "memory",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "allocation_mb": {
+                      "name": "allocation_mb",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The current memory allocation for a group instance"
+                    },
+                    "can_scale_down": {
+                      "name": "can_scale_down",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Can memory scale down as well as up."
+                    },
+                    "cpu_enforcement_ratio_ceiling_mb": {
+                      "name": "cpu_enforcement_ratio_ceiling_mb",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The amount of memory required before the cpu/memory ratio is no longer enforced. (multitenant only)."
+                    },
+                    "cpu_enforcement_ratio_mb": {
+                      "name": "cpu_enforcement_ratio_mb",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The maximum memory allowed per CPU until the ratio ceiling is reached. (multitenant only)."
+                    },
+                    "is_adjustable": {
+                      "name": "is_adjustable",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Is the memory size adjustable."
+                    },
+                    "minimum_mb": {
+                      "name": "minimum_mb",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The minimum memory size for a group instance"
+                    },
+                    "step_size_mb": {
+                      "name": "step_size_mb",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The step size memory increases or decreases in."
+                    },
+                    "units": {
+                      "name": "units",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The units memory is allocated in."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Unique identifier of resource instance"
+        },
+        "key_protect_instance": {
+          "name": "key_protect_instance",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The CRN of Key protect instance"
+        },
+        "key_protect_key": {
+          "name": "key_protect_key",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The CRN of Key protect key"
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The location or the region in which Database instance exists",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "location"
+          }
+        },
+        "logical_replication_slot": {
+          "name": "logical_replication_slot",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Logical replication slots for PostgreSQL. Gen2: Accepted but ignored. Logical replication slots are not available for Gen2 instances.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "database_name": {
+                "name": "database_name",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Database Name"
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Logical Replication Slot name"
+              },
+              "plugin_type": {
+                "name": "plugin_type",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Plugin Type"
+              }
+            }
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Resource instance name for example, my Database instance"
+        },
+        "offline_restore": {
+          "name": "offline_restore",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Set offline restore mode for MongoDB Enterprise Edition. Gen2: Accepted but ignored. Offline restore requires backup_id support which is not yet implemented for Gen2 instances."
+        },
+        "plan": {
+          "name": "plan",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The plan type of the Database instance",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedICDPlanValue",
+            "enum": [
+              "standard",
+              "standard-gen2",
+              "enterprise",
+              "enterprise-gen2",
+              "enterprise-sharding",
+              "enterprise-sharding-gen2",
+              "platinum"
+            ]
+          }
+        },
+        "point_in_time_recovery_deployment_id": {
+          "name": "point_in_time_recovery_deployment_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The CRN of source instance. Gen2: Plan fails if set. Point-in-time recovery is not yet implemented for Gen2 instances."
+        },
+        "point_in_time_recovery_time": {
+          "name": "point_in_time_recovery_time",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The point in time recovery time stamp of the deployed instance. Gen2: Plan fails if set. Point-in-time recovery is not yet implemented for Gen2 instances."
+        },
+        "remote_leader_id": {
+          "name": "remote_leader_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The CRN of leader database. Gen2: Plan fails if set. Read-only replica creation and promotion are not supported for Gen2 instances."
+        },
+        "resource_controller_url": {
+          "name": "resource_controller_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the IBM Cloud dashboard that can be used to explore and view details about the resource"
+        },
+        "resource_crn": {
+          "name": "resource_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the resource",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The id of the resource group in which the Database instance is present",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "resource_group_id"
+          }
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group name in which resource is provisioned"
+        },
+        "resource_name": {
+          "name": "resource_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The name of the resource"
+        },
+        "resource_status": {
+          "name": "resource_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the resource"
+        },
+        "service": {
+          "name": "service",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The name of the Cloud Internet database service",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "databases-for-etcd",
+              "databases-for-postgresql",
+              "databases-for-redis",
+              "databases-for-valkey",
+              "databases-for-valkey-cdp-dev",
+              "databases-for-elasticsearch",
+              "databases-for-mongodb",
+              "messages-for-rabbitmq",
+              "databases-for-mysql",
+              "databases-for-enterprisedb"
+            ]
+          }
+        },
+        "service_endpoints": {
+          "name": "service_endpoints",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'. Required for Classic plans. Gen2: Optional; must be 'private' if set. Gen2 instances only support private endpoints and default to 'private'. Plan fails if set to 'public' or 'public-and-private'.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "public",
+              "private",
+              "public-and-private"
+            ]
+          }
+        },
+        "skip_initial_backup": {
+          "name": "skip_initial_backup",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Option to skip the initial backup when promoting a read-only replica. Skipping the initial backup means that your replica becomes available more quickly, but there is no immediate backup available. Gen2: Accepted but ignored (Classic-only feature for read replica promotion)."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource instance status"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^[A-Za-z0-9:_ .-]+$"
+          },
+          "elem": {
+            "kind": "schema",
+            "type": "string",
+            "validate": {
+              "kind": "invoke",
+              "func_name": "tags"
+            }
+          }
+        },
+        "users": {
+          "name": "users",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Database users. Gen2: Plan fails if set. Use the ibm_resource_key resource to create service credentials for Gen2 instances.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "User name",
+                "validate": {
+                  "kind": "string_len",
+                  "func_name": "StringLenBetween",
+                  "min_len": 4,
+                  "max_len": 32
+                }
+              },
+              "password": {
+                "name": "password",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "sensitive": true,
+                "description": "User password",
+                "validate": {
+                  "kind": "string_len",
+                  "func_name": "StringLenBetween",
+                  "min_len": 15,
+                  "max_len": 32
+                }
+              },
+              "role": {
+                "name": "role",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "User role. Only available for ops_manager user type and Redis 6.0 and above."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "User type",
+                "default": "database",
+                "validate": {
+                  "kind": "enum",
+                  "func_name": "StringInSlice",
+                  "enum": [
+                    "database",
+                    "ops_manager",
+                    "read_only_replica"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "version": {
+          "name": "version",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The database version to provision if specified or the database version to upgrade to. Classic: This field can be updated to perform an in-place upgrade without forcing the creation of a new resource. Gen2: Can be set at creation only. Updates fail with error. In-place version upgrades are not supported for Gen2 plans."
+        },
+        "version_upgrade_skip_backup": {
+          "name": "version_upgrade_skip_backup",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Option to skip the backup when upgrading version. Only applicable to databases that do not support PITR. Skipping the backup means that your deployment becomes available more quickly, but there is no immediate backup available. This is not recommended as it could result in data loss. Gen2: Accepted but ignored (Classic-only feature for version upgrades)."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "group_id",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "member, analytics, bi_connector"
+        },
+        {
+          "identifier": "location",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "location",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "plan",
+          "kind": "ValidateAllowedICDPlanValue",
+          "allowed": "standard, standard-gen2, enterprise, enterprise-gen2, enterprise-sharding, enterprise-sharding-gen2, platinum"
+        },
+        {
+          "identifier": "resource_group_id",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "resource_group_id",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "service",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "databases-for-etcd, databases-for-postgresql, databases-for-redis, databases-for-valkey, databases-for-valkey-cdp-dev, databases-for-elasticsearch, databases-for-mongodb, messages-for-rabbitmq, databases-for-mysql, databases-for-enterprisedb"
+        },
+        {
+          "identifier": "service_endpoints",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "public, private, public-and-private"
+        },
+        {
+          "identifier": "tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9:_ .-]+$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_database",
+      "function": "DataSourceIBMDatabaseInstance",
+      "package": "database",
+      "kind": "data",
+      "description": "Reads ibm_database. Resource instance name for example, my Database instance",
+      "attributes": {
+        "adminpassword": {
+          "name": "adminpassword",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "The admin user id for the instance. Note: This attribute is not supported for Gen2 database instances"
+        },
+        "adminuser": {
+          "name": "adminuser",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The admin user id for the instance. Note: In Gen2, there is no default admin user. Users should manage credentials using the ibm_resource_key resource (https://registry.terraform.io/providers/IBM-Cloud/ibm/latest/docs/resources/resource_key)."
+        },
+        "allowlist": {
+          "name": "allowlist",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Allowlist for database access. Note: This attribute is not supported for Gen2 database instances.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "address": {
+                "name": "address",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Allowlist IP address in CIDR notation"
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique allowlist description"
+              }
+            }
+          }
+        },
+        "auto_scaling": {
+          "name": "auto_scaling",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ICD Auto Scaling. Note: This attribute is currently not supported for Gen2 database instances.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "cpu": {
+                "name": "cpu",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "CPU Auto Scaling",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "rate_increase_percent": {
+                      "name": "rate_increase_percent",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Increase Percent"
+                    },
+                    "rate_limit_count_per_member": {
+                      "name": "rate_limit_count_per_member",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Limit count per number"
+                    },
+                    "rate_limit_mb_per_member": {
+                      "name": "rate_limit_mb_per_member",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Limit mb per member"
+                    },
+                    "rate_period_seconds": {
+                      "name": "rate_period_seconds",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Period Seconds"
+                    },
+                    "rate_units": {
+                      "name": "rate_units",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Units "
+                    }
+                  }
+                }
+              },
+              "disk": {
+                "name": "disk",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Disk Auto Scaling",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "capacity_enabled": {
+                      "name": "capacity_enabled",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: Capacity Enabled"
+                    },
+                    "free_space_less_than_percent": {
+                      "name": "free_space_less_than_percent",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: Capacity Free Space Less Than Percent"
+                    },
+                    "free_space_remaining_percent": {
+                      "name": "free_space_remaining_percent",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: Capacity Free Space Remaining Percent"
+                    },
+                    "io_above_percent": {
+                      "name": "io_above_percent",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: IO Utilization Above Percent"
+                    },
+                    "io_enabled": {
+                      "name": "io_enabled",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: IO Utilization Enabled"
+                    },
+                    "io_over_period": {
+                      "name": "io_over_period",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: IO Utilization Over Period"
+                    },
+                    "rate_increase_percent": {
+                      "name": "rate_increase_percent",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Increase Percent"
+                    },
+                    "rate_limit_count_per_member": {
+                      "name": "rate_limit_count_per_member",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Limit count per number"
+                    },
+                    "rate_limit_mb_per_member": {
+                      "name": "rate_limit_mb_per_member",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Limit mb per member"
+                    },
+                    "rate_period_seconds": {
+                      "name": "rate_period_seconds",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Period Seconds"
+                    },
+                    "rate_units": {
+                      "name": "rate_units",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Units "
+                    }
+                  }
+                }
+              },
+              "memory": {
+                "name": "memory",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Memory Auto Scaling",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "io_above_percent": {
+                      "name": "io_above_percent",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: IO Utilization Above Percent"
+                    },
+                    "io_enabled": {
+                      "name": "io_enabled",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: IO Utilization Enabled"
+                    },
+                    "io_over_period": {
+                      "name": "io_over_period",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Scalar: IO Utilization Over Period"
+                    },
+                    "rate_increase_percent": {
+                      "name": "rate_increase_percent",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Increase Percent"
+                    },
+                    "rate_limit_count_per_member": {
+                      "name": "rate_limit_count_per_member",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Limit count per number"
+                    },
+                    "rate_limit_mb_per_member": {
+                      "name": "rate_limit_mb_per_member",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Limit mb per member"
+                    },
+                    "rate_period_seconds": {
+                      "name": "rate_period_seconds",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Period Seconds"
+                    },
+                    "rate_units": {
+                      "name": "rate_units",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Auto Scaling Rate: Units "
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "configuration_schema": {
+          "name": "configuration_schema",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The configuration schema in JSON format, Note: This attribute is currently not supported for Gen2 database instances."
+        },
+        "groups": {
+          "name": "groups",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "count": {
+                "name": "count",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Count of scaling groups for the instance"
+              },
+              "cpu": {
+                "name": "cpu",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "allocation_count": {
+                      "name": "allocation_count",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The current cpu allocation count"
+                    },
+                    "can_scale_down": {
+                      "name": "can_scale_down",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Can the number of CPUs be scaled down as well as up"
+                    },
+                    "is_adjustable": {
+                      "name": "is_adjustable",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Are the number of CPUs adjustable"
+                    },
+                    "minimum_count": {
+                      "name": "minimum_count",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The minimum number of cpus allowed"
+                    },
+                    "step_size_count": {
+                      "name": "step_size_count",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The number of CPUs allowed to step up or down by"
+                    },
+                    "units": {
+                      "name": "units",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The ."
+                    }
+                  }
+                }
+              },
+              "disk": {
+                "name": "disk",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "allocation_mb": {
+                      "name": "allocation_mb",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The current disk allocation"
+                    },
+                    "can_scale_down": {
+                      "name": "can_scale_down",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Can the disk size be scaled down as well as up"
+                    },
+                    "is_adjustable": {
+                      "name": "is_adjustable",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Is the disk size adjustable"
+                    },
+                    "minimum_mb": {
+                      "name": "minimum_mb",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The minimum disk size allowed"
+                    },
+                    "step_size_mb": {
+                      "name": "step_size_mb",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The step size disk increases or decreases in"
+                    },
+                    "units": {
+                      "name": "units",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The units disk is allocated in"
+                    }
+                  }
+                }
+              },
+              "group_id": {
+                "name": "group_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Scaling group name"
+              },
+              "host_flavor": {
+                "name": "host_flavor",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "hosting_size": {
+                      "name": "hosting_size",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The host flavor size"
+                    },
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The host flavor id"
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The host flavor name"
+                    }
+                  }
+                }
+              },
+              "memory": {
+                "name": "memory",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "allocation_mb": {
+                      "name": "allocation_mb",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The current memory allocation for a group instance"
+                    },
+                    "can_scale_down": {
+                      "name": "can_scale_down",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Can memory scale down as well as up."
+                    },
+                    "is_adjustable": {
+                      "name": "is_adjustable",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Is the memory size adjustable."
+                    },
+                    "minimum_mb": {
+                      "name": "minimum_mb",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The minimum memory size for a group instance"
+                    },
+                    "step_size_mb": {
+                      "name": "step_size_mb",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The step size memory increases or decreases in."
+                    },
+                    "units": {
+                      "name": "units",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The units memory is allocated in."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Unique identifier of resource instance"
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The location or the region in which the Database instance exists",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "location"
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Resource instance name for example, my Database instance",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "name"
+          }
+        },
+        "plan": {
+          "name": "plan",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The plan type of the Database instance",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedICDPlanValue",
+            "enum": [
+              "standard",
+              "standard-gen2",
+              "enterprise",
+              "enterprise-gen2",
+              "enterprise-sharding",
+              "enterprise-sharding-gen2",
+              "platinum"
+            ]
+          }
+        },
+        "platform_options": {
+          "name": "platform_options",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Platform-specific options for this deployment.r",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "backup_encryption_key_crn": {
+                "name": "backup_encryption_key_crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Backup encryption key crn. Note: This attribute is not supported for Gen2 database instances",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "disk_encryption_key_crn": {
+                "name": "disk_encryption_key_crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Disk encryption key crn",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              }
+            }
+          }
+        },
+        "resource_controller_url": {
+          "name": "resource_controller_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the IBM Cloud dashboard that can be used to explore and view details about the resource"
+        },
+        "resource_crn": {
+          "name": "resource_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the resource",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The id of the resource group in which the Database instance is present",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "resource_group_id"
+          }
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group name in which resource is provisioned"
+        },
+        "resource_name": {
+          "name": "resource_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The name of the resource"
+        },
+        "resource_status": {
+          "name": "resource_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the resource"
+        },
+        "service": {
+          "name": "service",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The name of the Cloud Database service",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "databases-for-etcd",
+              "databases-for-postgresql",
+              "databases-for-redis",
+              "databases-for-valkey",
+              "databases-for-valkey-cdp-dev",
+              "databases-for-elasticsearch",
+              "databases-for-mongodb",
+              "messages-for-rabbitmq",
+              "databases-for-mysql",
+              "databases-for-enterprisedb"
+            ]
+          }
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource instance status"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^[A-Za-z0-9:_ .-]+$"
+          },
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "users": {
+          "name": "users",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Database users. Note: This attribute is not supported for Gen2 database instances.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "User name"
+              },
+              "password": {
+                "name": "password",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "sensitive": true,
+                "description": "User password"
+              }
+            }
+          }
+        },
+        "version": {
+          "name": "version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The database version to provision if specified"
+        }
+      },
+      "validators": [
+        {
+          "identifier": "group_id",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "member, analytics, bi_connector"
+        },
+        {
+          "identifier": "location",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "location",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "plan",
+          "kind": "ValidateAllowedICDPlanValue",
+          "allowed": "standard, standard-gen2, enterprise, enterprise-gen2, enterprise-sharding, enterprise-sharding-gen2, platinum"
+        },
+        {
+          "identifier": "resource_group_id",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "resource_group_id",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "service",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "databases-for-etcd, databases-for-postgresql, databases-for-redis, databases-for-valkey, databases-for-valkey-cdp-dev, databases-for-elasticsearch, databases-for-mongodb, messages-for-rabbitmq, databases-for-mysql, databases-for-enterprisedb"
+        },
+        {
+          "identifier": "service_endpoints",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "public, private, public-and-private"
+        },
+        {
+          "identifier": "tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9:_ .-]+$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_database_backup",
+      "function": "DataSourceIBMDatabaseBackup",
+      "package": "database",
+      "kind": "data",
+      "description": "Schema validation for the ibm_database_backup data source.",
+      "attributes": {
+        "backup_id": {
+          "name": "backup_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Backup ID."
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when this backup was created."
+        },
+        "deployment_id": {
+          "name": "deployment_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the deployment this backup relates to."
+        },
+        "download_link": {
+          "name": "download_link",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URI which is currently available for file downloading."
+        },
+        "is_downloadable": {
+          "name": "is_downloadable",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Is this backup available to download?."
+        },
+        "is_restorable": {
+          "name": "is_restorable",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Can this backup be used to restore an instance?."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of this backup."
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The type of backup."
+        }
+      }
+    },
+    {
+      "name": "ibm_database_backups",
+      "function": "DataSourceIBMDatabaseBackups",
+      "package": "database",
+      "kind": "data",
+      "description": "Schema validation for the ibm_database_backups data source.",
+      "attributes": {
+        "backups": {
+          "name": "backups",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An array of backups.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "backup_id": {
+                "name": "backup_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "ID of this backup."
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Date and time when this backup was created."
+              },
+              "deployment_id": {
+                "name": "deployment_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "ID of the deployment this backup relates to."
+              },
+              "download_link": {
+                "name": "download_link",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "URI which is currently available for file downloading."
+              },
+              "is_downloadable": {
+                "name": "is_downloadable",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Is this backup available to download?."
+              },
+              "is_restorable": {
+                "name": "is_restorable",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Can this backup be used to restore an instance?."
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of this backup."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The type of backup."
+              }
+            }
+          }
+        },
+        "deployment_id": {
+          "name": "deployment_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "ID of the deployment this backup relates to.",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "deployment_id"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "deployment_id",
+          "kind": "ValidateCloudData"
+        }
+      ]
+    },
+    {
+      "name": "ibm_database_connection",
+      "function": "DataSourceIBMDatabaseConnection",
+      "package": "database",
+      "kind": "data",
+      "description": "Schema validation for the ibm_database_connection data source.",
+      "attributes": {
+        "amqps": {
+          "name": "amqps",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authentication": {
+                "name": "authentication",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Authentication data for Connection String.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Authentication method for this credential."
+                    },
+                    "password": {
+                      "name": "password",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Password part of credential."
+                    },
+                    "username": {
+                      "name": "username",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Username part of credential."
+                    }
+                  }
+                }
+              },
+              "browser_accessible": {
+                "name": "browser_accessible",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates the address is accessible by browser."
+              },
+              "certificate": {
+                "name": "certificate",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "certificate_base64": {
+                      "name": "certificate_base64",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Base64 encoded version of the certificate."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name associated with the certificate."
+                    }
+                  }
+                }
+              },
+              "composed": {
+                "name": "composed",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "hosts": {
+                "name": "hosts",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "hostname": {
+                      "name": "hostname",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Hostname for connection."
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Port number for connection.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Path for URI connection."
+              },
+              "query_options": {
+                "name": "query_options",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Query options to add to the URI connection.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "scheme": {
+                "name": "scheme",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Scheme/protocol for URI connection."
+              },
+              "ssl": {
+                "name": "ssl",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates ssl is required for the connection."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of connection being described."
+              }
+            }
+          }
+        },
+        "analytics": {
+          "name": "analytics",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authentication": {
+                "name": "authentication",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Authentication data for Connection String.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Authentication method for this credential."
+                    },
+                    "password": {
+                      "name": "password",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Password part of credential."
+                    },
+                    "username": {
+                      "name": "username",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Username part of credential."
+                    }
+                  }
+                }
+              },
+              "browser_accessible": {
+                "name": "browser_accessible",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates the address is accessible by browser."
+              },
+              "certificate": {
+                "name": "certificate",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "certificate_base64": {
+                      "name": "certificate_base64",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Base64 encoded version of the certificate."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name associated with the certificate."
+                    }
+                  }
+                }
+              },
+              "composed": {
+                "name": "composed",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "hosts": {
+                "name": "hosts",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "hostname": {
+                      "name": "hostname",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Hostname for connection."
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Port number for connection.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Path for URI connection."
+              },
+              "query_options": {
+                "name": "query_options",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Query options to add to the URI connection.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "scheme": {
+                "name": "scheme",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Scheme/protocol for URI connection."
+              },
+              "ssl": {
+                "name": "ssl",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates ssl is required for the connection."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of connection being described."
+              }
+            }
+          }
+        },
+        "bi_connector": {
+          "name": "bi_connector",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authentication": {
+                "name": "authentication",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Authentication data for Connection String.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Authentication method for this credential."
+                    },
+                    "password": {
+                      "name": "password",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Password part of credential."
+                    },
+                    "username": {
+                      "name": "username",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Username part of credential."
+                    }
+                  }
+                }
+              },
+              "browser_accessible": {
+                "name": "browser_accessible",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates the address is accessible by browser."
+              },
+              "certificate": {
+                "name": "certificate",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "certificate_base64": {
+                      "name": "certificate_base64",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Base64 encoded version of the certificate."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name associated with the certificate."
+                    }
+                  }
+                }
+              },
+              "composed": {
+                "name": "composed",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "hosts": {
+                "name": "hosts",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "hostname": {
+                      "name": "hostname",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Hostname for connection."
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Port number for connection.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Path for URI connection."
+              },
+              "query_options": {
+                "name": "query_options",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Query options to add to the URI connection.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "scheme": {
+                "name": "scheme",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Scheme/protocol for URI connection."
+              },
+              "ssl": {
+                "name": "ssl",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates ssl is required for the connection."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of connection being described."
+              }
+            }
+          }
+        },
+        "certificate_root": {
+          "name": "certificate_root",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Optional certificate root path to prepend certificate names. Certificates would be stored in this directory for use by other commands."
+        },
+        "cli": {
+          "name": "cli",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "CLI Connection.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "arguments": {
+                "name": "arguments",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Sets of arguments to call the executable with. The outer array corresponds to a possible way to call the CLI; the inner array is the set of arguments to use with that call.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "bin": {
+                "name": "bin",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the executable the CLI should run."
+              },
+              "certificate": {
+                "name": "certificate",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "certificate_base64": {
+                      "name": "certificate_base64",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Base64 encoded version of the certificate."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name associated with the certificate."
+                    }
+                  }
+                }
+              },
+              "composed": {
+                "name": "composed",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "environment": {
+                "name": "environment",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A map of environment variables for a CLI connection.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of connection being described."
+              }
+            }
+          }
+        },
+        "deployment_id": {
+          "name": "deployment_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Deployment ID.",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "deployment_id"
+          }
+        },
+        "emp": {
+          "name": "emp",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authentication": {
+                "name": "authentication",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Authentication data for Connection String.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Authentication method for this credential."
+                    },
+                    "password": {
+                      "name": "password",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Password part of credential."
+                    },
+                    "username": {
+                      "name": "username",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Username part of credential."
+                    }
+                  }
+                }
+              },
+              "browser_accessible": {
+                "name": "browser_accessible",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates the address is accessible by browser."
+              },
+              "certificate": {
+                "name": "certificate",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "certificate_base64": {
+                      "name": "certificate_base64",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Base64 encoded version of the certificate."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name associated with the certificate."
+                    }
+                  }
+                }
+              },
+              "composed": {
+                "name": "composed",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "hosts": {
+                "name": "hosts",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "hostname": {
+                      "name": "hostname",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Hostname for connection."
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Port number for connection.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Path for URI connection."
+              },
+              "query_options": {
+                "name": "query_options",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Query options to add to the URI connection.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "scheme": {
+                "name": "scheme",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Scheme/protocol for URI connection."
+              },
+              "ssl": {
+                "name": "ssl",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates ssl is required for the connection."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of connection being described."
+              }
+            }
+          }
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Endpoint Type. The endpoint must be enabled on the deployment before its connection information can be fetched.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "public",
+              "private",
+              "public-and-private"
+            ]
+          }
+        },
+        "grpc": {
+          "name": "grpc",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authentication": {
+                "name": "authentication",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Authentication data for Connection String.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Authentication method for this credential."
+                    },
+                    "password": {
+                      "name": "password",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Password part of credential."
+                    },
+                    "username": {
+                      "name": "username",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Username part of credential."
+                    }
+                  }
+                }
+              },
+              "browser_accessible": {
+                "name": "browser_accessible",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates the address is accessible by browser."
+              },
+              "certificate": {
+                "name": "certificate",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "certificate_base64": {
+                      "name": "certificate_base64",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Base64 encoded version of the certificate."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name associated with the certificate."
+                    }
+                  }
+                }
+              },
+              "composed": {
+                "name": "composed",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "hosts": {
+                "name": "hosts",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "hostname": {
+                      "name": "hostname",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Hostname for connection."
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Port number for connection.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Path for URI connection."
+              },
+              "query_options": {
+                "name": "query_options",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Query options to add to the URI connection.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "scheme": {
+                "name": "scheme",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Scheme/protocol for URI connection."
+              },
+              "ssl": {
+                "name": "ssl",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates ssl is required for the connection."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of connection being described."
+              }
+            }
+          }
+        },
+        "https": {
+          "name": "https",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authentication": {
+                "name": "authentication",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Authentication data for Connection String.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Authentication method for this credential."
+                    },
+                    "password": {
+                      "name": "password",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Password part of credential."
+                    },
+                    "username": {
+                      "name": "username",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Username part of credential."
+                    }
+                  }
+                }
+              },
+              "browser_accessible": {
+                "name": "browser_accessible",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates the address is accessible by browser."
+              },
+              "certificate": {
+                "name": "certificate",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "certificate_base64": {
+                      "name": "certificate_base64",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Base64 encoded version of the certificate."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name associated with the certificate."
+                    }
+                  }
+                }
+              },
+              "composed": {
+                "name": "composed",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "hosts": {
+                "name": "hosts",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "hostname": {
+                      "name": "hostname",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Hostname for connection."
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Port number for connection.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Path for URI connection."
+              },
+              "query_options": {
+                "name": "query_options",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Query options to add to the URI connection.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "scheme": {
+                "name": "scheme",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Scheme/protocol for URI connection."
+              },
+              "ssl": {
+                "name": "ssl",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates ssl is required for the connection."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of connection being described."
+              }
+            }
+          }
+        },
+        "mongodb": {
+          "name": "mongodb",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authentication": {
+                "name": "authentication",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Authentication data for Connection String.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Authentication method for this credential."
+                    },
+                    "password": {
+                      "name": "password",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Password part of credential."
+                    },
+                    "username": {
+                      "name": "username",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Username part of credential."
+                    }
+                  }
+                }
+              },
+              "browser_accessible": {
+                "name": "browser_accessible",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates the address is accessible by browser."
+              },
+              "certificate": {
+                "name": "certificate",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "certificate_base64": {
+                      "name": "certificate_base64",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Base64 encoded version of the certificate."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name associated with the certificate."
+                    }
+                  }
+                }
+              },
+              "composed": {
+                "name": "composed",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "database": {
+                "name": "database",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the database to use in the URI connection."
+              },
+              "hosts": {
+                "name": "hosts",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "hostname": {
+                      "name": "hostname",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Hostname for connection."
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Port number for connection.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Path for URI connection."
+              },
+              "query_options": {
+                "name": "query_options",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Query options to add to the URI connection.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "replica_set": {
+                "name": "replica_set",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the replica set to use in the URI connection."
+              },
+              "scheme": {
+                "name": "scheme",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Scheme/protocol for URI connection."
+              },
+              "ssl": {
+                "name": "ssl",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates ssl is required for the connection."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of connection being described."
+              }
+            }
+          }
+        },
+        "mqtts": {
+          "name": "mqtts",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authentication": {
+                "name": "authentication",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Authentication data for Connection String.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Authentication method for this credential."
+                    },
+                    "password": {
+                      "name": "password",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Password part of credential."
+                    },
+                    "username": {
+                      "name": "username",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Username part of credential."
+                    }
+                  }
+                }
+              },
+              "browser_accessible": {
+                "name": "browser_accessible",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates the address is accessible by browser."
+              },
+              "certificate": {
+                "name": "certificate",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "certificate_base64": {
+                      "name": "certificate_base64",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Base64 encoded version of the certificate."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name associated with the certificate."
+                    }
+                  }
+                }
+              },
+              "composed": {
+                "name": "composed",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "hosts": {
+                "name": "hosts",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "hostname": {
+                      "name": "hostname",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Hostname for connection."
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Port number for connection.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Path for URI connection."
+              },
+              "query_options": {
+                "name": "query_options",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Query options to add to the URI connection.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "scheme": {
+                "name": "scheme",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Scheme/protocol for URI connection."
+              },
+              "ssl": {
+                "name": "ssl",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates ssl is required for the connection."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of connection being described."
+              }
+            }
+          }
+        },
+        "mysql": {
+          "name": "mysql",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authentication": {
+                "name": "authentication",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Authentication data for Connection String.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Authentication method for this credential."
+                    },
+                    "password": {
+                      "name": "password",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Password part of credential."
+                    },
+                    "username": {
+                      "name": "username",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Username part of credential."
+                    }
+                  }
+                }
+              },
+              "browser_accessible": {
+                "name": "browser_accessible",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates the address is accessible by browser."
+              },
+              "certificate": {
+                "name": "certificate",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "certificate_base64": {
+                      "name": "certificate_base64",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Base64 encoded version of the certificate."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name associated with the certificate."
+                    }
+                  }
+                }
+              },
+              "composed": {
+                "name": "composed",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "database": {
+                "name": "database",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the database to use in the URI connection."
+              },
+              "hosts": {
+                "name": "hosts",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "hostname": {
+                      "name": "hostname",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Hostname for connection."
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Port number for connection.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Path for URI connection."
+              },
+              "query_options": {
+                "name": "query_options",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Query options to add to the URI connection.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "scheme": {
+                "name": "scheme",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Scheme/protocol for URI connection."
+              },
+              "ssl": {
+                "name": "ssl",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates ssl is required for the connection."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of connection being described."
+              }
+            }
+          }
+        },
+        "ops_manager": {
+          "name": "ops_manager",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authentication": {
+                "name": "authentication",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Authentication data for Connection String.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Authentication method for this credential."
+                    },
+                    "password": {
+                      "name": "password",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Password part of credential."
+                    },
+                    "username": {
+                      "name": "username",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Username part of credential."
+                    }
+                  }
+                }
+              },
+              "browser_accessible": {
+                "name": "browser_accessible",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates the address is accessible by browser."
+              },
+              "certificate": {
+                "name": "certificate",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "certificate_base64": {
+                      "name": "certificate_base64",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Base64 encoded version of the certificate."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name associated with the certificate."
+                    }
+                  }
+                }
+              },
+              "composed": {
+                "name": "composed",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "hosts": {
+                "name": "hosts",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "hostname": {
+                      "name": "hostname",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Hostname for connection."
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Port number for connection.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Path for URI connection."
+              },
+              "query_options": {
+                "name": "query_options",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Query options to add to the URI connection.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "scheme": {
+                "name": "scheme",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Scheme/protocol for URI connection."
+              },
+              "ssl": {
+                "name": "ssl",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates ssl is required for the connection."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of connection being described."
+              }
+            }
+          }
+        },
+        "postgres": {
+          "name": "postgres",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authentication": {
+                "name": "authentication",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Authentication data for Connection String.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Authentication method for this credential."
+                    },
+                    "password": {
+                      "name": "password",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Password part of credential."
+                    },
+                    "username": {
+                      "name": "username",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Username part of credential."
+                    }
+                  }
+                }
+              },
+              "browser_accessible": {
+                "name": "browser_accessible",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates the address is accessible by browser."
+              },
+              "certificate": {
+                "name": "certificate",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "certificate_base64": {
+                      "name": "certificate_base64",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Base64 encoded version of the certificate."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name associated with the certificate."
+                    }
+                  }
+                }
+              },
+              "composed": {
+                "name": "composed",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "database": {
+                "name": "database",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the database to use in the URI connection."
+              },
+              "hosts": {
+                "name": "hosts",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "hostname": {
+                      "name": "hostname",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Hostname for connection."
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Port number for connection.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Path for URI connection."
+              },
+              "query_options": {
+                "name": "query_options",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Query options to add to the URI connection.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "scheme": {
+                "name": "scheme",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Scheme/protocol for URI connection."
+              },
+              "ssl": {
+                "name": "ssl",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates ssl is required for the connection."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of connection being described."
+              }
+            }
+          }
+        },
+        "rediss": {
+          "name": "rediss",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authentication": {
+                "name": "authentication",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Authentication data for Connection String.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Authentication method for this credential."
+                    },
+                    "password": {
+                      "name": "password",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Password part of credential."
+                    },
+                    "username": {
+                      "name": "username",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Username part of credential."
+                    }
+                  }
+                }
+              },
+              "browser_accessible": {
+                "name": "browser_accessible",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates the address is accessible by browser."
+              },
+              "certificate": {
+                "name": "certificate",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "certificate_base64": {
+                      "name": "certificate_base64",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Base64 encoded version of the certificate."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name associated with the certificate."
+                    }
+                  }
+                }
+              },
+              "composed": {
+                "name": "composed",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "database": {
+                "name": "database",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Number of the database to use in the URI connection."
+              },
+              "hosts": {
+                "name": "hosts",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "hostname": {
+                      "name": "hostname",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Hostname for connection."
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Port number for connection.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Path for URI connection."
+              },
+              "query_options": {
+                "name": "query_options",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Query options to add to the URI connection.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "scheme": {
+                "name": "scheme",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Scheme/protocol for URI connection."
+              },
+              "ssl": {
+                "name": "ssl",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates ssl is required for the connection."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of connection being described."
+              }
+            }
+          }
+        },
+        "secure": {
+          "name": "secure",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authentication": {
+                "name": "authentication",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Authentication data for Connection String.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Authentication method for this credential."
+                    },
+                    "password": {
+                      "name": "password",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Password part of credential."
+                    },
+                    "username": {
+                      "name": "username",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Username part of credential."
+                    }
+                  }
+                }
+              },
+              "bundle": {
+                "name": "bundle",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "bundle_base64": {
+                      "name": "bundle_base64",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Base64 encoded version of the certificate bundle."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name associated with the certificate."
+                    }
+                  }
+                }
+              },
+              "hosts": {
+                "name": "hosts",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "hostname": {
+                      "name": "hostname",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Hostname for connection."
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Port number for connection.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "stomp_ssl": {
+          "name": "stomp_ssl",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "authentication": {
+                "name": "authentication",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Authentication data for Connection String.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "method": {
+                      "name": "method",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Authentication method for this credential."
+                    },
+                    "password": {
+                      "name": "password",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Password part of credential."
+                    },
+                    "username": {
+                      "name": "username",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Username part of credential."
+                    }
+                  }
+                }
+              },
+              "browser_accessible": {
+                "name": "browser_accessible",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates the address is accessible by browser."
+              },
+              "certificate": {
+                "name": "certificate",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "certificate_base64": {
+                      "name": "certificate_base64",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Base64 encoded version of the certificate."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name associated with the certificate."
+                    }
+                  }
+                }
+              },
+              "composed": {
+                "name": "composed",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "hosts": {
+                "name": "hosts",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "hostname": {
+                      "name": "hostname",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Hostname for connection."
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Port number for connection.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Path for URI connection."
+              },
+              "query_options": {
+                "name": "query_options",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Query options to add to the URI connection.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "scheme": {
+                "name": "scheme",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Scheme/protocol for URI connection."
+              },
+              "ssl": {
+                "name": "ssl",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates ssl is required for the connection."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of connection being described."
+              }
+            }
+          }
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "User ID."
+        },
+        "user_type": {
+          "name": "user_type",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "User type."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "deployment_id",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "endpoint_type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "public, private, public-and-private"
+        }
+      ]
+    },
+    {
+      "name": "ibm_database_point_in_time_recovery",
+      "function": "DataSourceIBMDatabasePointInTimeRecovery",
+      "package": "database",
+      "kind": "data",
+      "description": "Schema validation for the ibm_database_point_in_time_recovery data source.",
+      "attributes": {
+        "deployment_id": {
+          "name": "deployment_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Deployment ID.",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "deployment_id"
+          }
+        },
+        "earliest_point_in_time_recovery_time": {
+          "name": "earliest_point_in_time_recovery_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        }
+      },
+      "validators": [
+        {
+          "identifier": "deployment_id",
+          "kind": "ValidateCloudData"
+        }
+      ]
+    },
+    {
+      "name": "ibm_database_remotes",
+      "function": "DataSourceIBMDatabaseRemotes",
+      "package": "database",
+      "kind": "data",
+      "description": "Schema validation for the ibm_database_remotes data source.",
+      "attributes": {
+        "deployment_id": {
+          "name": "deployment_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Deployment ID.",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "deployment_id"
+          }
+        },
+        "leader": {
+          "name": "leader",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Leader ID, if applicable."
+        },
+        "replicas": {
+          "name": "replicas",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Replica IDs, if applicable.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "deployment_id",
+          "kind": "ValidateCloudData"
+        }
+      ]
+    },
+    {
+      "name": "ibm_database_task",
+      "function": "DataSourceIBMDatabaseTask",
+      "package": "database",
+      "kind": "data",
+      "description": "Schema validation for the ibm_database_task data source.",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date and time when the task was created."
+        },
+        "deployment_id": {
+          "name": "deployment_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the deployment the task is being performed on."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Human-readable description of the task."
+        },
+        "progress_percent": {
+          "name": "progress_percent",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Indicator as percentage of progress of the task."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the task."
+        },
+        "task_id": {
+          "name": "task_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Task ID."
+        }
+      }
+    },
+    {
+      "name": "ibm_database_tasks",
+      "function": "DataSourceIBMDatabaseTasks",
+      "package": "database",
+      "kind": "data",
+      "description": "Schema validation for the ibm_database_tasks data source.",
+      "attributes": {
+        "deployment_id": {
+          "name": "deployment_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Deployment ID.",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "deployment_id"
+          }
+        },
+        "tasks": {
+          "name": "tasks",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Date and time when the task was created."
+              },
+              "deployment_id": {
+                "name": "deployment_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "ID of the deployment the task is being performed on."
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Human-readable description of the task."
+              },
+              "progress_percent": {
+                "name": "progress_percent",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicator as percentage of progress of the task."
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of the task."
+              },
+              "task_id": {
+                "name": "task_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "ID of the task."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "deployment_id",
+          "kind": "ValidateCloudData"
+        }
+      ]
+    }
+  ],
+  "skipped": [],
+  "extracted": 9,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package database"
+}

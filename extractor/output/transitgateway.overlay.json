@@ -1,0 +1,544 @@
+{
+  "package": "transitgateway",
+  "specs": [
+    {
+      "slug": "transit-gateway",
+      "title": "Transit Gateway Apis",
+      "schema_count": 61,
+      "path_count": 16
+    }
+  ],
+  "matched": 9,
+  "resource_count": 14,
+  "overlay_attrs": 50,
+  "resources": [
+    {
+      "name": "ibm_tg_connection",
+      "kind": "resource",
+      "schema": "TransitGatewayConnectionTemplate",
+      "spec": "transit-gateway",
+      "score": 0.5589,
+      "attrs": {
+        "base_connection_id": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 0,
+          "max_len": 36,
+          "description": "network_type `gre_tunnel` connections must be created over an existing network_type `classic` connection. This field must specify the ID of an active transit gateway network_type `classic` connection in the same transit gateway. This field is required for network type `gre_tunnel` connections. This field is required to be unspecified for network type `classic`, `directlink`, `vpc`, `power_virtual_",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "base_network_type": {
+          "enum": [
+            "classic",
+            "vpc"
+          ],
+          "description": "The type of network the Unbound GRE tunnel is targeting. This field is required for network type `unbound_gre_tunnel` and must be set to `classic`. For a `redundant_gre` network type, the value is required and can be either VPC or Classic. This field is required to be unspecified for network type `classic`, `directlink`, `vpc`, `power_virtual_server`, `vpn_gateway` and `gre_tunnel` connections.",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "cidr": {
+          "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/(3[0-2]|[1-2][0-9]|[0-9]))$",
+          "min_len": 0,
+          "max_len": 19,
+          "description": "network_type `vpn_gateway` connections use `cidr` to specify the CIDR to use for the VPN gateway GRE tunnels. This field is optional for network type `vpn_gateway` connections. If unspecified, the default value is 198.19.174.0/23. This field is required to be unspecified for network type `classic`, `directlink`, `vpc`, `power_virtual_server`, `gre_tunnel`, `unbound_gre_tunnel`, and `redundant_gre`",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "local_gateway_ip": {
+          "pattern": "^(([0-9]){1,3}\\.){3}([0-9]{1,3})$",
+          "min_len": 0,
+          "max_len": 40,
+          "description": "Local gateway IP address. This field is required for network type `gre_tunnel` and `unbound_gre_tunnel` connections. This field is required to be unspecified for network type `classic`, `directlink`, `vpc`, `power_virtual_server`, `vpn_gateway` and `redundant_gre` connections.",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "local_tunnel_ip": {
+          "pattern": "^(([0-9]){1,3}\\.){3}([0-9]{1,3})$",
+          "min_len": 0,
+          "max_len": 40,
+          "description": "Local tunnel IP address. The local_tunnel_ip and remote_tunnel_ip addresses must be in the same /30 network. Neither can be the network nor broadcast addresses. This field is required for network type `gre_tunnel` and `unbound_gre_tunnel` connections. This field is required to be unspecified for network type `classic`, `directlink`, `vpc`, `power_virtual_server`, `vpn_gateway` and `redundant_gre` ",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "name": {
+          "pattern": "^([a-zA-Z]|[a-zA-Z][-_a-zA-Z0-9]*[a-zA-Z0-9])$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The user-defined name for this transit gateway connection. Network type `vpc` connections are defaulted to the name of the VPC. Network type `classic` connections are named `classic`. This field is required for network type `power_virtual_server`, `directlink`, `gre_tunnel`, `unbound_gre_tunnel`, `vpn_gateway` and `redundant_gre` connections. This field is optional for network type `classic`, `vpc",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "network_account_id": {
+          "min_len": 0,
+          "max_len": 100,
+          "description": "The ID of the account which owns the network that is being connected. Generally only used if the network is in a different account than the gateway. This field is required for type `unbound_gre_tunnel` when the associated_network_type is `classic` or network_type is `redundant_gre` and the GRE tunnel is in a different account than the gateway.",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "network_id": {
+          "min_len": 0,
+          "max_len": 220,
+          "description": "The ID of the network being connected via this connection. For network types `vpc`, `vpn_gateway`, `power_virtual_server` and `directlink` this is the CRN of the VPC / VPN / PowerVS / Direct Link gateway respectively. This field is required for network type `vpc`, `power_virtual_server`, `vpn_gateway` and `directlink` connections. It is also required for `redundant_gre` connections when the base_n",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "network_type": {
+          "enum": [
+            "classic",
+            "directlink",
+            "gre_tunnel",
+            "unbound_gre_tunnel",
+            "vpc",
+            "power_virtual_server",
+            "redundant_gre",
+            "vpn_gateway"
+          ],
+          "description": "Defines what type of network is connected via this connection.",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "remote_bgp_asn": {
+          "format": "int64",
+          "min": 1,
+          "max": 4294967295,
+          "description": "Remote network BGP ASN. The following ASN values are reserved and unavailable 0, 13884, 36351, 64512, 64513, 65100, 65200-65234, 65402-65433, 65500, 65516, 65519, 65521, 65531 and 4201065000-4201065999. If `remote_bgp_asn` is omitted on gre_tunnel or unbound_gre_tunnel connection create requests IBM will assign an ASN. This field is optional for network type `gre_tunnel` and `unbound_gre_tunnel` c",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "remote_gateway_ip": {
+          "pattern": "^(([0-9]){1,3}\\.){3}([0-9]{1,3})$",
+          "min_len": 0,
+          "max_len": 40,
+          "description": "Remote gateway IP address. This field is required for network type `gre_tunnel` and `unbound_gre_tunnel` connections. This field is required to be unspecified for network type `classic`, `directlink`, `vpc`, `power_virtual_server`, `vpn_gateway` and `redundant_gre` connections.",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "remote_tunnel_ip": {
+          "pattern": "^(([0-9]){1,3}\\.){3}([0-9]{1,3})$",
+          "min_len": 0,
+          "max_len": 40,
+          "description": "Remote tunnel IP address. The local_tunnel_ip and remote_tunnel_ip addresses must be in the same /30 network. Neither can be the network nor broadcast addresses. This field is required for network type `gre_tunnel` and `unbound_gre_tunnel` connections. This field is required to be unspecified for network type `classic`, `directlink`, `vpc`, `power_virtual_server`, `vpn_gateway` and `redundant_gre`",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "tunnels.local_gateway_ip": {
+          "pattern": "^(([0-9]){1,3}\\.){3}([0-9]{1,3})$",
+          "min_len": 0,
+          "max_len": 40,
+          "description": "Local gateway IP address.",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "tunnels.local_tunnel_ip": {
+          "pattern": "^(([0-9]){1,3}\\.){3}([0-9]{1,3})$",
+          "min_len": 0,
+          "max_len": 40,
+          "description": "Local tunnel IP address. The local_tunnel_ip and remote_tunnel_ip addresses must be in the same /30 network. Neither can be the network nor broadcast addresses.",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "tunnels.name": {
+          "pattern": "^([a-zA-Z]|[a-zA-Z][-_a-zA-Z0-9]*[a-zA-Z0-9])$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The user-defined name for this tunnel connection.",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "tunnels.remote_bgp_asn": {
+          "format": "int64",
+          "min": 1,
+          "max": 4294967295,
+          "description": "Remote network BGP ASN. The following ASN values are reserved and unavailable 0, 13884, 36351, 64512, 64513, 65100, 65200-65234, 65402-65433, 65500, 65516, 65519, 65521, 65531 and 4201065000-4201065999 If `remote_bgp_asn` is omitted on create requests, IBM will assign an ASN.",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "tunnels.remote_gateway_ip": {
+          "pattern": "^(([0-9]){1,3}\\.){3}([0-9]{1,3})$",
+          "min_len": 0,
+          "max_len": 40,
+          "description": "Remote gateway IP address.",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "tunnels.remote_tunnel_ip": {
+          "pattern": "^(([0-9]){1,3}\\.){3}([0-9]{1,3})$",
+          "min_len": 0,
+          "max_len": 40,
+          "description": "Remote tunnel IP address. The local_tunnel_ip and remote_tunnel_ip addresses must be in the same /30 network. Neither can be the network nor broadcast addresses.",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "tunnels.zone": {
+          "description": "Specify the connection's location. The specified availability zone must reside in the gateway's region. Use the IBM Cloud global catalog to list zones within the desired region.",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "zone": {
+          "description": "Specify the connection's location. The specified availability zone must reside in the gateway's region. Use the IBM Cloud global catalog to list zones within the desired region. This field is required for network type `gre_tunnel`, and `unbound_gre_tunnel` connections. This field is optional for network type `vpn_gateway` connections. This field is required to be unspecified for network type `clas",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "tunnels.local_bgp_asn": {
+          "format": "int64",
+          "min": 1,
+          "max": 4294967295,
+          "description": "Local network BGP ASN. This field only applies to network type `gre_tunnel` and `unbound_gre_tunnel` connections.",
+          "source": "transit-gateway",
+          "schema": "TransitConnection"
+        }
+      }
+    },
+    {
+      "name": "ibm_tg_connection_action",
+      "kind": "resource",
+      "schema": "TransitGatewayConnectionActions",
+      "spec": "transit-gateway",
+      "score": 0.2333,
+      "attrs": {
+        "action": {
+          "enum": [
+            "approve",
+            "reject"
+          ],
+          "description": "The action that is to be performed against the connection request",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionActions"
+        },
+        "connection_id": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 0,
+          "max_len": 36,
+          "description": "connection ID",
+          "source": "transit-gateway",
+          "schema": "RouteReport"
+        }
+      }
+    },
+    {
+      "name": "ibm_tg_connection_prefix_filter",
+      "kind": "resource",
+      "schema": "PrefixFilterTemplate",
+      "spec": "transit-gateway",
+      "score": 0.58,
+      "attrs": {
+        "action": {
+          "enum": [
+            "permit",
+            "deny"
+          ],
+          "description": "Whether or not this prefix filter should allow or deny prefixes matching this filter's prefix definition.",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "PrefixFilterTemplate"
+        },
+        "before": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 0,
+          "max_len": 36,
+          "description": "A reference to the prefix filter that will be the next filter applied to the Transit Gateway connection. If this field is blank, this prefix filter will be the last rule applied before the connection's default rule. When a prefix filter is created with the same before field as an existing prefix filter, the existing filter will be applied before the new filter, and the existing filter's before fie",
+          "source": "transit-gateway",
+          "schema": "PrefixFilterTemplate"
+        },
+        "ge": {
+          "format": "int32",
+          "min": 0,
+          "max": 32,
+          "description": "Defines the minimum matched prefix precision. If this field is non-zero then the filter will match all routes within the `prefix` that have a prefix length greater than or equal to this value. This value can be zero, or a non-negative number greater than or equal to the prefix length of the filter's prefix or less then or equal to 32. If this value is set to zero, the filter will not use the `ge` ",
+          "source": "transit-gateway",
+          "schema": "PrefixFilterTemplate"
+        },
+        "le": {
+          "format": "int32",
+          "min": 0,
+          "max": 32,
+          "description": "Defines the maximum matched prefix precision. If this field is non-zero then the filter will match all routes within the `prefix` that have a prefix length less than or equal to this value. This value can be zero, or a non-negative number greater than or equal to the prefix length of the filter's prefix or less then or equal to 32. If this value is set to zero, the filter will not use the `le` rou",
+          "source": "transit-gateway",
+          "schema": "PrefixFilterTemplate"
+        },
+        "prefix": {
+          "pattern": "^(([0-9]){1,3}\\.){3}([0-9]{1,3})/([0-9]{1,2})$",
+          "min_len": 0,
+          "max_len": 50,
+          "description": "The IPv4 Prefix to be matched by this filter. If both the `le` and `ge` are zero, then this filter will only apply to routes that exactly match this prefix, while a non-zero value for either `le` or `ge`, this filter can apply to multiple routes with different prefix lengths, but will still only apply to prefixes contained in the address space defined by `prefix`.",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "PrefixFilterTemplate"
+        },
+        "connection_id": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 0,
+          "max_len": 36,
+          "description": "connection ID",
+          "source": "transit-gateway",
+          "schema": "RouteReport"
+        }
+      }
+    },
+    {
+      "name": "ibm_tg_connection_rgre_tunnel",
+      "kind": "resource",
+      "schema": "TransitGatewayTunnelTemplate",
+      "spec": "transit-gateway",
+      "score": 0.4569,
+      "attrs": {
+        "local_gateway_ip": {
+          "pattern": "^(([0-9]){1,3}\\.){3}([0-9]{1,3})$",
+          "min_len": 0,
+          "max_len": 40,
+          "description": "Local gateway IP address.",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "TransitGatewayTunnelTemplate"
+        },
+        "local_tunnel_ip": {
+          "pattern": "^(([0-9]){1,3}\\.){3}([0-9]{1,3})$",
+          "min_len": 0,
+          "max_len": 40,
+          "description": "Local tunnel IP address. The local_tunnel_ip and remote_tunnel_ip addresses must be in the same /30 network. Neither can be the network nor broadcast addresses.",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "TransitGatewayTunnelTemplate"
+        },
+        "name": {
+          "pattern": "^([a-zA-Z]|[a-zA-Z][-_a-zA-Z0-9]*[a-zA-Z0-9])$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The user-defined name for this tunnel connection.",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "TransitGatewayTunnelTemplate"
+        },
+        "remote_bgp_asn": {
+          "format": "int64",
+          "min": 1,
+          "max": 4294967295,
+          "description": "Remote network BGP ASN. The following ASN values are reserved and unavailable 0, 13884, 36351, 64512, 64513, 65100, 65200-65234, 65402-65433, 65500, 65516, 65519, 65521, 65531 and 4201065000-4201065999 If `remote_bgp_asn` is omitted on create requests, IBM will assign an ASN.",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayTunnelTemplate"
+        },
+        "remote_gateway_ip": {
+          "pattern": "^(([0-9]){1,3}\\.){3}([0-9]{1,3})$",
+          "min_len": 0,
+          "max_len": 40,
+          "description": "Remote gateway IP address.",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "TransitGatewayTunnelTemplate"
+        },
+        "remote_tunnel_ip": {
+          "pattern": "^(([0-9]){1,3}\\.){3}([0-9]{1,3})$",
+          "min_len": 0,
+          "max_len": 40,
+          "description": "Remote tunnel IP address. The local_tunnel_ip and remote_tunnel_ip addresses must be in the same /30 network. Neither can be the network nor broadcast addresses.",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "TransitGatewayTunnelTemplate"
+        },
+        "zone": {
+          "description": "Specify the connection's location. The specified availability zone must reside in the gateway's region. Use the IBM Cloud global catalog to list zones within the desired region.",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "TransitGatewayTunnelTemplate"
+        },
+        "base_network_type": {
+          "enum": [
+            "classic",
+            "vpc"
+          ],
+          "description": "The type of network the Unbound GRE tunnel is targeting. This field is required for network type `unbound_gre_tunnel` and must be set to `classic`. For a `redundant_gre` network type, the value is required and can be either VPC or Classic. This field is required to be unspecified for network type `classic`, `directlink`, `vpc`, `power_virtual_server`, `vpn_gateway` and `gre_tunnel` connections.",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "connection_id": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 0,
+          "max_len": 36,
+          "description": "connection ID",
+          "source": "transit-gateway",
+          "schema": "RouteReport"
+        },
+        "local_bgp_asn": {
+          "format": "int64",
+          "min": 1,
+          "max": 4294967295,
+          "description": "Local network BGP ASN. This field only applies to network type `gre_tunnel` and `unbound_gre_tunnel` connections.",
+          "source": "transit-gateway",
+          "schema": "TransitConnection"
+        },
+        "network_account_id": {
+          "min_len": 0,
+          "max_len": 100,
+          "description": "The ID of the account which owns the network that is being connected. Generally only used if the network is in a different account than the gateway. This field is required for type `unbound_gre_tunnel` when the associated_network_type is `classic` or network_type is `redundant_gre` and the GRE tunnel is in a different account than the gateway.",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        },
+        "network_id": {
+          "min_len": 0,
+          "max_len": 220,
+          "description": "The ID of the network being connected via this connection. For network types `vpc`, `vpn_gateway`, `power_virtual_server` and `directlink` this is the CRN of the VPC / VPN / PowerVS / Direct Link gateway respectively. This field is required for network type `vpc`, `power_virtual_server`, `vpn_gateway` and `directlink` connections. It is also required for `redundant_gre` connections when the base_n",
+          "source": "transit-gateway",
+          "schema": "TransitGatewayConnectionTemplate"
+        }
+      }
+    },
+    {
+      "name": "ibm_tg_gateway",
+      "kind": "resource",
+      "schema": "TGCreateTemplate",
+      "spec": "transit-gateway",
+      "score": 0.5175,
+      "attrs": {
+        "global": {
+          "description": "Allow global routing for a Transit Gateway. If unspecified, the default value is false.",
+          "source": "transit-gateway",
+          "schema": "TGCreateTemplate"
+        },
+        "gre_enhanced_route_propagation": {
+          "description": "Allow route propagation across all GREs connected to the same transit gateway. This affects connections on the gateway of type `redundant_gre`, `unbound_gre_tunnel` and `gre_tunnel`.",
+          "source": "transit-gateway",
+          "schema": "TGCreateTemplate"
+        },
+        "location": {
+          "pattern": "^([a-z]|[a-z][-_a-z0-9]*[a-z0-9]+)$",
+          "min_len": 0,
+          "max_len": 36,
+          "description": "Location of Transit Gateway Services",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "TGCreateTemplate"
+        },
+        "name": {
+          "pattern": "^([a-zA-Z]|[a-zA-Z][-_a-zA-Z0-9]*[a-zA-Z0-9])$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "A human readable name for the transit gateway",
+          "api_required": true,
+          "source": "transit-gateway",
+          "schema": "TGCreateTemplate"
+        },
+        "resource_group": {
+          "description": "The resource group to use. If unspecified, the account's [default resource group](https://console.bluemix.net/apidocs/resource-manager#introduction) is used.",
+          "source": "transit-gateway",
+          "schema": "TGCreateTemplate"
+        }
+      }
+    },
+    {
+      "name": "ibm_tg_route_report",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_tg_connection_prefix_filter",
+      "kind": "data",
+      "schema": "RouteReportOverlappingRoute",
+      "spec": "transit-gateway",
+      "score": 0.175,
+      "attrs": {
+        "connection_id": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 0,
+          "max_len": 36,
+          "description": "connection ID",
+          "source": "transit-gateway",
+          "schema": "RouteReportOverlappingRoute"
+        }
+      }
+    },
+    {
+      "name": "ibm_tg_connection_prefix_filters",
+      "kind": "data",
+      "schema": "RouteReportOverlappingRoute",
+      "spec": "transit-gateway",
+      "score": 0.2333,
+      "attrs": {
+        "connection_id": {
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 0,
+          "max_len": 36,
+          "description": "connection ID",
+          "source": "transit-gateway",
+          "schema": "RouteReportOverlappingRoute"
+        }
+      }
+    },
+    {
+      "name": "ibm_tg_gateway",
+      "kind": "data",
+      "schema": "RedundancyGroupPatch",
+      "spec": "transit-gateway",
+      "score": 0.43,
+      "attrs": {
+        "name": {
+          "pattern": "^([a-zA-Z]|[a-zA-Z][-_a-zA-Z0-9]*[a-zA-Z0-9])$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The new name for the redundancy group",
+          "source": "transit-gateway",
+          "schema": "RedundancyGroupPatch"
+        }
+      }
+    },
+    {
+      "name": "ibm_tg_gateways",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_tg_location",
+      "kind": "data",
+      "schema": "RedundancyGroupPatch",
+      "spec": "transit-gateway",
+      "score": 0.78,
+      "attrs": {
+        "name": {
+          "pattern": "^([a-zA-Z]|[a-zA-Z][-_a-zA-Z0-9]*[a-zA-Z0-9])$",
+          "min_len": 1,
+          "max_len": 63,
+          "description": "The new name for the redundancy group",
+          "source": "transit-gateway",
+          "schema": "RedundancyGroupPatch"
+        }
+      }
+    },
+    {
+      "name": "ibm_tg_locations",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_tg_route_report",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_tg_route_reports",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    }
+  ]
+}

@@ -1,0 +1,1437 @@
+{
+  "package": "resourcecontroller",
+  "resources": [
+    {
+      "name": "ibm_resource_instance",
+      "function": "ResourceIBMResourceInstance",
+      "package": "resourcecontroller",
+      "kind": "resource",
+      "description": "Manages ibm_resource_instance. A name for the resource instance",
+      "attributes": {
+        "account_id": {
+          "name": "account_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An alpha-numeric value identifying the account ID."
+        },
+        "allow_cleanup": {
+          "name": "allow_cleanup",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A boolean that dictates if the resource instance should be deleted (cleaned up) during the processing of a region instance delete call."
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the instance was created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who created the instance."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "CRN of resource instance",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "dashboard_url": {
+          "name": "dashboard_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Dashboard URL to access resource."
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the instance was deleted."
+        },
+        "deleted_by": {
+          "name": "deleted_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who deleted the instance."
+        },
+        "extensions": {
+          "name": "extensions",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The extended metadata as a map associated with the resource instance."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Guid of resource instance"
+        },
+        "last_operation": {
+          "name": "last_operation",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the last operation requested on the instance"
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The location where the instance available",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "location"
+          }
+        },
+        "locked": {
+          "name": "locked",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A boolean that dictates if the resource instance should be deleted (cleaned up) during the processing of a region instance delete call."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "A name for the resource instance"
+        },
+        "onetime_credentials": {
+          "name": "onetime_credentials",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A boolean that dictates if the onetime_credentials is true or false."
+        },
+        "parameters": {
+          "name": "parameters",
+          "type": "map",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Arbitrary parameters to pass. Must be a JSON object",
+          "conflicts_with": [
+            "parameters_json"
+          ]
+        },
+        "parameters_json": {
+          "name": "parameters_json",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Arbitrary parameters to pass in Json string format",
+          "conflicts_with": [
+            "parameters"
+          ]
+        },
+        "plan": {
+          "name": "plan",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The plan type of the service"
+        },
+        "plan_history": {
+          "name": "plan_history",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The plan history of the instance.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "resource_plan_id": {
+                "name": "resource_plan_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "start_date": {
+                "name": "start_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        },
+        "resource_aliases_url": {
+          "name": "resource_aliases_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The relative path to the resource aliases for the instance."
+        },
+        "resource_bindings_url": {
+          "name": "resource_bindings_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The relative path to the resource bindings for the instance."
+        },
+        "resource_controller_url": {
+          "name": "resource_controller_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the IBM Cloud dashboard that can be used to explore and view details about the resource"
+        },
+        "resource_crn": {
+          "name": "resource_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the resource",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "resource_group_crn": {
+          "name": "resource_group_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The long ID (full CRN) of the resource group",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The resource group id",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "resource_group_id"
+          }
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group name in which resource is provisioned"
+        },
+        "resource_id": {
+          "name": "resource_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The unique ID of the offering"
+        },
+        "resource_keys_url": {
+          "name": "resource_keys_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The relative path to the resource keys for the instance."
+        },
+        "resource_name": {
+          "name": "resource_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The name of the resource"
+        },
+        "resource_plan_id": {
+          "name": "resource_plan_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The unique ID of the plan associated with the offering"
+        },
+        "resource_status": {
+          "name": "resource_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the resource"
+        },
+        "restored_at": {
+          "name": "restored_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the instance under reclamation was restored."
+        },
+        "restored_by": {
+          "name": "restored_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who restored the instance back from reclamation."
+        },
+        "scheduled_reclaim_at": {
+          "name": "scheduled_reclaim_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the instance was scheduled for reclamation."
+        },
+        "scheduled_reclaim_by": {
+          "name": "scheduled_reclaim_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who initiated the instance reclamation."
+        },
+        "service": {
+          "name": "service",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The name of the service offering like cloud-object-storage, kms etc"
+        },
+        "service_endpoints": {
+          "name": "service_endpoints",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Types of the service endpoints. Possible values are 'public', 'private', 'public-and-private'.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private",
+              "public-and-private"
+            ]
+          }
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The current state of the instance."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Status of resource instance"
+        },
+        "sub_type": {
+          "name": "sub_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The sub-type of instance, e.g. cfaas ."
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^[A-Za-z0-9:_ .-]+$"
+          },
+          "elem": {
+            "kind": "schema",
+            "type": "string",
+            "validate": {
+              "kind": "invoke",
+              "func_name": "tags"
+            }
+          }
+        },
+        "target_crn": {
+          "name": "target_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The full deployment CRN as defined in the global catalog",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The type of the instance, e.g. service_instance."
+        },
+        "update_at": {
+          "name": "update_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the instance was last updated."
+        },
+        "update_by": {
+          "name": "update_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who updated the instance."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "location",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "location",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "resource_group_id",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "resource_group_id",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "tags",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9:_ .-]+$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_resource_key",
+      "function": "ResourceIBMResourceKey",
+      "package": "resourcecontroller",
+      "kind": "resource",
+      "description": "Manages ibm_resource_key. The name of the resource key",
+      "attributes": {
+        "account_id": {
+          "name": "account_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "An alpha-numeric value identifying the account ID."
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the key was created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who created the key."
+        },
+        "credentials": {
+          "name": "credentials",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "Credentials asociated with the key"
+        },
+        "credentials_json": {
+          "name": "credentials_json",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "Credentials asociated with the key in json string"
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "crn of resource key",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the key was deleted."
+        },
+        "deleted_by": {
+          "name": "deleted_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who deleted the key."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "When you create a new key, a globally unique identifier (GUID) is assigned."
+        },
+        "iam_compatible": {
+          "name": "iam_compatible",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Specifies whether the key's credentials support IAM."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The name of the resource key"
+        },
+        "onetime_credentials": {
+          "name": "onetime_credentials",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "onetime_credentials of resource key"
+        },
+        "parameters": {
+          "name": "parameters",
+          "type": "map",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Arbitrary parameters to pass. Must be a JSON object"
+        },
+        "resource_alias_id": {
+          "name": "resource_alias_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The id of the resource alias for which to create resource key",
+          "conflicts_with": [
+            "resource_instance_id"
+          ]
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The short ID of the resource group."
+        },
+        "resource_instance_id": {
+          "name": "resource_instance_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The id of the resource instance for which to create resource key",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "resource_instance_id"
+          },
+          "conflicts_with": [
+            "resource_alias_id"
+          ]
+        },
+        "resource_instance_url": {
+          "name": "resource_instance_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The relative path to the resource."
+        },
+        "role": {
+          "name": "role",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "Name of the user role.Valid roles are Writer, Reader, Manager, Administrator, Operator, Viewer, Editor and Custom Roles."
+        },
+        "source_crn": {
+          "name": "source_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The CRN of resource instance or alias associated to the key.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The state of the key."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Status of resource key"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when the key was last updated."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The subject who updated the key."
+        },
+        "url": {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "When you created a new key, a relative URL path is created identifying the location of the key."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "resource_instance_id",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "resource_instance_id",
+          "kind": "ValidateCloudData"
+        }
+      ]
+    },
+    {
+      "name": "ibm_resource_reclamation_delete",
+      "function": "ResourceIBMResourceReclamationDelete",
+      "package": "resourcecontroller",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_resource_reclamation_delete resource.",
+      "attributes": {
+        "account_id": {
+          "name": "account_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The account ID that owns the reclaimed resource."
+        },
+        "comment": {
+          "name": "comment",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "A comment to describe the deletion action (optional)."
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The timestamp when the reclamation was created."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The user who created the reclamation."
+        },
+        "custom_properties": {
+          "name": "custom_properties",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Custom properties associated with the reclamation.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "entity_crn": {
+          "name": "entity_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The CRN of the reclaimed resource.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "entity_id": {
+          "name": "entity_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The entity ID of the reclaimed resource."
+        },
+        "entity_type_id": {
+          "name": "entity_type_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The entity type ID of the reclaimed resource."
+        },
+        "policy_id": {
+          "name": "policy_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The policy ID associated with the reclamation."
+        },
+        "reclamation_id": {
+          "name": "reclamation_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The reclamation ID to permanently delete. This is the reclamation ID, not the resource instance ID."
+        },
+        "request_by": {
+          "name": "request_by",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The request initiator different from the authentication token (optional)."
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group ID of the reclaimed resource."
+        },
+        "resource_instance_id": {
+          "name": "resource_instance_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource instance ID of the reclaimed resource."
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The current state of the reclamation."
+        },
+        "target_time": {
+          "name": "target_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The target time when the reclamation was scheduled."
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The timestamp when the reclamation was last updated."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The user who last updated the reclamation."
+        }
+      }
+    },
+    {
+      "name": "ibm_resource_instance",
+      "function": "DataSourceIBMResourceInstance",
+      "package": "resourcecontroller",
+      "kind": "data",
+      "description": "Reads ibm_resource_instance. Resource instance name for example, myobjectstorage",
+      "attributes": {
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "CRN of resource instance",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "extensions": {
+          "name": "extensions",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The extended metadata as a map associated with the resource instance."
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Guid of resource instance"
+        },
+        "identifier": {
+          "name": "identifier",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Resource instance guid",
+          "conflicts_with": [
+            "resource_group_id",
+            "name",
+            "location",
+            "service"
+          ]
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The location or the environment in which instance exists",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "location"
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Resource instance name for example, myobjectstorage"
+        },
+        "onetime_credentials": {
+          "name": "onetime_credentials",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "onetime_credentials of resource instance"
+        },
+        "parameters_json": {
+          "name": "parameters_json",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Parameters asociated with instance in json string"
+        },
+        "plan": {
+          "name": "plan",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The plan type of the instance"
+        },
+        "resource_controller_url": {
+          "name": "resource_controller_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the IBM Cloud dashboard that can be used to explore and view details about the resource"
+        },
+        "resource_crn": {
+          "name": "resource_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the resource",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The id of the resource group in which the instance is present",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "resource_group_id"
+          }
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group name in which resource is provisioned"
+        },
+        "resource_name": {
+          "name": "resource_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The name of the resource"
+        },
+        "resource_status": {
+          "name": "resource_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the resource"
+        },
+        "service": {
+          "name": "service",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The service type of the instance"
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource instance status"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Tags of Resource Instance",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^[A-Za-z0-9:_ .-]+$"
+          },
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "location",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "location",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "resource_group_id",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "resource_group_id",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "tags",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9:_ .-]+$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_resource_key",
+      "function": "DataSourceIBMResourceKey",
+      "package": "resourcecontroller",
+      "kind": "data",
+      "description": "Reads ibm_resource_key. The name of the resource key",
+      "attributes": {
+        "credentials": {
+          "name": "credentials",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "Credentials asociated with the key"
+        },
+        "credentials_json": {
+          "name": "credentials_json",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "Credentials asociated with the key in json string"
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "crn of resource key",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "most_recent": {
+          "name": "most_recent",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "If true and multiple entries are found, the most recently created resource key is used. If false, an error is returned",
+          "default": "false"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name of the resource key"
+        },
+        "onetime_credentials": {
+          "name": "onetime_credentials",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "onetime_credentials of resource key"
+        },
+        "resource_alias_id": {
+          "name": "resource_alias_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The id of the resource alias",
+          "conflicts_with": [
+            "resource_instance_id"
+          ]
+        },
+        "resource_instance_id": {
+          "name": "resource_instance_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The id of the resource instance",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "resource_instance_id"
+          },
+          "conflicts_with": [
+            "resource_alias_id"
+          ]
+        },
+        "role": {
+          "name": "role",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "User role"
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Status of resource key"
+        }
+      },
+      "validators": [
+        {
+          "identifier": "resource_instance_id",
+          "kind": "ValidateCloudData"
+        },
+        {
+          "identifier": "resource_instance_id",
+          "kind": "ValidateCloudData"
+        }
+      ]
+    },
+    {
+      "name": "ibm_resource_quota",
+      "function": "DataSourceIBMResourceQuota",
+      "package": "resourcecontroller",
+      "kind": "data",
+      "description": "Reads ibm_resource_quota. Resource quota name, for example Trial Quota",
+      "attributes": {
+        "max_app_instance_memory": {
+          "name": "max_app_instance_memory",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines the total memory of app instance."
+        },
+        "max_apps": {
+          "name": "max_apps",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines the total app limit."
+        },
+        "max_instances_per_app": {
+          "name": "max_instances_per_app",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines the total instances limit per app."
+        },
+        "max_service_instances": {
+          "name": "max_service_instances",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines the total service instances limit."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Resource quota name, for example Trial Quota"
+        },
+        "total_app_memory": {
+          "name": "total_app_memory",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines the total memory for app."
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of the quota."
+        },
+        "vsi_limit": {
+          "name": "vsi_limit",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines the VSI limit."
+        }
+      }
+    },
+    {
+      "name": "ibm_resource_reclamations",
+      "function": "DataSourceIBMResourceReclamations",
+      "package": "resourcecontroller",
+      "kind": "data",
+      "description": "Schema validation for the ibm_resource_reclamations data source.",
+      "attributes": {
+        "reclamations": {
+          "name": "reclamations",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A list of resource reclamations.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "account_id": {
+                "name": "account_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The account ID."
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date/time when created (RFC3339)."
+              },
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The subject who created this reclamation."
+              },
+              "custom_properties": {
+                "name": "custom_properties",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Custom properties set on the reclamation.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "entity_crn": {
+                "name": "entity_crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The full CRN associated with this reclamation.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "entity_id": {
+                "name": "entity_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The entity ID for this reclamation."
+              },
+              "entity_type_id": {
+                "name": "entity_type_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The entity type ID for this reclamation."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID associated with the reclamation."
+              },
+              "policy_id": {
+                "name": "policy_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The policy ID for the reclamation."
+              },
+              "resource_group_id": {
+                "name": "resource_group_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The resource group ID."
+              },
+              "resource_instance_id": {
+                "name": "resource_instance_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The resource instance ID associated with the reclamation."
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The state of this reclamation."
+              },
+              "target_time": {
+                "name": "target_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "When the reclamation retention period ends (RFC3339)."
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date/time when last updated (RFC3339)."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The subject who updated this reclamation."
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 7,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package resourcecontroller"
+}

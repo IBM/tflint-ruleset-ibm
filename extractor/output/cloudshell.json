@@ -1,0 +1,371 @@
+{
+  "package": "cloudshell",
+  "resources": [
+    {
+      "name": "ibm_cloud_shell_account_settings",
+      "function": "ResourceIBMCloudShellAccountSettings",
+      "package": "cloudshell",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_cloud_shell_account_settings resource.",
+      "attributes": {
+        "account_id": {
+          "name": "account_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The account ID in which the account settings belong to.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 100,
+            "regexp": "^[a-zA-Z0-9-]*$"
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation timestamp in Unix epoch time."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "IAM ID of creator."
+        },
+        "default_enable_new_features": {
+          "name": "default_enable_new_features",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "You can choose which Cloud Shell features are available in the account and whether any new features are enabled as they become available. The feature settings apply only to the enabled Cloud Shell locations."
+        },
+        "default_enable_new_regions": {
+          "name": "default_enable_new_regions",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Set whether Cloud Shell is enabled in a specific location for the account. The location determines where user and session data are stored. By default, users are routed to the nearest available location."
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "When enabled, Cloud Shell is available to all users in the account."
+        },
+        "features": {
+          "name": "features",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "List of Cloud Shell features.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "State of the feature."
+              },
+              "key": {
+                "name": "key",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Name of the feature."
+              }
+            }
+          }
+        },
+        "id": {
+          "name": "id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Unique id of the settings object."
+        },
+        "regions": {
+          "name": "regions",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "List of Cloud Shell region settings.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "State of the region."
+              },
+              "key": {
+                "name": "key",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Name of the region."
+              }
+            }
+          }
+        },
+        "rev": {
+          "name": "rev",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Unique revision number for the settings object.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 100,
+            "regexp": "^[a-zA-Z0-9-]*$"
+          }
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of api response object."
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Timestamp of last update in Unix epoch time."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "IAM ID of last updater."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "account_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9-]*$",
+          "min_len": 1,
+          "max_len": 100
+        },
+        {
+          "identifier": "rev",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9-]*$",
+          "min_len": 1,
+          "max_len": 100
+        }
+      ]
+    },
+    {
+      "name": "ibm_cloud_shell_account_settings",
+      "function": "DataSourceIBMCloudShellAccountSettings",
+      "package": "cloudshell",
+      "kind": "data",
+      "description": "Schema validation for the ibm_cloud_shell_account_settings data source.",
+      "attributes": {
+        "account_id": {
+          "name": "account_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The account ID in which the account settings belong to.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 100,
+            "regexp": "^[a-zA-Z0-9-]*$"
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creation timestamp in Unix epoch time."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "IAM ID of creator."
+        },
+        "default_enable_new_features": {
+          "name": "default_enable_new_features",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "You can choose which Cloud Shell features are available in the account and whether any new features are enabled as they become available. The feature settings apply only to the enabled Cloud Shell locations."
+        },
+        "default_enable_new_regions": {
+          "name": "default_enable_new_regions",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Set whether Cloud Shell is enabled in a specific location for the account. The location determines where user and session data are stored. By default, users are routed to the nearest available location."
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "When enabled, Cloud Shell is available to all users in the account."
+        },
+        "features": {
+          "name": "features",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of Cloud Shell features.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "State of the feature."
+              },
+              "key": {
+                "name": "key",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the feature."
+              }
+            }
+          }
+        },
+        "regions": {
+          "name": "regions",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of Cloud Shell region settings.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "State of the region."
+              },
+              "key": {
+                "name": "key",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the region."
+              }
+            }
+          }
+        },
+        "rev": {
+          "name": "rev",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Unique revision number for the settings object.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 100,
+            "regexp": "^[a-zA-Z0-9-]*$"
+          }
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of api response object."
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Timestamp of last update in Unix epoch time."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "IAM ID of last updater."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "account_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9-]*$",
+          "min_len": 1,
+          "max_len": 100
+        },
+        {
+          "identifier": "rev",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9-]*$",
+          "min_len": 1,
+          "max_len": 100
+        }
+      ]
+    }
+  ],
+  "skipped": [],
+  "extracted": 2,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package cloudshell"
+}

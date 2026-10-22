@@ -1,0 +1,558 @@
+{
+  "package": "usagereports",
+  "resources": [
+    {
+      "name": "ibm_billing_report_snapshot",
+      "function": "ResourceIBMBillingReportSnapshot",
+      "package": "usagereports",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_billing_report_snapshot resource.",
+      "attributes": {
+        "account_type": {
+          "name": "account_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of account. Possible values are [enterprise, account]."
+        },
+        "compression": {
+          "name": "compression",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Compression format of the snapshot report."
+        },
+        "content_type": {
+          "name": "content_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of content stored in snapshot report."
+        },
+        "cos_bucket": {
+          "name": "cos_bucket",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The name of the COS bucket to store the snapshot of the billing reports."
+        },
+        "cos_endpoint": {
+          "name": "cos_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The endpoint of the COS instance."
+        },
+        "cos_location": {
+          "name": "cos_location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Region of the COS instance."
+        },
+        "cos_reports_folder": {
+          "name": "cos_reports_folder",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The billing reports root folder to store the billing reports snapshots. Defaults to \"IBMCloud-Billing-Reports\".",
+          "default": "IBMCloud-Billing-Reports"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Timestamp in milliseconds when the snapshot configuration was created."
+        },
+        "history": {
+          "name": "history",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of previous versions of the snapshot configurations.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "account_id": {
+                "name": "account_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Account ID for which billing report snapshot is configured."
+              },
+              "account_type": {
+                "name": "account_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of account. Possible values [enterprise, account]."
+              },
+              "compression": {
+                "name": "compression",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Compression format of the snapshot report."
+              },
+              "content_type": {
+                "name": "content_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of content stored in snapshot report."
+              },
+              "cos_bucket": {
+                "name": "cos_bucket",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the COS bucket to store the snapshot of the billing reports."
+              },
+              "cos_endpoint": {
+                "name": "cos_endpoint",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The endpoint of the COS instance."
+              },
+              "cos_location": {
+                "name": "cos_location",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Region of the COS instance."
+              },
+              "cos_reports_folder": {
+                "name": "cos_reports_folder",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The billing reports root folder to store the billing reports snapshots. Defaults to \"IBMCloud-Billing-Reports\"."
+              },
+              "end_time": {
+                "name": "end_time",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Timestamp in milliseconds when the snapshot configuration ends."
+              },
+              "interval": {
+                "name": "interval",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Frequency of taking the snapshot of the billing reports."
+              },
+              "report_types": {
+                "name": "report_types",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The type of billing reports to take snapshot of. Possible values are [account_summary, enterprise_summary, account_resource_instance_usage].",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "start_time": {
+                "name": "start_time",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Timestamp in milliseconds when the snapshot configuration was created."
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Status of the billing snapshot configuration. Possible values are [enabled, disabled]."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Account that updated the billing snapshot configuration."
+              },
+              "versioning": {
+                "name": "versioning",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A new version of report is created or the existing report version is overwritten with every update."
+              }
+            }
+          }
+        },
+        "interval": {
+          "name": "interval",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Frequency of taking the snapshot of the billing reports.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "daily"
+            ]
+          }
+        },
+        "last_updated_at": {
+          "name": "last_updated_at",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Timestamp in milliseconds when the snapshot configuration was last updated."
+        },
+        "report_types": {
+          "name": "report_types",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The type of billing reports to take snapshot of. Possible values are [account_summary, enterprise_summary, account_resource_instance_usage].",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "state": {
+          "name": "state",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Status of the billing snapshot configuration. Possible values are [enabled, disabled]."
+        },
+        "versioning": {
+          "name": "versioning",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "A new version of report is created or the existing report version is overwritten with every update.",
+          "default": "new",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "new",
+              "overwrite"
+            ]
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "interval",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "daily"
+        },
+        {
+          "identifier": "versioning",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "new, overwrite"
+        }
+      ]
+    },
+    {
+      "name": "ibm_billing_snapshot_list",
+      "function": "DataSourceIBMBillingSnapshotList",
+      "package": "usagereports",
+      "kind": "data",
+      "description": "Schema validation for the ibm_billing_snapshot_list data source.",
+      "attributes": {
+        "date_from": {
+          "name": "date_from",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Timestamp in milliseconds for which billing report snapshot is requested."
+        },
+        "date_to": {
+          "name": "date_to",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Timestamp in milliseconds for which billing report snapshot is requested."
+        },
+        "limit": {
+          "name": "limit",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Number of usage records returned. The default value is 30. Maximum value is 200.",
+          "default": "30"
+        },
+        "month": {
+          "name": "month",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The month for which billing report snapshot is requested.  Format is yyyy-mm."
+        },
+        "snapshotcount": {
+          "name": "snapshotcount",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Number of total snapshots."
+        },
+        "snapshots": {
+          "name": "snapshots",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "account_id": {
+                "name": "account_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Account ID for which billing report snapshot is configured."
+              },
+              "account_type": {
+                "name": "account_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of account. Possible values are [enterprise, account]."
+              },
+              "billing_period": {
+                "name": "billing_period",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Period of billing in snapshot.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "end": {
+                      "name": "end",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Date and time of end of billing in the respective snapshot."
+                    },
+                    "start": {
+                      "name": "start",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Date and time of start of billing in the respective snapshot."
+                    }
+                  }
+                }
+              },
+              "bucket": {
+                "name": "bucket",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the COS bucket to store the snapshot of the billing reports."
+              },
+              "charset": {
+                "name": "charset",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Character encoding used."
+              },
+              "compression": {
+                "name": "compression",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Compression format of the snapshot report."
+              },
+              "content_type": {
+                "name": "content_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of content stored in snapshot report."
+              },
+              "created_on": {
+                "name": "created_on",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Date and time of creation of snapshot."
+              },
+              "expected_processed_at": {
+                "name": "expected_processed_at",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Timestamp of snapshot processed."
+              },
+              "files": {
+                "name": "files",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of location of reports.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "account_id": {
+                      "name": "account_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Account ID for which billing report is captured."
+                    },
+                    "location": {
+                      "name": "location",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Absolute path of the billing report in the COS instance."
+                    },
+                    "report_types": {
+                      "name": "report_types",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The type of billing report stored. Possible values are [account_summary, enterprise_summary, account_resource_instance_usage]."
+                    }
+                  }
+                }
+              },
+              "month": {
+                "name": "month",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Month of captured snapshot."
+              },
+              "processed_at": {
+                "name": "processed_at",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Timestamp at which snapshot is captured."
+              },
+              "report_types": {
+                "name": "report_types",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of report types configured for the snapshot.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The type of billing report of the snapshot. Possible values are [account_summary, enterprise_summary, account_resource_instance_usage]."
+                    },
+                    "version": {
+                      "name": "version",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Version of the snapshot."
+                    }
+                  }
+                }
+              },
+              "snapshot_id": {
+                "name": "snapshot_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Id of the snapshot captured."
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Status of the billing snapshot configuration. Possible values are [enabled, disabled]."
+              },
+              "version": {
+                "name": "version",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Version of the snapshot."
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 2,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package usagereports"
+}

@@ -1,0 +1,61 @@
+{
+  "package": "resourcemanager",
+  "specs": [
+    {
+      "slug": "resource-controller-resource-manager",
+      "title": "Resource Manager",
+      "schema_count": 9,
+      "path_count": 4
+    }
+  ],
+  "matched": 3,
+  "resource_count": 3,
+  "overlay_attrs": 3,
+  "resources": [
+    {
+      "name": "ibm_resource_group",
+      "kind": "resource",
+      "schema": "/v2/resource_groups/{id}:patch",
+      "spec": "resource-controller-resource-manager",
+      "score": 0.3133,
+      "attrs": {
+        "name": {
+          "description": "The new name of the resource group.",
+          "api_required": true,
+          "source": "resource-controller-resource-manager",
+          "schema": "/v2/resource_groups/{id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_resource_group",
+      "kind": "data",
+      "schema": "/v2/resource_groups/{id}:patch",
+      "spec": "resource-controller-resource-manager",
+      "score": 0.255,
+      "attrs": {
+        "name": {
+          "description": "The new name of the resource group.",
+          "api_required": true,
+          "source": "resource-controller-resource-manager",
+          "schema": "/v2/resource_groups/{id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_resource_groups",
+      "kind": "data",
+      "schema": "/v2/resource_groups/{id}:patch",
+      "spec": "resource-controller-resource-manager",
+      "score": 0.43,
+      "attrs": {
+        "name": {
+          "description": "The new name of the resource group.",
+          "api_required": true,
+          "source": "resource-controller-resource-manager",
+          "schema": "/v2/resource_groups/{id}:patch"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "package": "pushnotification",
+  "specs": [],
+  "matched": 0,
+  "resource_count": 2,
+  "overlay_attrs": 0,
+  "resources": [
+    {
+      "name": "ibm_pn_application_chrome",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pn_application_chrome",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    }
+  ]
+}

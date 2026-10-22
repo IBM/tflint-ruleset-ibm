@@ -1,0 +1,1927 @@
+{
+  "package": "catalogmanagement",
+  "specs": [
+    {
+      "slug": "resource-catalog-private-catalog",
+      "title": "Catalog Management API",
+      "schema_count": 152,
+      "path_count": 93
+    },
+    {
+      "slug": "resource-catalog-global-catalog",
+      "title": "Global Catalog API",
+      "schema_count": 46,
+      "path_count": 10
+    },
+    {
+      "slug": "search",
+      "title": "Global Search",
+      "schema_count": 21,
+      "path_count": 2
+    }
+  ],
+  "matched": 14,
+  "resource_count": 14,
+  "overlay_attrs": 341,
+  "resources": [
+    {
+      "name": "ibm_cm_account",
+      "kind": "resource",
+      "schema": "TerraformEngines",
+      "spec": "resource-catalog-private-catalog",
+      "score": 0.25,
+      "attrs": {
+        "terraform_engines.api_token": {
+          "description": "The api key used to access the engine instance",
+          "source": "resource-catalog-private-catalog",
+          "schema": "TerraformEngines"
+        },
+        "terraform_engines.da_creation.default_private_catalog_id": {
+          "description": "Default private catalog to create the deployable architectures in",
+          "source": "resource-catalog-private-catalog",
+          "schema": "TerraformEngines"
+        },
+        "terraform_engines.da_creation.enabled": {
+          "description": "Determines whether deployable architectures are auto-created from workspaces in the engine",
+          "source": "resource-catalog-private-catalog",
+          "schema": "TerraformEngines"
+        },
+        "terraform_engines.da_creation.polling_info.scopes.name": {
+          "description": "User provided name for the specified engine",
+          "source": "resource-catalog-private-catalog",
+          "schema": "TerraformEngines"
+        },
+        "terraform_engines.da_creation.polling_info.scopes.type": {
+          "description": "The terraform engine type. The only one supported at the moment is terraform-enterprise",
+          "source": "resource-catalog-private-catalog",
+          "schema": "TerraformEngines"
+        },
+        "terraform_engines.name": {
+          "description": "User provided name for the specified engine",
+          "source": "resource-catalog-private-catalog",
+          "schema": "TerraformEngines"
+        },
+        "terraform_engines.private_endpoint": {
+          "description": "The private endpoint for the engine instance",
+          "source": "resource-catalog-private-catalog",
+          "schema": "TerraformEngines"
+        },
+        "terraform_engines.public_endpoint": {
+          "description": "The public endpoint for the engine instance",
+          "source": "resource-catalog-private-catalog",
+          "schema": "TerraformEngines"
+        },
+        "terraform_engines.type": {
+          "description": "The terraform engine type. The only one supported at the moment is terraform-enterprise",
+          "source": "resource-catalog-private-catalog",
+          "schema": "TerraformEngines"
+        }
+      }
+    },
+    {
+      "name": "ibm_cm_catalog",
+      "kind": "resource",
+      "schema": "Catalog",
+      "spec": "resource-catalog-private-catalog",
+      "score": 0.43,
+      "attrs": {
+        "catalog_banner_url": {
+          "description": "URL for a banner image for this catalog",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "catalog_filters.category_filters.filter.filter_terms": {
+          "description": "List of values to match against. If include is true, then if the offering has one of the values then the offering is included. If include is false, then if the offering has one of the values then the offering is excluded.",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "catalog_filters.category_filters.include": {
+          "description": "Offering filter terms",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "catalog_filters.id_filters.exclude.filter_terms": {
+          "description": "List of values to match against. If include is true, then if the offering has one of the values then the offering is included. If include is false, then if the offering has one of the values then the offering is excluded.",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "catalog_filters.id_filters.include.filter_terms": {
+          "description": "List of values to match against. If include is true, then if the offering has one of the values then the offering is included. If include is false, then if the offering has one of the values then the offering is excluded.",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "catalog_filters.include_all": {
+          "description": "-> true - Include all of the public catalog when filtering. Further settings will specifically exclude some offerings. false - Exclude all of the public catalog when filtering. Further settings will specifically include some offerings.",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "catalog_icon_url": {
+          "description": "URL for an icon associated with this catalog",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "disabled": {
+          "description": "Denotes whether a catalog is disabled",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "features.description": {
+          "description": "Feature description",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "features.description_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "features.title": {
+          "description": "Heading",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "features.title_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "kind": {
+          "description": "Kind of catalog. Supported kinds are offering and vpe",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "label": {
+          "description": "Display Name in the requested language",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "label_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "metadata": {
+          "description": "Catalog specific metadata",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "resource_group_id": {
+          "description": "Resource group id the catalog is owned by",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "short_description": {
+          "description": "Description in the requested language",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "short_description_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "tags": {
+          "description": "List of tags associated with this catalog",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "target_account_contexts.api_key": {
+          "description": "API Key",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "target_account_contexts.label": {
+          "description": "Display name",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "target_account_contexts.name": {
+          "description": "Unique identifier/name",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "target_account_contexts.project_id": {
+          "description": "Project ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "target_account_contexts.trusted_profile.target_service_id": {
+          "description": "Target service ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        },
+        "target_account_contexts.trusted_profile.trusted_profile_id": {
+          "description": "Trusted profile ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        }
+      }
+    },
+    {
+      "name": "ibm_cm_object",
+      "kind": "resource",
+      "schema": "CatalogObjectPrototype",
+      "spec": "resource-catalog-private-catalog",
+      "score": 0.4918,
+      "attrs": {
+        "catalog_id": {
+          "format": "identifier",
+          "description": "The id of the catalog containing this offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "CatalogObjectPrototype"
+        },
+        "data": {
+          "description": "Map of data values for this object",
+          "source": "resource-catalog-private-catalog",
+          "schema": "CatalogObjectPrototype"
+        },
+        "kind": {
+          "description": "Kind of object",
+          "source": "resource-catalog-private-catalog",
+          "schema": "CatalogObjectPrototype"
+        },
+        "label": {
+          "description": "Display name in the requested language",
+          "source": "resource-catalog-private-catalog",
+          "schema": "CatalogObjectPrototype"
+        },
+        "label_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "CatalogObjectPrototype"
+        },
+        "name": {
+          "description": "The programmatic name of this object",
+          "source": "resource-catalog-private-catalog",
+          "schema": "CatalogObjectPrototype"
+        },
+        "parent_id": {
+          "description": "The parent for this specific object",
+          "source": "resource-catalog-private-catalog",
+          "schema": "CatalogObjectPrototype"
+        },
+        "short_description": {
+          "description": "Short description in the requested language",
+          "source": "resource-catalog-private-catalog",
+          "schema": "CatalogObjectPrototype"
+        },
+        "short_description_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "CatalogObjectPrototype"
+        },
+        "tags": {
+          "description": "List of tags associated with this catalog",
+          "source": "resource-catalog-private-catalog",
+          "schema": "CatalogObjectPrototype"
+        }
+      }
+    },
+    {
+      "name": "ibm_cm_offering",
+      "kind": "resource",
+      "schema": "Offering",
+      "spec": "resource-catalog-private-catalog",
+      "score": 0.3674,
+      "attrs": {
+        "catalog_id": {
+          "format": "identifier",
+          "description": "The id of the catalog containing this offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "disclaimer": {
+          "description": "A disclaimer for this offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "features.description": {
+          "description": "Feature description",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "features.description_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "features.title": {
+          "description": "Heading",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "features.title_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "hidden": {
+          "description": "Determine if this offering should be displayed in the Consumption UI",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "image_pull_keys.description": {
+          "description": "Key description",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "image_pull_keys.name": {
+          "description": "Key name",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "image_pull_keys.value": {
+          "description": "Key value",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "keywords": {
+          "description": "List of keywords associated with offering, typically used to search for it",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.additional_features.description": {
+          "description": "Feature description",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.additional_features.description_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.additional_features.title": {
+          "description": "Heading",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.additional_features.title_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.created": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "The date and time this catalog was created",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.format_kind": {
+          "description": "content kind, e.g., helm, vm image",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.id": {
+          "description": "Unique ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.install_kind": {
+          "description": "install kind, e.g., helm, operator, terraform",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.metadata": {
+          "description": "Open ended metadata information",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.additional_features.description": {
+          "description": "Feature description",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.additional_features.description_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.additional_features.title": {
+          "description": "Heading",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.additional_features.title_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.created": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "The date and time this catalog was created",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.deployments.created": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "The date and time this catalog was created",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.deployments.id": {
+          "format": "identifier",
+          "description": "unique id",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.deployments.label": {
+          "description": "Display Name in the requested language",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.deployments.long_description": {
+          "description": "Long description in the requested language",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.deployments.metadata": {
+          "description": "Open ended metadata information",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.deployments.name": {
+          "description": "The programmatic name of this offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.deployments.short_description": {
+          "description": "Short description in the requested language",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.deployments.tags": {
+          "description": "List of tags associated with this catalog",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.deployments.updated": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "The date and time this catalog was last updated",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.id": {
+          "format": "identifier",
+          "description": "unique id",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.label": {
+          "description": "Display Name in the requested language",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.long_description": {
+          "description": "Long description in the requested language",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.metadata": {
+          "description": "Open ended metadata information",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.name": {
+          "description": "The programmatic name of this offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.short_description": {
+          "description": "Short description in the requested language",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.tags": {
+          "description": "List of tags associated with this catalog",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.plans.updated": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "The date and time this catalog was last updated",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.tags": {
+          "description": "List of tags associated with this catalog",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.target_kind": {
+          "description": "target cloud to install, e.g., iks, open_shift_iks",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.updated": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "The date and time this catalog was last updated",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.catalog_id": {
+          "format": "identifier",
+          "description": "Catalog ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.configuration.custom_config.config_constraints": {
+          "description": "Map of constraint parameters that will be passed to the custom widget",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.configuration.custom_config.grouping": {
+          "description": "Determines where this configuration type is rendered (3 sections today - Target, Resource, and Deployment)",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.configuration.custom_config.grouping_index": {
+          "description": "Determines the order that this configuration item shows in that particular grouping",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.configuration.custom_config.original_grouping": {
+          "description": "Original grouping type for this configuration (3 types - Target, Resource, and Deployment)",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.configuration.custom_config.type": {
+          "description": "ID of the widget type",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.configuration.default_value": {
+          "description": "The default value. To use a secret when the type is password, specify a JSON encoded value of $ref:#/components/schemas/SecretInstance, prefixed with `cmsm_v1:`",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.configuration.description": {
+          "description": "Key description",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.configuration.display_name": {
+          "description": "Display name for configuration type",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.configuration.hidden": {
+          "description": "Hide values",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.configuration.key": {
+          "description": "Configuration key",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.configuration.options": {
+          "description": "An option value of any type",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.configuration.required": {
+          "description": "Is key required to install",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.configuration.type": {
+          "description": "Value type (string, boolean, int)",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.configuration.type_metadata": {
+          "description": "The original type, as found in the source being onboarded",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.configuration.value_constraint": {
+          "description": "Deprecated - Constraint associated with value, e.g., for string type - regx:[a-z]",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.created": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "The date and time this version was created",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.crn": {
+          "description": "Version's CRN",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.deprecated": {
+          "description": "read only field, indicating if this version is deprecated",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.entitlement.image_repo_name": {
+          "description": "Image repository name",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.entitlement.part_numbers": {
+          "description": "list of license entitlement part numbers, eg. D1YGZLL,D1ZXILL",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.entitlement.product_id": {
+          "description": "Product ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.entitlement.provider_id": {
+          "description": "Provider ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.entitlement.provider_name": {
+          "description": "Provider name",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.flavor.index": {
+          "description": "Order that this flavor should appear when listed for a single version",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.flavor.label": {
+          "description": "Label for this flavor",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.flavor.label_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.flavor.name": {
+          "description": "Programmatic name for this flavor",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.iam_permissions.resources.description": {
+          "description": "Resource description",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.iam_permissions.resources.name": {
+          "description": "Resource name",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.iam_permissions.resources.role_crns": {
+          "description": "Role CRNs for this permission",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.iam_permissions.role_crns": {
+          "description": "Role CRNs for this permission",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.iam_permissions.service_name": {
+          "description": "Service name",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.id": {
+          "format": "identifier",
+          "description": "Unique ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.image_manifest_url": {
+          "description": "If set, denotes a url to a YAML file with list of container images used by this version",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.image_pull_key_name": {
+          "description": "ID of the image pull key to use from Offering.ImagePullKeys",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.install.delete_script": {
+          "description": "Optional script that if run will remove the installed version",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.install.instructions": {
+          "description": "Instruction on step and by whom (role) that are needed to take place to prepare the target for installing this version",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.install.instructions_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.install.scope": {
+          "description": "Optional value indicating if this script is scoped to a namespace or the entire cluster",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.install.script": {
+          "description": "Optional script that needs to be run post any pre-condition script",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.install.script_permission": {
+          "description": "Optional iam permissions that are required on the target cluster to run this script",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.kind_id": {
+          "description": "Kind ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.licenses.description": {
+          "description": "License description",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.licenses.id": {
+          "description": "License ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.licenses.name": {
+          "description": "license name",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.licenses.type": {
+          "description": "type of license e.g., Apache xxx",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.licenses.url": {
+          "description": "URL for the license text",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.long_description": {
+          "description": "Long description for version",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.long_description_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.metadata.images.id": {
+          "format": "identifier",
+          "description": "unique id",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.metadata.images.name": {
+          "description": "The programmatic name of this offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.metadata.operating_system.display_name": {
+          "description": "Display name for configuration type",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.metadata.operating_system.href": {
+          "description": "The href to the linked response",
+          "api_required": true,
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.metadata.operating_system.name": {
+          "description": "The programmatic name of this offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.metadata.operating_system.version": {
+          "description": "Version of content type",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.metadata.source_url": {
+          "description": "Content's source URL (e.g git repo)",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.offering_id": {
+          "format": "identifier",
+          "description": "Offering ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.outputs.description": {
+          "description": "Output description",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.outputs.key": {
+          "description": "Output key",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.package_version": {
+          "description": "Version of the package used to create this version",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.pre_install.delete_script": {
+          "description": "Optional script that if run will remove the installed version",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.pre_install.instructions": {
+          "description": "Instruction on step and by whom (role) that are needed to take place to prepare the target for installing this version",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.pre_install.instructions_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.pre_install.scope": {
+          "description": "Optional value indicating if this script is scoped to a namespace or the entire cluster",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.pre_install.script": {
+          "description": "Optional script that needs to be run post any pre-condition script",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.pre_install.script_permission": {
+          "description": "Optional iam permissions that are required on the target cluster to run this script",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.repo_url": {
+          "description": "Content's repo URL",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.required_resources.type": {
+          "enum": [
+            "mem",
+            "disk",
+            "cores",
+            "targetVersion",
+            "nodes",
+            "terraformVersion"
+          ],
+          "description": "Type of requirement",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.required_resources.value": {
+          "description": "mem, disk, cores, and nodes can be parsed as an int. targetVersion and terraformVersion will be a semver range value.",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.sha": {
+          "description": "hash of the content",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.single_instance": {
+          "description": "Denotes if single instance can be deployed to a given cluster",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.solution_info.architecture_diagrams.description": {
+          "description": "Description of this diagram",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.solution_info.architecture_diagrams.description_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.solution_info.dependencies.catalog_id": {
+          "description": "Optional - If not specified, assumes the Public Catalog",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.solution_info.dependencies.flavors": {
+          "description": "Optional - List of dependent flavors in the specified range",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.solution_info.dependencies.id": {
+          "description": "Optional - Offering ID - not required if name is set",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.solution_info.dependencies.name": {
+          "description": "Optional - Programmatic Offering name",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.solution_info.dependencies.version": {
+          "description": "Required - Semver value or range",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.solution_info.features.description": {
+          "description": "Feature description",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.solution_info.features.description_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.solution_info.features.title": {
+          "description": "Heading",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.solution_info.features.title_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.source_url": {
+          "description": "Content's source URL (e.g git repo)",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.state.current": {
+          "description": "one of: new, validated, consumable",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.state.current_entered": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "Date and time of current request",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.state.pending": {
+          "description": "one of: new, validated, consumable",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.state.pending_requested": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "Date and time of pending request",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.state.previous": {
+          "description": "one of: new, validated, consumable",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.tags": {
+          "description": "List of tags associated with this catalog",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.tgz_url": {
+          "description": "File used to on-board this version",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.updated": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "The date and time this version was last updated",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.validation.last_operation": {
+          "description": "Last operation (e.g. submit_deployment, generate_installer, install_offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.validation.message": {
+          "description": "Any message needing to be conveyed as part of the validation job",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.validation.requested": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "Date and time of last validation was requested",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.validation.state": {
+          "description": "Current validation state - <empty>, in_progress, valid, invalid, expired",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.validation.target": {
+          "description": "Validation target information (e.g. cluster_id, region, namespace, etc). Values will vary by Content type",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.validation.validated": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "Date and time of last successful validation",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.version": {
+          "description": "Version of content type",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.version_locator": {
+          "format": "identifier",
+          "description": "A dotted value of `catalogID`.`versionID`",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.whitelisted_accounts": {
+          "description": "Whitelisted accounts for version",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "label": {
+          "description": "Display Name in the requested language",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "label_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "long_description": {
+          "description": "Long description in the requested language",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "long_description_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "media.api_url": {
+          "description": "CM API specific URL of the specified media item",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "media.caption": {
+          "description": "Caption for this media item",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "media.caption_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "media.thumbnail_url": {
+          "description": "Thumbnail URL for this media item",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "media.type": {
+          "description": "Type of this media item",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "media.url": {
+          "description": "URL of the specified media item",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "media.url_proxy.sha": {
+          "description": "SHA256 fingerprint of image",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "media.url_proxy.url": {
+          "description": "URL of the specified media item being proxied",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "metadata": {
+          "description": "Map of metadata values for this offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "name": {
+          "description": "The programmatic name of this offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "offering_docs_url": {
+          "description": "URL for an additional docs with this offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "offering_icon_url": {
+          "description": "URL for an icon associated with this offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "offering_id": {
+          "format": "identifier",
+          "description": "Offering ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "offering_support_url": {
+          "description": "[deprecated] - Use offering.support instead. URL to be displayed in the Consumption UI for getting support on this offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "portal_approval_record": {
+          "description": "The portal's approval record ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "portal_ui_url": {
+          "description": "The portal UI URL",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "product_kind": {
+          "description": "The product kind. Valid values are module, solution, or empty string",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "provider_info.id": {
+          "description": "The id of this provider",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "provider_info.name": {
+          "description": "The name of this provider",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "public_original_crn": {
+          "description": "The original offering CRN that this publish entry came from",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "publish_public_crn": {
+          "description": "The crn of the public catalog entry of this offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "repo_info.token": {
+          "description": "Token for private repos",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "repo_info.type": {
+          "description": "Public or enterprise GitHub",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "share_enabled": {
+          "description": "Denotes sharing including access list availability of an Offering is enabled",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "share_with_all": {
+          "description": "Denotes public availability of an Offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "share_with_ibm": {
+          "description": "Denotes IBM employee availability of an Offering - if share_enabled is true",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "short_description": {
+          "description": "Short description in the requested language",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "short_description_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "tags": {
+          "description": "List of tags associated with this catalog",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "kinds.versions.metadata.file.size": {
+          "min": 1,
+          "max": 1000,
+          "description": "The number of buckets to return, one per unique term. If you have more than 1000 different terms in the aggregating field, and you want to get them, then you must perform multiple aggregations leveraging the query parameter to aggregate on disjointed results set. For example, aggregating on the account_id field may produce a high number of buckets, depending on the query, which may exceed the limi",
+          "source": "search",
+          "schema": "TermsAggregation"
+        }
+      }
+    },
+    {
+      "name": "ibm_cm_offering_instance",
+      "kind": "resource",
+      "schema": "OfferingInstance",
+      "spec": "resource-catalog-private-catalog",
+      "score": 0.297,
+      "attrs": {
+        "catalog_id": {
+          "description": "Catalog ID this instance was created from.",
+          "source": "resource-catalog-private-catalog",
+          "schema": "OfferingInstance"
+        },
+        "channel": {
+          "description": "Channel to pin the operator subscription to",
+          "source": "resource-catalog-private-catalog",
+          "schema": "OfferingInstance"
+        },
+        "cluster_all_namespaces": {
+          "description": "designate to install into all namespaces",
+          "source": "resource-catalog-private-catalog",
+          "schema": "OfferingInstance"
+        },
+        "cluster_id": {
+          "description": "Cluster ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "OfferingInstance"
+        },
+        "cluster_namespaces": {
+          "description": "List of target namespaces to install into",
+          "source": "resource-catalog-private-catalog",
+          "schema": "OfferingInstance"
+        },
+        "cluster_region": {
+          "description": "Cluster region (e.g., us-south)",
+          "source": "resource-catalog-private-catalog",
+          "schema": "OfferingInstance"
+        },
+        "install_plan": {
+          "description": "Type of install plan (also known as approval strategy) for operator subscriptions. Can be either automatic, which automatically upgrades operators to the latest in a channel, or manual, which requires approval on the cluster",
+          "source": "resource-catalog-private-catalog",
+          "schema": "OfferingInstance"
+        },
+        "kind_format": {
+          "description": "the format this instance has (helm, operator, ova...).",
+          "source": "resource-catalog-private-catalog",
+          "schema": "OfferingInstance"
+        },
+        "label": {
+          "description": "the label for this instance.",
+          "source": "resource-catalog-private-catalog",
+          "schema": "OfferingInstance"
+        },
+        "offering_id": {
+          "description": "Offering ID this instance was created from.",
+          "source": "resource-catalog-private-catalog",
+          "schema": "OfferingInstance"
+        },
+        "parent_crn": {
+          "description": "The CRN of the resource that is considered a parent of this software instance",
+          "source": "resource-catalog-private-catalog",
+          "schema": "OfferingInstance"
+        },
+        "plan_id": {
+          "description": "The software plan ID used when creating this software instance",
+          "source": "resource-catalog-private-catalog",
+          "schema": "OfferingInstance"
+        },
+        "resource_group_id": {
+          "description": "Id of the resource group to provision the offering instance into",
+          "source": "resource-catalog-private-catalog",
+          "schema": "OfferingInstance"
+        },
+        "version": {
+          "description": "The version this instance was installed from (semver - not version id)",
+          "source": "resource-catalog-private-catalog",
+          "schema": "OfferingInstance"
+        }
+      }
+    },
+    {
+      "name": "ibm_cm_validation",
+      "kind": "resource",
+      "schema": "Validation",
+      "spec": "resource-catalog-private-catalog",
+      "score": 0.21,
+      "attrs": {
+        "environment_variables.name": {
+          "format": "identifier",
+          "source": "resource-catalog-private-catalog",
+          "schema": "RegionsSearchResult"
+        },
+        "schematics.name": {
+          "format": "identifier",
+          "source": "resource-catalog-private-catalog",
+          "schema": "RegionsSearchResult"
+        },
+        "version_locator": {
+          "format": "identifier",
+          "description": "A dotted value of `catalogID`.`versionID`",
+          "source": "resource-catalog-private-catalog",
+          "schema": "OfferingSearchResult"
+        }
+      }
+    },
+    {
+      "name": "ibm_cm_version",
+      "kind": "resource",
+      "schema": "Version",
+      "spec": "resource-catalog-private-catalog",
+      "score": 0.2575,
+      "attrs": {
+        "catalog_id": {
+          "format": "identifier",
+          "description": "Catalog ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.custom_config.associations.parameters.name": {
+          "description": "Name of this parameter",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.custom_config.config_constraints": {
+          "description": "Map of constraint parameters that will be passed to the custom widget",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.custom_config.grouping": {
+          "description": "Determines where this configuration type is rendered (3 sections today - Target, Resource, and Deployment)",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.custom_config.grouping_index": {
+          "description": "Determines the order that this configuration item shows in that particular grouping",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.custom_config.original_grouping": {
+          "description": "Original grouping type for this configuration (3 types - Target, Resource, and Deployment)",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.custom_config.type": {
+          "description": "ID of the widget type",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.default_value": {
+          "description": "The default value. To use a secret when the type is password, specify a JSON encoded value of $ref:#/components/schemas/SecretInstance, prefixed with `cmsm_v1:`",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.description": {
+          "description": "Key description",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.display_name": {
+          "description": "Display name for configuration type",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.hidden": {
+          "description": "Hide values",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.key": {
+          "description": "Configuration key",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.options": {
+          "description": "An option value of any type",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.required": {
+          "description": "Is key required to install",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.type": {
+          "description": "Value type (string, boolean, int)",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.type_metadata": {
+          "description": "The original type, as found in the source being onboarded",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.value_constraint": {
+          "description": "Deprecated - Constraint associated with value, e.g., for string type - regx:[a-z]",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.value_constraints.description": {
+          "description": "The value to display if the inptu value does not match the specified constraint.",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.value_constraints.type": {
+          "enum": [
+            "regex"
+          ],
+          "description": "Type of constraint",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "configuration.value_constraints.value": {
+          "description": "Contstraint value. For type regex, this is a regular expression in Javascript notation",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "entitlement.image_repo_name": {
+          "description": "Image repository name",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "entitlement.part_numbers": {
+          "description": "list of license entitlement part numbers, eg. D1YGZLL,D1ZXILL",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "entitlement.product_id": {
+          "description": "Product ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "entitlement.provider_id": {
+          "description": "Provider ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "entitlement.provider_name": {
+          "description": "Provider name",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "flavor.index": {
+          "description": "Order that this flavor should appear when listed for a single version",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "flavor.label": {
+          "description": "Label for this flavor",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "flavor.label_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "flavor.name": {
+          "description": "Programmatic name for this flavor",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "iam_permissions.resources.description": {
+          "description": "Resource description",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "iam_permissions.resources.name": {
+          "description": "Resource name",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "iam_permissions.resources.role_crns": {
+          "description": "Role CRNs for this permission",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "iam_permissions.role_crns": {
+          "description": "Role CRNs for this permission",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "iam_permissions.service_name": {
+          "description": "Service name",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "import_metadata.images.id": {
+          "format": "identifier",
+          "description": "Unique ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "import_metadata.images.name": {
+          "description": "Programmatic name for this flavor",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "import_metadata.operating_system.display_name": {
+          "description": "Display name for configuration type",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "import_metadata.operating_system.name": {
+          "description": "Programmatic name for this flavor",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "import_metadata.operating_system.version": {
+          "description": "Version of content type",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "install.delete_script": {
+          "description": "Optional script that if run will remove the installed version",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "install.instructions": {
+          "description": "Instruction on step and by whom (role) that are needed to take place to prepare the target for installing this version",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "install.instructions_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "install.scope": {
+          "description": "Optional value indicating if this script is scoped to a namespace or the entire cluster",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "install.script": {
+          "description": "Optional script that needs to be run post any pre-condition script",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "install.script_permission": {
+          "description": "Optional iam permissions that are required on the target cluster to run this script",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "label": {
+          "description": "Label for this flavor",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "licenses.description": {
+          "description": "License description",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "licenses.id": {
+          "description": "License ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "licenses.name": {
+          "description": "license name",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "licenses.type": {
+          "description": "type of license e.g., Apache xxx",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "licenses.url": {
+          "description": "URL for the license text",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "long_description": {
+          "description": "Long description for version",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "name": {
+          "description": "Programmatic name for this flavor",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "offering_id": {
+          "format": "identifier",
+          "description": "Offering ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "outputs.description": {
+          "description": "Output description",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "outputs.key": {
+          "description": "Output key",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "pre_install.delete_script": {
+          "description": "Optional script that if run will remove the installed version",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "pre_install.instructions": {
+          "description": "Instruction on step and by whom (role) that are needed to take place to prepare the target for installing this version",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "pre_install.instructions_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "pre_install.scope": {
+          "description": "Optional value indicating if this script is scoped to a namespace or the entire cluster",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "pre_install.script": {
+          "description": "Optional script that needs to be run post any pre-condition script",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "pre_install.script_permission": {
+          "description": "Optional iam permissions that are required on the target cluster to run this script",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "required_resources.type": {
+          "enum": [
+            "mem",
+            "disk",
+            "cores",
+            "targetVersion",
+            "nodes",
+            "terraformVersion"
+          ],
+          "description": "Type of requirement",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "required_resources.value": {
+          "description": "mem, disk, cores, and nodes can be parsed as an int. targetVersion and terraformVersion will be a semver range value.",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.architecture_diagrams.description": {
+          "description": "Description of this diagram",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.architecture_diagrams.description_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.architecture_diagrams.diagram.api_url": {
+          "description": "CM API specific URL of the specified media item",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.architecture_diagrams.diagram.caption": {
+          "description": "Caption for this media item",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.architecture_diagrams.diagram.caption_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.architecture_diagrams.diagram.thumbnail_url": {
+          "description": "Thumbnail URL for this media item",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.architecture_diagrams.diagram.type": {
+          "description": "Type of this media item",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.architecture_diagrams.diagram.url": {
+          "description": "URL of the specified media item",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.architecture_diagrams.diagram.url_proxy.sha": {
+          "description": "SHA256 fingerprint of image",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.architecture_diagrams.diagram.url_proxy.url": {
+          "description": "URL of the specified media item being proxied",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.dependencies.catalog_id": {
+          "description": "Optional - If not specified, assumes the Public Catalog",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.dependencies.flavors": {
+          "description": "Optional - List of dependent flavors in the specified range",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.dependencies.id": {
+          "description": "Optional - Offering ID - not required if name is set",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.dependencies.name": {
+          "description": "Optional - Programmatic Offering name",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.dependencies.version": {
+          "description": "Required - Semver value or range",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.features.description": {
+          "description": "Feature description",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.features.description_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.features.title": {
+          "description": "Heading",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "solution_info.features.title_i18n": {
+          "description": "A map of translated strings, by language code",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "tags": {
+          "description": "List of tags associated with this catalog",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "validation.last_operation": {
+          "description": "Last operation (e.g. submit_deployment, generate_installer, install_offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "validation.message": {
+          "description": "Any message needing to be conveyed as part of the validation job",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "validation.requested": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "Date and time of last validation was requested",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "validation.state": {
+          "description": "Current validation state - <empty>, in_progress, valid, invalid, expired",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "validation.target": {
+          "description": "Validation target information (e.g. cluster_id, region, namespace, etc). Values will vary by Content type",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "validation.validated": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "Date and time of last successful validation",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Version"
+        },
+        "content": {
+          "format": "byte",
+          "description": "Byte array representing the content to be imported. Only supported for OVA images at this time.",
+          "source": "resource-catalog-private-catalog",
+          "schema": "ImportOfferingBody"
+        },
+        "import_metadata.file.size": {
+          "min": 1,
+          "max": 1000,
+          "description": "The number of buckets to return, one per unique term. If you have more than 1000 different terms in the aggregating field, and you want to get them, then you must perform multiple aggregations leveraging the query parameter to aggregate on disjointed results set. For example, aggregating on the account_id field may produce a high number of buckets, depending on the query, which may exceed the limi",
+          "source": "search",
+          "schema": "TermsAggregation"
+        }
+      }
+    },
+    {
+      "name": "ibm_cm_account",
+      "kind": "data",
+      "schema": "Account",
+      "spec": "resource-catalog-private-catalog",
+      "score": 0.21,
+      "attrs": {
+        "terraform_engines.api_token": {
+          "description": "The api key used to access the engine instance",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Account"
+        }
+      }
+    },
+    {
+      "name": "ibm_cm_catalog",
+      "kind": "data",
+      "schema": "Catalog",
+      "spec": "resource-catalog-private-catalog",
+      "score": 0.2404,
+      "attrs": {
+        "label": {
+          "description": "Display Name in the requested language",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Catalog"
+        }
+      }
+    },
+    {
+      "name": "ibm_cm_object",
+      "kind": "data",
+      "schema": "params:put:/{object_id}/artifacts/{artifact_id}",
+      "spec": "resource-catalog-global-catalog",
+      "score": 0.225,
+      "attrs": {
+        "object_id": {
+          "api_required": true,
+          "source": "resource-catalog-global-catalog",
+          "schema": "params:put:/{object_id}/artifacts/{artifact_id}"
+        },
+        "catalog_id": {
+          "format": "identifier",
+          "description": "Catalog ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "OfferingSearchResult"
+        }
+      }
+    },
+    {
+      "name": "ibm_cm_offering",
+      "kind": "data",
+      "schema": "Offering",
+      "spec": "resource-catalog-private-catalog",
+      "score": 0.2249,
+      "attrs": {
+        "catalog_id": {
+          "format": "identifier",
+          "description": "The id of the catalog containing this offering",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        },
+        "offering_id": {
+          "format": "identifier",
+          "description": "Offering ID",
+          "source": "resource-catalog-private-catalog",
+          "schema": "Offering"
+        }
+      }
+    },
+    {
+      "name": "ibm_cm_offering_instance",
+      "kind": "data",
+      "schema": "Offering",
+      "spec": "resource-catalog-private-catalog",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_cm_preset",
+      "kind": "data",
+      "schema": "ProviderInfo",
+      "spec": "resource-catalog-private-catalog",
+      "score": 0.35,
+      "attrs": {
+        "id": {
+          "description": "The id of this provider",
+          "source": "resource-catalog-private-catalog",
+          "schema": "ProviderInfo"
+        }
+      }
+    },
+    {
+      "name": "ibm_cm_version",
+      "kind": "data",
+      "schema": "Version",
+      "spec": "resource-catalog-private-catalog",
+      "score": 0.21,
+      "attrs": {}
+    }
+  ]
+}

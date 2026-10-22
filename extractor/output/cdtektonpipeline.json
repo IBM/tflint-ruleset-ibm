@@ -1,0 +1,3635 @@
+{
+  "package": "cdtektonpipeline",
+  "resources": [
+    {
+      "name": "ibm_cd_tekton_pipeline",
+      "function": "ResourceIBMCdTektonPipeline",
+      "package": "cdtektonpipeline",
+      "kind": "resource",
+      "description": "Manages ibm_cd_tekton_pipeline. String.",
+      "attributes": {
+        "build_number": {
+          "name": "build_number",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The latest pipeline run build number. If this property is absent, the pipeline hasn't had any pipeline runs."
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Standard RFC 3339 Date Time String."
+        },
+        "definitions": {
+          "name": "definitions",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Definition list.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "API URL for interacting with the definition."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The aggregated definition ID."
+              },
+              "source": {
+                "name": "source",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Source repository containing the Tekton pipeline definition.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "properties": {
+                      "name": "properties",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Properties of the source, which define the URL of the repository and a branch or tag.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "branch": {
+                            "name": "branch",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": true,
+                            "description": "A branch from the repo, specify one of branch or tag only."
+                          },
+                          "path": {
+                            "name": "path",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The path to the definition's YAML files."
+                          },
+                          "tag": {
+                            "name": "tag",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": true,
+                            "description": "A tag from the repo, specify one of branch or tag only."
+                          },
+                          "tool": {
+                            "name": "tool",
+                            "type": "list",
+                            "required": false,
+                            "optional": true,
+                            "computed": true,
+                            "description": "Reference to the repository tool in the parent toolchain.",
+                            "elem": {
+                              "kind": "resource",
+                              "attributes": {
+                                "id": {
+                                  "name": "id",
+                                  "type": "string",
+                                  "required": false,
+                                  "optional": false,
+                                  "computed": true,
+                                  "description": "ID of the repository tool instance in the parent toolchain."
+                                }
+                              }
+                            }
+                          },
+                          "url": {
+                            "name": "url",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "force_new": true,
+                            "description": "URL of the definition repository."
+                          }
+                        }
+                      }
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The only supported source type is \"git\", indicating that the source is a git repository."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "enable_notifications": {
+          "name": "enable_notifications",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Flag to enable notifications for this pipeline. If enabled, the Tekton pipeline run events will be published to all the destinations specified by the Slack and Event Notifications integrations in the parent toolchain. If omitted, this feature is disabled by default.",
+          "default": "false"
+        },
+        "enable_partial_cloning": {
+          "name": "enable_partial_cloning",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Flag to enable partial cloning for this pipeline. When partial clone is enabled, only the files contained within the paths specified in definition repositories are read and cloned, this means that symbolic links might not work. If omitted, this feature is disabled by default.",
+          "default": "false"
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Flag to check if the trigger is enabled."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "API URL for interacting with the pipeline."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "String."
+        },
+        "next_build_number": {
+          "name": "next_build_number",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The build number that will be used for the next pipeline run.",
+          "validate": {
+            "kind": "int_range",
+            "func_name": "IntBetween",
+            "min": 1,
+            "max": 99999999999999
+          }
+        },
+        "pipeline_id": {
+          "name": "pipeline_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "String."
+        },
+        "properties": {
+          "name": "properties",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Tekton pipeline's environment properties.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enum": {
+                "name": "enum",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Options for `single_select` property type. Only needed when using `single_select` property type.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "API URL for interacting with the property."
+              },
+              "locked": {
+                "name": "locked",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "When true, this property cannot be overridden by a trigger property or at runtime. Attempting to override it will result in run requests being rejected. The default is false."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "force_new": true,
+                "description": "Property name."
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "A dot notation path for `integration` type properties only, that selects a value from the tool integration. If left blank the full tool integration data will be used."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "force_new": true,
+                "description": "Property type."
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Property value. Any string value is valid."
+              }
+            }
+          }
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group in which the pipeline was created.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "ID."
+              }
+            }
+          }
+        },
+        "runs_url": {
+          "name": "runs_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL for this pipeline showing the list of pipeline runs."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Pipeline status."
+        },
+        "toolchain": {
+          "name": "toolchain",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Toolchain object containing references to the parent toolchain.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The CRN for the toolchain that contains the Tekton pipeline.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Universally Unique Identifier."
+              }
+            }
+          }
+        },
+        "triggers": {
+          "name": "triggers",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Tekton pipeline triggers list.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "cron": {
+                "name": "cron",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Only needed for timer triggers. CRON expression that indicates when this trigger will activate. Maximum frequency is every 5 minutes. The string is based on UNIX crontab syntax: minute, hour, day of month, month, day of week. Example: The CRON expression 0 *_/2 * * * - translates to - every 2 hours."
+              },
+              "disable_draft_events": {
+                "name": "disable_draft_events",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Prevent new pipeline runs from being triggered by events from draft pull requests."
+              },
+              "enable_events_from_forks": {
+                "name": "enable_events_from_forks",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "When enabled, pull request events from forks of the selected repository will trigger a pipeline run."
+              },
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Flag to check if the trigger is enabled."
+              },
+              "event_listener": {
+                "name": "event_listener",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Event listener name. The name of the event listener to which the trigger is associated. The event listeners are defined in the definition repositories of the Tekton pipeline."
+              },
+              "events": {
+                "name": "events",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Either 'events' or 'filter' is required specifically for Git triggers. Stores a list of events that a Git trigger listens to. Choose one or more from 'push', 'pull_request', and 'pull_request_closed'. If SCM repositories use the 'merge request' term, they correspond to the generic term i.e. 'pull request'.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "favorite": {
+                "name": "favorite",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Mark the trigger as a favorite."
+              },
+              "filter": {
+                "name": "filter",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Either 'events' or 'filter' can be used. Stores the CEL (Common Expression Language) expression value which is used for event filtering against the Git webhook payloads."
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "API URL for interacting with the trigger. Only included when fetching the list of pipeline triggers."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Trigger ID."
+              },
+              "limit_waiting_runs": {
+                "name": "limit_waiting_runs",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Flag that will limit the trigger to a maximum of one waiting run. A newly triggered run will cause any other waiting run(s) to be automatically cancelled."
+              },
+              "max_concurrent_runs": {
+                "name": "max_concurrent_runs",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Defines the maximum number of concurrent runs for this trigger. If omitted then the concurrency limit is disabled for this trigger."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Trigger name."
+              },
+              "properties": {
+                "name": "properties",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Optional trigger properties are used to override or supplement the pipeline properties when triggering a pipeline run.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "enum": {
+                      "name": "enum",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Options for `single_select` property type. Only needed for `single_select` property type.",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    },
+                    "href": {
+                      "name": "href",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "API URL for interacting with the trigger property."
+                    },
+                    "locked": {
+                      "name": "locked",
+                      "type": "bool",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "When true, this property cannot be overridden at runtime. Attempting to override it will result in run requests being rejected. The default is false."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "force_new": true,
+                      "description": "Property name."
+                    },
+                    "path": {
+                      "name": "path",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "A dot notation path for `integration` type properties only, that selects a value from the tool integration. If left blank the full tool integration data will be used."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "force_new": true,
+                      "description": "Property type."
+                    },
+                    "value": {
+                      "name": "value",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Property value. Any string value is valid."
+                    }
+                  }
+                }
+              },
+              "secret": {
+                "name": "secret",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Only needed for Generic Webhook trigger type. The secret is used to start the Generic Webhook trigger.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "algorithm": {
+                      "name": "algorithm",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Algorithm used for `digest_matches` secret type. Only needed for `digest_matches` secret type."
+                    },
+                    "key_name": {
+                      "name": "key_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Secret name, not needed if type is `internal_validation`."
+                    },
+                    "source": {
+                      "name": "source",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Secret location, not needed if secret type is `internal_validation`."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Secret type."
+                    },
+                    "value": {
+                      "name": "value",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Secret value, not needed if secret type is `internal_validation`."
+                    }
+                  }
+                }
+              },
+              "source": {
+                "name": "source",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Source repository for a Git trigger. Only required for Git triggers. The referenced repository URL must match the URL of a repository tool integration in the parent toolchain. Obtain the list of integrations from the toolchain API https://cloud.ibm.com/apidocs/toolchain#list-tools.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "properties": {
+                      "name": "properties",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Properties of the source, which define the URL of the repository and a branch or pattern.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "blind_connection": {
+                            "name": "blind_connection",
+                            "type": "bool",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "True if the repository server is not addressable on the public internet. IBM Cloud will not be able to validate the connection details you provide."
+                          },
+                          "branch": {
+                            "name": "branch",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": true,
+                            "description": "Name of a branch from the repo. Only one of branch, pattern, or filter should be specified."
+                          },
+                          "hook_id": {
+                            "name": "hook_id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Repository webhook ID. It is generated upon trigger creation."
+                          },
+                          "pattern": {
+                            "name": "pattern",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": true,
+                            "description": "The pattern of Git branch or tag. You can specify a glob pattern such as '!test' or '*master' to match against multiple tags or branches in the repository. The glob pattern used must conform to Bash 4.3 specifications, see bash documentation for more info: https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching. Only one of branch, pattern, or filter should be specified."
+                          },
+                          "tool": {
+                            "name": "tool",
+                            "type": "list",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Reference to the repository tool in the parent toolchain.",
+                            "elem": {
+                              "kind": "resource",
+                              "attributes": {
+                                "id": {
+                                  "name": "id",
+                                  "type": "string",
+                                  "required": false,
+                                  "optional": false,
+                                  "computed": true,
+                                  "description": "ID of the repository tool instance in the parent toolchain."
+                                }
+                              }
+                            }
+                          },
+                          "url": {
+                            "name": "url",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "force_new": true,
+                            "description": "URL of the repository to which the trigger is listening."
+                          }
+                        }
+                      }
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The only supported source type is \"git\", indicating that the source is a git repository."
+                    }
+                  }
+                }
+              },
+              "tags": {
+                "name": "tags",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Optional trigger tags array.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "timezone": {
+                "name": "timezone",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Only used for timer triggers. Specify the timezone used for this timer trigger, which will ensure the CRON activates this trigger relative to the specified timezone. If no timezone is specified, the default timezone used is UTC. Valid timezones are those listed in the IANA timezone database, https://www.iana.org/time-zones."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Trigger type."
+              },
+              "webhook_url": {
+                "name": "webhook_url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Webhook URL that can be used to trigger pipeline runs."
+              },
+              "worker": {
+                "name": "worker",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Details of the worker used to run the trigger.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "ID of the worker."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name of the worker. Computed based on the worker ID."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Type of the worker. Computed based on the worker ID."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Standard RFC 3339 Date Time String."
+        },
+        "worker": {
+          "name": "worker",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "Details of the worker used to run the pipeline.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "ID of the worker."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the worker. Computed based on the worker ID."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of the worker. Computed based on the worker ID."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "next_build_number",
+          "kind": "IntBetween",
+          "min": "1",
+          "max": "99999999999999"
+        }
+      ]
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline_definition",
+      "function": "ResourceIBMCdTektonPipelineDefinition",
+      "package": "cdtektonpipeline",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_cd_tekton_pipeline_definition resource.",
+      "attributes": {
+        "definition_id": {
+          "name": "definition_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The aggregated definition ID."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "API URL for interacting with the definition."
+        },
+        "pipeline_id": {
+          "name": "pipeline_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The Tekton pipeline ID.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[-0-9a-z]+$"
+          }
+        },
+        "source": {
+          "name": "source",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "min_items": 1,
+          "max_items": 1,
+          "description": "Source repository containing the Tekton pipeline definition.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "properties": {
+                "name": "properties",
+                "type": "list",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "min_items": 1,
+                "max_items": 1,
+                "description": "Properties of the source, which define the URL of the repository and a branch or tag.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "branch": {
+                      "name": "branch",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "A branch from the repo, specify one of branch or tag only."
+                    },
+                    "path": {
+                      "name": "path",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "The path to the definition's YAML files."
+                    },
+                    "tag": {
+                      "name": "tag",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "A tag from the repo, specify one of branch or tag only."
+                    },
+                    "tool": {
+                      "name": "tool",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "Reference to the repository tool in the parent toolchain.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "id": {
+                            "name": "id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "ID of the repository tool instance in the parent toolchain."
+                          }
+                        }
+                      }
+                    },
+                    "url": {
+                      "name": "url",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "force_new": true,
+                      "description": "URL of the definition repository."
+                    }
+                  }
+                }
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The only supported source type is \"git\", indicating that the source is a git repository."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "pipeline_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36
+        }
+      ]
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline_property",
+      "function": "ResourceIBMCdTektonPipelineProperty",
+      "package": "cdtektonpipeline",
+      "kind": "resource",
+      "description": "Manages ibm_cd_tekton_pipeline_property. Property name.",
+      "attributes": {
+        "enum": {
+          "name": "enum",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Options for `single_select` property type. Only needed when using `single_select` property type.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "API URL for interacting with the property."
+        },
+        "locked": {
+          "name": "locked",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "When true, this property cannot be overridden by a trigger property or at runtime. Attempting to override it will result in run requests being rejected. The default is false.",
+          "default": "false"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Property name.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 253,
+            "regexp": "^[-0-9a-zA-Z_.]{1,253}$"
+          }
+        },
+        "path": {
+          "name": "path",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "A dot notation path for `integration` type properties only, that selects a value from the tool integration. If left blank the full tool integration data will be used.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 4096,
+            "regexp": "^[-0-9a-zA-Z_.]*$"
+          }
+        },
+        "pipeline_id": {
+          "name": "pipeline_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The Tekton pipeline ID.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[-0-9a-z]+$"
+          }
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Property type.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "appconfig",
+              "integration",
+              "secure",
+              "single_select",
+              "text"
+            ]
+          }
+        },
+        "value": {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Property value. Any string value is valid.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 4096,
+            "regexp": "^(\\s|.)*$"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253
+        },
+        {
+          "identifier": "path",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-zA-Z_.]*$",
+          "max_len": 4096
+        },
+        {
+          "identifier": "pipeline_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36
+        },
+        {
+          "identifier": "type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "appconfig, integration, secure, single_select, text"
+        },
+        {
+          "identifier": "value",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^(\\s|.)*$",
+          "max_len": 4096
+        }
+      ]
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline_trigger",
+      "function": "ResourceIBMCdTektonPipelineTrigger",
+      "package": "cdtektonpipeline",
+      "kind": "resource",
+      "description": "Manages ibm_cd_tekton_pipeline_trigger. Trigger name.",
+      "attributes": {
+        "cron": {
+          "name": "cron",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Only needed for timer triggers. CRON expression that indicates when this trigger will activate. Maximum frequency is every 5 minutes. The string is based on UNIX crontab syntax: minute, hour, day of month, month, day of week. Example: The CRON expression 0 *_/2 * * * - translates to - every 2 hours.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 5,
+            "max_len": 253,
+            "regexp": "^[-0-9a-zA-Z,\\*\\/ ]{5,253}$"
+          }
+        },
+        "disable_draft_events": {
+          "name": "disable_draft_events",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Prevent new pipeline runs from being triggered by events from draft pull requests.",
+          "default": "false"
+        },
+        "enable_events_from_forks": {
+          "name": "enable_events_from_forks",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "When enabled, pull request events from forks of the selected repository will trigger a pipeline run.",
+          "default": "false"
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Flag to check if the trigger is enabled.",
+          "default": "true"
+        },
+        "event_listener": {
+          "name": "event_listener",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Event listener name. The name of the event listener to which the trigger is associated. The event listeners are defined in the definition repositories of the Tekton pipeline.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 253,
+            "regexp": "^[-0-9a-zA-Z_.]{1,253}$"
+          }
+        },
+        "events": {
+          "name": "events",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Either 'events' or 'filter' is required specifically for Git triggers. Stores a list of events that a Git trigger listens to. Choose one or more from 'push', 'pull_request', and 'pull_request_closed'. If SCM repositories use the 'merge request' term, they correspond to the generic term i.e. 'pull request'.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "favorite": {
+          "name": "favorite",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Mark the trigger as a favorite.",
+          "default": "false"
+        },
+        "filter": {
+          "name": "filter",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Either 'events' or 'filter' can be used. Stores the CEL (Common Expression Language) expression value which is used for event filtering against the Git webhook payloads.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 4096,
+            "regexp": "^.*$"
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "API URL for interacting with the trigger. Only included when fetching the list of pipeline triggers."
+        },
+        "limit_waiting_runs": {
+          "name": "limit_waiting_runs",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Flag that will limit the trigger to a maximum of one waiting run. A newly triggered run will cause any other waiting run(s) to be automatically cancelled.",
+          "default": "false"
+        },
+        "max_concurrent_runs": {
+          "name": "max_concurrent_runs",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Defines the maximum number of concurrent runs for this trigger. If omitted then the concurrency limit is disabled for this trigger."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Trigger name.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 253,
+            "regexp": "^([a-zA-Z0-9]{1,2}|[a-zA-Z0-9][0-9a-zA-Z-_.: \\/\\(\\)\\[\\]]{1,251}[a-zA-Z0-9])$"
+          }
+        },
+        "pipeline_id": {
+          "name": "pipeline_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The Tekton pipeline ID.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[-0-9a-z]+$"
+          }
+        },
+        "properties": {
+          "name": "properties",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Optional trigger properties are used to override or supplement the pipeline properties when triggering a pipeline run.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enum": {
+                "name": "enum",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Options for `single_select` property type. Only needed for `single_select` property type.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "API URL for interacting with the trigger property."
+              },
+              "locked": {
+                "name": "locked",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "When true, this property cannot be overridden at runtime. Attempting to override it will result in run requests being rejected. The default is false."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "force_new": true,
+                "description": "Property name."
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "A dot notation path for `integration` type properties only, that selects a value from the tool integration. If left blank the full tool integration data will be used."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "force_new": true,
+                "description": "Property type."
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Property value. Any string value is valid."
+              }
+            }
+          }
+        },
+        "secret": {
+          "name": "secret",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "Only needed for Generic Webhook trigger type. The secret is used to start the Generic Webhook trigger.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "algorithm": {
+                "name": "algorithm",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Algorithm used for `digest_matches` secret type. Only needed for `digest_matches` secret type."
+              },
+              "key_name": {
+                "name": "key_name",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Secret name, not needed if type is `internal_validation`."
+              },
+              "source": {
+                "name": "source",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Secret location, not needed if secret type is `internal_validation`."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Secret type."
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Secret value, not needed if secret type is `internal_validation`."
+              }
+            }
+          }
+        },
+        "source": {
+          "name": "source",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "Source repository for a Git trigger. Only required for Git triggers. The referenced repository URL must match the URL of a repository tool integration in the parent toolchain. Obtain the list of integrations from the toolchain API https://cloud.ibm.com/apidocs/toolchain#list-tools.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "properties": {
+                "name": "properties",
+                "type": "list",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "min_items": 1,
+                "max_items": 1,
+                "description": "Properties of the source, which define the URL of the repository and a branch or pattern.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "blind_connection": {
+                      "name": "blind_connection",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "True if the repository server is not addressable on the public internet. IBM Cloud will not be able to validate the connection details you provide."
+                    },
+                    "branch": {
+                      "name": "branch",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "Name of a branch from the repo. Only one of branch, pattern, or filter should be specified."
+                    },
+                    "hook_id": {
+                      "name": "hook_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Repository webhook ID. It is generated upon trigger creation."
+                    },
+                    "pattern": {
+                      "name": "pattern",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The pattern of Git branch or tag. You can specify a glob pattern such as '!test' or '*master' to match against multiple tags or branches in the repository. The glob pattern used must conform to Bash 4.3 specifications, see bash documentation for more info: https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching. Only one of branch, pattern, or filter should be specified."
+                    },
+                    "tool": {
+                      "name": "tool",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Reference to the repository tool in the parent toolchain.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "id": {
+                            "name": "id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "ID of the repository tool instance in the parent toolchain."
+                          }
+                        }
+                      }
+                    },
+                    "url": {
+                      "name": "url",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "force_new": true,
+                      "description": "URL of the repository to which the trigger is listening."
+                    }
+                  }
+                }
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The only supported source type is \"git\", indicating that the source is a git repository."
+              }
+            }
+          }
+        },
+        "tags": {
+          "name": "tags",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Optional trigger tags array.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "timezone": {
+          "name": "timezone",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Only used for timer triggers. Specify the timezone used for this timer trigger, which will ensure the CRON activates this trigger relative to the specified timezone. If no timezone is specified, the default timezone used is UTC. Valid timezones are those listed in the IANA timezone database, https://www.iana.org/time-zones.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 253,
+            "regexp": "^[-0-9a-zA-Z+_., \\/]{1,253}$"
+          }
+        },
+        "trigger_id": {
+          "name": "trigger_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Trigger ID."
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Trigger type.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "generic",
+              "manual",
+              "scm",
+              "timer"
+            ]
+          }
+        },
+        "webhook_url": {
+          "name": "webhook_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Webhook URL that can be used to trigger pipeline runs."
+        },
+        "worker": {
+          "name": "worker",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "Details of the worker used to run the trigger.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "ID of the worker."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the worker. Computed based on the worker ID."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of the worker. Computed based on the worker ID."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "cron",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-zA-Z,\\*\\/ ]{5,253}$",
+          "min_len": 5,
+          "max_len": 253
+        },
+        {
+          "identifier": "event_listener",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253
+        },
+        {
+          "identifier": "filter",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^.*$",
+          "min_len": 1,
+          "max_len": 4096
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^([a-zA-Z0-9]{1,2}|[a-zA-Z0-9][0-9a-zA-Z-_.: \\/\\(\\)\\[\\]]{1,251}[a-zA-Z0-9])$",
+          "min_len": 1,
+          "max_len": 253
+        },
+        {
+          "identifier": "pipeline_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36
+        },
+        {
+          "identifier": "timezone",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-zA-Z+_., \\/]{1,253}$",
+          "min_len": 1,
+          "max_len": 253
+        },
+        {
+          "identifier": "type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "generic, manual, scm, timer"
+        }
+      ]
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline_trigger_property",
+      "function": "ResourceIBMCdTektonPipelineTriggerProperty",
+      "package": "cdtektonpipeline",
+      "kind": "resource",
+      "description": "Manages ibm_cd_tekton_pipeline_trigger_property. Property name.",
+      "attributes": {
+        "enum": {
+          "name": "enum",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Options for `single_select` property type. Only needed for `single_select` property type.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "API URL for interacting with the trigger property."
+        },
+        "locked": {
+          "name": "locked",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "When true, this property cannot be overridden at runtime. Attempting to override it will result in run requests being rejected. The default is false.",
+          "default": "false"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Property name.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 253,
+            "regexp": "^[-0-9a-zA-Z_.]{1,253}$"
+          }
+        },
+        "path": {
+          "name": "path",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "A dot notation path for `integration` type properties only, that selects a value from the tool integration. If left blank the full tool integration data will be used.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 4096,
+            "regexp": "^[-0-9a-zA-Z_.]*$"
+          }
+        },
+        "pipeline_id": {
+          "name": "pipeline_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The Tekton pipeline ID.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[-0-9a-z]+$"
+          }
+        },
+        "trigger_id": {
+          "name": "trigger_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The trigger ID.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[-0-9a-z]+$"
+          }
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Property type.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "appconfig",
+              "integration",
+              "secure",
+              "single_select",
+              "text"
+            ]
+          }
+        },
+        "value": {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Property value. Any string value is valid.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 4096,
+            "regexp": "^(\\s|.)*$"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253
+        },
+        {
+          "identifier": "path",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-zA-Z_.]*$",
+          "max_len": 4096
+        },
+        {
+          "identifier": "pipeline_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36
+        },
+        {
+          "identifier": "trigger_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36
+        },
+        {
+          "identifier": "type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "appconfig, integration, secure, single_select, text"
+        },
+        {
+          "identifier": "value",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^(\\s|.)*$",
+          "max_len": 4096
+        }
+      ]
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline",
+      "function": "DataSourceIBMCdTektonPipeline",
+      "package": "cdtektonpipeline",
+      "kind": "data",
+      "description": "Reads ibm_cd_tekton_pipeline. String.",
+      "attributes": {
+        "build_number": {
+          "name": "build_number",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The latest pipeline run build number. If this property is absent, the pipeline hasn't had any pipeline runs."
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Standard RFC 3339 Date Time String."
+        },
+        "definitions": {
+          "name": "definitions",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Definition list.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "API URL for interacting with the definition."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The aggregated definition ID."
+              },
+              "source": {
+                "name": "source",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Source repository containing the Tekton pipeline definition.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "properties": {
+                      "name": "properties",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Properties of the source, which define the URL of the repository and a branch or tag.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "branch": {
+                            "name": "branch",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "A branch from the repo, specify one of branch or tag only."
+                          },
+                          "path": {
+                            "name": "path",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The path to the definition's YAML files."
+                          },
+                          "tag": {
+                            "name": "tag",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "A tag from the repo, specify one of branch or tag only."
+                          },
+                          "tool": {
+                            "name": "tool",
+                            "type": "list",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Reference to the repository tool in the parent toolchain.",
+                            "elem": {
+                              "kind": "resource",
+                              "attributes": {
+                                "id": {
+                                  "name": "id",
+                                  "type": "string",
+                                  "required": false,
+                                  "optional": false,
+                                  "computed": true,
+                                  "description": "ID of the repository tool instance in the parent toolchain."
+                                }
+                              }
+                            }
+                          },
+                          "url": {
+                            "name": "url",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "URL of the definition repository."
+                          }
+                        }
+                      }
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The only supported source type is \"git\", indicating that the source is a git repository."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "enable_notifications": {
+          "name": "enable_notifications",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Flag to enable notifications for this pipeline. If enabled, the Tekton pipeline run events will be published to all the destinations specified by the Slack and Event Notifications integrations in the parent toolchain. If omitted, this feature is disabled by default."
+        },
+        "enable_partial_cloning": {
+          "name": "enable_partial_cloning",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Flag to enable partial cloning for this pipeline. When partial clone is enabled, only the files contained within the paths specified in definition repositories are read and cloned, this means that symbolic links might not work. If omitted, this feature is disabled by default."
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Flag to check if the trigger is enabled."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "API URL for interacting with the pipeline."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "String."
+        },
+        "next_build_number": {
+          "name": "next_build_number",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The build number that will be used for the next pipeline run.",
+          "validate": {
+            "kind": "int_range",
+            "func_name": "IntBetween",
+            "min": 1,
+            "max": 99999999999999
+          }
+        },
+        "pipeline_id": {
+          "name": "pipeline_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "ID of current instance."
+        },
+        "properties": {
+          "name": "properties",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Tekton pipeline's environment properties.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enum": {
+                "name": "enum",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Options for `single_select` property type. Only needed when using `single_select` property type.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "API URL for interacting with the property."
+              },
+              "locked": {
+                "name": "locked",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "When true, this property cannot be overridden by a trigger property or at runtime. Attempting to override it will result in run requests being rejected. The default is false."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Property name."
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A dot notation path for `integration` type properties only, that selects a value from the tool integration. If left blank the full tool integration data will be used."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Property type."
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Property value. Any string value is valid."
+              }
+            }
+          }
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group in which the pipeline was created.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "ID."
+              }
+            }
+          }
+        },
+        "runs_url": {
+          "name": "runs_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL for this pipeline showing the list of pipeline runs."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Pipeline status."
+        },
+        "toolchain": {
+          "name": "toolchain",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Toolchain object containing references to the parent toolchain.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The CRN for the toolchain that contains the Tekton pipeline.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Universally Unique Identifier."
+              }
+            }
+          }
+        },
+        "triggers": {
+          "name": "triggers",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Tekton pipeline triggers list.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "cron": {
+                "name": "cron",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Only needed for timer triggers. CRON expression that indicates when this trigger will activate. Maximum frequency is every 5 minutes. The string is based on UNIX crontab syntax: minute, hour, day of month, month, day of week. Example: The CRON expression 0 *_/2 * * * - translates to - every 2 hours."
+              },
+              "disable_draft_events": {
+                "name": "disable_draft_events",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Prevent new pipeline runs from being triggered by events from draft pull requests."
+              },
+              "enable_events_from_forks": {
+                "name": "enable_events_from_forks",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "When enabled, pull request events from forks of the selected repository will trigger a pipeline run."
+              },
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Flag to check if the trigger is enabled."
+              },
+              "event_listener": {
+                "name": "event_listener",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Event listener name. The name of the event listener to which the trigger is associated. The event listeners are defined in the definition repositories of the Tekton pipeline."
+              },
+              "events": {
+                "name": "events",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Either 'events' or 'filter' is required specifically for Git triggers. Stores a list of events that a Git trigger listens to. Choose one or more from 'push', 'pull_request', and 'pull_request_closed'. If SCM repositories use the 'merge request' term, they correspond to the generic term i.e. 'pull request'.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "favorite": {
+                "name": "favorite",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Mark the trigger as a favorite."
+              },
+              "filter": {
+                "name": "filter",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Either 'events' or 'filter' can be used. Stores the CEL (Common Expression Language) expression value which is used for event filtering against the Git webhook payloads."
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "API URL for interacting with the trigger. Only included when fetching the list of pipeline triggers."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Trigger ID."
+              },
+              "limit_waiting_runs": {
+                "name": "limit_waiting_runs",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Flag that will limit the trigger to a maximum of one waiting run. A newly triggered run will cause any other waiting run(s) to be automatically cancelled."
+              },
+              "max_concurrent_runs": {
+                "name": "max_concurrent_runs",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Defines the maximum number of concurrent runs for this trigger. If omitted then the concurrency limit is disabled for this trigger."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Trigger name."
+              },
+              "properties": {
+                "name": "properties",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Optional trigger properties are used to override or supplement the pipeline properties when triggering a pipeline run.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "enum": {
+                      "name": "enum",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Options for `single_select` property type. Only needed for `single_select` property type.",
+                      "elem": {
+                        "kind": "schema",
+                        "type": "string"
+                      }
+                    },
+                    "href": {
+                      "name": "href",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "API URL for interacting with the trigger property."
+                    },
+                    "locked": {
+                      "name": "locked",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "When true, this property cannot be overridden at runtime. Attempting to override it will result in run requests being rejected. The default is false."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Property name."
+                    },
+                    "path": {
+                      "name": "path",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A dot notation path for `integration` type properties only, that selects a value from the tool integration. If left blank the full tool integration data will be used."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Property type."
+                    },
+                    "value": {
+                      "name": "value",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Property value. Any string value is valid."
+                    }
+                  }
+                }
+              },
+              "secret": {
+                "name": "secret",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Only needed for Generic Webhook trigger type. The secret is used to start the Generic Webhook trigger.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "algorithm": {
+                      "name": "algorithm",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Algorithm used for `digest_matches` secret type. Only needed for `digest_matches` secret type."
+                    },
+                    "key_name": {
+                      "name": "key_name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Secret name, not needed if type is `internal_validation`."
+                    },
+                    "source": {
+                      "name": "source",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Secret location, not needed if secret type is `internal_validation`."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Secret type."
+                    },
+                    "value": {
+                      "name": "value",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Secret value, not needed if secret type is `internal_validation`."
+                    }
+                  }
+                }
+              },
+              "source": {
+                "name": "source",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Source repository for a Git trigger. Only required for Git triggers. The referenced repository URL must match the URL of a repository tool integration in the parent toolchain. Obtain the list of integrations from the toolchain API https://cloud.ibm.com/apidocs/toolchain#list-tools.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "properties": {
+                      "name": "properties",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Properties of the source, which define the URL of the repository and a branch or pattern.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "blind_connection": {
+                            "name": "blind_connection",
+                            "type": "bool",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "True if the repository server is not addressable on the public internet. IBM Cloud will not be able to validate the connection details you provide."
+                          },
+                          "branch": {
+                            "name": "branch",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Name of a branch from the repo. Only one of branch, pattern, or filter should be specified."
+                          },
+                          "hook_id": {
+                            "name": "hook_id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Repository webhook ID. It is generated upon trigger creation."
+                          },
+                          "pattern": {
+                            "name": "pattern",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "The pattern of Git branch or tag. You can specify a glob pattern such as '!test' or '*master' to match against multiple tags or branches in the repository. The glob pattern used must conform to Bash 4.3 specifications, see bash documentation for more info: https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching. Only one of branch, pattern, or filter should be specified."
+                          },
+                          "tool": {
+                            "name": "tool",
+                            "type": "list",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Reference to the repository tool in the parent toolchain.",
+                            "elem": {
+                              "kind": "resource",
+                              "attributes": {
+                                "id": {
+                                  "name": "id",
+                                  "type": "string",
+                                  "required": false,
+                                  "optional": false,
+                                  "computed": true,
+                                  "description": "ID of the repository tool instance in the parent toolchain."
+                                }
+                              }
+                            }
+                          },
+                          "url": {
+                            "name": "url",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "URL of the repository to which the trigger is listening."
+                          }
+                        }
+                      }
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The only supported source type is \"git\", indicating that the source is a git repository."
+                    }
+                  }
+                }
+              },
+              "tags": {
+                "name": "tags",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Optional trigger tags array.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "timezone": {
+                "name": "timezone",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Only used for timer triggers. Specify the timezone used for this timer trigger, which will ensure the CRON activates this trigger relative to the specified timezone. If no timezone is specified, the default timezone used is UTC. Valid timezones are those listed in the IANA timezone database, https://www.iana.org/time-zones."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Trigger type."
+              },
+              "webhook_url": {
+                "name": "webhook_url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Webhook URL that can be used to trigger pipeline runs."
+              },
+              "worker": {
+                "name": "worker",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Details of the worker used to run the trigger.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "ID of the worker."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name of the worker. Computed based on the worker ID."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Type of the worker. Computed based on the worker ID."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Standard RFC 3339 Date Time String."
+        },
+        "worker": {
+          "name": "worker",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Details of the worker used to run the pipeline.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "ID of the worker."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the worker. Computed based on the worker ID."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of the worker. Computed based on the worker ID."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "next_build_number",
+          "kind": "IntBetween",
+          "min": "1",
+          "max": "99999999999999"
+        }
+      ]
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline_definition",
+      "function": "DataSourceIBMCdTektonPipelineDefinition",
+      "package": "cdtektonpipeline",
+      "kind": "data",
+      "description": "Schema validation for the ibm_cd_tekton_pipeline_definition data source.",
+      "attributes": {
+        "definition_id": {
+          "name": "definition_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The definition ID."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "API URL for interacting with the definition."
+        },
+        "pipeline_id": {
+          "name": "pipeline_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Tekton pipeline ID.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[-0-9a-z]+$"
+          }
+        },
+        "source": {
+          "name": "source",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Source repository containing the Tekton pipeline definition.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "properties": {
+                "name": "properties",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Properties of the source, which define the URL of the repository and a branch or tag.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "branch": {
+                      "name": "branch",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A branch from the repo, specify one of branch or tag only."
+                    },
+                    "path": {
+                      "name": "path",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The path to the definition's YAML files."
+                    },
+                    "tag": {
+                      "name": "tag",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A tag from the repo, specify one of branch or tag only."
+                    },
+                    "tool": {
+                      "name": "tool",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Reference to the repository tool in the parent toolchain.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "id": {
+                            "name": "id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "ID of the repository tool instance in the parent toolchain."
+                          }
+                        }
+                      }
+                    },
+                    "url": {
+                      "name": "url",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "URL of the definition repository."
+                    }
+                  }
+                }
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The only supported source type is \"git\", indicating that the source is a git repository."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "pipeline_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36
+        }
+      ]
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline_property",
+      "function": "DataSourceIBMCdTektonPipelineProperty",
+      "package": "cdtektonpipeline",
+      "kind": "data",
+      "description": "Reads ibm_cd_tekton_pipeline_property. Property name.",
+      "attributes": {
+        "enum": {
+          "name": "enum",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Options for `single_select` property type. Only needed when using `single_select` property type.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "API URL for interacting with the property."
+        },
+        "locked": {
+          "name": "locked",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "When true, this property cannot be overridden by a trigger property or at runtime. Attempting to override it will result in run requests being rejected. The default is false."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Property name.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 253,
+            "regexp": "^[-0-9a-zA-Z_.]{1,253}$"
+          }
+        },
+        "path": {
+          "name": "path",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A dot notation path for `integration` type properties only, that selects a value from the tool integration. If left blank the full tool integration data will be used.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 4096,
+            "regexp": "^[-0-9a-zA-Z_.]*$"
+          }
+        },
+        "pipeline_id": {
+          "name": "pipeline_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Tekton pipeline ID.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[-0-9a-z]+$"
+          }
+        },
+        "property_name": {
+          "name": "property_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The property name."
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Property type.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "appconfig",
+              "integration",
+              "secure",
+              "single_select",
+              "text"
+            ]
+          }
+        },
+        "value": {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Property value. Any string value is valid.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 4096,
+            "regexp": "^(\\s|.)*$"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253
+        },
+        {
+          "identifier": "path",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-zA-Z_.]*$",
+          "max_len": 4096
+        },
+        {
+          "identifier": "pipeline_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36
+        },
+        {
+          "identifier": "type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "appconfig, integration, secure, single_select, text"
+        },
+        {
+          "identifier": "value",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^(\\s|.)*$",
+          "max_len": 4096
+        }
+      ]
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline_trigger",
+      "function": "DataSourceIBMCdTektonPipelineTrigger",
+      "package": "cdtektonpipeline",
+      "kind": "data",
+      "description": "Reads ibm_cd_tekton_pipeline_trigger. Trigger name.",
+      "attributes": {
+        "cron": {
+          "name": "cron",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Only needed for timer triggers. CRON expression that indicates when this trigger will activate. Maximum frequency is every 5 minutes. The string is based on UNIX crontab syntax: minute, hour, day of month, month, day of week. Example: The CRON expression 0 *_/2 * * * - translates to - every 2 hours.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 5,
+            "max_len": 253,
+            "regexp": "^[-0-9a-zA-Z,\\*\\/ ]{5,253}$"
+          }
+        },
+        "disable_draft_events": {
+          "name": "disable_draft_events",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Prevent new pipeline runs from being triggered by events from draft pull requests."
+        },
+        "enable_events_from_forks": {
+          "name": "enable_events_from_forks",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "When enabled, pull request events from forks of the selected repository will trigger a pipeline run."
+        },
+        "enabled": {
+          "name": "enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Flag to check if the trigger is enabled."
+        },
+        "event_listener": {
+          "name": "event_listener",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Event listener name. The name of the event listener to which the trigger is associated. The event listeners are defined in the definition repositories of the Tekton pipeline.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 253,
+            "regexp": "^[-0-9a-zA-Z_.]{1,253}$"
+          }
+        },
+        "events": {
+          "name": "events",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Either 'events' or 'filter' is required specifically for Git triggers. Stores a list of events that a Git trigger listens to. Choose one or more from 'push', 'pull_request', and 'pull_request_closed'. If SCM repositories use the 'merge request' term, they correspond to the generic term i.e. 'pull request'.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "favorite": {
+          "name": "favorite",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Mark the trigger as a favorite."
+        },
+        "filter": {
+          "name": "filter",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Either 'events' or 'filter' can be used. Stores the CEL (Common Expression Language) expression value which is used for event filtering against the Git webhook payloads.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 4096,
+            "regexp": "^.*$"
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "API URL for interacting with the trigger. Only included when fetching the list of pipeline triggers."
+        },
+        "limit_waiting_runs": {
+          "name": "limit_waiting_runs",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Flag that will limit the trigger to a maximum of one waiting run. A newly triggered run will cause any other waiting run(s) to be automatically cancelled."
+        },
+        "max_concurrent_runs": {
+          "name": "max_concurrent_runs",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Defines the maximum number of concurrent runs for this trigger. If omitted then the concurrency limit is disabled for this trigger."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Trigger name.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 253,
+            "regexp": "^([a-zA-Z0-9]{1,2}|[a-zA-Z0-9][0-9a-zA-Z-_.: \\/\\(\\)\\[\\]]{1,251}[a-zA-Z0-9])$"
+          }
+        },
+        "pipeline_id": {
+          "name": "pipeline_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Tekton pipeline ID.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[-0-9a-z]+$"
+          }
+        },
+        "properties": {
+          "name": "properties",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Optional trigger properties are used to override or supplement the pipeline properties when triggering a pipeline run.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enum": {
+                "name": "enum",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Options for `single_select` property type. Only needed for `single_select` property type.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "API URL for interacting with the trigger property."
+              },
+              "locked": {
+                "name": "locked",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "When true, this property cannot be overridden at runtime. Attempting to override it will result in run requests being rejected. The default is false."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Property name."
+              },
+              "path": {
+                "name": "path",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A dot notation path for `integration` type properties only, that selects a value from the tool integration. If left blank the full tool integration data will be used."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Property type."
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Property value. Any string value is valid."
+              }
+            }
+          }
+        },
+        "secret": {
+          "name": "secret",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Only needed for Generic Webhook trigger type. The secret is used to start the Generic Webhook trigger.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "algorithm": {
+                "name": "algorithm",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Algorithm used for `digest_matches` secret type. Only needed for `digest_matches` secret type."
+              },
+              "key_name": {
+                "name": "key_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Secret name, not needed if type is `internal_validation`."
+              },
+              "source": {
+                "name": "source",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Secret location, not needed if secret type is `internal_validation`."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Secret type."
+              },
+              "value": {
+                "name": "value",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Secret value, not needed if secret type is `internal_validation`."
+              }
+            }
+          }
+        },
+        "source": {
+          "name": "source",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Source repository for a Git trigger. Only required for Git triggers. The referenced repository URL must match the URL of a repository tool integration in the parent toolchain. Obtain the list of integrations from the toolchain API https://cloud.ibm.com/apidocs/toolchain#list-tools.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "properties": {
+                "name": "properties",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Properties of the source, which define the URL of the repository and a branch or pattern.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "blind_connection": {
+                      "name": "blind_connection",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "True if the repository server is not addressable on the public internet. IBM Cloud will not be able to validate the connection details you provide."
+                    },
+                    "branch": {
+                      "name": "branch",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name of a branch from the repo. Only one of branch, pattern, or filter should be specified."
+                    },
+                    "hook_id": {
+                      "name": "hook_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Repository webhook ID. It is generated upon trigger creation."
+                    },
+                    "pattern": {
+                      "name": "pattern",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The pattern of Git branch or tag. You can specify a glob pattern such as '!test' or '*master' to match against multiple tags or branches in the repository. The glob pattern used must conform to Bash 4.3 specifications, see bash documentation for more info: https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching. Only one of branch, pattern, or filter should be specified."
+                    },
+                    "tool": {
+                      "name": "tool",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Reference to the repository tool in the parent toolchain.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "id": {
+                            "name": "id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "ID of the repository tool instance in the parent toolchain."
+                          }
+                        }
+                      }
+                    },
+                    "url": {
+                      "name": "url",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "URL of the repository to which the trigger is listening."
+                    }
+                  }
+                }
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The only supported source type is \"git\", indicating that the source is a git repository."
+              }
+            }
+          }
+        },
+        "tags": {
+          "name": "tags",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Optional trigger tags array.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "timezone": {
+          "name": "timezone",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Only used for timer triggers. Specify the timezone used for this timer trigger, which will ensure the CRON activates this trigger relative to the specified timezone. If no timezone is specified, the default timezone used is UTC. Valid timezones are those listed in the IANA timezone database, https://www.iana.org/time-zones.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 253,
+            "regexp": "^[-0-9a-zA-Z+_., \\/]{1,253}$"
+          }
+        },
+        "trigger_id": {
+          "name": "trigger_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The trigger ID."
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Trigger type.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "generic",
+              "manual",
+              "scm",
+              "timer"
+            ]
+          }
+        },
+        "webhook_url": {
+          "name": "webhook_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Webhook URL that can be used to trigger pipeline runs."
+        },
+        "worker": {
+          "name": "worker",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Details of the worker used to run the trigger.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "ID of the worker."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the worker. Computed based on the worker ID."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of the worker. Computed based on the worker ID."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "cron",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-zA-Z,\\*\\/ ]{5,253}$",
+          "min_len": 5,
+          "max_len": 253
+        },
+        {
+          "identifier": "event_listener",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253
+        },
+        {
+          "identifier": "filter",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^.*$",
+          "min_len": 1,
+          "max_len": 4096
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^([a-zA-Z0-9]{1,2}|[a-zA-Z0-9][0-9a-zA-Z-_.: \\/\\(\\)\\[\\]]{1,251}[a-zA-Z0-9])$",
+          "min_len": 1,
+          "max_len": 253
+        },
+        {
+          "identifier": "pipeline_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36
+        },
+        {
+          "identifier": "timezone",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-zA-Z+_., \\/]{1,253}$",
+          "min_len": 1,
+          "max_len": 253
+        },
+        {
+          "identifier": "type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "generic, manual, scm, timer"
+        }
+      ]
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline_trigger_property",
+      "function": "DataSourceIBMCdTektonPipelineTriggerProperty",
+      "package": "cdtektonpipeline",
+      "kind": "data",
+      "description": "Reads ibm_cd_tekton_pipeline_trigger_property. Property name.",
+      "attributes": {
+        "enum": {
+          "name": "enum",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Options for `single_select` property type. Only needed for `single_select` property type.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "API URL for interacting with the trigger property."
+        },
+        "locked": {
+          "name": "locked",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "When true, this property cannot be overridden at runtime. Attempting to override it will result in run requests being rejected. The default is false."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Property name.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 253,
+            "regexp": "^[-0-9a-zA-Z_.]{1,253}$"
+          }
+        },
+        "path": {
+          "name": "path",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A dot notation path for `integration` type properties only, that selects a value from the tool integration. If left blank the full tool integration data will be used.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 4096,
+            "regexp": "^[-0-9a-zA-Z_.]*$"
+          }
+        },
+        "pipeline_id": {
+          "name": "pipeline_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Tekton pipeline ID.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[-0-9a-z]+$"
+          }
+        },
+        "property_name": {
+          "name": "property_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The property name."
+        },
+        "trigger_id": {
+          "name": "trigger_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The trigger ID.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[-0-9a-z]+$"
+          }
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Property type.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "appconfig",
+              "integration",
+              "secure",
+              "single_select",
+              "text"
+            ]
+          }
+        },
+        "value": {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Property value. Any string value is valid.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 4096,
+            "regexp": "^(\\s|.)*$"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253
+        },
+        {
+          "identifier": "path",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-zA-Z_.]*$",
+          "max_len": 4096
+        },
+        {
+          "identifier": "pipeline_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36
+        },
+        {
+          "identifier": "trigger_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36
+        },
+        {
+          "identifier": "type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "appconfig, integration, secure, single_select, text"
+        },
+        {
+          "identifier": "value",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^(\\s|.)*$",
+          "max_len": 4096
+        }
+      ]
+    }
+  ],
+  "skipped": [],
+  "extracted": 10,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package cdtektonpipeline"
+}

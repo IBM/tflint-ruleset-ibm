@@ -1,0 +1,1239 @@
+{
+  "package": "kubernetes",
+  "specs": [
+    {
+      "slug": "kubernetes-containers-v1-v2",
+      "title": "Kubernetes Service API",
+      "schema_count": 327,
+      "path_count": 257
+    }
+  ],
+  "matched": 46,
+  "resource_count": 49,
+  "overlay_attrs": 101,
+  "resources": [
+    {
+      "name": "ibm_container_addons",
+      "kind": "resource",
+      "schema": "CommonClusterAddon",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.2333,
+      "attrs": {
+        "addons.name": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The name value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "CommonClusterAddon"
+        },
+        "addons.version": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The version value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "CommonClusterAddon"
+        },
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/ingress/v2/dns/createDomain:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_alb",
+      "kind": "resource",
+      "schema": "ALB",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.21,
+      "attrs": {
+        "region": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The region value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/satellite/createController:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_alb_cert",
+      "kind": "resource",
+      "schema": "ALB",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.21,
+      "attrs": {
+        "namespace": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The namespace value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/ingress/v2/secret/addField:post"
+        },
+        "region": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The region value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/satellite/createController:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_alb_create",
+      "kind": "resource",
+      "schema": "ALB",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.3373,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "ALB"
+        },
+        "zone": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The zone where you want to deploy the ALB.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "ALB"
+        },
+        "vlan_id": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The private VLAN ID that the subnet CIDR belongs to.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v1/clusters/{id_or_name}/usersubnets:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_api_key_reset",
+      "kind": "resource",
+      "schema": "IAAS",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.14,
+      "attrs": {
+        "region": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The name of region in the infrastructure provider that is used for the Satellite location, such as the AWS 'us-east-2' region.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "IAAS"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_bind_service",
+      "kind": "resource",
+      "schema": "ServiceBindRequest",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.1237,
+      "attrs": {
+        "role": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The role value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "ServiceBindRequest"
+        },
+        "key": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The key to select.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "ConfigMapKeySelector"
+        },
+        "region": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The region value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/satellite/createController:post"
+        },
+        "tags": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The tags value.",
+          "api_required": true,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "ConfigSubscriptionInfo"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_cluster",
+      "kind": "resource",
+      "schema": "Cluster",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.2401,
+      "attrs": {
+        "name": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The name value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Cluster"
+        },
+        "region": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The region value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Cluster"
+        },
+        "webhook.type": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The type value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Cluster"
+        },
+        "workers_info.id": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The id value.",
+          "api_required": true,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Cluster"
+        },
+        "datacenter": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The datacenter value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "GetClusterResponse"
+        },
+        "entitlement": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The entitlement value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v1/clusters/{id_or_name}/workerpools:post"
+        },
+        "kms_config.account_id": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The account id value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/enableKMS:post"
+        },
+        "kms_config.crk_id": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The crk id value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/enableKMS:post"
+        },
+        "kms_config.instance_id": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The instance id value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/enableKMS:post"
+        },
+        "tags": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The tags value.",
+          "api_required": true,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "ConfigSubscriptionInfo"
+        },
+        "taints.key": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The key to select.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "ConfigMapKeySelector"
+        },
+        "taints.value": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The value value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/nlb-dns/configureHealthMonitor:put"
+        },
+        "webhook.level": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The notification level that you want to use for the webhook.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v1/clusters/{id_or_name}/webhooks:post"
+        },
+        "webhook.url": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "URL is a Key Protect endpoint. To get the endpoint, see http://ibm.biz/kp-endpoints",
+          "api_required": true,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v1/clusters/{id_or_name}/kms:post"
+        },
+        "workers_info.version": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The Kubernetes version to use for the update.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "UpdateMasterCommand represents a generic master action. Possible actions include 'update'."
+        }
+      }
+    },
+    {
+      "name": "ibm_container_cluster_feature",
+      "kind": "resource",
+      "schema": "Cluster",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.21,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/ingress/v2/dns/createDomain:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_dedicated_host",
+      "kind": "resource",
+      "schema": "CreateDedicatedHost contains the fields in requests to create dedicated host instances.",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.3345,
+      "attrs": {
+        "flavor": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The flavor value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "CreateDedicatedHost contains the fields in requests to create dedicated host instances."
+        },
+        "zone": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The zone value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "CreateDedicatedHost contains the fields in requests to create dedicated host instances."
+        }
+      }
+    },
+    {
+      "name": "ibm_container_dedicated_host_pool",
+      "kind": "resource",
+      "schema": "CreateDedicatedHostPool contains the fields in requests to create dedicated host pool instances.",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.355,
+      "attrs": {
+        "metro": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The metro value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "CreateDedicatedHostPool contains the fields in requests to create dedicated host pool instances."
+        },
+        "name": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The name value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "CreateDedicatedHostPool contains the fields in requests to create dedicated host pool instances."
+        },
+        "flavor_class": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The flavor class value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "FlavorResponse"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_ingress_instance",
+      "kind": "resource",
+      "schema": "/ingress/v2/security/port80:patch",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.28,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/ingress/v2/security/port80:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_ingress_secret_opaque",
+      "kind": "resource",
+      "schema": "Secret",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.3267,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Secret"
+        },
+        "fields.crn": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The crn value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Secret"
+        },
+        "persistence": {
+          "description": "The persistence value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Secret"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_ingress_secret_tls",
+      "kind": "resource",
+      "schema": "Secret",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.2878,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Secret"
+        },
+        "persistence": {
+          "description": "The persistence value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Secret"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_nlb_dns",
+      "kind": "resource",
+      "schema": "/v2/nlb-dns/deleteSecret:post",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.26,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/nlb-dns/deleteSecret:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_storage_attachment",
+      "kind": "resource",
+      "schema": "/v2/storage/createAttachment:post",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.34,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/storage/createAttachment:post"
+        },
+        "worker": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/storage/createAttachment:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_vni_baremetal_attachment",
+      "kind": "resource",
+      "schema": "/v2/storage/createAttachment:post",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.2,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/storage/createAttachment:post"
+        },
+        "worker": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/storage/createAttachment:post"
+        },
+        "vlan_id": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The private VLAN ID that the subnet CIDR belongs to.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v1/clusters/{id_or_name}/usersubnets:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_vpc_alb",
+      "kind": "resource",
+      "schema": "ALB",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_container_vpc_alb_create",
+      "kind": "resource",
+      "schema": "ALB",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.51,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "ALB"
+        },
+        "type": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The type of ALB that you want to create.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "ALB"
+        },
+        "zone": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The zone where you want to deploy the ALB.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "ALB"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_vpc_cluster",
+      "kind": "resource",
+      "schema": "Cluster",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.2174,
+      "attrs": {
+        "name": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The name value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Cluster"
+        },
+        "zones.name": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The name value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Cluster"
+        },
+        "entitlement": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The entitlement value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v1/clusters/{id_or_name}/workerpools:post"
+        },
+        "flavor": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The flavor value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "CreateDedicatedHost contains the fields in requests to create dedicated host instances."
+        },
+        "kms_config.account_id": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The account id value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/enableKMS:post"
+        },
+        "kms_config.crk_id": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The crk id value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/enableKMS:post"
+        },
+        "kms_config.instance_id": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The instance id value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/enableKMS:post"
+        },
+        "offering": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The offering value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "VPCCreateCluster contains the fields necessary to request a VPC cluster."
+        },
+        "tags": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The tags value.",
+          "api_required": true,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "ConfigSubscriptionInfo"
+        },
+        "taints.key": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The key to select.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "ConfigMapKeySelector"
+        },
+        "taints.value": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The value value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/nlb-dns/configureHealthMonitor:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_vpc_worker",
+      "kind": "resource",
+      "schema": "Worker",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_container_vpc_worker_pool",
+      "kind": "resource",
+      "schema": "Worker",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.21,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/ingress/v2/dns/createDomain:post"
+        },
+        "entitlement": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The entitlement value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v1/clusters/{id_or_name}/workerpools:post"
+        },
+        "flavor": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The flavor value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "CreateDedicatedHost contains the fields in requests to create dedicated host instances."
+        },
+        "taints.key": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The key to select.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "ConfigMapKeySelector"
+        },
+        "taints.value": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The value value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/nlb-dns/configureHealthMonitor:put"
+        },
+        "zones.name": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The name value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/ingress/v2/secret/addField:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_worker_pool",
+      "kind": "resource",
+      "schema": "Worker",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.21,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/ingress/v2/dns/createDomain:post"
+        },
+        "entitlement": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The entitlement value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v1/clusters/{id_or_name}/workerpools:post"
+        },
+        "region": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The region value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/satellite/createController:post"
+        },
+        "taints.key": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The key to select.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "ConfigMapKeySelector"
+        },
+        "taints.value": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The value value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/nlb-dns/configureHealthMonitor:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_worker_pool_zone_attachment",
+      "kind": "resource",
+      "schema": "Worker",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.21,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/ingress/v2/dns/createDomain:post"
+        },
+        "region": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The region value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/satellite/createController:post"
+        },
+        "zone": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The zone value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/ingress/v2/dns/setCredential:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_addons",
+      "kind": "data",
+      "schema": "DisablePodSecurityPolicyRequest",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.78,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "DisablePodSecurityPolicyRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_alb",
+      "kind": "data",
+      "schema": "params:put:/ingress/v2/clusters/{id_or_name}/albs/{alb_id}/autoscale",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.38,
+      "attrs": {
+        "alb_id": {
+          "api_required": true,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "params:put:/ingress/v2/clusters/{id_or_name}/albs/{alb_id}/autoscale"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_alb_cert",
+      "kind": "data",
+      "schema": "ALB",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.21,
+      "attrs": {
+        "namespace": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The namespace value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/ingress/v2/secret/addField:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_bind_service",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_container_cluster",
+      "kind": "data",
+      "schema": "Cluster",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.2315,
+      "attrs": {
+        "name": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The name value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Cluster"
+        },
+        "region": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The region value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Cluster"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_cluster_config",
+      "kind": "data",
+      "schema": "Cluster",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.2206,
+      "attrs": {
+        "region": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The region value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Cluster"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_cluster_versions",
+      "kind": "data",
+      "schema": "Cluster",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.2217,
+      "attrs": {
+        "region": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The region value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Cluster"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_cluster_worker",
+      "kind": "data",
+      "schema": "Cluster",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.2215,
+      "attrs": {
+        "region": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The region value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Cluster"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_dedicated_host",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_container_dedicated_host_flavor",
+      "kind": "data",
+      "schema": "CreateDedicatedHost contains the fields in requests to create dedicated host instances.",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.225,
+      "attrs": {
+        "zone": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The zone value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "CreateDedicatedHost contains the fields in requests to create dedicated host instances."
+        }
+      }
+    },
+    {
+      "name": "ibm_container_dedicated_host_flavors",
+      "kind": "data",
+      "schema": "CreateDedicatedHost contains the fields in requests to create dedicated host instances.",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.2833,
+      "attrs": {
+        "zone": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The zone value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "CreateDedicatedHost contains the fields in requests to create dedicated host instances."
+        }
+      }
+    },
+    {
+      "name": "ibm_container_dedicated_host_pool",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_container_ingress_instance",
+      "kind": "data",
+      "schema": "DisablePodSecurityPolicyRequest",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.43,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "DisablePodSecurityPolicyRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_ingress_secret_opaque",
+      "kind": "data",
+      "schema": "DisablePodSecurityPolicyRequest",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.3133,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "DisablePodSecurityPolicyRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_ingress_secret_tls",
+      "kind": "data",
+      "schema": "DisablePodSecurityPolicyRequest",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.3133,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "DisablePodSecurityPolicyRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_nlb_dns",
+      "kind": "data",
+      "schema": "DisablePodSecurityPolicyRequest",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.78,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "DisablePodSecurityPolicyRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_storage_attachment",
+      "kind": "data",
+      "schema": "/v2/storage/createAttachment:post",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.34,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/storage/createAttachment:post"
+        },
+        "worker": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/storage/createAttachment:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_vni_attachment",
+      "kind": "data",
+      "schema": "/v2/storage/createAttachment:post",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.28,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/storage/createAttachment:post"
+        },
+        "worker": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/storage/createAttachment:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_vni_attachments",
+      "kind": "data",
+      "schema": "/v2/storage/createAttachment:post",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.35,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/storage/createAttachment:post"
+        },
+        "worker": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "/v2/storage/createAttachment:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_vpc_alb",
+      "kind": "data",
+      "schema": "params:put:/ingress/v2/clusters/{id_or_name}/albs/{alb_id}/autoscale",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.2606,
+      "attrs": {
+        "alb_id": {
+          "api_required": true,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "params:put:/ingress/v2/clusters/{id_or_name}/albs/{alb_id}/autoscale"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_vpc_cluster",
+      "kind": "data",
+      "schema": "Cluster",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.2213,
+      "attrs": {
+        "name": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The name value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "Cluster"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_vpc_cluster_alb",
+      "kind": "data",
+      "schema": "params:put:/ingress/v2/clusters/{id_or_name}/albs/{alb_id}/autoscale",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.2583,
+      "attrs": {
+        "alb_id": {
+          "api_required": true,
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "params:put:/ingress/v2/clusters/{id_or_name}/albs/{alb_id}/autoscale"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_vpc_cluster_worker",
+      "kind": "data",
+      "schema": "Cluster",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_container_vpc_cluster_worker_pool",
+      "kind": "data",
+      "schema": "DisablePodSecurityPolicyRequest",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.43,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "DisablePodSecurityPolicyRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_vpc_worker_pool",
+      "kind": "data",
+      "schema": "DisablePodSecurityPolicyRequest",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.43,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "DisablePodSecurityPolicyRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_container_worker_pool",
+      "kind": "data",
+      "schema": "DisablePodSecurityPolicyRequest",
+      "spec": "kubernetes-containers-v1-v2",
+      "score": 0.43,
+      "attrs": {
+        "cluster": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The cluster value.",
+          "source": "kubernetes-containers-v1-v2",
+          "schema": "DisablePodSecurityPolicyRequest"
+        }
+      }
+    }
+  ]
+}

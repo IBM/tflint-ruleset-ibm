@@ -1,0 +1,2208 @@
+{
+  "package": "mqcloud",
+  "resources": [
+    {
+      "name": "ibm_mqcloud_application",
+      "function": "ResourceIbmMqcloudApplication",
+      "package": "mqcloud",
+      "kind": "resource",
+      "description": "Manages ibm_mqcloud_application. The name of the application - conforming to MQ rules.",
+      "attributes": {
+        "application_id": {
+          "name": "application_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the application which was allocated on creation, and can be used for delete calls."
+        },
+        "create_api_key_uri": {
+          "name": "create_api_key_uri",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URI to create a new apikey for the application."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL for this application."
+        },
+        "iam_service_id": {
+          "name": "iam_service_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IAM ID of the application."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The name of the application - conforming to MQ rules.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 12,
+            "regexp": "^[a-z][-a-z0-9]*$"
+          }
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The GUID that uniquely identifies the MQ SaaS service instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-z][-a-z0-9]*$",
+          "min_len": 1,
+          "max_len": 12
+        },
+        {
+          "identifier": "service_instance_guid",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 36,
+          "max_len": 36
+        }
+      ]
+    },
+    {
+      "name": "ibm_mqcloud_keystore_certificate",
+      "function": "ResourceIbmMqcloudKeystoreCertificate",
+      "package": "mqcloud",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_mqcloud_keystore_certificate resource.",
+      "attributes": {
+        "certificate_file": {
+          "name": "certificate_file",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The filename and path of the certificate to be uploaded."
+        },
+        "certificate_id": {
+          "name": "certificate_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "ID of the certificate."
+        },
+        "certificate_type": {
+          "name": "certificate_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The type of certificate."
+        },
+        "config": {
+          "name": "config",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The configuration details for this certificate.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "ams": {
+                "name": "ams",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "A list of channels that are configured with this certificate.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "channels": {
+                      "name": "channels",
+                      "type": "list",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "A list of channels that are configured with this certificate.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "name": {
+                            "name": "name",
+                            "type": "string",
+                            "required": false,
+                            "optional": true,
+                            "computed": true,
+                            "description": "The name of the channel."
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "dns_names": {
+          "name": "dns_names",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The list of DNS names.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "dns_names_total_count": {
+          "name": "dns_names_total_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The total count of dns names."
+        },
+        "expiry": {
+          "name": "expiry",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Expiry date for the certificate."
+        },
+        "fingerprint_sha256": {
+          "name": "fingerprint_sha256",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Fingerprint SHA256."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL for this key store certificate."
+        },
+        "is_default": {
+          "name": "is_default",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Indicates whether it is the queue manager's default certificate."
+        },
+        "issued": {
+          "name": "issued",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Date certificate was issued."
+        },
+        "issuer_cn": {
+          "name": "issuer_cn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Issuer's Common Name."
+        },
+        "issuer_dn": {
+          "name": "issuer_dn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Issuer's Distinguished Name."
+        },
+        "label": {
+          "name": "label",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The label to use for the certificate to be uploaded.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 64,
+            "regexp": "^[a-zA-Z0-9_.]*$"
+          }
+        },
+        "queue_manager_id": {
+          "name": "queue_manager_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The id of the queue manager to retrieve its full details.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 32,
+            "max_len": 32,
+            "regexp": "^[0-9a-fA-F]{32}$"
+          }
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The GUID that uniquely identifies the MQ SaaS service instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "subject_cn": {
+          "name": "subject_cn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Subject's Common Name."
+        },
+        "subject_dn": {
+          "name": "subject_dn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Subject's Distinguished Name."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "label",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9_.]*$",
+          "min_len": 1,
+          "max_len": 64
+        },
+        {
+          "identifier": "queue_manager_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-fA-F]{32}$",
+          "min_len": 32,
+          "max_len": 32
+        },
+        {
+          "identifier": "service_instance_guid",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 36,
+          "max_len": 36
+        }
+      ]
+    },
+    {
+      "name": "ibm_mqcloud_queue_manager",
+      "function": "ResourceIbmMqcloudQueueManager",
+      "package": "mqcloud",
+      "kind": "resource",
+      "description": "Manages ibm_mqcloud_queue_manager. A queue manager name conforming to MQ restrictions.",
+      "attributes": {
+        "administrator_api_endpoint_url": {
+          "name": "administrator_api_endpoint_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The url through which to access the Admin REST APIs for this queue manager."
+        },
+        "available_upgrade_versions_uri": {
+          "name": "available_upgrade_versions_uri",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The uri through which the available versions to upgrade to can be found for this queue manager."
+        },
+        "connection_info_uri": {
+          "name": "connection_info_uri",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The uri through which the CDDT for this queue manager can be obtained."
+        },
+        "date_created": {
+          "name": "date_created",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "RFC3339 formatted UTC date for when the queue manager was created."
+        },
+        "display_name": {
+          "name": "display_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "A displayable name for the queue manager - limited only in length.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 150,
+            "regexp": "^.*$"
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL for this queue manager."
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The locations in which the queue manager could be deployed.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 2,
+            "max_len": 150,
+            "regexp": "^([^[:ascii:]]|[a-zA-Z0-9-._: ])+$"
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "A queue manager name conforming to MQ restrictions.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 48,
+            "regexp": "^[a-zA-Z0-9_.]*$"
+          }
+        },
+        "queue_manager_id": {
+          "name": "queue_manager_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the queue manager which was allocated on creation, and can be used for delete calls."
+        },
+        "rest_api_endpoint_url": {
+          "name": "rest_api_endpoint_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The url through which to access REST APIs for this queue manager."
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The GUID that uniquely identifies the MQ SaaS service instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "size": {
+          "name": "size",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The queue manager sizes of deployment available.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "large",
+              "medium",
+              "small",
+              "xsmall"
+            ]
+          }
+        },
+        "status_uri": {
+          "name": "status_uri",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A reference uri to get deployment status of the queue manager."
+        },
+        "upgrade_available": {
+          "name": "upgrade_available",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Describes whether an upgrade is available for this queue manager."
+        },
+        "version": {
+          "name": "version",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The MQ version of the queue manager.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 7,
+            "max_len": 15,
+            "regexp": "^[0-9]+.[0-9]+.[0-9]+_[0-9]+$"
+          }
+        },
+        "web_console_url": {
+          "name": "web_console_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The url through which to access the web console for this queue manager."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "display_name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^.*$",
+          "max_len": 150
+        },
+        {
+          "identifier": "location",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^([^[:ascii:]]|[a-zA-Z0-9-._: ])+$",
+          "min_len": 2,
+          "max_len": 150
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9_.]*$",
+          "min_len": 1,
+          "max_len": 48
+        },
+        {
+          "identifier": "service_instance_guid",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 36,
+          "max_len": 36
+        },
+        {
+          "identifier": "size",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "large, medium, small, xsmall"
+        },
+        {
+          "identifier": "version",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9]+.[0-9]+.[0-9]+_[0-9]+$",
+          "min_len": 7,
+          "max_len": 15
+        }
+      ]
+    },
+    {
+      "name": "ibm_mqcloud_truststore_certificate",
+      "function": "ResourceIbmMqcloudTruststoreCertificate",
+      "package": "mqcloud",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_mqcloud_truststore_certificate resource.",
+      "attributes": {
+        "certificate_file": {
+          "name": "certificate_file",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The filename and path of the certificate to be uploaded."
+        },
+        "certificate_id": {
+          "name": "certificate_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Id of the certificate."
+        },
+        "certificate_type": {
+          "name": "certificate_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The type of certificate."
+        },
+        "expiry": {
+          "name": "expiry",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Expiry date for the certificate."
+        },
+        "fingerprint_sha256": {
+          "name": "fingerprint_sha256",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Fingerprint SHA256."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL for this trust store certificate."
+        },
+        "issued": {
+          "name": "issued",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Date the certificate was issued."
+        },
+        "issuer_cn": {
+          "name": "issuer_cn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Issuer's Common Name."
+        },
+        "issuer_dn": {
+          "name": "issuer_dn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Issuer's Distinguished Name."
+        },
+        "label": {
+          "name": "label",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The label to use for the certificate to be uploaded.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 64,
+            "regexp": "^[a-zA-Z0-9_.]*$"
+          }
+        },
+        "queue_manager_id": {
+          "name": "queue_manager_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The id of the queue manager to retrieve its full details.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 32,
+            "max_len": 32,
+            "regexp": "^[0-9a-fA-F]{32}$"
+          }
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The GUID that uniquely identifies the MQ SaaS service instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "subject_cn": {
+          "name": "subject_cn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Subject's Common Name."
+        },
+        "subject_dn": {
+          "name": "subject_dn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Subject's Distinguished Name."
+        },
+        "trusted": {
+          "name": "trusted",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Indicates whether a certificate is trusted."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "label",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9_.]*$",
+          "min_len": 1,
+          "max_len": 64
+        },
+        {
+          "identifier": "queue_manager_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-fA-F]{32}$",
+          "min_len": 32,
+          "max_len": 32
+        },
+        {
+          "identifier": "service_instance_guid",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 36,
+          "max_len": 36
+        }
+      ]
+    },
+    {
+      "name": "ibm_mqcloud_user",
+      "function": "ResourceIbmMqcloudUser",
+      "package": "mqcloud",
+      "kind": "resource",
+      "description": "Manages ibm_mqcloud_user. The shortname of the user that will be used as the IBM MQ administrator in interactions with a queue manager for this service instance.",
+      "attributes": {
+        "email": {
+          "name": "email",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The email of the user.",
+          "validate": {
+            "kind": "string_len",
+            "func_name": "StringLenBetween",
+            "min_len": 5,
+            "max_len": 253
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL for the user details."
+        },
+        "iam_managed": {
+          "name": "iam_managed",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Indicates whether the user is managed by IAM."
+        },
+        "iam_service_id": {
+          "name": "iam_service_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IAM ID of the user."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The shortname of the user that will be used as the IBM MQ administrator in interactions with a queue manager for this service instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 12,
+            "regexp": "^[a-z][-a-z0-9]*$"
+          }
+        },
+        "roles": {
+          "name": "roles",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A list of roles the user has.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The GUID that uniquely identifies the MQ SaaS service instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the user which was allocated on creation, and can be used for delete calls."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "email",
+          "kind": "StringLenBetween",
+          "min_len": 5,
+          "max_len": 253
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-z][-a-z0-9]*$",
+          "min_len": 1,
+          "max_len": 12
+        },
+        {
+          "identifier": "service_instance_guid",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 36,
+          "max_len": 36
+        }
+      ]
+    },
+    {
+      "name": "ibm_mqcloud_virtual_private_endpoint_gateway",
+      "function": "ResourceIbmMqcloudVirtualPrivateEndpointGateway",
+      "package": "mqcloud",
+      "kind": "resource",
+      "description": "Manages ibm_mqcloud_virtual_private_endpoint_gateway. The name of the virtual private endpoint gateway, created by the user.",
+      "attributes": {
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL for the details of the virtual private endpoint gateway."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The name of the virtual private endpoint gateway, created by the user.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 63,
+            "regexp": "^[a-z]|[a-z][-a-z0-9]*[a-z0-9]$"
+          }
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The GUID that uniquely identifies the MQ SaaS service instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The lifecycle state of this virtual privage endpoint."
+        },
+        "target_crn": {
+          "name": "target_crn",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The CRN of the reserved capacity service instance the user is trying to connect to.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 9,
+            "max_len": 512,
+            "regexp": "^crn:v[0-9]+:[a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]*:([a-z]\\/[a-z0-9-]+)?:[a-z0-9-]*:[a-z0-9-]*:[a-zA-Z0-9-_\\.\\/]*$|^crn:\\[\\.\\.\\.\\]$"
+          }
+        },
+        "trusted_profile": {
+          "name": "trusted_profile",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The CRN of the trusted profile to assume for this request. This can only be retrieved using the CLI using `ibmcloud iam tp \u003cprofile_id\u003e -o json`.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 9,
+            "max_len": 512,
+            "regexp": "^crn:v[0-9]+:[a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]*:([a-z]\\/[a-z0-9-]+)?:[a-z0-9-]*:[a-z0-9-]*:[a-zA-Z0-9-_\\.\\/]*$|^crn:\\[\\.\\.\\.\\]$"
+          }
+        },
+        "virtual_private_endpoint_gateway_guid": {
+          "name": "virtual_private_endpoint_gateway_guid",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the virtual private endpoint gateway which was allocated on creation."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-z]|[a-z][-a-z0-9]*[a-z0-9]$",
+          "min_len": 1,
+          "max_len": 63
+        },
+        {
+          "identifier": "service_instance_guid",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 36,
+          "max_len": 36
+        },
+        {
+          "identifier": "target_crn",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^crn:v[0-9]+:[a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]*:([a-z]\\/[a-z0-9-]+)?:[a-z0-9-]*:[a-z0-9-]*:[a-zA-Z0-9-_\\.\\/]*$|^crn:\\[\\.\\.\\.\\]$",
+          "min_len": 9,
+          "max_len": 512
+        },
+        {
+          "identifier": "trusted_profile",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^crn:v[0-9]+:[a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]*:([a-z]\\/[a-z0-9-]+)?:[a-z0-9-]*:[a-z0-9-]*:[a-zA-Z0-9-_\\.\\/]*$|^crn:\\[\\.\\.\\.\\]$",
+          "min_len": 9,
+          "max_len": 512
+        }
+      ]
+    },
+    {
+      "name": "ibm_mqcloud_application",
+      "function": "DataSourceIbmMqcloudApplication",
+      "package": "mqcloud",
+      "kind": "data",
+      "description": "Reads ibm_mqcloud_application. The name of the application - conforming to MQ rules.",
+      "attributes": {
+        "applications": {
+          "name": "applications",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of applications.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "create_api_key_uri": {
+                "name": "create_api_key_uri",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The URI to create a new apikey for the application."
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The URL for this application."
+              },
+              "iam_service_id": {
+                "name": "iam_service_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The IAM ID of the application."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the application which was allocated on creation, and can be used for delete calls."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the application - conforming to MQ rules."
+              }
+            }
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The name of the application - conforming to MQ rules.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 12,
+            "regexp": "^[a-z][-a-z0-9]*$"
+          }
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The GUID that uniquely identifies the MQ SaaS service instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-z][-a-z0-9]*$",
+          "min_len": 1,
+          "max_len": 12
+        },
+        {
+          "identifier": "service_instance_guid",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 36,
+          "max_len": 36
+        }
+      ]
+    },
+    {
+      "name": "ibm_mqcloud_keystore_certificate",
+      "function": "DataSourceIbmMqcloudKeystoreCertificate",
+      "package": "mqcloud",
+      "kind": "data",
+      "description": "Schema validation for the ibm_mqcloud_keystore_certificate data source.",
+      "attributes": {
+        "key_store": {
+          "name": "key_store",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The list of key store certificates.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "certificate_type": {
+                "name": "certificate_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The type of certificate."
+              },
+              "config": {
+                "name": "config",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The configuration details for this certificate.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "ams": {
+                      "name": "ams",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "A list of channels that are configured with this certificate.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "channels": {
+                            "name": "channels",
+                            "type": "list",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "A list of channels that are configured with this certificate.",
+                            "elem": {
+                              "kind": "resource",
+                              "attributes": {
+                                "name": {
+                                  "name": "name",
+                                  "type": "string",
+                                  "required": false,
+                                  "optional": false,
+                                  "computed": true,
+                                  "description": "The name of the channel."
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "dns_names": {
+                "name": "dns_names",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The list of DNS names.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "dns_names_total_count": {
+                "name": "dns_names_total_count",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The total count of dns names."
+              },
+              "expiry": {
+                "name": "expiry",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Expiry date for the certificate."
+              },
+              "fingerprint_sha256": {
+                "name": "fingerprint_sha256",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Fingerprint SHA256."
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The URL for this key store certificate."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "ID of the certificate."
+              },
+              "is_default": {
+                "name": "is_default",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates whether it is the queue manager's default certificate."
+              },
+              "issued": {
+                "name": "issued",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Date certificate was issued."
+              },
+              "issuer_cn": {
+                "name": "issuer_cn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Issuer's Common Name."
+              },
+              "issuer_dn": {
+                "name": "issuer_dn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Issuer's Distinguished Name."
+              },
+              "label": {
+                "name": "label",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Certificate label in queue manager store."
+              },
+              "subject_cn": {
+                "name": "subject_cn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Subject's Common Name."
+              },
+              "subject_dn": {
+                "name": "subject_dn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Subject's Distinguished Name."
+              }
+            }
+          }
+        },
+        "label": {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Certificate label in queue manager store.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 64,
+            "regexp": "^[a-zA-Z0-9_.]*$"
+          }
+        },
+        "queue_manager_id": {
+          "name": "queue_manager_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The id of the queue manager to retrieve its full details.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 32,
+            "max_len": 32,
+            "regexp": "^[0-9a-fA-F]{32}$"
+          }
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The GUID that uniquely identifies the MQ SaaS service instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "total_count": {
+          "name": "total_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The total count of key store certificates."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "label",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9_.]*$",
+          "min_len": 1,
+          "max_len": 64
+        },
+        {
+          "identifier": "queue_manager_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-fA-F]{32}$",
+          "min_len": 32,
+          "max_len": 32
+        },
+        {
+          "identifier": "service_instance_guid",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 36,
+          "max_len": 36
+        }
+      ]
+    },
+    {
+      "name": "ibm_mqcloud_queue_manager",
+      "function": "DataSourceIbmMqcloudQueueManager",
+      "package": "mqcloud",
+      "kind": "data",
+      "description": "Reads ibm_mqcloud_queue_manager. A queue manager name conforming to MQ restrictions.",
+      "attributes": {
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "A queue manager name conforming to MQ restrictions.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 48,
+            "regexp": "^[a-zA-Z0-9_.]*$"
+          }
+        },
+        "queue_managers": {
+          "name": "queue_managers",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of queue managers.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "administrator_api_endpoint_url": {
+                "name": "administrator_api_endpoint_url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The url through which to access the Admin REST APIs for this queue manager."
+              },
+              "available_upgrade_versions_uri": {
+                "name": "available_upgrade_versions_uri",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The uri through which the available versions to upgrade to can be found for this queue manager."
+              },
+              "connection_info_uri": {
+                "name": "connection_info_uri",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The uri through which the CDDT for this queue manager can be obtained."
+              },
+              "date_created": {
+                "name": "date_created",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "RFC3339 formatted UTC date for when the queue manager was created."
+              },
+              "display_name": {
+                "name": "display_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A displayable name for the queue manager - limited only in length."
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The URL for this queue manager."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the queue manager which was allocated on creation, and can be used for delete calls."
+              },
+              "location": {
+                "name": "location",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The locations in which the queue manager could be deployed."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A queue manager name conforming to MQ restrictions."
+              },
+              "rest_api_endpoint_url": {
+                "name": "rest_api_endpoint_url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The url through which to access REST APIs for this queue manager."
+              },
+              "size": {
+                "name": "size",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The queue manager sizes of deployment available."
+              },
+              "status_uri": {
+                "name": "status_uri",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A reference uri to get deployment status of the queue manager."
+              },
+              "upgrade_available": {
+                "name": "upgrade_available",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Describes whether an upgrade is available for this queue manager."
+              },
+              "version": {
+                "name": "version",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The MQ version of the queue manager."
+              },
+              "web_console_url": {
+                "name": "web_console_url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The url through which to access the web console for this queue manager."
+              }
+            }
+          }
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The GUID that uniquely identifies the MQ SaaS service instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "display_name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^.*$",
+          "max_len": 150
+        },
+        {
+          "identifier": "location",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^([^[:ascii:]]|[a-zA-Z0-9-._: ])+$",
+          "min_len": 2,
+          "max_len": 150
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9_.]*$",
+          "min_len": 1,
+          "max_len": 48
+        },
+        {
+          "identifier": "service_instance_guid",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 36,
+          "max_len": 36
+        },
+        {
+          "identifier": "size",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "large, medium, small, xsmall"
+        },
+        {
+          "identifier": "version",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9]+.[0-9]+.[0-9]+_[0-9]+$",
+          "min_len": 7,
+          "max_len": 15
+        }
+      ]
+    },
+    {
+      "name": "ibm_mqcloud_queue_manager_options",
+      "function": "DataSourceIbmMqcloudQueueManagerOptions",
+      "package": "mqcloud",
+      "kind": "data",
+      "description": "Schema validation for the ibm_mqcloud_queue_manager_options data source.",
+      "attributes": {
+        "latest_version": {
+          "name": "latest_version",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The latest Queue manager version."
+        },
+        "locations": {
+          "name": "locations",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of deployment locations.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The GUID that uniquely identifies the MQ SaaS service instance."
+        },
+        "sizes": {
+          "name": "sizes",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of queue manager sizes.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "versions": {
+          "name": "versions",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of queue manager versions.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_mqcloud_queue_manager_status",
+      "function": "DataSourceIbmMqcloudQueueManagerStatus",
+      "package": "mqcloud",
+      "kind": "data",
+      "description": "Schema validation for the ibm_mqcloud_queue_manager_status data source.",
+      "attributes": {
+        "queue_manager_id": {
+          "name": "queue_manager_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The id of the queue manager to retrieve its full details."
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The GUID that uniquely identifies the MQ SaaS service instance."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The deploying and failed states are not queue manager states, they are states which can occur when the request to deploy has been fired, or with that request has failed without producing a queue manager to have any state. The other states map to the queue manager states. State \"ending\" is either quiesing or ending immediately. State \"ended\" is either ended normally or endedimmediately. The others map one to one with queue manager states."
+        }
+      }
+    },
+    {
+      "name": "ibm_mqcloud_truststore_certificate",
+      "function": "DataSourceIbmMqcloudTruststoreCertificate",
+      "package": "mqcloud",
+      "kind": "data",
+      "description": "Schema validation for the ibm_mqcloud_truststore_certificate data source.",
+      "attributes": {
+        "label": {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Certificate label in queue manager store.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 64,
+            "regexp": "^[a-zA-Z0-9_.]*$"
+          }
+        },
+        "queue_manager_id": {
+          "name": "queue_manager_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The id of the queue manager to retrieve its full details.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 32,
+            "max_len": 32,
+            "regexp": "^[0-9a-fA-F]{32}$"
+          }
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The GUID that uniquely identifies the MQ SaaS service instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "total_count": {
+          "name": "total_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The total count of trust store certificates."
+        },
+        "trust_store": {
+          "name": "trust_store",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The list of trust store certificates.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "certificate_type": {
+                "name": "certificate_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The type of certificate."
+              },
+              "expiry": {
+                "name": "expiry",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Expiry date for the certificate."
+              },
+              "fingerprint_sha256": {
+                "name": "fingerprint_sha256",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Fingerprint SHA256."
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The URL for this trust store certificate."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Id of the certificate."
+              },
+              "issued": {
+                "name": "issued",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Date the certificate was issued."
+              },
+              "issuer_cn": {
+                "name": "issuer_cn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Issuer's Common Name."
+              },
+              "issuer_dn": {
+                "name": "issuer_dn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Issuer's Distinguished Name."
+              },
+              "label": {
+                "name": "label",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Certificate label in queue manager store."
+              },
+              "subject_cn": {
+                "name": "subject_cn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Subject's Common Name."
+              },
+              "subject_dn": {
+                "name": "subject_dn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Subject's Distinguished Name."
+              },
+              "trusted": {
+                "name": "trusted",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates whether a certificate is trusted."
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "label",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9_.]*$",
+          "min_len": 1,
+          "max_len": 64
+        },
+        {
+          "identifier": "queue_manager_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-fA-F]{32}$",
+          "min_len": 32,
+          "max_len": 32
+        },
+        {
+          "identifier": "service_instance_guid",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 36,
+          "max_len": 36
+        }
+      ]
+    },
+    {
+      "name": "ibm_mqcloud_user",
+      "function": "DataSourceIbmMqcloudUser",
+      "package": "mqcloud",
+      "kind": "data",
+      "description": "Reads ibm_mqcloud_user. The shortname of the user that will be used as the IBM MQ administrator in interactions with a queue manager for this service instance.",
+      "attributes": {
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The shortname of the user that will be used as the IBM MQ administrator in interactions with a queue manager for this service instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 12,
+            "regexp": "^[a-z][-a-z0-9]*$"
+          }
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The GUID that uniquely identifies the MQ SaaS service instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "users": {
+          "name": "users",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of users.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "email": {
+                "name": "email",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The email of the user."
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The URL for the user details."
+              },
+              "iam_managed": {
+                "name": "iam_managed",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates whether the user is managed by IAM."
+              },
+              "iam_service_id": {
+                "name": "iam_service_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The IAM ID of the user."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the user which was allocated on creation, and can be used for delete calls."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The shortname of the user that will be used as the IBM MQ administrator in interactions with a queue manager for this service instance."
+              },
+              "roles": {
+                "name": "roles",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A list of roles the user has.",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "email",
+          "kind": "StringLenBetween",
+          "min_len": 5,
+          "max_len": 253
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-z][-a-z0-9]*$",
+          "min_len": 1,
+          "max_len": 12
+        },
+        {
+          "identifier": "service_instance_guid",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 36,
+          "max_len": 36
+        }
+      ]
+    },
+    {
+      "name": "ibm_mqcloud_virtual_private_endpoint_gateway",
+      "function": "DataSourceIbmMqcloudVirtualPrivateEndpointGateway",
+      "package": "mqcloud",
+      "kind": "data",
+      "description": "Reads ibm_mqcloud_virtual_private_endpoint_gateway. The name of the virtual private endpoint gateway, created by the user.",
+      "attributes": {
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL for the details of the virtual private endpoint gateway."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The name of the virtual private endpoint gateway, created by the user.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 63,
+            "regexp": "^[a-z]|[a-z][-a-z0-9]*[a-z0-9]$"
+          }
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The GUID that uniquely identifies the MQ SaaS service instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+          }
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The lifecycle state of this virtual privage endpoint."
+        },
+        "target_crn": {
+          "name": "target_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The CRN of the reserved capacity service instance the user is trying to connect to.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic",
+            "min_len": 9,
+            "max_len": 512,
+            "regexp": "^crn:v[0-9]+:[a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]*:([a-z]\\/[a-z0-9-]+)?:[a-z0-9-]*:[a-z0-9-]*:[a-zA-Z0-9-_\\.\\/]*$|^crn:\\[\\.\\.\\.\\]$"
+          }
+        },
+        "trusted_profile": {
+          "name": "trusted_profile",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The CRN of the trusted profile to assume for this request. This can only be retrieved using the CLI using `ibmcloud iam tp \u003cprofile_id\u003e -o json`.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 9,
+            "max_len": 512,
+            "regexp": "^crn:v[0-9]+:[a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]*:([a-z]\\/[a-z0-9-]+)?:[a-z0-9-]*:[a-z0-9-]*:[a-zA-Z0-9-_\\.\\/]*$|^crn:\\[\\.\\.\\.\\]$"
+          }
+        },
+        "virtual_private_endpoint_gateway_guid": {
+          "name": "virtual_private_endpoint_gateway_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The id of the virtual private endpoint gateway."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-z]|[a-z][-a-z0-9]*[a-z0-9]$",
+          "min_len": 1,
+          "max_len": 63
+        },
+        {
+          "identifier": "service_instance_guid",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "min_len": 36,
+          "max_len": 36
+        },
+        {
+          "identifier": "target_crn",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^crn:v[0-9]+:[a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]*:([a-z]\\/[a-z0-9-]+)?:[a-z0-9-]*:[a-z0-9-]*:[a-zA-Z0-9-_\\.\\/]*$|^crn:\\[\\.\\.\\.\\]$",
+          "min_len": 9,
+          "max_len": 512
+        },
+        {
+          "identifier": "trusted_profile",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^crn:v[0-9]+:[a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]+:[a-z0-9-]*:([a-z]\\/[a-z0-9-]+)?:[a-z0-9-]*:[a-z0-9-]*:[a-zA-Z0-9-_\\.\\/]*$|^crn:\\[\\.\\.\\.\\]$",
+          "min_len": 9,
+          "max_len": 512
+        }
+      ]
+    },
+    {
+      "name": "ibm_mqcloud_virtual_private_endpoint_gateways",
+      "function": "DataSourceIbmMqcloudVirtualPrivateEndpointGateways",
+      "package": "mqcloud",
+      "kind": "data",
+      "description": "Reads ibm_mqcloud_virtual_private_endpoint_gateways. The name of the virtual private endpoint gateway, created by the user.",
+      "attributes": {
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The name of the virtual private endpoint gateway, created by the user."
+        },
+        "service_instance_guid": {
+          "name": "service_instance_guid",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The GUID that uniquely identifies the MQ SaaS service instance."
+        },
+        "trusted_profile": {
+          "name": "trusted_profile",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The CRN of the trusted profile to assume for this request. This can only be retrieved using the CLI using `ibmcloud iam tp \u003cprofile_id\u003e -o json`."
+        },
+        "virtual_private_endpoint_gateways": {
+          "name": "virtual_private_endpoint_gateways",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of virtual private endpoint gateways.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "URL for the details of the virtual private endpoint gateway."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the virtual private endpoint gateway which was allocated on creation."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the virtual private endpoint gateway, created by the user."
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The lifecycle state of this virtual privage endpoint."
+              },
+              "target_crn": {
+                "name": "target_crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The CRN of the reserved capacity service instance the user is trying to connect to.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 15,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package mqcloud"
+}

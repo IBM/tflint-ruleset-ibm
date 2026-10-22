@@ -1,0 +1,469 @@
+{
+  "package": "configurationaggregator",
+  "resources": [
+    {
+      "name": "ibm_config_aggregator_settings",
+      "function": "ResourceIbmConfigAggregatorSettings",
+      "package": "configurationaggregator",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_config_aggregator_settings resource.",
+      "attributes": {
+        "additional_scope": {
+          "name": "additional_scope",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The additional scope that enables resource collection for Enterprise acccounts.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enterprise_id": {
+                "name": "enterprise_id",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The Enterprise ID."
+              },
+              "profile_template": {
+                "name": "profile_template",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "description": "The Profile Template details applied on the enterprise account.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The Profile Template ID created in the enterprise account that provides access to App Configuration instance for resource collection."
+                    },
+                    "trusted_profile_id": {
+                      "name": "trusted_profile_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "The trusted profile ID that provides access to App Configuration instance to retrieve template information."
+                    }
+                  }
+                }
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The type of scope. Currently allowed value is Enterprise."
+              }
+            }
+          }
+        },
+        "resource_collection_enabled": {
+          "name": "resource_collection_enabled",
+          "type": "bool",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The field denoting if the resource collection is enabled."
+        },
+        "resource_collection_regions": {
+          "name": "resource_collection_regions",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The list of regions across which the resource collection is enabled.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "trusted_profile_id": {
+          "name": "trusted_profile_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The trusted profile id that provides Reader access to the App Configuration instance to collect resource metadata.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 44,
+            "max_len": 44,
+            "regexp": "^[a-zA-Z0-9-]*$"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "trusted_profile_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9-]*$",
+          "min_len": 44,
+          "max_len": 44
+        }
+      ]
+    },
+    {
+      "name": "ibm_config_aggregator_configurations",
+      "function": "DataSourceIbmConfigAggregatorConfigurations",
+      "package": "configurationaggregator",
+      "kind": "data",
+      "description": "Schema validation for the ibm_config_aggregator_configurations data source.",
+      "attributes": {
+        "access_tags": {
+          "name": "access_tags",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filter the resource configurations attached with the specified access tags.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^[a-zA-Z0-9:-]+$"
+          }
+        },
+        "config_type": {
+          "name": "config_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The type of resource configuration that are to be retrieved."
+        },
+        "configs": {
+          "name": "configs",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Array of resource configurations.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "about": {
+                "name": "about",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The basic metadata fetched from the query API."
+              },
+              "config": {
+                "name": "config",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The configuration of the resource."
+              }
+            }
+          }
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The location or region in which the resources are created."
+        },
+        "prev": {
+          "name": "prev",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The reference to the previous page of entries.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The reference to the previous page of entries."
+              },
+              "start": {
+                "name": "start",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "the start string for the query to view the page."
+              }
+            }
+          }
+        },
+        "resource_crn": {
+          "name": "resource_crn",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The crn of the resource.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "resource_group_id": {
+          "name": "resource_group_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The resource group id of the resources."
+        },
+        "service_name": {
+          "name": "service_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The name of the IBM Cloud service for which resources are to be retrieved."
+        },
+        "service_tags": {
+          "name": "service_tags",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filter the resource configurations attached with the specified service tags.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^[a-zA-Z0-9:-]+$"
+          }
+        },
+        "sub_account": {
+          "name": "sub_account",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filter the resource configurations from the specified sub-account in an enterprise hierarchy.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 32,
+            "max_len": 32,
+            "regexp": "^[a-zA-Z0-9]+$"
+          }
+        },
+        "user_tags": {
+          "name": "user_tags",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Filter the resource configurations attached with the specified user tags.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^[a-zA-Z0-9:-]+$"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "access_tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9:-]+$",
+          "min_len": 1,
+          "max_len": 128
+        },
+        {
+          "identifier": "service_tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9:-]+$",
+          "min_len": 1,
+          "max_len": 128
+        },
+        {
+          "identifier": "sub_account",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9]+$",
+          "min_len": 32,
+          "max_len": 32
+        },
+        {
+          "identifier": "user_tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9:-]+$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_config_aggregator_resource_collection_status",
+      "function": "DataSourceIbmConfigAggregatorResourceCollectionStatus",
+      "package": "configurationaggregator",
+      "kind": "data",
+      "description": "Schema validation for the ibm_config_aggregator_resource_collection_status data source.",
+      "attributes": {
+        "last_config_refresh_time": {
+          "name": "last_config_refresh_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The timestamp at which the configuration was last refreshed."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Status of the resource collection."
+        }
+      }
+    },
+    {
+      "name": "ibm_config_aggregator_settings",
+      "function": "DataSourceIbmConfigAggregatorSettings",
+      "package": "configurationaggregator",
+      "kind": "data",
+      "description": "Schema validation for the ibm_config_aggregator_settings data source.",
+      "attributes": {
+        "additional_scope": {
+          "name": "additional_scope",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The additional scope that enables resource collection for Enterprise acccounts.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enterprise_id": {
+                "name": "enterprise_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Enterprise ID."
+              },
+              "profile_template": {
+                "name": "profile_template",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Profile Template details applied on the enterprise account.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The Profile Template ID created in the enterprise account that provides access to App Configuration instance for resource collection."
+                    },
+                    "trusted_profile_id": {
+                      "name": "trusted_profile_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The trusted profile ID that provides access to App Configuration instance to retrieve template information."
+                    }
+                  }
+                }
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The type of scope. Currently allowed value is Enterprise."
+              }
+            }
+          }
+        },
+        "last_updated": {
+          "name": "last_updated",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The last time the settings was last updated."
+        },
+        "regions": {
+          "name": "regions",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Regions for which the resource collection is enabled.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "resource_collection_enabled": {
+          "name": "resource_collection_enabled",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The field to check if the resource collection is enabled."
+        },
+        "trusted_profile_id": {
+          "name": "trusted_profile_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The trusted profile ID that provides access to App Configuration instance to retrieve resource metadata.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 44,
+            "max_len": 44,
+            "regexp": "^[a-zA-Z0-9-]*$"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "trusted_profile_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9-]*$",
+          "min_len": 44,
+          "max_len": 44
+        }
+      ]
+    }
+  ],
+  "skipped": [],
+  "extracted": 4,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package configurationaggregator"
+}

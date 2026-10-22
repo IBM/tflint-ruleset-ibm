@@ -1,0 +1,949 @@
+{
+  "package": "dnsservices",
+  "specs": [
+    {
+      "slug": "dns-svcs",
+      "title": "DNS Svcs",
+      "schema_count": 90,
+      "path_count": 29
+    }
+  ],
+  "matched": 19,
+  "resource_count": 19,
+  "overlay_attrs": 102,
+  "resources": [
+    {
+      "name": "ibm_dns_custom_resolver",
+      "kind": "resource",
+      "schema": "custom_resolver_update_input",
+      "spec": "dns-svcs",
+      "score": 0.56,
+      "attrs": {
+        "allow_disruptive_updates": {
+          "description": "Whether a disruptive update is allowed for the custom resolver.",
+          "source": "dns-svcs",
+          "schema": "custom_resolver_update_input"
+        },
+        "description": {
+          "description": "Descriptive text of the custom resolver.",
+          "source": "dns-svcs",
+          "schema": "custom_resolver_update_input"
+        },
+        "enabled": {
+          "description": "Whether the custom resolver is enabled.",
+          "source": "dns-svcs",
+          "schema": "custom_resolver_update_input"
+        },
+        "locations.enabled": {
+          "description": "Whether the custom resolver is enabled.",
+          "source": "dns-svcs",
+          "schema": "custom_resolver_update_input"
+        },
+        "name": {
+          "description": "Name of the custom resolver.",
+          "source": "dns-svcs",
+          "schema": "custom_resolver_update_input"
+        },
+        "profile": {
+          "enum": [
+            "essential",
+            "advanced",
+            "premier"
+          ],
+          "description": "The profile name of a custom resolver.",
+          "source": "dns-svcs",
+          "schema": "custom_resolver_update_input"
+        },
+        "rules.views.description": {
+          "description": "Descriptive text of the custom resolver.",
+          "source": "dns-svcs",
+          "schema": "custom_resolver_update_input"
+        },
+        "rules.views.name": {
+          "description": "Name of the custom resolver.",
+          "source": "dns-svcs",
+          "schema": "custom_resolver_update_input"
+        },
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        },
+        "rules.views.expression": {
+          "min_len": 1,
+          "max_len": 512,
+          "description": "The custom resolver will only apply the rule to the incoming DNS queries if the expression evaluates to true. The expression follows [Common Expression Language](https://github.com/google/cel-spec/blob/master/doc/langdef.md), but does not support CEL build-in functions and macros. Currently, the expression only supports the following custom functions, variables and operators: - Functions: - `ipInR",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/custom_resolvers/{resolver_id}/forwarding_rules/{rule_id}:patch"
+        },
+        "rules.views.forward_to": {
+          "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+          "description": "IPv4 address.",
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/custom_resolvers/{resolver_id}/forwarding_rules/{rule_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_custom_resolver_forwarding_rule",
+      "kind": "resource",
+      "schema": "forwarding_rule_input",
+      "spec": "dns-svcs",
+      "score": 0.4725,
+      "attrs": {
+        "description": {
+          "description": "Descriptive text of the forwarding rule.",
+          "source": "dns-svcs",
+          "schema": "forwarding_rule_input"
+        },
+        "match": {
+          "description": "The matching zone or hostname.",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "forwarding_rule_input"
+        },
+        "type": {
+          "enum": [
+            "zone"
+          ],
+          "description": "Type of the forwarding rule.",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "forwarding_rule_input"
+        },
+        "views.description": {
+          "description": "Descriptive text of the forwarding rule.",
+          "source": "dns-svcs",
+          "schema": "forwarding_rule_input"
+        },
+        "forward_to": {
+          "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+          "description": "IPv4 address.",
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/custom_resolvers/{resolver_id}/forwarding_rules/{rule_id}:patch"
+        },
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        },
+        "views.expression": {
+          "min_len": 1,
+          "max_len": 512,
+          "description": "The custom resolver will only apply the rule to the incoming DNS queries if the expression evaluates to true. The expression follows [Common Expression Language](https://github.com/google/cel-spec/blob/master/doc/langdef.md), but does not support CEL build-in functions and macros. Currently, the expression only supports the following custom functions, variables and operators: - Functions: - `ipInR",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/custom_resolvers/{resolver_id}/forwarding_rules/{rule_id}:patch"
+        },
+        "views.forward_to": {
+          "pattern": "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$",
+          "description": "IPv4 address.",
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/custom_resolvers/{resolver_id}/forwarding_rules/{rule_id}:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_custom_resolver_secondary_zone",
+      "kind": "resource",
+      "schema": "secondary_zone_input",
+      "spec": "dns-svcs",
+      "score": 0.6767,
+      "attrs": {
+        "description": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Descriptive text of the secondary zone",
+          "source": "dns-svcs",
+          "schema": "secondary_zone_input"
+        },
+        "enabled": {
+          "description": "Enable/Disable the secondary zone",
+          "source": "dns-svcs",
+          "schema": "secondary_zone_input"
+        },
+        "transfer_from": {
+          "min_len": 7,
+          "max_len": 15,
+          "description": "The address of DNS server where the secondary zone data should be transferred from",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "secondary_zone_input"
+        },
+        "zone": {
+          "pattern": "^[-0-9a-zA-Z\\.]+$",
+          "min_len": 3,
+          "max_len": 255,
+          "description": "zone name",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "secondary_zone_input"
+        },
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_glb",
+      "kind": "resource",
+      "schema": "/instances/{instance_id}/dnszones/{dnszone_id}/load_balancers:post",
+      "spec": "dns-svcs",
+      "score": 0.3818,
+      "attrs": {
+        "az_pools.availability_zone": {
+          "description": "Availability zone.",
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/dnszones/{dnszone_id}/load_balancers:post"
+        },
+        "az_pools.pools": {
+          "description": "List of load balancer pools.",
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/dnszones/{dnszone_id}/load_balancers:post"
+        },
+        "default_pools": {
+          "description": "A list of pool IDs ordered by their failover priority. Pools defined here are used by default, or when region_pools are not configured for a given region.",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/dnszones/{dnszone_id}/load_balancers:post"
+        },
+        "description": {
+          "description": "Descriptive text of the load balancer.",
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/dnszones/{dnszone_id}/load_balancers:post"
+        },
+        "enabled": {
+          "description": "Whether the load balancer is enabled.",
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/dnszones/{dnszone_id}/load_balancers:post"
+        },
+        "fallback_pool": {
+          "description": "The pool ID to use when all other pools are detected as unhealthy.",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/dnszones/{dnszone_id}/load_balancers:post"
+        },
+        "name": {
+          "description": "Name of the load balancer.",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/dnszones/{dnszone_id}/load_balancers:post"
+        },
+        "ttl": {
+          "description": "Time to live in second.",
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/dnszones/{dnszone_id}/load_balancers:post"
+        },
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        },
+        "zone_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The owner's DNS zone",
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_glb_monitor",
+      "kind": "resource",
+      "schema": "monitor_input",
+      "spec": "dns-svcs",
+      "score": 0.77,
+      "attrs": {
+        "allow_insecure": {
+          "description": "Do not validate the certificate when monitor use HTTPS. This parameter is currently only valid for HTTPS monitors.",
+          "source": "dns-svcs",
+          "schema": "monitor_input"
+        },
+        "description": {
+          "description": "Descriptive text of the load balancer monitor.",
+          "source": "dns-svcs",
+          "schema": "monitor_input"
+        },
+        "expected_body": {
+          "max_len": 1024,
+          "description": "A case-insensitive sub-string to look for in the response body. If this string is not found, the origin will be marked as unhealthy. This parameter is only valid for HTTP and HTTPS monitors.",
+          "source": "dns-svcs",
+          "schema": "monitor_input"
+        },
+        "expected_codes": {
+          "enum": [
+            "200",
+            "201",
+            "202",
+            "203",
+            "204",
+            "205",
+            "206",
+            "207",
+            "208",
+            "226",
+            "2xx"
+          ],
+          "description": "The expected HTTP response code or code range of the health check. This parameter is only valid for HTTP and HTTPS monitors.",
+          "source": "dns-svcs",
+          "schema": "monitor_input"
+        },
+        "headers.name": {
+          "description": "The name of HTTP request header.",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "monitor_input"
+        },
+        "headers.value": {
+          "description": "The value of HTTP request header.",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "monitor_input"
+        },
+        "interval": {
+          "min": 5,
+          "max": 3600,
+          "description": "The interval between each health check. Shorter intervals may improve failover time, but will increase load on the origins as we check from multiple locations.",
+          "source": "dns-svcs",
+          "schema": "monitor_input"
+        },
+        "method": {
+          "enum": [
+            "GET",
+            "HEAD"
+          ],
+          "description": "The method to use for the health check applicable to HTTP/HTTPS based checks, the default value is 'GET'.",
+          "source": "dns-svcs",
+          "schema": "monitor_input"
+        },
+        "name": {
+          "description": "The name of the load balancer monitor.",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "monitor_input"
+        },
+        "path": {
+          "description": "The endpoint path to health check against. This parameter is only valid for HTTP and HTTPS monitors.",
+          "source": "dns-svcs",
+          "schema": "monitor_input"
+        },
+        "port": {
+          "min": 1,
+          "max": 65535,
+          "description": "Port number to connect to for the health check. Required for TCP checks. HTTP and HTTPS checks should only define the port when using a non-standard port (HTTP: default 80, HTTPS: default 443).",
+          "source": "dns-svcs",
+          "schema": "monitor_input"
+        },
+        "retries": {
+          "min": 0,
+          "max": 3,
+          "description": "The number of retries to attempt in case of a timeout before marking the origin as unhealthy. Retries are attempted immediately.",
+          "source": "dns-svcs",
+          "schema": "monitor_input"
+        },
+        "timeout": {
+          "min": 1,
+          "max": 10,
+          "description": "The timeout (in seconds) before marking the health check as failed.",
+          "source": "dns-svcs",
+          "schema": "monitor_input"
+        },
+        "type": {
+          "enum": [
+            "HTTP",
+            "HTTPS",
+            "TCP"
+          ],
+          "description": "The protocol to use for the health check. Currently supported protocols are 'HTTP','HTTPS' and 'TCP'.",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "monitor_input"
+        },
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_glb_pool",
+      "kind": "resource",
+      "schema": "pool_input",
+      "spec": "dns-svcs",
+      "score": 0.7191,
+      "attrs": {
+        "description": {
+          "description": "Descriptive text of the load balancer pool.",
+          "source": "dns-svcs",
+          "schema": "pool_input"
+        },
+        "enabled": {
+          "description": "Whether the load balancer pool is enabled.",
+          "source": "dns-svcs",
+          "schema": "pool_input"
+        },
+        "healthcheck_region": {
+          "enum": [
+            "",
+            "us-south",
+            "us-east",
+            "eu-gb",
+            "eu-du",
+            "au-syd",
+            "jp-tok"
+          ],
+          "description": "Health check region of VSIs.",
+          "source": "dns-svcs",
+          "schema": "pool_input"
+        },
+        "healthcheck_subnets": {
+          "description": "Subnet CRN.",
+          "source": "dns-svcs",
+          "schema": "pool_input"
+        },
+        "healthy_origins_threshold": {
+          "description": "The minimum number of origins that must be healthy for this pool to serve traffic. If the number of healthy origins falls below this number, the pool will be marked unhealthy and we will failover to the next available pool.",
+          "source": "dns-svcs",
+          "schema": "pool_input"
+        },
+        "monitor": {
+          "description": "The ID of the load balancer monitor to be associated to this pool.",
+          "source": "dns-svcs",
+          "schema": "pool_input"
+        },
+        "name": {
+          "description": "Name of the load balancer pool.",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "pool_input"
+        },
+        "notification_channel": {
+          "description": "The notification channel.",
+          "source": "dns-svcs",
+          "schema": "pool_input"
+        },
+        "origins.address": {
+          "description": "The address of the origin server. It can be a hostname or an IP address.",
+          "source": "dns-svcs",
+          "schema": "pool_input"
+        },
+        "origins.description": {
+          "description": "Description of the origin server.",
+          "source": "dns-svcs",
+          "schema": "pool_input"
+        },
+        "origins.enabled": {
+          "description": "Whether the origin server is enabled.",
+          "source": "dns-svcs",
+          "schema": "pool_input"
+        },
+        "origins.name": {
+          "description": "The name of the origin server.",
+          "source": "dns-svcs",
+          "schema": "pool_input"
+        },
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_linked_zone",
+      "kind": "resource",
+      "schema": "linked_dnszone",
+      "spec": "dns-svcs",
+      "score": 0.425,
+      "attrs": {
+        "approval_required_before": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "The expired time of linked zone with state `approval pending`",
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        },
+        "description": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 0,
+          "max_len": 255,
+          "description": "Descriptive text of the linked zone",
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        },
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        },
+        "label": {
+          "pattern": "^[\\s\\S]*$",
+          "min_len": 0,
+          "max_len": 64,
+          "description": "The label of linked zone",
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        },
+        "linked_to": {
+          "description": "The owner's instance and zone that the zone is linked to",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        },
+        "name": {
+          "pattern": "^[-0-9a-zA-Z\\.]+$",
+          "min_len": 3,
+          "max_len": 255,
+          "description": "Name of owner's DNS zone",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        },
+        "owner_instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Owner's instance ID",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/linked_dnszones:post"
+        },
+        "owner_zone_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Owner's DNS zone ID",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/linked_dnszones:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_permitted_network",
+      "kind": "resource",
+      "schema": "permitted_network_input",
+      "spec": "dns-svcs",
+      "score": 0.35,
+      "attrs": {
+        "type": {
+          "enum": [
+            "vpc"
+          ],
+          "description": "The type of a permitted network.",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "permitted_network_input"
+        },
+        "vpc_crn": {
+          "description": "CRN string uniquely identifies a VPC.",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "permitted_network_input"
+        },
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        },
+        "zone_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The owner's DNS zone",
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_resource_record",
+      "kind": "resource",
+      "schema": "resource_record_input",
+      "spec": "dns-svcs",
+      "score": 0.56,
+      "attrs": {
+        "name": {
+          "description": "Name of the resource record.",
+          "source": "dns-svcs",
+          "schema": "resource_record_input"
+        },
+        "port": {
+          "min": 0,
+          "max": 65535,
+          "description": "Port number of the target server",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "resource_record_input"
+        },
+        "preference": {
+          "min": 0,
+          "max": 65535,
+          "description": "Preference of the MX record",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "resource_record_input"
+        },
+        "priority": {
+          "min": 0,
+          "max": 65535,
+          "description": "Priority of the SRV record",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "resource_record_input"
+        },
+        "protocol": {
+          "description": "Only used for SRV record.",
+          "source": "dns-svcs",
+          "schema": "resource_record_input"
+        },
+        "rdata": {
+          "description": "Content of the resource record.",
+          "source": "dns-svcs",
+          "schema": "resource_record_input"
+        },
+        "service": {
+          "description": "Only used for SRV record.",
+          "source": "dns-svcs",
+          "schema": "resource_record_input"
+        },
+        "ttl": {
+          "description": "Time to live in second.",
+          "source": "dns-svcs",
+          "schema": "resource_record_input"
+        },
+        "type": {
+          "enum": [
+            "A",
+            "AAAA",
+            "CNAME",
+            "MX",
+            "SRV",
+            "TXT",
+            "PTR"
+          ],
+          "description": "Type of the resource record.",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "resource_record_input"
+        },
+        "weight": {
+          "min": 0,
+          "max": 65535,
+          "description": "Weight of distributing queries among multiple target servers",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "resource_record_input"
+        },
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        },
+        "zone_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The owner's DNS zone",
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_zone",
+      "kind": "resource",
+      "schema": "/instances/{instance_id}/dnszones:post",
+      "spec": "dns-svcs",
+      "score": 0.525,
+      "attrs": {
+        "description": {
+          "min_len": 1,
+          "max_len": 255,
+          "description": "The text describing the purpose of a DNS zone",
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/dnszones:post"
+        },
+        "label": {
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The label of a DNS zone",
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/dnszones:post"
+        },
+        "name": {
+          "min_len": 1,
+          "max_len": 255,
+          "description": "Name of DNS zone",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "/instances/{instance_id}/dnszones:post"
+        },
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_custom_resolver_forwarding_rules",
+      "kind": "data",
+      "schema": "custom_resolver",
+      "spec": "dns-svcs",
+      "score": 0.21,
+      "attrs": {
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_custom_resolver_secondary_zones",
+      "kind": "data",
+      "schema": "custom_resolver",
+      "spec": "dns-svcs",
+      "score": 0.21,
+      "attrs": {
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_custom_resolvers",
+      "kind": "data",
+      "schema": "/instances/{instance_id}/custom_resolvers/{resolver_id}:patch",
+      "spec": "dns-svcs",
+      "score": 0.1657,
+      "attrs": {
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_glb_monitors",
+      "kind": "data",
+      "schema": "list_monitors",
+      "spec": "dns-svcs",
+      "score": 0.21,
+      "attrs": {
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_glb_pools",
+      "kind": "data",
+      "schema": "list_pools",
+      "spec": "dns-svcs",
+      "score": 0.21,
+      "attrs": {
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_glbs",
+      "kind": "data",
+      "schema": "access_request",
+      "spec": "dns-svcs",
+      "score": 0.1578,
+      "attrs": {
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The requestor's DNS service instance ID",
+          "source": "dns-svcs",
+          "schema": "access_request"
+        },
+        "zone_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "max_len": 36,
+          "description": "The zone ID that requestor requests access for",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "access_request"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_permitted_networks",
+      "kind": "data",
+      "schema": "list_permitted_networks",
+      "spec": "dns-svcs",
+      "score": 0.21,
+      "attrs": {
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        },
+        "zone_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The owner's DNS zone",
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_resource_records",
+      "kind": "data",
+      "schema": "list_resource_records",
+      "spec": "dns-svcs",
+      "score": 0.21,
+      "attrs": {
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        },
+        "zone_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The owner's DNS zone",
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        }
+      }
+    },
+    {
+      "name": "ibm_dns_zones",
+      "kind": "data",
+      "schema": "leaf-unique",
+      "spec": "dns-svcs",
+      "score": 0.11,
+      "attrs": {
+        "instance_id": {
+          "pattern": "^[-0-9a-z_]+$",
+          "format": "identifier",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Unique identifier of a service instance",
+          "api_required": true,
+          "source": "dns-svcs",
+          "schema": "linked_dnszone"
+        }
+      }
+    }
+  ]
+}

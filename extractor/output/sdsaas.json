@@ -1,0 +1,1031 @@
+{
+  "package": "sdsaas",
+  "resources": [
+    {
+      "name": "ibm_sds_host",
+      "function": "ResourceIBMSdsHost",
+      "package": "sdsaas",
+      "kind": "resource",
+      "description": "Manages ibm_sds_host. Unique name of the host.",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date and time when the resource was created."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL for this resource."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Unique name of the host.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 63,
+            "regexp": "^-?([a-z]|[a-z][-a-z0-9]*[a-z0-9]|[0-9][-a-z0-9]*([a-z]|[-a-z][-a-z0-9]*[a-z0-9]))$"
+          }
+        },
+        "nqn": {
+          "name": "nqn",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The NQN (NVMe Qualified Name) as configured on the initiator (compute/host) accessing the storage.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 16,
+            "max_len": 223,
+            "regexp": "^nqn\\.\\d{4}-\\d{2}\\.[a-z0-9-]+(?:\\.[a-z0-9-]+)*:[a-zA-Z0-9.\\-:]+$"
+          }
+        },
+        "sds_endpoint": {
+          "name": "sds_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The endpoint to use for operations"
+        },
+        "volume_mappings": {
+          "name": "volume_mappings",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The host-to-volume map.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "gateways": {
+                "name": "gateways",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "List of NVMe gateways.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "ip_address": {
+                      "name": "ip_address",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Network information for volume/host mappings.",
+                      "validate": {
+                        "kind": "ipv4",
+                        "func_name": "name_heuristic"
+                      }
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Network information for volume/host mappings.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "host": {
+                "name": "host",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "description": "Host mapping schema.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "Unique identifer of the host."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "Unique name of the host."
+                    },
+                    "nqn": {
+                      "name": "nqn",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "The NQN (NVMe Qualified Name) as configured on the initiator (compute/host) accessing the storage."
+                    }
+                  }
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The URL for this resource."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Unique identifier of the mapping."
+              },
+              "namespace": {
+                "name": "namespace",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "description": "The NVMe namespace properties for a given volume mapping.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "id": {
+                      "name": "id",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "NVMe namespace ID that can be used to co-relate the discovered devices on host to the corresponding volume."
+                    },
+                    "uuid": {
+                      "name": "uuid",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": false,
+                      "description": "UUID of the NVMe namespace."
+                    }
+                  }
+                }
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The status of the volume mapping. The enumerated values for this property will expand in the future. When processing this property, check for and log unknown values. Optionally halt processing and surface the error, or bypass the resource on which the unexpected property value was encountered."
+              },
+              "storage_identifier": {
+                "name": "storage_identifier",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "description": "Storage network and ID information associated with a volume/host mapping.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "gateways": {
+                      "name": "gateways",
+                      "type": "list",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "List of NVMe gateways.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "ip_address": {
+                            "name": "ip_address",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Network information for volume/host mappings.",
+                            "validate": {
+                              "kind": "ipv4",
+                              "func_name": "name_heuristic"
+                            }
+                          },
+                          "port": {
+                            "name": "port",
+                            "type": "int",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Network information for volume/host mappings.",
+                            "validate": {
+                              "kind": "port",
+                              "func_name": "name_heuristic",
+                              "min": 1,
+                              "max": 65535
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "namespace_id": {
+                      "name": "namespace_id",
+                      "type": "int",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "NVMe namespace ID that can be used to co-relate the discovered devices on host to the corresponding volume."
+                    },
+                    "namespace_uuid": {
+                      "name": "namespace_uuid",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "The namespace UUID associated with a volume/host mapping."
+                    },
+                    "subsystem_nqn": {
+                      "name": "subsystem_nqn",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "The NVMe target subsystem NQN (NVMe Qualified Name) that can be used for doing NVMe connect by the initiator."
+                    }
+                  }
+                }
+              },
+              "subsystem_nqn": {
+                "name": "subsystem_nqn",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The NVMe target subsystem NQN (NVMe Qualified Name) that can be used for doing NVMe connect by the initiator."
+              },
+              "volume": {
+                "name": "volume",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "max_items": 1,
+                "description": "The volume reference.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "Unique identifer of the host."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Unique name of the host."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^-?([a-z]|[a-z][-a-z0-9]*[a-z0-9]|[0-9][-a-z0-9]*([a-z]|[-a-z][-a-z0-9]*[a-z0-9]))$",
+          "min_len": 1,
+          "max_len": 63
+        },
+        {
+          "identifier": "nqn",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^nqn\\.\\d{4}-\\d{2}\\.[a-z0-9-]+(?:\\.[a-z0-9-]+)*:[a-zA-Z0-9.\\-:]+$",
+          "min_len": 16,
+          "max_len": 223
+        }
+      ]
+    },
+    {
+      "name": "ibm_sds_volume",
+      "function": "ResourceIBMSdsVolume",
+      "package": "sdsaas",
+      "kind": "resource",
+      "description": "Manages ibm_sds_volume. Unique name of the host.",
+      "attributes": {
+        "bandwidth": {
+          "name": "bandwidth",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The maximum bandwidth (in megabits per second) for the volume."
+        },
+        "capacity": {
+          "name": "capacity",
+          "type": "int",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The capacity of the volume (in gigabytes).",
+          "validate": {
+            "kind": "int_range",
+            "func_name": "IntBetween",
+            "min": 1,
+            "max": 32000
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date and time that the volume was created."
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL for this resource."
+        },
+        "iops": {
+          "name": "iops",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Iops The maximum I/O operations per second (IOPS) for this volume."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Unique name of the host.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 63,
+            "regexp": "^.*$"
+          }
+        },
+        "resource_type": {
+          "name": "resource_type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource type of the volume."
+        },
+        "sds_endpoint": {
+          "name": "sds_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The endpoint to use for operations"
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the volume resource. The enumerated values for this property will expand in the future. When processing this property, check for and log unknown values. Optionally halt processing and surface the error, or bypass the resource on which the unexpected property value was encountered."
+        },
+        "status_reasons": {
+          "name": "status_reasons",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The reasons for the current status (if any).",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "code": {
+                "name": "code",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A snake case string succinctly identifying the status reason."
+              },
+              "message": {
+                "name": "message",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "An explanation of the status reason."
+              },
+              "more_info": {
+                "name": "more_info",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Link to documentation about this status reason."
+              }
+            }
+          }
+        },
+        "volume_mappings": {
+          "name": "volume_mappings",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of volume mappings for this volume.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "gateways": {
+                "name": "gateways",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "List of NVMe gateways.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "ip_address": {
+                      "name": "ip_address",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Network information for volume/host mappings.",
+                      "validate": {
+                        "kind": "ipv4",
+                        "func_name": "name_heuristic"
+                      }
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Network information for volume/host mappings.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "host": {
+                "name": "host",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Host mapping schema.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Unique identifer of the host."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Unique name of the host."
+                    },
+                    "nqn": {
+                      "name": "nqn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The NQN (NVMe Qualified Name) as configured on the initiator (compute/host) accessing the storage."
+                    }
+                  }
+                }
+              },
+              "href": {
+                "name": "href",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The URL for this resource."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique identifier of the mapping."
+              },
+              "namespace": {
+                "name": "namespace",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The NVMe namespace properties for a given volume mapping.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "id": {
+                      "name": "id",
+                      "type": "int",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "NVMe namespace ID that can be used to co-relate the discovered devices on host to the corresponding volume."
+                    },
+                    "uuid": {
+                      "name": "uuid",
+                      "type": "string",
+                      "required": false,
+                      "optional": true,
+                      "computed": true,
+                      "description": "UUID of the NVMe namespace."
+                    }
+                  }
+                }
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of the volume mapping. The enumerated values for this property will expand in the future. When processing this property, check for and log unknown values. Optionally halt processing and surface the error, or bypass the resource on which the unexpected property value was encountered."
+              },
+              "storage_identifier": {
+                "name": "storage_identifier",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Storage network and ID information associated with a volume/host mapping.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "gateways": {
+                      "name": "gateways",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "List of NVMe gateways.",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "ip_address": {
+                            "name": "ip_address",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Network information for volume/host mappings.",
+                            "validate": {
+                              "kind": "ipv4",
+                              "func_name": "name_heuristic"
+                            }
+                          },
+                          "port": {
+                            "name": "port",
+                            "type": "int",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Network information for volume/host mappings.",
+                            "validate": {
+                              "kind": "port",
+                              "func_name": "name_heuristic",
+                              "min": 1,
+                              "max": 65535
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "namespace_id": {
+                      "name": "namespace_id",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "NVMe namespace ID that can be used to co-relate the discovered devices on host to the corresponding volume."
+                    },
+                    "namespace_uuid": {
+                      "name": "namespace_uuid",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The namespace UUID associated with a volume/host mapping."
+                    },
+                    "subsystem_nqn": {
+                      "name": "subsystem_nqn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The NVMe target subsystem NQN (NVMe Qualified Name) that can be used for doing NVMe connect by the initiator."
+                    }
+                  }
+                }
+              },
+              "subsystem_nqn": {
+                "name": "subsystem_nqn",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The NVMe target subsystem NQN (NVMe Qualified Name) that can be used for doing NVMe connect by the initiator."
+              },
+              "volume": {
+                "name": "volume",
+                "type": "list",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The volume reference.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Unique identifer of the host."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Unique name of the host."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "capacity",
+          "kind": "IntBetween",
+          "min": "1",
+          "max": "32000"
+        },
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^.*$",
+          "min_len": 1,
+          "max_len": 63
+        }
+      ]
+    },
+    {
+      "name": "ibm_sds_volume_mapping",
+      "function": "ResourceIBMSdsVolumeMapping",
+      "package": "sdsaas",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_sds_volume_mapping resource.",
+      "attributes": {
+        "gateways": {
+          "name": "gateways",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of NVMe gateways.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "ip_address": {
+                "name": "ip_address",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Network information for volume/host mappings.",
+                "validate": {
+                  "kind": "ipv4",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "port": {
+                "name": "port",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Network information for volume/host mappings.",
+                "validate": {
+                  "kind": "port",
+                  "func_name": "name_heuristic",
+                  "min": 1,
+                  "max": 65535
+                }
+              }
+            }
+          }
+        },
+        "host": {
+          "name": "host",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Host mapping schema.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique identifer of the host."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique name of the host."
+              },
+              "nqn": {
+                "name": "nqn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The NQN (NVMe Qualified Name) as configured on the initiator (compute/host) accessing the storage."
+              }
+            }
+          }
+        },
+        "host_id": {
+          "name": "host_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "A unique host ID.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "max_len": 200,
+            "regexp": "^\\S+$"
+          }
+        },
+        "href": {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL for this resource."
+        },
+        "namespace": {
+          "name": "namespace",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The NVMe namespace properties for a given volume mapping.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "NVMe namespace ID that can be used to co-relate the discovered devices on host to the corresponding volume."
+              },
+              "uuid": {
+                "name": "uuid",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "UUID of the NVMe namespace."
+              }
+            }
+          }
+        },
+        "sds_endpoint": {
+          "name": "sds_endpoint",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The endpoint to use for operations"
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the volume mapping. The enumerated values for this property will expand in the future. When processing this property, check for and log unknown values. Optionally halt processing and surface the error, or bypass the resource on which the unexpected property value was encountered."
+        },
+        "storage_identifier": {
+          "name": "storage_identifier",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Storage network and ID information associated with a volume/host mapping.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "gateways": {
+                "name": "gateways",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of NVMe gateways.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "ip_address": {
+                      "name": "ip_address",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Network information for volume/host mappings.",
+                      "validate": {
+                        "kind": "ipv4",
+                        "func_name": "name_heuristic"
+                      }
+                    },
+                    "port": {
+                      "name": "port",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Network information for volume/host mappings.",
+                      "validate": {
+                        "kind": "port",
+                        "func_name": "name_heuristic",
+                        "min": 1,
+                        "max": 65535
+                      }
+                    }
+                  }
+                }
+              },
+              "namespace_id": {
+                "name": "namespace_id",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "NVMe namespace ID that can be used to co-relate the discovered devices on host to the corresponding volume."
+              },
+              "namespace_uuid": {
+                "name": "namespace_uuid",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The namespace UUID associated with a volume/host mapping."
+              },
+              "subsystem_nqn": {
+                "name": "subsystem_nqn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The NVMe target subsystem NQN (NVMe Qualified Name) that can be used for doing NVMe connect by the initiator."
+              }
+            }
+          }
+        },
+        "subsystem_nqn": {
+          "name": "subsystem_nqn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The NVMe target subsystem NQN (NVMe Qualified Name) that can be used for doing NVMe connect by the initiator."
+        },
+        "volume": {
+          "name": "volume",
+          "type": "list",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "min_items": 1,
+          "max_items": 1,
+          "description": "The volume reference.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Unique identifer of the host."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique name of the host."
+              }
+            }
+          }
+        },
+        "volume_mapping_id": {
+          "name": "volume_mapping_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Unique identifier of the mapping."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "host_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^\\S+$",
+          "max_len": 200
+        }
+      ]
+    }
+  ],
+  "skipped": [],
+  "extracted": 3,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package sdsaas"
+}

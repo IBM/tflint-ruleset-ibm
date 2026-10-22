@@ -1,0 +1,86 @@
+{
+  "package": "platformnotifications",
+  "resources": [
+    {
+      "name": "ibm_notification_distribution_list_destination",
+      "function": "ResourceIbmNotificationDistributionListDestination",
+      "package": "platformnotifications",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_notification_distribution_list_destination resource.",
+      "attributes": {
+        "account_id": {
+          "name": "account_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The IBM Cloud account ID.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 100,
+            "regexp": "^[0-9a-zA-Z]{1,100}$"
+          }
+        },
+        "destination_id": {
+          "name": "destination_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The GUID of the Event Notifications instance.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 36,
+            "max_len": 36,
+            "regexp": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+          }
+        },
+        "destination_type": {
+          "name": "destination_type",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The type of the destination.",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "event_notifications"
+            ]
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "account_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-zA-Z]{1,100}$",
+          "min_len": 1,
+          "max_len": 100
+        },
+        {
+          "identifier": "destination_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "min_len": 36,
+          "max_len": 36
+        },
+        {
+          "identifier": "destination_type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "event_notifications"
+        }
+      ]
+    }
+  ],
+  "skipped": [],
+  "extracted": 1,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package platformnotifications"
+}

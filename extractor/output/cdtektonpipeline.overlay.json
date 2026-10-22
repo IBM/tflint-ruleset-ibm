@@ -1,0 +1,787 @@
+{
+  "package": "cdtektonpipeline",
+  "specs": [
+    {
+      "slug": "tekton-pipeline",
+      "title": "CD Tekton Pipeline",
+      "schema_count": 86,
+      "path_count": 17
+    }
+  ],
+  "matched": 10,
+  "resource_count": 10,
+  "overlay_attrs": 83,
+  "resources": [
+    {
+      "name": "ibm_cd_tekton_pipeline",
+      "kind": "resource",
+      "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch",
+      "spec": "tekton-pipeline",
+      "score": 0.5044,
+      "attrs": {
+        "definitions.source.properties.branch": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "String",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "properties.value": {
+          "min_len": 0,
+          "max_len": 4096,
+          "description": "Secret value, not needed if secret type is `internal_validation`",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "resource_group.id": {
+          "pattern": "^[-0-9a-zA-Z]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "ID of the worker",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.cron": {
+          "pattern": "^[-0-9a-zA-Z,\\*\\/ ]{5,253}$",
+          "min_len": 5,
+          "max_len": 253,
+          "description": "Only needed for timer triggers. CRON expression that indicates when this trigger will activate. Maximum frequency is every 5 minutes. The string is based on UNIX crontab syntax: minute, hour, day of month, month, day of week. Example: The CRON expression 0 */2 * * * - translates to - every 2 hours",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.disable_draft_events": {
+          "description": "Prevent new pipeline runs from being triggered by events from draft pull requests",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.enable_events_from_forks": {
+          "description": "Only used for SCM triggers. When enabled, pull request events from forks of the selected repository will trigger a pipeline run",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.enabled": {
+          "description": "Defines if this trigger is enabled",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.event_listener": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "Event listener name. The name of the event listener to which the trigger is associated. The event listeners are defined in the definition repositories of the Tekton pipeline",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.events": {
+          "enum": [
+            "push",
+            "pull_request",
+            "pull_request_closed"
+          ],
+          "description": "List of events. Supported options are 'push' Git webhook events, 'pull_request_closed' Git webhook events and 'pull_request' for 'open pull request' or 'update pull request' Git webhook events",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.favorite": {
+          "description": "Mark the trigger as a favorite",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.filter": {
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Either 'events' or 'filter' can be used. Stores the CEL (Common Expression Language) expression value which is used for event filtering against the Git webhook payloads",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.limit_waiting_runs": {
+          "description": "Flag that will limit the trigger to a maximum of one waiting run. A newly triggered run will cause any other waiting run(s) to be automatically cancelled",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.max_concurrent_runs": {
+          "format": "int32",
+          "description": "Defines the maximum number of concurrent runs for this trigger. If omitted then the concurrency limit is disabled for this trigger",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.name": {
+          "pattern": "^([a-zA-Z0-9]{1,2}|[a-zA-Z0-9][0-9a-zA-Z-_.: \\/\\(\\)\\[\\]]{1,251}[a-zA-Z0-9])$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "Trigger name",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.properties.value": {
+          "min_len": 0,
+          "max_len": 4096,
+          "description": "Secret value, not needed if secret type is `internal_validation`",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.secret.algorithm": {
+          "enum": [
+            "md4",
+            "md5",
+            "sha1",
+            "sha256",
+            "sha384",
+            "sha512",
+            "sha512_224",
+            "sha512_256",
+            "ripemd160"
+          ],
+          "description": "Algorithm used for `digest_matches` secret type. Only needed for `digest_matches` secret type",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.secret.key_name": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "Secret name, not needed if type is `internal_validation`",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.secret.source": {
+          "enum": [
+            "header",
+            "payload",
+            "query"
+          ],
+          "description": "Secret location, not needed if secret type is `internal_validation`",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.secret.type": {
+          "enum": [
+            "manual",
+            "scm",
+            "timer",
+            "generic"
+          ],
+          "description": "Trigger type",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.secret.value": {
+          "min_len": 0,
+          "max_len": 4096,
+          "description": "Secret value, not needed if secret type is `internal_validation`",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.source.properties.branch": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "String",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.source.properties.pattern": {
+          "pattern": "^[-0-9a-zA-Z_.:@=$&^\\/\\?\\!\\*\\+\\[\\]\\(\\)\\{\\}\\|\\\\]*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The pattern of Git branch or tag. You can specify a glob pattern such as '!test' or '*master' to match against multiple tags or branches in the repository. The glob pattern used must conform to Bash 4.3 specifications, see bash documentation for more info: https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching. Only one of branch, pattern, or filter should be specified",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.tags": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "String",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.timezone": {
+          "pattern": "^[-0-9a-zA-Z+_., /]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "Timezone string value. Valid timezones are those listed in the IANA timezone database, https://www.iana.org/time-zones",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "triggers.type": {
+          "enum": [
+            "manual",
+            "scm",
+            "timer",
+            "generic"
+          ],
+          "description": "Trigger type",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "worker.id": {
+          "pattern": "^[-0-9a-zA-Z]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "ID of the worker",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "definitions.source.properties.tag": {
+          "pattern": "^[-0-9a-zA-Z_]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "A tag from the repo, specify one of branch or tag only",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/definitions:post"
+        },
+        "next_build_number": {
+          "min": 1,
+          "max": 99999999999999,
+          "description": "Specify the build number that will be used for the next pipeline run. Build numbers can be any positive whole number between 0 and 100000000000000.",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines:post"
+        },
+        "pipeline_id": {
+          "pattern": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Universally Unique Identifier",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "PipelineRun"
+        },
+        "properties.enum": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "String",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/properties:post"
+        },
+        "triggers.properties.enum": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "String",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/properties:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline_definition",
+      "kind": "resource",
+      "schema": "DefinitionSourceProperties",
+      "spec": "tekton-pipeline",
+      "score": 0.4,
+      "attrs": {
+        "source.properties.branch": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "A branch from the repo, specify one of branch or tag only",
+          "source": "tekton-pipeline",
+          "schema": "DefinitionSourceProperties"
+        },
+        "source.properties.path": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The path to the definition's YAML files",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "DefinitionSourceProperties"
+        },
+        "source.properties.tag": {
+          "pattern": "^[-0-9a-zA-Z_]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "A tag from the repo, specify one of branch or tag only",
+          "source": "tekton-pipeline",
+          "schema": "DefinitionSourceProperties"
+        },
+        "source.properties.url": {
+          "pattern": "^http(s)?:\\/\\/([^\\/?#]*)([^?#]*)(\\?([^#]*))?(#(.*))?$",
+          "min_len": 10,
+          "max_len": 2048,
+          "description": "URL of the definition repository",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "DefinitionSourceProperties"
+        },
+        "pipeline_id": {
+          "pattern": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Universally Unique Identifier",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "PipelineRun"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline_property",
+      "kind": "resource",
+      "schema": "Property",
+      "spec": "tekton-pipeline",
+      "score": 0.735,
+      "attrs": {
+        "enum": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "String",
+          "source": "tekton-pipeline",
+          "schema": "Property"
+        },
+        "locked": {
+          "description": "When true, this property cannot be overridden by a trigger property or at runtime. Attempting to override it will result in run requests being rejected. The default is false.",
+          "source": "tekton-pipeline",
+          "schema": "Property"
+        },
+        "name": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "Property name",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "Property"
+        },
+        "path": {
+          "pattern": "^[-0-9a-zA-Z_.]*$",
+          "min_len": 0,
+          "max_len": 4096,
+          "description": "A dot notation path for `integration` type properties only, that selects a value from the tool integration. If left blank the full tool integration data will be used",
+          "source": "tekton-pipeline",
+          "schema": "Property"
+        },
+        "type": {
+          "enum": [
+            "secure",
+            "text",
+            "integration",
+            "single_select",
+            "appconfig"
+          ],
+          "description": "Property type",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "Property"
+        },
+        "value": {
+          "pattern": "^(\\s|.)*$",
+          "min_len": 0,
+          "max_len": 4096,
+          "description": "Property value. Any string value is valid",
+          "source": "tekton-pipeline",
+          "schema": "Property"
+        },
+        "pipeline_id": {
+          "pattern": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Universally Unique Identifier",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "PipelineRun"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline_trigger",
+      "kind": "resource",
+      "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch",
+      "spec": "tekton-pipeline",
+      "score": 0.5836,
+      "attrs": {
+        "cron": {
+          "pattern": "^[-0-9a-zA-Z,\\*\\/ ]{5,253}$",
+          "min_len": 5,
+          "max_len": 253,
+          "description": "Only needed for timer triggers. CRON expression that indicates when this trigger will activate. Maximum frequency is every 5 minutes. The string is based on UNIX crontab syntax: minute, hour, day of month, month, day of week. Example: The CRON expression 0 */2 * * * - translates to - every 2 hours",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "disable_draft_events": {
+          "description": "Prevent new pipeline runs from being triggered by events from draft pull requests",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "enable_events_from_forks": {
+          "description": "Only used for SCM triggers. When enabled, pull request events from forks of the selected repository will trigger a pipeline run",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "enabled": {
+          "description": "Defines if this trigger is enabled",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "event_listener": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "Event listener name. The name of the event listener to which the trigger is associated. The event listeners are defined in the definition repositories of the Tekton pipeline",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "events": {
+          "enum": [
+            "push",
+            "pull_request",
+            "pull_request_closed"
+          ],
+          "description": "List of events. Supported options are 'push' Git webhook events, 'pull_request_closed' Git webhook events and 'pull_request' for 'open pull request' or 'update pull request' Git webhook events",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "favorite": {
+          "description": "Mark the trigger as a favorite",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "filter": {
+          "min_len": 1,
+          "max_len": 4096,
+          "description": "Either 'events' or 'filter' can be used. Stores the CEL (Common Expression Language) expression value which is used for event filtering against the Git webhook payloads",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "limit_waiting_runs": {
+          "description": "Flag that will limit the trigger to a maximum of one waiting run. A newly triggered run will cause any other waiting run(s) to be automatically cancelled",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "max_concurrent_runs": {
+          "format": "int32",
+          "description": "Defines the maximum number of concurrent runs for this trigger. If omitted then the concurrency limit is disabled for this trigger",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "name": {
+          "pattern": "^([a-zA-Z0-9]{1,2}|[a-zA-Z0-9][0-9a-zA-Z-_.: \\/\\(\\)\\[\\]]{1,251}[a-zA-Z0-9])$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "Trigger name",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "properties.value": {
+          "min_len": 0,
+          "max_len": 4096,
+          "description": "Secret value, not needed if secret type is `internal_validation`",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "secret.algorithm": {
+          "enum": [
+            "md4",
+            "md5",
+            "sha1",
+            "sha256",
+            "sha384",
+            "sha512",
+            "sha512_224",
+            "sha512_256",
+            "ripemd160"
+          ],
+          "description": "Algorithm used for `digest_matches` secret type. Only needed for `digest_matches` secret type",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "secret.key_name": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "Secret name, not needed if type is `internal_validation`",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "secret.source": {
+          "enum": [
+            "header",
+            "payload",
+            "query"
+          ],
+          "description": "Secret location, not needed if secret type is `internal_validation`",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "secret.type": {
+          "enum": [
+            "token_matches",
+            "digest_matches",
+            "internal_validation"
+          ],
+          "description": "Secret type",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "secret.value": {
+          "min_len": 0,
+          "max_len": 4096,
+          "description": "Secret value, not needed if secret type is `internal_validation`",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "source.properties.branch": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "String",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "source.properties.pattern": {
+          "pattern": "^[-0-9a-zA-Z_.:@=$&^\\/\\?\\!\\*\\+\\[\\]\\(\\)\\{\\}\\|\\\\]*$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The pattern of Git branch or tag. You can specify a glob pattern such as '!test' or '*master' to match against multiple tags or branches in the repository. The glob pattern used must conform to Bash 4.3 specifications, see bash documentation for more info: https://www.gnu.org/software/bash/manual/bash.html#Pattern-Matching. Only one of branch, pattern, or filter should be specified",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "source.properties.url": {
+          "pattern": "^http(s)?:\\/\\/([^\\/?#]*)([^?#]*)(\\?([^#]*))?(#(.*))?$",
+          "min_len": 10,
+          "max_len": 2048,
+          "description": "URL of the repository to which the trigger is listening",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "source.type": {
+          "pattern": "^git$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "The only supported source type is \"git\", indicating that the source is a git repository",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "tags": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "String",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "timezone": {
+          "pattern": "^[-0-9a-zA-Z+_., /]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "Timezone string value. Valid timezones are those listed in the IANA timezone database, https://www.iana.org/time-zones",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "type": {
+          "enum": [
+            "manual",
+            "scm",
+            "timer",
+            "generic"
+          ],
+          "description": "Trigger type",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "worker.id": {
+          "pattern": "^[-0-9a-zA-Z]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "ID of the worker",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch"
+        },
+        "pipeline_id": {
+          "pattern": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Universally Unique Identifier",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "PipelineRun"
+        },
+        "properties.enum": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "String",
+          "source": "tekton-pipeline",
+          "schema": "/tekton_pipelines/{pipeline_id}/properties:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline_trigger_property",
+      "kind": "resource",
+      "schema": "Property",
+      "spec": "tekton-pipeline",
+      "score": 0.6767,
+      "attrs": {
+        "enum": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "String",
+          "source": "tekton-pipeline",
+          "schema": "Property"
+        },
+        "locked": {
+          "description": "When true, this property cannot be overridden by a trigger property or at runtime. Attempting to override it will result in run requests being rejected. The default is false.",
+          "source": "tekton-pipeline",
+          "schema": "Property"
+        },
+        "name": {
+          "pattern": "^[-0-9a-zA-Z_.]{1,253}$",
+          "min_len": 1,
+          "max_len": 253,
+          "description": "Property name",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "Property"
+        },
+        "path": {
+          "pattern": "^[-0-9a-zA-Z_.]*$",
+          "min_len": 0,
+          "max_len": 4096,
+          "description": "A dot notation path for `integration` type properties only, that selects a value from the tool integration. If left blank the full tool integration data will be used",
+          "source": "tekton-pipeline",
+          "schema": "Property"
+        },
+        "type": {
+          "enum": [
+            "secure",
+            "text",
+            "integration",
+            "single_select",
+            "appconfig"
+          ],
+          "description": "Property type",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "Property"
+        },
+        "value": {
+          "pattern": "^(\\s|.)*$",
+          "min_len": 0,
+          "max_len": 4096,
+          "description": "Property value. Any string value is valid",
+          "source": "tekton-pipeline",
+          "schema": "Property"
+        },
+        "pipeline_id": {
+          "pattern": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Universally Unique Identifier",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "PipelineRun"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline",
+      "kind": "data",
+      "schema": "/tekton_pipelines/{pipeline_id}/triggers/{trigger_id}:patch",
+      "spec": "tekton-pipeline",
+      "score": 0.1657,
+      "attrs": {
+        "pipeline_id": {
+          "pattern": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Universally Unique Identifier",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "PipelineRun"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline_definition",
+      "kind": "data",
+      "schema": "Definition",
+      "spec": "tekton-pipeline",
+      "score": 0.21,
+      "attrs": {
+        "definition_id": {
+          "pattern": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "The aggregated definition ID",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "PipelineRun"
+        },
+        "pipeline_id": {
+          "pattern": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Universally Unique Identifier",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "PipelineRun"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline_property",
+      "kind": "data",
+      "schema": "Property",
+      "spec": "tekton-pipeline",
+      "score": 0.21,
+      "attrs": {
+        "pipeline_id": {
+          "pattern": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Universally Unique Identifier",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "PipelineRun"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline_trigger",
+      "kind": "data",
+      "schema": "Trigger",
+      "spec": "tekton-pipeline",
+      "score": 0.21,
+      "attrs": {
+        "pipeline_id": {
+          "pattern": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Universally Unique Identifier",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "PipelineRun"
+        }
+      }
+    },
+    {
+      "name": "ibm_cd_tekton_pipeline_trigger_property",
+      "kind": "data",
+      "schema": "Property",
+      "spec": "tekton-pipeline",
+      "score": 0.21,
+      "attrs": {
+        "pipeline_id": {
+          "pattern": "^[-0-9a-z]+$",
+          "min_len": 36,
+          "max_len": 36,
+          "description": "Universally Unique Identifier",
+          "api_required": true,
+          "source": "tekton-pipeline",
+          "schema": "PipelineRun"
+        }
+      }
+    }
+  ]
+}

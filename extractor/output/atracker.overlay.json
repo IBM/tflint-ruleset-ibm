@@ -1,0 +1,277 @@
+{
+  "package": "atracker",
+  "specs": [
+    {
+      "slug": "atracker",
+      "title": "Activity Tracker API Version 2",
+      "schema_count": 29,
+      "path_count": 7
+    }
+  ],
+  "matched": 5,
+  "resource_count": 5,
+  "overlay_attrs": 26,
+  "resources": [
+    {
+      "name": "ibm_atracker_route",
+      "kind": "resource",
+      "schema": "RulePrototype",
+      "spec": "atracker",
+      "score": 0.43,
+      "attrs": {
+        "rules.locations": {
+          "pattern": "^[a-zA-Z0-9 -._:]+$",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "Logs from these locations will be sent to the targets specified. Locations is a superset of regions including global and *.",
+          "source": "atracker",
+          "schema": "RulePrototype"
+        },
+        "rules.target_ids": {
+          "pattern": "^[a-zA-Z0-9 -._:]+$",
+          "min_len": 3,
+          "max_len": 1000,
+          "description": "The target ID List. All the events will be send to all targets listed in the rule. You can include targets from other regions.",
+          "api_required": true,
+          "source": "atracker",
+          "schema": "RulePrototype"
+        },
+        "managed_by": {
+          "enum": [
+            "enterprise",
+            "account"
+          ],
+          "description": "Identifies who manages this target. Optional at create time. If set to `enterprise`, the target becomes enterprise-managed and can only be modified by identities authorized for the enterprise actions. If omitted or set to `account`, the target is managed by the child account. This value is immutable after creation.",
+          "source": "atracker",
+          "schema": "/api/v2/targets:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_atracker_settings",
+      "kind": "resource",
+      "schema": "SettingsPrototype",
+      "spec": "atracker",
+      "score": 0.78,
+      "attrs": {
+        "default_targets": {
+          "pattern": "^[a-zA-Z0-9 -]",
+          "min_len": 3,
+          "max_len": 1028,
+          "description": "The target ID List. In the event that no routing rule causes the event to be sent to a target, these targets will receive the event. Enterprise-managed targets are not supported.",
+          "source": "atracker",
+          "schema": "SettingsPrototype"
+        },
+        "metadata_region_backup": {
+          "pattern": "^[a-zA-Z0-9 -_]",
+          "min_len": 3,
+          "max_len": 256,
+          "description": "To store all your meta data in a backup region.",
+          "source": "atracker",
+          "schema": "SettingsPrototype"
+        },
+        "metadata_region_primary": {
+          "pattern": "^[a-zA-Z0-9 -_]",
+          "min_len": 3,
+          "max_len": 256,
+          "description": "To store all your meta data in a single region.",
+          "api_required": true,
+          "source": "atracker",
+          "schema": "SettingsPrototype"
+        },
+        "permitted_target_regions": {
+          "pattern": "^[a-zA-Z0-9 -_]",
+          "min_len": 3,
+          "max_len": 1028,
+          "description": "If present then only these regions may be used to define a target.",
+          "source": "atracker",
+          "schema": "SettingsPrototype"
+        },
+        "private_api_endpoint_only": {
+          "description": "If you set this true then you cannot access api through public network.",
+          "api_required": true,
+          "source": "atracker",
+          "schema": "SettingsPrototype"
+        }
+      }
+    },
+    {
+      "name": "ibm_atracker_target",
+      "kind": "resource",
+      "schema": "CosEndpointPrototype",
+      "spec": "atracker",
+      "score": 0.3492,
+      "attrs": {
+        "appconfig_endpoint.target_crn": {
+          "pattern": "^[a-zA-Z0-9 -._:/]+$",
+          "min_len": 3,
+          "max_len": 1000,
+          "description": "The CRN of the Cloud Object Storage instance.",
+          "api_required": true,
+          "source": "atracker",
+          "schema": "CosEndpointPrototype"
+        },
+        "cloudlogs_endpoint.target_crn": {
+          "pattern": "^[a-zA-Z0-9 -._:/]+$",
+          "min_len": 3,
+          "max_len": 1000,
+          "description": "The CRN of the Cloud Object Storage instance.",
+          "api_required": true,
+          "source": "atracker",
+          "schema": "CosEndpointPrototype"
+        },
+        "cos_endpoint.api_key": {
+          "pattern": "^[a-zA-Z0-9 -._:]+$",
+          "min_len": 3,
+          "max_len": 1000,
+          "description": "The IAM API key that has writer access to the Cloud Object Storage instance. This credential is masked in the response. This is required if service_to_service is not enabled.",
+          "source": "atracker",
+          "schema": "CosEndpointPrototype"
+        },
+        "cos_endpoint.bucket": {
+          "pattern": "^[a-zA-Z0-9 -._:/]+$",
+          "min_len": 3,
+          "max_len": 1000,
+          "description": "The bucket name under the Cloud Object Storage instance.",
+          "api_required": true,
+          "source": "atracker",
+          "schema": "CosEndpointPrototype"
+        },
+        "cos_endpoint.endpoint": {
+          "pattern": "^[a-zA-Z0-9 -._:]+$",
+          "min_len": 3,
+          "max_len": 1000,
+          "description": "The host name of the Cloud Object Storage endpoint.",
+          "api_required": true,
+          "source": "atracker",
+          "schema": "CosEndpointPrototype"
+        },
+        "cos_endpoint.service_to_service_enabled": {
+          "description": "Determines if IBM Cloud Activity Tracker Event Routing has service to service authentication enabled. Set this flag to true if service to service is enabled and do not supply an apikey.",
+          "source": "atracker",
+          "schema": "CosEndpointPrototype"
+        },
+        "cos_endpoint.target_crn": {
+          "pattern": "^[a-zA-Z0-9 -._:/]+$",
+          "min_len": 3,
+          "max_len": 1000,
+          "description": "The CRN of the Cloud Object Storage instance.",
+          "api_required": true,
+          "source": "atracker",
+          "schema": "CosEndpointPrototype"
+        },
+        "eventstreams_endpoint.api_key": {
+          "pattern": "^[a-zA-Z0-9 -._:]+$",
+          "min_len": 3,
+          "max_len": 1000,
+          "description": "The IAM API key that has writer access to the Cloud Object Storage instance. This credential is masked in the response. This is required if service_to_service is not enabled.",
+          "source": "atracker",
+          "schema": "CosEndpointPrototype"
+        },
+        "eventstreams_endpoint.service_to_service_enabled": {
+          "description": "Determines if IBM Cloud Activity Tracker Event Routing has service to service authentication enabled. Set this flag to true if service to service is enabled and do not supply an apikey.",
+          "source": "atracker",
+          "schema": "CosEndpointPrototype"
+        },
+        "eventstreams_endpoint.target_crn": {
+          "pattern": "^[a-zA-Z0-9 -._:/]+$",
+          "min_len": 3,
+          "max_len": 1000,
+          "description": "The CRN of the Cloud Object Storage instance.",
+          "api_required": true,
+          "source": "atracker",
+          "schema": "CosEndpointPrototype"
+        },
+        "eventstreams_endpoint.brokers": {
+          "pattern": "^[a-zA-Z0-9 -._:]+$",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "List of broker endpoints.",
+          "api_required": true,
+          "source": "atracker",
+          "schema": "/api/v2/targets:post"
+        },
+        "eventstreams_endpoint.topic": {
+          "pattern": "^[a-zA-Z0-9 -._:/]+$",
+          "min_len": 3,
+          "max_len": 1000,
+          "description": "The messsage hub topic defined in the Event Streams instance.",
+          "api_required": true,
+          "source": "atracker",
+          "schema": "/api/v2/targets:post"
+        },
+        "managed_by": {
+          "enum": [
+            "enterprise",
+            "account"
+          ],
+          "description": "Identifies who manages this target. Optional at create time. If set to `enterprise`, the target becomes enterprise-managed and can only be modified by identities authorized for the enterprise actions. If omitted or set to `account`, the target is managed by the child account. This value is immutable after creation.",
+          "source": "atracker",
+          "schema": "/api/v2/targets:post"
+        },
+        "target_type": {
+          "enum": [
+            "cloud_object_storage",
+            "event_streams",
+            "cloud_logs"
+          ],
+          "description": "The type of the target. It can be cloud_object_storage, event_streams, or cloud_logs. Based on this type you must include cos_endpoint, eventstreams_endpoint or cloudlogs_endpoint.",
+          "api_required": true,
+          "source": "atracker",
+          "schema": "/api/v2/targets:post"
+        },
+        "write_status.last_failure": {
+          "kind": "datetime",
+          "format": "date-time",
+          "description": "The timestamp of the failure.",
+          "source": "atracker",
+          "schema": "WriteStatus"
+        }
+      }
+    },
+    {
+      "name": "ibm_atracker_routes",
+      "kind": "data",
+      "schema": "RoutePrototype",
+      "spec": "atracker",
+      "score": 0.3133,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-zA-Z0-9 -._:]+$",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The name of the route. The name must be 1000 characters or less and cannot include any special characters other than `(space) - . _ :`. Do not include any personal identifying information (PII) in any resource names.",
+          "api_required": true,
+          "source": "atracker",
+          "schema": "RoutePrototype"
+        }
+      }
+    },
+    {
+      "name": "ibm_atracker_targets",
+      "kind": "data",
+      "schema": "TargetPrototype",
+      "spec": "atracker",
+      "score": 0.28,
+      "attrs": {
+        "name": {
+          "pattern": "^[a-zA-Z0-9 -._:]+$",
+          "min_len": 1,
+          "max_len": 1000,
+          "description": "The name of the target. The name must be 1000 characters or less, and cannot include any special characters other than `(space) - . _ :`. Do not include any personal identifying information (PII) in any resource names.",
+          "api_required": true,
+          "source": "atracker",
+          "schema": "TargetPrototype"
+        },
+        "region": {
+          "pattern": "^[a-zA-Z0-9 -._:]+$",
+          "min_len": 3,
+          "max_len": 1000,
+          "description": "Include this optional field if you want to create a target in a different region other than the one you are connected.",
+          "source": "atracker",
+          "schema": "TargetPrototype"
+        }
+      }
+    }
+  ]
+}

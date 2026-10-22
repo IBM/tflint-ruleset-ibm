@@ -1,0 +1,1221 @@
+{
+  "package": "iamidentity",
+  "specs": [
+    {
+      "slug": "iam-identity-token-api",
+      "title": "IAM Identity Services",
+      "schema_count": 109,
+      "path_count": 57
+    }
+  ],
+  "matched": 42,
+  "resource_count": 44,
+  "overlay_attrs": 131,
+  "resources": [
+    {
+      "name": "ibm_iam_account_settings",
+      "kind": "resource",
+      "schema": "/v1/accounts/{account_id}/settings/identity:put",
+      "spec": "iam-identity-token-api",
+      "score": 0.3917,
+      "attrs": {
+        "allowed_ip_addresses": {
+          "description": "Defines the IP addresses and subnets from which IAM tokens can be created for the account.",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "max_sessions_per_identity": {
+          "description": "Defines the max allowed sessions per identity required by the account. Valid values: * Any whole number greater than 0 * NOT_SET - To unset account setting and use service default",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "mfa": {
+          "enum": [
+            "NONE",
+            "NONE_NO_ROPC",
+            "TOTP",
+            "TOTP4ALL",
+            "LEVEL1",
+            "LEVEL2",
+            "LEVEL3"
+          ],
+          "description": "MFA trait definitions as follows: * NONE - No MFA trait set * NONE_NO_ROPC- No MFA, disable CLI logins with only a password * TOTP - For all non-federated IBMId users * TOTP4ALL - For all users * LEVEL1 - Email-based MFA for all users * LEVEL2 - TOTP-based MFA for all users * LEVEL3 - Security Key MFA for all users",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "restrict_create_platform_apikey": {
+          "enum": [
+            "RESTRICTED",
+            "NOT_RESTRICTED",
+            "NOT_SET"
+          ],
+          "description": "Defines whether or not creating the resource is access controlled. Valid values: * RESTRICTED - only users assigned the 'Service ID creator' role on the IAM Identity Service can create service IDs, including the account owner * NOT_RESTRICTED - all members of an account can create service IDs * NOT_SET - to 'unset' a previous set value",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "restrict_create_service_id": {
+          "enum": [
+            "RESTRICTED",
+            "NOT_RESTRICTED",
+            "NOT_SET"
+          ],
+          "description": "Defines whether or not creating the resource is access controlled. Valid values: * RESTRICTED - only users assigned the 'Service ID creator' role on the IAM Identity Service can create service IDs, including the account owner * NOT_RESTRICTED - all members of an account can create service IDs * NOT_SET - to 'unset' a previous set value",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "restrict_user_domains.invitation_email_allow_patterns": {
+          "description": "The list of allowed email patterns. Wildcard syntax is supported, '*' represents any sequence of zero or more characters in the string, except for '.' and '@'. The sequence ends if a '.' or '@' was found. '**' represents any sequence of zero or more characters in the string - without limit",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "restrict_user_domains.realm_id": {
+          "description": "The realm that the restrictions apply to",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "restrict_user_domains.restrict_invitation": {
+          "description": "When true invites will only be possible to the domain patterns provided, otherwise invites are unrestricted",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "restrict_user_list_visibility": {
+          "enum": [
+            "NOT_RESTRICTED",
+            "RESTRICTED"
+          ],
+          "description": "Defines whether or not user visibility is access controlled. Valid values: * RESTRICTED - users can view only specific types of users in the account, such as those the user has invited to the account, or descendants of those users based on the classic infrastructure hierarchy * NOT_RESTRICTED - any user in the account can view other users from the Users page in IBM Cloud console",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "session_expiration_in_seconds": {
+          "description": "Defines the session expiration in seconds for the account. Valid values: * Any whole number between between '900' and '86400' * NOT_SET - To unset account setting and use service default",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "session_invalidation_in_seconds": {
+          "description": "Defines the period of time in seconds in which a session will be invalidated due to inactivity. Valid values: * Any whole number between '900' and '7200' * NOT_SET - To unset account setting and use service default",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "system_access_token_expiration_in_seconds": {
+          "description": "Defines the access token expiration in seconds. Valid values: * Any whole number between '900' and '3600' * NOT_SET - To unset account setting and use service default",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "system_refresh_token_expiration_in_seconds": {
+          "description": "Defines the refresh token expiration in seconds. Valid values: * Any whole number between '900' and '259200' * NOT_SET - To unset account setting and use service default",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "user_mfa.iam_id": {
+          "description": "The iam_id of the user.",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "user_mfa.mfa": {
+          "enum": [
+            "NONE",
+            "NONE_NO_ROPC",
+            "TOTP",
+            "TOTP4ALL",
+            "LEVEL1",
+            "LEVEL2",
+            "LEVEL3"
+          ],
+          "description": "MFA trait definitions as follows: * NONE - No MFA trait set * NONE_NO_ROPC- No MFA, disable CLI logins with only a password * TOTP - For all non-federated IBMId users * TOTP4ALL - For all users * LEVEL1 - Email-based MFA for all users * LEVEL2 - TOTP-based MFA for all users * LEVEL3 - Security Key MFA for all users",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_account_settings_template",
+      "kind": "resource",
+      "schema": "/v1/accounts/{account_id}/settings/identity:put",
+      "spec": "iam-identity-token-api",
+      "score": 0.4182,
+      "attrs": {
+        "account_settings.allowed_ip_addresses": {
+          "description": "Defines the IP addresses and subnets from which IAM tokens can be created for the account.",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "account_settings.max_sessions_per_identity": {
+          "description": "Defines the max allowed sessions per identity required by the account. Valid values: * Any whole number greater than 0 * NOT_SET - To unset account setting and use service default",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "account_settings.mfa": {
+          "enum": [
+            "NONE",
+            "NONE_NO_ROPC",
+            "TOTP",
+            "TOTP4ALL",
+            "LEVEL1",
+            "LEVEL2",
+            "LEVEL3"
+          ],
+          "description": "MFA trait definitions as follows: * NONE - No MFA trait set * NONE_NO_ROPC- No MFA, disable CLI logins with only a password * TOTP - For all non-federated IBMId users * TOTP4ALL - For all users * LEVEL1 - Email-based MFA for all users * LEVEL2 - TOTP-based MFA for all users * LEVEL3 - Security Key MFA for all users",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "account_settings.restrict_create_platform_apikey": {
+          "enum": [
+            "RESTRICTED",
+            "NOT_RESTRICTED",
+            "NOT_SET"
+          ],
+          "description": "Defines whether or not creating the resource is access controlled. Valid values: * RESTRICTED - only users assigned the 'Service ID creator' role on the IAM Identity Service can create service IDs, including the account owner * NOT_RESTRICTED - all members of an account can create service IDs * NOT_SET - to 'unset' a previous set value",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "account_settings.restrict_create_service_id": {
+          "enum": [
+            "RESTRICTED",
+            "NOT_RESTRICTED",
+            "NOT_SET"
+          ],
+          "description": "Defines whether or not creating the resource is access controlled. Valid values: * RESTRICTED - only users assigned the 'Service ID creator' role on the IAM Identity Service can create service IDs, including the account owner * NOT_RESTRICTED - all members of an account can create service IDs * NOT_SET - to 'unset' a previous set value",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "account_settings.restrict_user_domains.restrictions.invitation_email_allow_patterns": {
+          "description": "The list of allowed email patterns. Wildcard syntax is supported, '*' represents any sequence of zero or more characters in the string, except for '.' and '@'. The sequence ends if a '.' or '@' was found. '**' represents any sequence of zero or more characters in the string - without limit",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "account_settings.restrict_user_domains.restrictions.realm_id": {
+          "description": "The realm that the restrictions apply to",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "account_settings.restrict_user_domains.restrictions.restrict_invitation": {
+          "description": "When true invites will only be possible to the domain patterns provided, otherwise invites are unrestricted",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "account_settings.restrict_user_list_visibility": {
+          "enum": [
+            "NOT_RESTRICTED",
+            "RESTRICTED"
+          ],
+          "description": "Defines whether or not user visibility is access controlled. Valid values: * RESTRICTED - users can view only specific types of users in the account, such as those the user has invited to the account, or descendants of those users based on the classic infrastructure hierarchy * NOT_RESTRICTED - any user in the account can view other users from the Users page in IBM Cloud console",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "account_settings.session_expiration_in_seconds": {
+          "description": "Defines the session expiration in seconds for the account. Valid values: * Any whole number between between '900' and '86400' * NOT_SET - To unset account setting and use service default",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "account_settings.session_invalidation_in_seconds": {
+          "description": "Defines the period of time in seconds in which a session will be invalidated due to inactivity. Valid values: * Any whole number between '900' and '7200' * NOT_SET - To unset account setting and use service default",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "account_settings.system_access_token_expiration_in_seconds": {
+          "description": "Defines the access token expiration in seconds. Valid values: * Any whole number between '900' and '3600' * NOT_SET - To unset account setting and use service default",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "account_settings.system_refresh_token_expiration_in_seconds": {
+          "description": "Defines the refresh token expiration in seconds. Valid values: * Any whole number between '900' and '259200' * NOT_SET - To unset account setting and use service default",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "account_settings.user_mfa.iam_id": {
+          "description": "The iam_id of the user.",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        },
+        "account_settings.user_mfa.mfa": {
+          "enum": [
+            "NONE",
+            "NONE_NO_ROPC",
+            "TOTP",
+            "TOTP4ALL",
+            "LEVEL1",
+            "LEVEL2",
+            "LEVEL3"
+          ],
+          "description": "MFA trait definitions as follows: * NONE - No MFA trait set * NONE_NO_ROPC- No MFA, disable CLI logins with only a password * TOTP - For all non-federated IBMId users * TOTP4ALL - For all users * LEVEL1 - Email-based MFA for all users * LEVEL2 - TOTP-based MFA for all users * LEVEL3 - Security Key MFA for all users",
+          "source": "iam-identity-token-api",
+          "schema": "/v1/accounts/{account_id}/settings/identity:put"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_account_settings_template_assignment",
+      "kind": "resource",
+      "schema": "/v1/account_settings_assignments/:post",
+      "spec": "iam-identity-token-api",
+      "score": 0.8,
+      "attrs": {
+        "target": {
+          "description": "Identifier of target to deploy to",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "/v1/account_settings_assignments/:post"
+        },
+        "target_type": {
+          "enum": [
+            "Account",
+            "AccountGroup"
+          ],
+          "description": "Type of target to deploy to",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "/v1/account_settings_assignments/:post"
+        },
+        "template_id": {
+          "description": "ID of the template to assign",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "/v1/account_settings_assignments/:post"
+        },
+        "template_version": {
+          "format": "int64",
+          "min": 1,
+          "description": "Version of the template to assign",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "/v1/account_settings_assignments/:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_api_key",
+      "kind": "resource",
+      "schema": "ApiKeyInsideCreateServiceIdRequest",
+      "spec": "iam-identity-token-api",
+      "score": 0.5175,
+      "attrs": {
+        "apikey": {
+          "description": "You can optionally passthrough the API key value for this API key. If passed, a minimum length validation of 32 characters for that apiKey value is done, i.e. the value can contain any characters and can even be non-URL safe, but the minimum length requirement must be met. If omitted, the API key management will create an URL safe opaque API key value. The value of the API key is checked for uniqu",
+          "source": "iam-identity-token-api",
+          "schema": "ApiKeyInsideCreateServiceIdRequest"
+        },
+        "description": {
+          "description": "The optional description of the API key. The 'description' property is only available if a description was provided during a create of an API key.",
+          "source": "iam-identity-token-api",
+          "schema": "ApiKeyInsideCreateServiceIdRequest"
+        },
+        "expires_at": {
+          "description": "Date and time when the API key becomes invalid, ISO 8601 datetime in the format 'yyyy-MM-ddTHH:mm+0000'. **WARNING** An API key will be permanently and irrevocably deleted when both the expires_at and modified_at timestamps are more than ninety (90) days in the past, regardless of the key\u2019s locked status or any other state.",
+          "source": "iam-identity-token-api",
+          "schema": "ApiKeyInsideCreateServiceIdRequest"
+        },
+        "name": {
+          "description": "Name of the API key. The name is not checked for uniqueness. Therefore multiple names with the same value can exist. Access is done via the UUID of the API key.",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "ApiKeyInsideCreateServiceIdRequest"
+        },
+        "store_value": {
+          "description": "Send true or false to set whether the API key value is retrievable in the future by using the Get details of an API key request. If you create an API key for a user, you must specify `false` or omit the value. We don't allow storing of API keys for users.",
+          "source": "iam-identity-token-api",
+          "schema": "ApiKeyInsideCreateServiceIdRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_identity_preference",
+      "kind": "resource",
+      "schema": "params:put:/v1/preferences/accounts/{account_id}/identities/{iam_id}/{service}/{preference_id}",
+      "spec": "iam-identity-token-api",
+      "score": 0.61,
+      "attrs": {
+        "account_id": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/preferences/accounts/{account_id}/identities/{iam_id}/{service}/{preference_id}"
+        },
+        "iam_id": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/preferences/accounts/{account_id}/identities/{iam_id}/{service}/{preference_id}"
+        },
+        "preference_id": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/preferences/accounts/{account_id}/identities/{iam_id}/{service}/{preference_id}"
+        },
+        "service": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/preferences/accounts/{account_id}/identities/{iam_id}/{service}/{preference_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_idp",
+      "kind": "resource",
+      "schema": "Idp",
+      "spec": "iam-identity-token-api",
+      "score": 0.3317,
+      "attrs": {
+        "share_scope.type": {
+          "enum": [
+            "account",
+            "enterprise"
+          ],
+          "source": "iam-identity-token-api",
+          "schema": "Idp"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_idp_account_setting",
+      "kind": "resource",
+      "schema": "AddAccountIdpSettingRequest",
+      "spec": "iam-identity-token-api",
+      "score": 0.5,
+      "attrs": {
+        "active": {
+          "description": "Specifies if the IdP is enabled for usage in the given account context",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "AddAccountIdpSettingRequest"
+        },
+        "cloud_user_strategy": {
+          "enum": [
+            "STATIC",
+            "DYNAMIC",
+            "NEVER"
+          ],
+          "description": "Strategy how Cloud User representives for the IdP users are handled",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "AddAccountIdpSettingRequest"
+        },
+        "ui_default": {
+          "description": "Specifies if the IdP is used as default in the given account context",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "AddAccountIdpSettingRequest"
+        },
+        "idp_id": {
+          "pattern": "^[A-Za-z0-9]+$",
+          "min_len": 3,
+          "max_len": 10,
+          "description": "Realm ID of the Identity Provider.",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "SamlMetadataImportResponse"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_service_api_key",
+      "kind": "resource",
+      "schema": "ApiKeyInsideCreateServiceIdRequest",
+      "spec": "iam-identity-token-api",
+      "score": 0.4689,
+      "attrs": {
+        "apikey": {
+          "description": "You can optionally passthrough the API key value for this API key. If passed, a minimum length validation of 32 characters for that apiKey value is done, i.e. the value can contain any characters and can even be non-URL safe, but the minimum length requirement must be met. If omitted, the API key management will create an URL safe opaque API key value. The value of the API key is checked for uniqu",
+          "source": "iam-identity-token-api",
+          "schema": "ApiKeyInsideCreateServiceIdRequest"
+        },
+        "description": {
+          "description": "The optional description of the API key. The 'description' property is only available if a description was provided during a create of an API key.",
+          "source": "iam-identity-token-api",
+          "schema": "ApiKeyInsideCreateServiceIdRequest"
+        },
+        "expires_at": {
+          "description": "Date and time when the API key becomes invalid, ISO 8601 datetime in the format 'yyyy-MM-ddTHH:mm+0000'. **WARNING** An API key will be permanently and irrevocably deleted when both the expires_at and modified_at timestamps are more than ninety (90) days in the past, regardless of the key\u2019s locked status or any other state.",
+          "source": "iam-identity-token-api",
+          "schema": "ApiKeyInsideCreateServiceIdRequest"
+        },
+        "name": {
+          "description": "Name of the API key. The name is not checked for uniqueness. Therefore multiple names with the same value can exist. Access is done via the UUID of the API key.",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "ApiKeyInsideCreateServiceIdRequest"
+        },
+        "store_value": {
+          "description": "Send true or false to set whether the API key value is retrievable in the future by using the Get details of an API key request. If you create an API key for a user, you must specify `false` or omit the value. We don't allow storing of API keys for users.",
+          "source": "iam-identity-token-api",
+          "schema": "ApiKeyInsideCreateServiceIdRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_service_id",
+      "kind": "resource",
+      "schema": "UpdateServiceIdGroupRequest",
+      "spec": "iam-identity-token-api",
+      "score": 0.5467,
+      "attrs": {
+        "description": {
+          "description": "Description of the service ID group.",
+          "source": "iam-identity-token-api",
+          "schema": "UpdateServiceIdGroupRequest"
+        },
+        "name": {
+          "description": "Name of the service ID group. Unique in the account.",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "UpdateServiceIdGroupRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_serviceid_group",
+      "kind": "resource",
+      "schema": "CreateServiceIdGroupRequest",
+      "spec": "iam-identity-token-api",
+      "score": 0.605,
+      "attrs": {
+        "account_id": {
+          "description": "ID of the account the service ID group belongs to.",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "CreateServiceIdGroupRequest"
+        },
+        "description": {
+          "description": "Description of the service ID group.",
+          "source": "iam-identity-token-api",
+          "schema": "CreateServiceIdGroupRequest"
+        },
+        "name": {
+          "description": "Name of the service ID group. Unique in the account.",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "CreateServiceIdGroupRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile",
+      "kind": "resource",
+      "schema": "UpdateTrustedProfileRequest",
+      "spec": "iam-identity-token-api",
+      "score": 0.78,
+      "attrs": {
+        "description": {
+          "description": "The description of the trusted profile to update. If specified an empty description will clear the description of the trusted profile. If a non empty value is provided the trusted profile will be updated.",
+          "source": "iam-identity-token-api",
+          "schema": "UpdateTrustedProfileRequest"
+        },
+        "email": {
+          "description": "The email of the profile to update. If specified an empty email will clear the email of the profile. If an non empty value is provided the trusted profile will be updated.",
+          "source": "iam-identity-token-api",
+          "schema": "UpdateTrustedProfileRequest"
+        },
+        "name": {
+          "description": "The name of the trusted profile to update. If specified in the request the parameter must not be empty. The name is checked for uniqueness. Failure to this will result in an Error condition.",
+          "source": "iam-identity-token-api",
+          "schema": "UpdateTrustedProfileRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile_claim_rule",
+      "kind": "resource",
+      "schema": "ProfileClaimRuleRequest",
+      "spec": "iam-identity-token-api",
+      "score": 0.3982,
+      "attrs": {
+        "conditions.claim": {
+          "description": "The claim to evaluate against. [Learn more](/docs/account?topic=account-iam-condition-properties&interface=ui#cr-attribute-names).",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "ProfileClaimRuleRequest"
+        },
+        "conditions.operator": {
+          "description": "The operation to perform on the claim. valid values are EQUALS, NOT_EQUALS, EQUALS_IGNORE_CASE, NOT_EQUALS_IGNORE_CASE, CONTAINS, IN",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "ProfileClaimRuleRequest"
+        },
+        "conditions.value": {
+          "description": "The stringified JSON value that the claim is compared to using the operator",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "ProfileClaimRuleRequest"
+        },
+        "cr_type": {
+          "description": "The compute resource type the rule applies to, required only if type is specified as 'Profile-CR'. Valid values are VSI, PVS, BMS, IKS_SA, ROKS_SA, CE.",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileClaimRuleRequest"
+        },
+        "expiration": {
+          "description": "Session expiration in seconds, only required if type is 'Profile-SAML'.",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileClaimRuleRequest"
+        },
+        "name": {
+          "description": "Name of the claim rule to be created or updated",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileClaimRuleRequest"
+        },
+        "realm_name": {
+          "description": "The realm name of the Idp this claim rule applies to. This field is required only if the type is specified as 'Profile-SAML'.",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileClaimRuleRequest"
+        },
+        "type": {
+          "description": "Type of the claim rule, either 'Profile-SAML' or 'Profile-CR'",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "ProfileClaimRuleRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile_identities",
+      "kind": "resource",
+      "schema": "ProfileIdentityResponse",
+      "spec": "iam-identity-token-api",
+      "score": 0.5833,
+      "attrs": {
+        "identities.accounts": {
+          "description": "Only valid for the type user. Accounts from which a user can assume the trusted profile.",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileIdentityResponse"
+        },
+        "identities.description": {
+          "description": "Description of the identity that can assume the trusted profile. This is optional field for all the types of identities. When this field is not set for the identity type 'serviceid' then the description of the service id is used. Description is recommended for the identity type 'crn' E.g. 'Instance 1234 of IBM Cloud Service project'",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileIdentityResponse"
+        },
+        "identities.iam_id": {
+          "description": "IAM ID of the identity",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "ProfileIdentityResponse"
+        },
+        "identities.identifier": {
+          "description": "Identifier of the identity that can assume the trusted profiles. This can be a user identifier (IAM id), serviceid or crn. Internally it uses account id of the service id for the identifier 'serviceid' and for the identifier 'crn' it uses account id contained in the CRN.",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "ProfileIdentityResponse"
+        },
+        "identities.type": {
+          "enum": [
+            "user",
+            "serviceid",
+            "crn"
+          ],
+          "description": "Type of the identity",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "ProfileIdentityResponse"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile_identity",
+      "kind": "resource",
+      "schema": "ProfileIdentityRequest",
+      "spec": "iam-identity-token-api",
+      "score": 0.5467,
+      "attrs": {
+        "accounts": {
+          "description": "Only valid for the type user. Accounts from which a user can assume the trusted profile.",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileIdentityRequest"
+        },
+        "description": {
+          "description": "Description of the identity that can assume the trusted profile. This is optional field for all the types of identities. When this field is not set for the identity type 'serviceid' then the description of the service id is used. Description is recommended for the identity type 'crn' E.g. 'Instance 1234 of IBM Cloud Service project'",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileIdentityRequest"
+        },
+        "identifier": {
+          "description": "Identifier of the identity that can assume the trusted profiles. This can be a user identifier (IAM id), serviceid or crn. Internally it uses account id of the service id for the identifier 'serviceid' and for the identifier 'crn' it uses account id contained in the CRN.",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "ProfileIdentityRequest"
+        },
+        "type": {
+          "enum": [
+            "user",
+            "serviceid",
+            "crn"
+          ],
+          "description": "Type of the identity",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "ProfileIdentityRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile_link",
+      "kind": "resource",
+      "schema": "CreateProfileLinkRequest",
+      "spec": "iam-identity-token-api",
+      "score": 0.3133,
+      "attrs": {
+        "cr_type": {
+          "description": "The compute resource type. Valid values are VSI, PVS, BMS, IKS_SA, ROKS_SA, CE",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "CreateProfileLinkRequest"
+        },
+        "is_cross_account": {
+          "description": "Flag to indicate that the link provides cross account access. If not provided then the account scope of the CRN must match the Profile's account",
+          "source": "iam-identity-token-api",
+          "schema": "CreateProfileLinkRequest"
+        },
+        "link.component_name": {
+          "description": "Component name of the compute resource, only required if cr_type is CE",
+          "source": "iam-identity-token-api",
+          "schema": "CreateProfileLinkRequest"
+        },
+        "link.component_type": {
+          "description": "Component type of the compute resource, only required if cr_type is CE",
+          "source": "iam-identity-token-api",
+          "schema": "CreateProfileLinkRequest"
+        },
+        "link.crn": {
+          "description": "The CRN of the compute resource",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "CreateProfileLinkRequest"
+        },
+        "link.name": {
+          "description": "Name of the compute resource, only required if cr_type is IKS_SA or ROKS_SA",
+          "source": "iam-identity-token-api",
+          "schema": "CreateProfileLinkRequest"
+        },
+        "link.namespace": {
+          "description": "The compute resource namespace, only required if cr_type is IKS_SA or ROKS_SA",
+          "source": "iam-identity-token-api",
+          "schema": "CreateProfileLinkRequest"
+        },
+        "name": {
+          "description": "Optional name of the Link",
+          "source": "iam-identity-token-api",
+          "schema": "CreateProfileLinkRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile_template",
+      "kind": "resource",
+      "schema": "ProfileIdentityRequest",
+      "spec": "iam-identity-token-api",
+      "score": 0.255,
+      "attrs": {
+        "description": {
+          "description": "Description of the identity that can assume the trusted profile. This is optional field for all the types of identities. When this field is not set for the identity type 'serviceid' then the description of the service id is used. Description is recommended for the identity type 'crn' E.g. 'Instance 1234 of IBM Cloud Service project'",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileIdentityRequest"
+        },
+        "profile.description": {
+          "description": "Description of the identity that can assume the trusted profile. This is optional field for all the types of identities. When this field is not set for the identity type 'serviceid' then the description of the service id is used. Description is recommended for the identity type 'crn' E.g. 'Instance 1234 of IBM Cloud Service project'",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileIdentityRequest"
+        },
+        "profile.identities.accounts": {
+          "description": "Only valid for the type user. Accounts from which a user can assume the trusted profile.",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileIdentityRequest"
+        },
+        "profile.identities.description": {
+          "description": "Description of the identity that can assume the trusted profile. This is optional field for all the types of identities. When this field is not set for the identity type 'serviceid' then the description of the service id is used. Description is recommended for the identity type 'crn' E.g. 'Instance 1234 of IBM Cloud Service project'",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileIdentityRequest"
+        },
+        "profile.identities.identifier": {
+          "description": "Identifier of the identity that can assume the trusted profiles. This can be a user identifier (IAM id), serviceid or crn. Internally it uses account id of the service id for the identifier 'serviceid' and for the identifier 'crn' it uses account id contained in the CRN.",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "ProfileIdentityRequest"
+        },
+        "profile.identities.type": {
+          "enum": [
+            "user",
+            "serviceid",
+            "crn"
+          ],
+          "description": "Type of the identity",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "ProfileIdentityRequest"
+        },
+        "profile.rules.type": {
+          "enum": [
+            "user",
+            "serviceid",
+            "crn"
+          ],
+          "description": "Type of the identity",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "ProfileIdentityRequest"
+        },
+        "policy_template_references.version": {
+          "format": "int64",
+          "description": "Version of the the template",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "TrustedProfileTemplateList"
+        },
+        "profile.rules.expiration": {
+          "format": "int32",
+          "description": "Number of seconds counted since January 1st, 1970, until the IAM access token will expire.",
+          "source": "iam-identity-token-api",
+          "schema": "token-response"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile_template_assignment",
+      "kind": "resource",
+      "schema": "CreateTemplateAssignmentRequest",
+      "spec": "iam-identity-token-api",
+      "score": 0.78,
+      "attrs": {
+        "target": {
+          "description": "Identifier of target to deploy to",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "CreateTemplateAssignmentRequest"
+        },
+        "target_type": {
+          "enum": [
+            "Account",
+            "AccountGroup"
+          ],
+          "description": "Type of target to deploy to",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "CreateTemplateAssignmentRequest"
+        },
+        "template_id": {
+          "description": "ID of the template to assign",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "CreateTemplateAssignmentRequest"
+        },
+        "template_version": {
+          "format": "int64",
+          "min": 1,
+          "description": "Version of the template to assign",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "CreateTemplateAssignmentRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_user_settings",
+      "kind": "resource",
+      "schema": "UserMfa",
+      "spec": "iam-identity-token-api",
+      "score": 0.2333,
+      "attrs": {
+        "iam_id": {
+          "description": "The iam_id of the user.",
+          "source": "iam-identity-token-api",
+          "schema": "UserMfa"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_account_settings",
+      "kind": "data",
+      "schema": "/v1/account_settings_assignments/{assignment_id}:patch",
+      "spec": "iam-identity-token-api",
+      "score": 0.18,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_iam_account_settings_template",
+      "kind": "data",
+      "schema": "params:put:/v1/account_settings_templates/{template_id}/versions/{version}",
+      "spec": "iam-identity-token-api",
+      "score": 0.355,
+      "attrs": {
+        "template_id": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/account_settings_templates/{template_id}/versions/{version}"
+        },
+        "version": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/account_settings_templates/{template_id}/versions/{version}"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_account_settings_template_assignment",
+      "kind": "data",
+      "schema": "/v1/account_settings_assignments/:post",
+      "spec": "iam-identity-token-api",
+      "score": 0.5667,
+      "attrs": {
+        "target": {
+          "description": "Identifier of target to deploy to",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "/v1/account_settings_assignments/:post"
+        },
+        "target_type": {
+          "enum": [
+            "Account",
+            "AccountGroup"
+          ],
+          "description": "Type of target to deploy to",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "/v1/account_settings_assignments/:post"
+        },
+        "template_id": {
+          "description": "ID of the template to assign",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "/v1/account_settings_assignments/:post"
+        },
+        "template_version": {
+          "format": "int64",
+          "min": 1,
+          "description": "Version of the template to assign",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "/v1/account_settings_assignments/:post"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_api_key",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_iam_auth_token",
+      "kind": "data",
+      "schema": "token-response",
+      "spec": "iam-identity-token-api",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_iam_effective_account_settings",
+      "kind": "data",
+      "schema": "params:put:/v1/accounts/{account_id}/settings/identity",
+      "spec": "iam-identity-token-api",
+      "score": 0.2257,
+      "attrs": {
+        "account_id": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/accounts/{account_id}/settings/identity"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_identity_preference",
+      "kind": "data",
+      "schema": "params:put:/v1/preferences/accounts/{account_id}/identities/{iam_id}/{service}/{preference_id}",
+      "spec": "iam-identity-token-api",
+      "score": 0.77,
+      "attrs": {
+        "account_id": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/preferences/accounts/{account_id}/identities/{iam_id}/{service}/{preference_id}"
+        },
+        "iam_id": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/preferences/accounts/{account_id}/identities/{iam_id}/{service}/{preference_id}"
+        },
+        "preference_id": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/preferences/accounts/{account_id}/identities/{iam_id}/{service}/{preference_id}"
+        },
+        "service": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/preferences/accounts/{account_id}/identities/{iam_id}/{service}/{preference_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_identity_preferences",
+      "kind": "data",
+      "schema": "params:put:/v1/preferences/accounts/{account_id}/identities/{iam_id}/{service}/{preference_id}",
+      "spec": "iam-identity-token-api",
+      "score": 0.49,
+      "attrs": {
+        "account_id": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/preferences/accounts/{account_id}/identities/{iam_id}/{service}/{preference_id}"
+        },
+        "iam_id": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/preferences/accounts/{account_id}/identities/{iam_id}/{service}/{preference_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_idp",
+      "kind": "data",
+      "schema": "ConsumersResponse",
+      "spec": "iam-identity-token-api",
+      "score": 0.35,
+      "attrs": {
+        "idp_id": {
+          "pattern": "^[A-Za-z0-9]+$",
+          "min_len": 3,
+          "max_len": 10,
+          "description": "Realm ID of the Identity Provider.",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "SamlMetadataImportResponse"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_idp_account_settings",
+      "kind": "data",
+      "schema": "Idp",
+      "spec": "iam-identity-token-api",
+      "score": 0.3373,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_iam_idps",
+      "kind": "data",
+      "schema": "params:post:/v1/accounts/{account_id}/limits/identity",
+      "spec": "iam-identity-token-api",
+      "score": 0.35,
+      "attrs": {
+        "account_id": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:post:/v1/accounts/{account_id}/limits/identity"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_service_id",
+      "kind": "data",
+      "schema": "UpdateServiceIdGroupRequest",
+      "spec": "iam-identity-token-api",
+      "score": 0.43,
+      "attrs": {
+        "name": {
+          "description": "Name of the service ID group. Unique in the account.",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "UpdateServiceIdGroupRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_serviceid_group",
+      "kind": "data",
+      "schema": "ServiceId",
+      "spec": "iam-identity-token-api",
+      "score": 0.21,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_iam_trusted_profile",
+      "kind": "data",
+      "schema": "ProfileCount",
+      "spec": "iam-identity-token-api",
+      "score": 0.2333,
+      "attrs": {
+        "profile_id": {
+          "description": "Profile identifier",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileCount"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile_claim_rule",
+      "kind": "data",
+      "schema": "ProfileCount",
+      "spec": "iam-identity-token-api",
+      "score": 0.2333,
+      "attrs": {
+        "profile_id": {
+          "description": "Profile identifier",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileCount"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile_claim_rules",
+      "kind": "data",
+      "schema": "ProfileCount",
+      "spec": "iam-identity-token-api",
+      "score": 0.35,
+      "attrs": {
+        "profile_id": {
+          "description": "Profile identifier",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileCount"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile_identities",
+      "kind": "data",
+      "schema": "ProfileCount",
+      "spec": "iam-identity-token-api",
+      "score": 0.35,
+      "attrs": {
+        "profile_id": {
+          "description": "Profile identifier",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileCount"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile_identity",
+      "kind": "data",
+      "schema": "ProfileCount",
+      "spec": "iam-identity-token-api",
+      "score": 0.175,
+      "attrs": {
+        "profile_id": {
+          "description": "Profile identifier",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileCount"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile_link",
+      "kind": "data",
+      "schema": "ProfileCount",
+      "spec": "iam-identity-token-api",
+      "score": 0.2333,
+      "attrs": {
+        "profile_id": {
+          "description": "Profile identifier",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileCount"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile_links",
+      "kind": "data",
+      "schema": "ProfileCount",
+      "spec": "iam-identity-token-api",
+      "score": 0.35,
+      "attrs": {
+        "profile_id": {
+          "description": "Profile identifier",
+          "source": "iam-identity-token-api",
+          "schema": "ProfileCount"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile_template",
+      "kind": "data",
+      "schema": "params:put:/v1/profile_templates/{template_id}/versions/{version}",
+      "spec": "iam-identity-token-api",
+      "score": 0.3175,
+      "attrs": {
+        "template_id": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/profile_templates/{template_id}/versions/{version}"
+        },
+        "version": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/profile_templates/{template_id}/versions/{version}"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profile_template_assignment",
+      "kind": "data",
+      "schema": "params:patch:/v1/profile_assignments/{assignment_id}",
+      "spec": "iam-identity-token-api",
+      "score": 0.275,
+      "attrs": {
+        "assignment_id": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:patch:/v1/profile_assignments/{assignment_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_trusted_profiles",
+      "kind": "data",
+      "schema": "CreateServiceIdGroupRequest",
+      "spec": "iam-identity-token-api",
+      "score": 0.43,
+      "attrs": {
+        "account_id": {
+          "description": "ID of the account the service ID group belongs to.",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "CreateServiceIdGroupRequest"
+        },
+        "name": {
+          "description": "Name of the service ID group. Unique in the account.",
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "CreateServiceIdGroupRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_user_mfa_enrollments",
+      "kind": "data",
+      "schema": "params:put:/v1/preferences/accounts/{account_id}/identities/{iam_id}/{service}/{preference_id}",
+      "spec": "iam-identity-token-api",
+      "score": 0.305,
+      "attrs": {
+        "account_id": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/preferences/accounts/{account_id}/identities/{iam_id}/{service}/{preference_id}"
+        },
+        "iam_id": {
+          "api_required": true,
+          "source": "iam-identity-token-api",
+          "schema": "params:put:/v1/preferences/accounts/{account_id}/identities/{iam_id}/{service}/{preference_id}"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_user_profile",
+      "kind": "data",
+      "schema": "UserMfa",
+      "spec": "iam-identity-token-api",
+      "score": 0.35,
+      "attrs": {
+        "iam_id": {
+          "description": "The iam_id of the user.",
+          "source": "iam-identity-token-api",
+          "schema": "UserMfa"
+        }
+      }
+    },
+    {
+      "name": "ibm_iam_users",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    }
+  ]
+}

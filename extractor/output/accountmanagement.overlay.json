@@ -1,0 +1,48 @@
+{
+  "package": "accountmanagement",
+  "specs": [
+    {
+      "slug": "bss-account-management",
+      "title": "Account Management",
+      "schema_count": 41,
+      "path_count": 1
+    },
+    {
+      "slug": "user-management",
+      "title": "User Management",
+      "schema_count": 20,
+      "path_count": 6
+    },
+    {
+      "slug": "support-center-case-management",
+      "title": "Case Management V1 API",
+      "schema_count": 21,
+      "path_count": 8
+    },
+    {
+      "slug": "support-center-case-management-v2",
+      "title": "Case Management V2 API",
+      "schema_count": 38,
+      "path_count": 10
+    }
+  ],
+  "matched": 1,
+  "resource_count": 1,
+  "overlay_attrs": 1,
+  "resources": [
+    {
+      "name": "ibm_account_info",
+      "kind": "data",
+      "schema": "params:post:/v2/accounts/{account_id}/users",
+      "spec": "user-management",
+      "score": 0.75,
+      "attrs": {
+        "account_id": {
+          "api_required": true,
+          "source": "user-management",
+          "schema": "params:post:/v2/accounts/{account_id}/users"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "package": "powerhaautomationservice",
+  "specs": [],
+  "matched": 0,
+  "resource_count": 8,
+  "overlay_attrs": 0,
+  "resources": [
+    {
+      "name": "ibm_pha_api_key",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pha_cluster_nodes",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pha_deployment",
+      "kind": "resource",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pha_cluster_nodes",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pha_deployment",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pha_last_operation",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pha_powervs_workspaces",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pha_supported_locations",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.0,
+      "attrs": {}
+    }
+  ]
+}

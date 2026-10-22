@@ -1,0 +1,2250 @@
+{
+  "package": "transitgateway",
+  "resources": [
+    {
+      "name": "ibm_tg_connection",
+      "function": "ResourceIBMTransitGatewayConnection",
+      "package": "transitgateway",
+      "kind": "resource",
+      "description": "Manages ibm_tg_connection. The user-defined name for this transit gateway.",
+      "attributes": {
+        "base_connection_id": {
+          "name": "base_connection_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The ID of a network_type 'classic' connection a tunnel is configured over. This field only applies to network type 'gre_tunnel' connections."
+        },
+        "base_network_type": {
+          "name": "base_network_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The type of network the unbound gre tunnel is targeting. This field is required for network type 'unbound_gre_tunnel'."
+        },
+        "cidr": {
+          "name": "cidr",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The network_type 'vpn_gateway' connections use 'cidr' to specify the CIDR to use for the VPN GRE tunnels",
+          "validate": {
+            "kind": "cidr",
+            "func_name": "name_heuristic"
+          }
+        },
+        "connection_id": {
+          "name": "connection_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Transit Gateway Connection identifier"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date and time that this connection was created"
+        },
+        "default_prefix_filter": {
+          "name": "default_prefix_filter",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Whether to permit or deny the prefix filter",
+          "validate": {
+            "kind": "invoke",
+            "func_name": "action"
+          }
+        },
+        "gateway": {
+          "name": "gateway",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The Transit Gateway identifier"
+        },
+        "local_gateway_ip": {
+          "name": "local_gateway_ip",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The local gateway IP address. This field only applies to network type 'gre_tunnel' and 'unbound_gre_tunnel' connections."
+        },
+        "local_tunnel_ip": {
+          "name": "local_tunnel_ip",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The local tunnel IP address. This field only applies to network type 'gre_tunnel' and 'unbound_gre_tunnel' connections."
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The user-defined name for this transit gateway. If unspecified, the name will be the network name (the name of the VPC in the case of network type 'vpc', and the word Classic, in the case of network type 'classic').",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 63,
+            "regexp": "^([a-zA-Z]|[a-zA-Z][-_a-zA-Z0-9]*[a-zA-Z0-9])$"
+          }
+        },
+        "network_account_id": {
+          "name": "network_account_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The ID of the account which owns the network that is being connected. Generally only used if the network is in a different account than the gateway. This field is required for type 'unbound_gre_tunnel' when the associated_network_type is 'classic' and the GRE tunnel is in a different account than the gateway."
+        },
+        "network_id": {
+          "name": "network_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The ID of the network being connected via this connection. This field is required for some types, such as 'vpc' or 'directlink' or 'power_virtual_server'. The value of this is the CRN of the VPC or direct link or power_virtual_server gateway to be connected. This field is required to be unspecified for network type 'classic', 'gre_tunnel', and 'unbound_gre_tunnel'."
+        },
+        "network_type": {
+          "name": "network_type",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Defines what type of network is connected via this connection. Allowable values (classic,directlink,vpc,gre_tunnel,unbound_gre_tunnel,power_virtual_server,redundant_gre,vpn_gateway)",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "classic",
+              "directlink",
+              "vpc",
+              "gre_tunnel",
+              "unbound_gre_tunnel",
+              "power_virtual_server",
+              "redundant_gre",
+              "vpn_gateway"
+            ]
+          }
+        },
+        "related_crn": {
+          "name": "related_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the transit gateway",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "remote_bgp_asn": {
+          "name": "remote_bgp_asn",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The remote network BGP ASN. This field only applies to network type 'gre_tunnel' and 'unbound_gre_tunnel' connections."
+        },
+        "remote_gateway_ip": {
+          "name": "remote_gateway_ip",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The remote gateway IP address. This field only applies to network type 'gre_tunnel' and 'unbound_gre_tunnel' connections."
+        },
+        "remote_tunnel_ip": {
+          "name": "remote_tunnel_ip",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The remote tunnel IP address. This field only applies to network type 'gre_tunnel' and 'unbound_gre_tunnel' connections."
+        },
+        "request_status": {
+          "name": "request_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Only visible for cross account connections, this field represents the status of the request to connect the given network between accounts.Possible values: [pending,approved,rejected,expired,detached]"
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "What is the current configuration state of this connection. Possible values: [attached,failed,pending,deleting,detaching,detached]"
+        },
+        "tunnels": {
+          "name": "tunnels",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "List of GRE tunnels for a transit gateway redundant GRE tunnel connection. This field is required for 'redundant_gre' connections",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date and time that this connection was created"
+              },
+              "local_bgp_asn": {
+                "name": "local_bgp_asn",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The local network BGP ASN. This field only applies to network type 'gre_tunnel' and 'unbound_gre_tunnel' connections."
+              },
+              "local_gateway_ip": {
+                "name": "local_gateway_ip",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "force_new": true,
+                "description": "The local gateway IP address. This field only applies to network type 'gre_tunnel' and 'unbound_gre_tunnel' connections."
+              },
+              "local_tunnel_ip": {
+                "name": "local_tunnel_ip",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "force_new": true,
+                "description": "The local tunnel IP address. This field only applies to network type 'gre_tunnel' and 'unbound_gre_tunnel' connections."
+              },
+              "mtu": {
+                "name": "mtu",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The user-defined name for this tunnel connection.",
+                "validate": {
+                  "kind": "invoke",
+                  "func_name": "name"
+                }
+              },
+              "remote_bgp_asn": {
+                "name": "remote_bgp_asn",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "The remote network BGP ASN. This field only applies to network type 'gre_tunnel' and 'unbound_gre_tunnel' connections."
+              },
+              "remote_gateway_ip": {
+                "name": "remote_gateway_ip",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "force_new": true,
+                "description": "The remote gateway IP address. This field only applies to network type 'gre_tunnel' and 'unbound_gre_tunnel' connections."
+              },
+              "remote_tunnel_ip": {
+                "name": "remote_tunnel_ip",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "force_new": true,
+                "description": "The remote tunnel IP address. This field only applies to network type 'gre_tunnel' and 'unbound_gre_tunnel' connections."
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "What is the current configuration state of this connection. Possible values: [attached,failed,pending,deleting,detaching,detached]"
+              },
+              "tunnel_id": {
+                "name": "tunnel_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Transit Gateway Connection tunnel identifier"
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date and time that this connection was last updated"
+              },
+              "zone": {
+                "name": "zone",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "force_new": true,
+                "description": "Location of GRE tunnel. This field only applies to network type 'gre_tunnel' and 'unbound_gre_tunnel' connections.",
+                "validate": {
+                  "kind": "zone",
+                  "func_name": "name_heuristic"
+                }
+              }
+            }
+          }
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date and time that this connection was last updated"
+        },
+        "zone": {
+          "name": "zone",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Location of connection. This field only applies to network type 'gre_tunnel' and 'unbound_gre_tunnel' connections and optional for network type 'vpn_gateway' connections",
+          "validate": {
+            "kind": "zone",
+            "func_name": "name_heuristic"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^([a-zA-Z]|[a-zA-Z][-_a-zA-Z0-9]*[a-zA-Z0-9])$",
+          "min_len": 1,
+          "max_len": 63
+        },
+        {
+          "identifier": "network_type",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "classic, directlink, vpc, gre_tunnel, unbound_gre_tunnel, power_virtual_server, redundant_gre, vpn_gateway"
+        }
+      ]
+    },
+    {
+      "name": "ibm_tg_connection_action",
+      "function": "ResourceIBMTransitGatewayConnectionAction",
+      "package": "transitgateway",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_tg_connection_action resource.",
+      "attributes": {
+        "action": {
+          "name": "action",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The Transit Gateway Connection cross account action",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "approve",
+              "reject"
+            ]
+          }
+        },
+        "connection_id": {
+          "name": "connection_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The Transit Gateway Connection identifier"
+        },
+        "gateway": {
+          "name": "gateway",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The Transit Gateway identifier"
+        }
+      },
+      "validators": [
+        {
+          "identifier": "action",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "approve, reject"
+        }
+      ]
+    },
+    {
+      "name": "ibm_tg_connection_prefix_filter",
+      "function": "ResourceIBMTransitGatewayConnectionPrefixFilter",
+      "package": "transitgateway",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_tg_connection_prefix_filter resource.",
+      "attributes": {
+        "action": {
+          "name": "action",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Whether to permit or deny the prefix filter",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "permit",
+              "deny"
+            ]
+          }
+        },
+        "before": {
+          "name": "before",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Identifier of prefix filter that handles ordering"
+        },
+        "connection_id": {
+          "name": "connection_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Transit Gateway Connection identifier"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date and time that this prefix filter was created"
+        },
+        "filter_id": {
+          "name": "filter_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Transit Gateway Connection Prefix Filter identifier"
+        },
+        "gateway": {
+          "name": "gateway",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The Transit Gateway identifier"
+        },
+        "ge": {
+          "name": "ge",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "IP Prefix GE"
+        },
+        "le": {
+          "name": "le",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "IP Prefix LE"
+        },
+        "prefix": {
+          "name": "prefix",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "IP Prefix"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date and time that this prefix filter was last updated"
+        }
+      },
+      "validators": [
+        {
+          "identifier": "action",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "permit, deny"
+        }
+      ]
+    },
+    {
+      "name": "ibm_tg_connection_rgre_tunnel",
+      "function": "ResourceIBMTransitGatewayConnectionRgreTunnel",
+      "package": "transitgateway",
+      "kind": "resource",
+      "description": "Manages ibm_tg_connection_rgre_tunnel. The user-defined name for this tunnel connection.",
+      "attributes": {
+        "base_network_type": {
+          "name": "base_network_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The type of the base network for the RGRE. It should be i.e classic or VPC"
+        },
+        "connection_id": {
+          "name": "connection_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The Transit Gateway Connection identifier"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date and time that this tunnel was created"
+        },
+        "gateway": {
+          "name": "gateway",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The Transit Gateway identifier"
+        },
+        "local_bgp_asn": {
+          "name": "local_bgp_asn",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The local network BGP ASN."
+        },
+        "local_gateway_ip": {
+          "name": "local_gateway_ip",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The local gateway IP address."
+        },
+        "local_tunnel_ip": {
+          "name": "local_tunnel_ip",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The local tunnel IP address."
+        },
+        "mtu": {
+          "name": "mtu",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Only visible for cross account connections, this field represents the status of the request to connect the given network between accounts.Possible values: [pending,approved,rejected,expired,detached]"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The user-defined name for this tunnel connection.",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 63,
+            "regexp": "^([a-zA-Z]|[a-zA-Z][-_a-zA-Z0-9]*[a-zA-Z0-9])$"
+          }
+        },
+        "network_account_id": {
+          "name": "network_account_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The ID of the account which owns the network that is being connected. Generally only used if the network is in a different account than the gateway. This field is required for type 'unbound_gre_tunnel' when the associated_network_type is 'classic' and the GRE tunnel is in a different account than the gateway."
+        },
+        "network_id": {
+          "name": "network_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The ID of the network being connected via this connection. This field is required for some types, such as 'vpc' or 'directlink' or 'power_virtual_server'. The value of this is the CRN of the VPC or direct link or power_virtual_server gateway to be connected. This field is required to be unspecified for network type 'classic', 'gre_tunnel', and 'unbound_gre_tunnel'."
+        },
+        "remote_bgp_asn": {
+          "name": "remote_bgp_asn",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The remote network BGP ASN."
+        },
+        "remote_gateway_ip": {
+          "name": "remote_gateway_ip",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The remote gateway IP address."
+        },
+        "remote_tunnel_ip": {
+          "name": "remote_tunnel_ip",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The remote tunnel IP address."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "What is the current configuration state of this tunnel. Possible values: [attached,failed,pending,deleting,detaching,detached]"
+        },
+        "tunnel_id": {
+          "name": "tunnel_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Transit Gateway tunnel identifier"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date and time that this tunnel was last updated"
+        },
+        "zone": {
+          "name": "zone",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Location of GRE tunnel.",
+          "validate": {
+            "kind": "zone",
+            "func_name": "name_heuristic"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^([a-zA-Z]|[a-zA-Z][-_a-zA-Z0-9]*[a-zA-Z0-9])$",
+          "min_len": 1,
+          "max_len": 63
+        }
+      ]
+    },
+    {
+      "name": "ibm_tg_gateway",
+      "function": "ResourceIBMTransitGateway",
+      "package": "transitgateway",
+      "kind": "resource",
+      "description": "Manages ibm_tg_gateway. Name Transit Gateway Services",
+      "attributes": {
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The creation time of the resource"
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the resource",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "global": {
+          "name": "global",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Allow global routing for a Transit Gateway. If unspecified, the default value is false",
+          "default": "false"
+        },
+        "gre_enhanced_route_propagation": {
+          "name": "gre_enhanced_route_propagation",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Allow route propagation across all GREs connected to the same transit gateway. This affects connections on the gateway of type redundant_gre, unbound_gre_tunnel and gre_tunnel",
+          "default": "false"
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Location of Transit Gateway Services"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name Transit Gateway Services",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 63
+          }
+        },
+        "resource_controller_url": {
+          "name": "resource_controller_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the IBM Cloud dashboard that can be used to explore and view details about this instance"
+        },
+        "resource_crn": {
+          "name": "resource_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the resource",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group name in which resource is provisioned"
+        },
+        "resource_name": {
+          "name": "resource_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The name of the resource"
+        },
+        "resource_status": {
+          "name": "resource_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the resource"
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Status of the resource"
+        },
+        "tags": {
+          "name": "tags",
+          "type": "set",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Tags for the transit gateway instance",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 128,
+            "regexp": "^[A-Za-z0-9:_ .-]+$"
+          },
+          "elem": {
+            "kind": "schema",
+            "type": "string",
+            "validate": {
+              "kind": "invoke",
+              "func_name": "tags"
+            }
+          }
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The updation time of the resource"
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "allowed": "^([a-zA-Z]|[a-zA-Z][-_a-zA-Z0-9]*[a-zA-Z0-9])$}",
+          "min_len": 1,
+          "max_len": 63
+        },
+        {
+          "identifier": "tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9:_ .-]+$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_tg_route_report",
+      "function": "ResourceIBMTransitGatewayRouteReport",
+      "package": "transitgateway",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_tg_route_report resource.",
+      "attributes": {
+        "connections": {
+          "name": "connections",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Collection of transit gateway connections",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "bgps": {
+                "name": "bgps",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection of transit gateway connection's bgps",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "as_path": {
+                      "name": "as_path",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    },
+                    "is_used": {
+                      "name": "is_used",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    },
+                    "local_preference": {
+                      "name": "local_preference",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    },
+                    "prefix": {
+                      "name": "prefix",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    }
+                  }
+                }
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "routes": {
+                "name": "routes",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection of transit gateway connection's used routes",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "prefix": {
+                      "name": "prefix",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    }
+                  }
+                }
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "gateway": {
+          "name": "gateway",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The Transit Gateway identifier"
+        },
+        "overlapping_routes": {
+          "name": "overlapping_routes",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Collection of transit gateway overlapping routes",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "routes": {
+                "name": "routes",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection of transit gateway overlapping route's details",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "connection_id": {
+                      "name": "connection_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    },
+                    "prefix": {
+                      "name": "prefix",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "route_report_id": {
+          "name": "route_report_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The Transit Gateway Route Report identifier"
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        }
+      }
+    },
+    {
+      "name": "ibm_tg_connection_prefix_filter",
+      "function": "DataSourceIBMTransitGatewayConnectionPrefixFilter",
+      "package": "transitgateway",
+      "kind": "data",
+      "description": "Schema validation for the ibm_tg_connection_prefix_filter data source.",
+      "attributes": {
+        "action": {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Whether to permit or deny the prefix filter",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "permit",
+              "deny"
+            ]
+          }
+        },
+        "before": {
+          "name": "before",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Identifier of prefix filter that handles ordering"
+        },
+        "connection_id": {
+          "name": "connection_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Transit Gateway Connection identifier"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date and time that this prefix filter was created"
+        },
+        "filter_id": {
+          "name": "filter_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Transit Gateway Connection Prefix Filter identifier"
+        },
+        "gateway": {
+          "name": "gateway",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Transit Gateway identifier"
+        },
+        "ge": {
+          "name": "ge",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "IP Prefix GE"
+        },
+        "le": {
+          "name": "le",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "IP Prefix LE"
+        },
+        "prefix": {
+          "name": "prefix",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "IP Prefix"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date and time that this prefix filter was last updated"
+        }
+      },
+      "validators": [
+        {
+          "identifier": "action",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "permit, deny"
+        }
+      ]
+    },
+    {
+      "name": "ibm_tg_connection_prefix_filters",
+      "function": "DataSourceIBMTransitGatewayConnectionPrefixFilters",
+      "package": "transitgateway",
+      "kind": "data",
+      "description": "Schema validation for the ibm_tg_connection_prefix_filters data source.",
+      "attributes": {
+        "connection_id": {
+          "name": "connection_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Transit Gateway Connection identifier"
+        },
+        "gateway": {
+          "name": "gateway",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Transit Gateway identifier"
+        },
+        "prefix_filters": {
+          "name": "prefix_filters",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Collection of prefix filters",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "action": {
+                "name": "action",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Whether to permit or deny the prefix filter"
+              },
+              "before": {
+                "name": "before",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Identifier of prefix filter that handles ordering"
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date and time that this prefix filter was created"
+              },
+              "ge": {
+                "name": "ge",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "IP Prefix GE"
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "le": {
+                "name": "le",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "IP Prefix LE"
+              },
+              "prefix": {
+                "name": "prefix",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "IP Prefix"
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date and time that this prefix filter was last updated"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_tg_gateway",
+      "function": "DataSourceIBMTransitGateway",
+      "package": "transitgateway",
+      "kind": "data",
+      "description": "Reads ibm_tg_gateway. The Transit Gateway identifier",
+      "attributes": {
+        "connections": {
+          "name": "connections",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Collection of transit gateway connections",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "base_connection_id": {
+                "name": "base_connection_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "base_network_type": {
+                "name": "base_network_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "cidr": {
+                "name": "cidr",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "validate": {
+                  "kind": "cidr",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "default_prefix_filter": {
+                "name": "default_prefix_filter",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": true,
+                "description": "Whether to permit or deny the prefix filter",
+                "validate": {
+                  "kind": "invoke",
+                  "func_name": "action"
+                }
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "local_bgp_asn": {
+                "name": "local_bgp_asn",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "local_gateway_ip": {
+                "name": "local_gateway_ip",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "local_tunnel_ip": {
+                "name": "local_tunnel_ip",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "mtu": {
+                "name": "mtu",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "network_account_id": {
+                "name": "network_account_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the account which owns the network that is being connected. Generally only used if the network is in a different account than the gateway."
+              },
+              "network_id": {
+                "name": "network_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "network_type": {
+                "name": "network_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "remote_bgp_asn": {
+                "name": "remote_bgp_asn",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "remote_gateway_ip": {
+                "name": "remote_gateway_ip",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "remote_tunnel_ip": {
+                "name": "remote_tunnel_ip",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "tunnels": {
+                "name": "tunnels",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "List of GRE tunnels for a transit gateway redundant GRE tunnel connection. This field is required for 'redundant_gre' connections",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "created_at": {
+                      "name": "created_at",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The date and time that this connection was created"
+                    },
+                    "local_bgp_asn": {
+                      "name": "local_bgp_asn",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The local network BGP ASN. "
+                    },
+                    "local_gateway_ip": {
+                      "name": "local_gateway_ip",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The local gateway IP address."
+                    },
+                    "local_tunnel_ip": {
+                      "name": "local_tunnel_ip",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The local tunnel IP address."
+                    },
+                    "mtu": {
+                      "name": "mtu",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The user-defined name for this  rGRE tunnel."
+                    },
+                    "remote_bgp_asn": {
+                      "name": "remote_bgp_asn",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The remote network BGP ASN."
+                    },
+                    "remote_gateway_ip": {
+                      "name": "remote_gateway_ip",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The remote gateway IP address."
+                    },
+                    "remote_tunnel_ip": {
+                      "name": "remote_tunnel_ip",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The remote tunnel IP address."
+                    },
+                    "status": {
+                      "name": "status",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "What is the current configuration state of this connection. Possible values: [attached,failed,pending,deleting,detaching,detached]"
+                    },
+                    "tunnel_id": {
+                      "name": "tunnel_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The Transit Gateway Connection identifier"
+                    },
+                    "updated_at": {
+                      "name": "updated_at",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The date and time that this connection was last updated"
+                    },
+                    "zone": {
+                      "name": "zone",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Location of GRE tunnel.",
+                      "validate": {
+                        "kind": "zone",
+                        "func_name": "name_heuristic"
+                      }
+                    }
+                  }
+                }
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "zone": {
+                "name": "zone",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "validate": {
+                  "kind": "zone",
+                  "func_name": "name_heuristic"
+                }
+              }
+            }
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "global": {
+          "name": "global",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "gre_enhanced_route_propagation": {
+          "name": "gre_enhanced_route_propagation",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "location": {
+          "name": "location",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Transit Gateway identifier",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 1,
+            "max_len": 63
+          }
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        }
+      },
+      "validators": [
+        {
+          "identifier": "name",
+          "kind": "ValidateRegexpLen",
+          "allowed": "^([a-zA-Z]|[a-zA-Z][-_a-zA-Z0-9]*[a-zA-Z0-9])$}",
+          "min_len": 1,
+          "max_len": 63
+        },
+        {
+          "identifier": "tags",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[A-Za-z0-9:_ .-]+$",
+          "min_len": 1,
+          "max_len": 128
+        }
+      ]
+    },
+    {
+      "name": "ibm_tg_gateways",
+      "function": "DataSourceIBMTransitGateways",
+      "package": "transitgateway",
+      "kind": "data",
+      "description": "Schema validation for the ibm_tg_gateways data source.",
+      "attributes": {
+        "transit_gateways": {
+          "name": "transit_gateways",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Collection of transit gateways",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "global": {
+                "name": "global",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "gre_enhanced_route_propagation": {
+                "name": "gre_enhanced_route_propagation",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "location": {
+                "name": "location",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "resource_group": {
+                "name": "resource_group",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_tg_location",
+      "function": "DataSourceIBMTransitGatewaysLocation",
+      "package": "transitgateway",
+      "kind": "data",
+      "description": "Reads ibm_tg_location. Name of the Location.",
+      "attributes": {
+        "billing_location": {
+          "name": "billing_location",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The geographical location of this location, used for billing purposes."
+        },
+        "local_connection_locations": {
+          "name": "local_connection_locations",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The set of network locations that are considered local for this Transit Gateway location.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "display_name": {
+                "name": "display_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A descriptive display name for the location."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the Location."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The type of the location, determining is this a multi-zone region, a single data center, or a point of presence."
+              }
+            }
+          }
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Name of the Location."
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The type of the location, determining is this a multi-zone region, a single data center, or a point of presence."
+        }
+      }
+    },
+    {
+      "name": "ibm_tg_locations",
+      "function": "DataSourceIBMTransitGatewaysLocations",
+      "package": "transitgateway",
+      "kind": "data",
+      "description": "Schema validation for the ibm_tg_locations data source.",
+      "attributes": {
+        "locations": {
+          "name": "locations",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Collection of Transit Gateway locations",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "billing_location": {
+                "name": "billing_location",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The geographical location of this location, used for billing purposes."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the Location."
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The type of the location, determining is this a multi-zone region, a single data center, or a point of presence."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_tg_route_report",
+      "function": "DataSourceIBMTransitGatewayRouteReport",
+      "package": "transitgateway",
+      "kind": "data",
+      "description": "Schema validation for the ibm_tg_route_report data source.",
+      "attributes": {
+        "connections": {
+          "name": "connections",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Collection of transit gateway connections",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "bgps": {
+                "name": "bgps",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection of transit gateway connection's bgps",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "as_path": {
+                      "name": "as_path",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    },
+                    "is_used": {
+                      "name": "is_used",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    },
+                    "local_preference": {
+                      "name": "local_preference",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    },
+                    "prefix": {
+                      "name": "prefix",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    }
+                  }
+                }
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "routes": {
+                "name": "routes",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection of transit gateway connection's used routes",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "prefix": {
+                      "name": "prefix",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    }
+                  }
+                }
+              },
+              "type": {
+                "name": "type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "gateway": {
+          "name": "gateway",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Transit Gateway identifier"
+        },
+        "overlapping_routes": {
+          "name": "overlapping_routes",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Collection of transit gateway overlapping routes",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "routes": {
+                "name": "routes",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection of transit gateway overlapping route's details",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "connection_id": {
+                      "name": "connection_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    },
+                    "prefix": {
+                      "name": "prefix",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "route_report": {
+          "name": "route_report",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Transit Gateway Route Report identifier"
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        }
+      }
+    },
+    {
+      "name": "ibm_tg_route_reports",
+      "function": "DataSourceIBMTransitGatewayRouteReports",
+      "package": "transitgateway",
+      "kind": "data",
+      "description": "Schema validation for the ibm_tg_route_reports data source.",
+      "attributes": {
+        "gateway": {
+          "name": "gateway",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The Transit Gateway identifier"
+        },
+        "route_reports": {
+          "name": "route_reports",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Collection of transit gateway route reports",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "connections": {
+                "name": "connections",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection of transit gateway connections",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "bgps": {
+                      "name": "bgps",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Collection of transit gateway connection's bgps",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "as_path": {
+                            "name": "as_path",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "is_used": {
+                            "name": "is_used",
+                            "type": "bool",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "local_preference": {
+                            "name": "local_preference",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "prefix": {
+                            "name": "prefix",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          }
+                        }
+                      }
+                    },
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    },
+                    "routes": {
+                      "name": "routes",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Collection of transit gateway connection's used routes",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "prefix": {
+                            "name": "prefix",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          }
+                        }
+                      }
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true
+                    }
+                  }
+                }
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "overlapping_routes": {
+                "name": "overlapping_routes",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Collection of transit gateway overlapping routes",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "routes": {
+                      "name": "routes",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Collection of transit gateway overlapping route's details",
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "connection_id": {
+                            "name": "connection_id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "prefix": {
+                            "name": "prefix",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 14,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package transitgateway"
+}

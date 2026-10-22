@@ -1,0 +1,3813 @@
+{
+  "package": "kms",
+  "resources": [
+    {
+      "name": "ibm_kms_cryptounits",
+      "function": "ResourceIBMKmsCryptoUnits",
+      "package": "kms",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_kms_cryptounits resource.",
+      "attributes": {
+        "cryptounits": {
+          "name": "cryptounits",
+          "type": "set",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier of the crypto unit"
+              },
+              "state": {
+                "name": "state",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The current state of the crypto unit"
+              }
+            }
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key protect or hpcs instance GUID or CRN"
+        },
+        "master_key": {
+          "name": "master_key",
+          "type": "set",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "max_items": 1,
+          "description": "Attributes related to the master backup key",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "keyname": {
+                "name": "keyname",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The name of the master backup key shown on the cryptounit"
+              },
+              "keysharefile": {
+                "name": "keysharefile",
+                "type": "set",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Key share file configuration with filepath and passphrase",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "filepath": {
+                      "name": "filepath",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "description": "The filepath to store the key share file or find an existing one"
+                    },
+                    "passphrase": {
+                      "name": "passphrase",
+                      "type": "string",
+                      "required": true,
+                      "optional": false,
+                      "computed": false,
+                      "sensitive": true,
+                      "description": "The passphrase associated with the key share file"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "region": {
+          "name": "region",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "area where the key protect dedicated instance resides"
+        },
+        "should_zeroize": {
+          "name": "should_zeroize",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "set to true if the resource should be zeroized. Zeroizing if harmful if not understood. Set to false as a safe default",
+          "default": "false"
+        },
+        "signature_key": {
+          "name": "signature_key",
+          "type": "set",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "max_items": 1,
+          "description": "Credentials for the user will use to create sessions with the cryptounits",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "filepath": {
+                "name": "filepath",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "The filepath to store the signature key or find an exisiting signature key"
+              },
+              "owner": {
+                "name": "owner",
+                "type": "string",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "The owner of the signature_key"
+              },
+              "passphrase": {
+                "name": "passphrase",
+                "type": "string",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "sensitive": true,
+                "description": "The passphrase of the signature_key"
+              }
+            }
+          }
+        },
+        "url": {
+          "name": "url",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "The URL to use when targeting the resource"
+        },
+        "use_private_endpoint": {
+          "name": "use_private_endpoint",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "set to true if the private endpoint should be used, otherwise false",
+          "default": "false"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_instance_policies",
+      "function": "ResourceIBMKmsInstancePolicy",
+      "package": "kms",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_kms_instance_policies resource.",
+      "attributes": {
+        "dual_auth_delete": {
+          "name": "dual_auth_delete",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "Data associated with the dual authorization delete policy for instance",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that created the policy."
+              },
+              "creation_date": {
+                "name": "creation_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date the policy was created. The date format follows RFC 3339."
+              },
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "If set to true, Key Protect enables a dual authorization policy for the instance."
+              },
+              "last_updated": {
+                "name": "last_updated",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Updates when the policy is replaced or modified. The date format follows RFC 3339."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that updated the policy."
+              }
+            }
+          }
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "public or private",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key protect or hpcs instance GUID or CRN"
+        },
+        "key_create_import_access": {
+          "name": "key_create_import_access",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "Data associated with the key create import access policy for the instance",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "create_root_key": {
+                "name": "create_root_key",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "If set to true, Key Protect allows you or any authorized users to create root keys in the instance.",
+                "default": "true"
+              },
+              "create_standard_key": {
+                "name": "create_standard_key",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "If set to true, Key Protect allows you or any authorized users to create standard keys in the instance.",
+                "default": "true"
+              },
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that created the policy."
+              },
+              "creation_date": {
+                "name": "creation_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date the policy was created. The date format follows RFC 3339."
+              },
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "If set to true, Key Protect enables a KCIA policy for the instance."
+              },
+              "enforce_token": {
+                "name": "enforce_token",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "If set to true, the service prevents you or any authorized users from importing key material into the specified service instance without using an import token.",
+                "default": "false"
+              },
+              "import_root_key": {
+                "name": "import_root_key",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "If set to true, Key Protect allows you or any authorized users to import root keys into the instance.",
+                "default": "true"
+              },
+              "import_standard_key": {
+                "name": "import_standard_key",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "If set to true, Key Protect allows you or any authorized users to import standard keys into the instance.",
+                "default": "true"
+              },
+              "last_updated": {
+                "name": "last_updated",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Updates when the policy is replaced or modified. The date format follows RFC 3339."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that updated the policy."
+              }
+            }
+          }
+        },
+        "metrics": {
+          "name": "metrics",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "Data associated with the metric policy for instance",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that created the policy."
+              },
+              "creation_date": {
+                "name": "creation_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date the policy was created. The date format follows RFC 3339."
+              },
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "If set to true, Key Protect enables a metrics policy on the instance."
+              },
+              "last_updated": {
+                "name": "last_updated",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Updates when the policy is replaced or modified. The date format follows RFC 3339."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that updated the policy."
+              }
+            }
+          }
+        },
+        "rotation": {
+          "name": "rotation",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "max_items": 1,
+          "description": "Data associated with the rotation policy for instance",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that created the policy."
+              },
+              "creation_date": {
+                "name": "creation_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date the policy was created. The date format follows RFC 3339."
+              },
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "If set to true, Key Protect enables a rotation policy for the instance."
+              },
+              "interval_month": {
+                "name": "interval_month",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Specifies the rotation time interval in months for the instance.",
+                "validate": {
+                  "kind": "func",
+                  "func_name": "ValidateAllowedRangeInt"
+                }
+              },
+              "last_updated": {
+                "name": "last_updated",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Updates when the policy is replaced or modified. The date format follows RFC 3339."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that updated the policy."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_key",
+      "function": "ResourceIBMKmskey",
+      "package": "kms",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_kms_key resource.",
+      "attributes": {
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Crn of the key",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "description of the key"
+        },
+        "encrypted_nonce": {
+          "name": "encrypted_nonce",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Only for imported root key"
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "public or private",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "expiration_date": {
+          "name": "expiration_date",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The date and time that the key expires in the system, in RFC 3339 format (YYYY-MM-DD HH:MM:SS.SS, for example 2019-10-12T07:20:50.52Z). Use caution when setting an expiration date, as keys created with an expiration date automatically transition to the Deactivated state within one hour after expiration. In this state, the only allowed actions on the key are unwrap, rewrap, rotate, and delete. Deactivated keys cannot be used to encrypt (wrap) new data, even if rotated while deactivated. Rotation does not reset or extend the expiration date, nor does it allow the date to be changed. It is recommended that any data encrypted with an expiring or expired key be re-encrypted using a new customer root key (CRK) before the original CRK expires, to prevent service disruptions. Deleting and restoring a deactivated key does not move it back to the Active state. If the expiration_date attribute is omitted, the key does not expire."
+        },
+        "force_delete": {
+          "name": "force_delete",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "set to true to force delete the key",
+          "default": "false"
+        },
+        "instance_crn": {
+          "name": "instance_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Key protect or hpcs instance CRN",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key protect or hpcs instance GUID or CRN"
+        },
+        "iv_value": {
+          "name": "iv_value",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Only for imported root key"
+        },
+        "key_id": {
+          "name": "key_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Key ID"
+        },
+        "key_name": {
+          "name": "key_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key name"
+        },
+        "key_ring_id": {
+          "name": "key_ring_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Key Ring for the Key",
+          "default": "default"
+        },
+        "payload": {
+          "name": "payload",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "sensitive": true
+        },
+        "registrations": {
+          "name": "registrations",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Registrations of the key across different services",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "key_id": {
+                "name": "key_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The id of the key being used in the registration"
+              },
+              "prevent_key_deletion": {
+                "name": "prevent_key_deletion",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Determines if the registration of the key prevents a deletion."
+              },
+              "resource_crn": {
+                "name": "resource_crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The CRN of the resource tied to the key registration",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              }
+            }
+          }
+        },
+        "resource_controller_url": {
+          "name": "resource_controller_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the IBM Cloud dashboard that can be used to explore and view details about the resource"
+        },
+        "resource_crn": {
+          "name": "resource_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the resource",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group name in which resource is provisioned"
+        },
+        "resource_name": {
+          "name": "resource_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The name of the resource"
+        },
+        "resource_status": {
+          "name": "resource_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the resource"
+        },
+        "standard_key": {
+          "name": "standard_key",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Standard key type",
+          "default": "false"
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "type of service hs-crypto or kms"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_key_alias",
+      "function": "ResourceIBMKmskeyAlias",
+      "package": "kms",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_kms_key_alias resource.",
+      "attributes": {
+        "alias": {
+          "name": "alias",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key protect or hpcs key alias name"
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "public or private",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "existing_alias": {
+          "name": "existing_alias",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Existing Alias of the Key"
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key ID"
+        },
+        "key_id": {
+          "name": "key_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Key ID"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_key_policies",
+      "function": "ResourceIBMKmskeyPolicies",
+      "package": "kms",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_kms_key_policies resource.",
+      "attributes": {
+        "alias": {
+          "name": "alias",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false
+        },
+        "dual_auth_delete": {
+          "name": "dual_auth_delete",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Data associated with the dual authorization delete policy.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that created the policy."
+              },
+              "creation_date": {
+                "name": "creation_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date the policy was created. The date format follows RFC 3339."
+              },
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Cloud Resource Name (CRN) that uniquely identifies your cloud resources.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "If set to true, Key Protect enables a dual authorization policy on a single key."
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The v4 UUID used to uniquely identify the policy resource, as specified by RFC 4122."
+              },
+              "last_update_date": {
+                "name": "last_update_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Updates when the policy is replaced or modified. The date format follows RFC 3339."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that updated the policy."
+              }
+            }
+          }
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "public or private",
+          "default": "public",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key protect or hpcs instance GUID"
+        },
+        "key_id": {
+          "name": "key_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Key ID"
+        },
+        "resource_controller_url": {
+          "name": "resource_controller_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the IBM Cloud dashboard that can be used to explore and view details about the resource"
+        },
+        "resource_crn": {
+          "name": "resource_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the resource",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "resource_name": {
+          "name": "resource_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The name of the resource"
+        },
+        "resource_status": {
+          "name": "resource_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the resource"
+        },
+        "rotation": {
+          "name": "rotation",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Specifies the key rotation time interval in months, with a minimum of 1, and a maximum of 12",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that created the policy."
+              },
+              "creation_date": {
+                "name": "creation_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date the policy was created. The date format follows RFC 3339."
+              },
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Cloud Resource Name (CRN) that uniquely identifies your cloud resources.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "If set to true, Key Protect enables a rotation policy on a single key.",
+                "default": "true"
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The v4 UUID used to uniquely identify the policy resource, as specified by RFC 4122."
+              },
+              "interval_month": {
+                "name": "interval_month",
+                "type": "int",
+                "required": false,
+                "optional": true,
+                "computed": false,
+                "description": "Specifies the key rotation time interval in months",
+                "validate": {
+                  "kind": "func",
+                  "func_name": "ValidateAllowedRangeInt"
+                }
+              },
+              "last_update_date": {
+                "name": "last_update_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Updates when the policy is replaced or modified. The date format follows RFC 3339."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that updated the policy."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_key_rings",
+      "function": "ResourceIBMKmskeyRings",
+      "package": "kms",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_kms_key_rings resource.",
+      "attributes": {
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "public or private",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "force_delete": {
+          "name": "force_delete",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "(Deprecated) set to true to force delete this key ring. This allows key ring deletion as long as all keys inside have key state equals to 5 (destroyed). Keys are moved to the default key ring.",
+          "default": "false"
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key protect Instance GUID"
+        },
+        "key_ring_id": {
+          "name": "key_ring_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "User defined unique ID for the key ring",
+          "validate": {
+            "kind": "regexp",
+            "func_name": "ValidateRegexpLen",
+            "min_len": 2,
+            "max_len": 100,
+            "regexp": "^[a-zA-Z0-9-]*$"
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "key_ring_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9-]*$",
+          "min_len": 2,
+          "max_len": 100
+        }
+      ]
+    },
+    {
+      "name": "ibm_kms_key_with_policy_overrides",
+      "function": "ResourceIBMKmsKeyWithPolicyOverrides",
+      "package": "kms",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_kms_key_with_policy_overrides resource.",
+      "attributes": {
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Crn of the key",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "description of the key"
+        },
+        "dual_auth_delete": {
+          "name": "dual_auth_delete",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Data associated with the dual authorization delete policy.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "If set to true, Key Protect enables a dual authorization policy on a single key."
+              }
+            }
+          }
+        },
+        "encrypted_nonce": {
+          "name": "encrypted_nonce",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Only for imported root key"
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "Public or Private",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "expiration_date": {
+          "name": "expiration_date",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The date and time that the key expires in the system, in RFC 3339 format (YYYY-MM-DD HH:MM:SS.SS, for example 2019-10-12T07:20:50.52Z). Use caution when setting an expiration date, as keys created with an expiration date automatically transition to the Deactivated state within one hour after expiration. In this state, the only allowed actions on the key are unwrap, rewrap, rotate, and delete. Deactivated keys cannot be used to encrypt (wrap) new data, even if rotated while deactivated. Rotation does not reset or extend the expiration date, nor does it allow the date to be changed. It is recommended that any data encrypted with an expiring or expired key be re-encrypted using a new customer root key (CRK) before the original CRK expires, to prevent service disruptions. Deleting and restoring a deactivated key does not move it back to the Active state. If the expiration_date attribute is omitted, the key does not expire."
+        },
+        "force_delete": {
+          "name": "force_delete",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "set to true to force delete the key",
+          "default": "false"
+        },
+        "instance_crn": {
+          "name": "instance_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Key protect or HPCS instance CRN",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key protect or HPCS instance GUID or CRN"
+        },
+        "iv_value": {
+          "name": "iv_value",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Only for imported root key"
+        },
+        "key_id": {
+          "name": "key_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Key ID"
+        },
+        "key_name": {
+          "name": "key_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key name"
+        },
+        "key_ring_id": {
+          "name": "key_ring_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Key Ring for the Key",
+          "default": "default"
+        },
+        "payload": {
+          "name": "payload",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "sensitive": true
+        },
+        "registrations": {
+          "name": "registrations",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Registrations of the key across different services",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "key_id": {
+                "name": "key_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The id of the key being used in the registration"
+              },
+              "prevent_key_deletion": {
+                "name": "prevent_key_deletion",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Determines if the registration of the key prevents a deletion."
+              },
+              "resource_crn": {
+                "name": "resource_crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The CRN of the resource tied to the key registration",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              }
+            }
+          }
+        },
+        "resource_controller_url": {
+          "name": "resource_controller_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the IBM Cloud dashboard that can be used to explore and view details about the resource"
+        },
+        "resource_crn": {
+          "name": "resource_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the resource",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group name in which resource is provisioned"
+        },
+        "resource_name": {
+          "name": "resource_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The name of the resource"
+        },
+        "resource_status": {
+          "name": "resource_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the resource"
+        },
+        "rotation": {
+          "name": "rotation",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "Data associated with the key rotation policy",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "If set to true, Key Protect enables a rotation policy on a single key."
+              },
+              "interval_month": {
+                "name": "interval_month",
+                "type": "int",
+                "required": true,
+                "optional": false,
+                "computed": false,
+                "description": "Specifies the key rotation time interval in months, with a minimum of 1, and a maximum of 12",
+                "validate": {
+                  "kind": "func",
+                  "func_name": "ValidateAllowedRangeInt"
+                }
+              }
+            }
+          }
+        },
+        "standard_key": {
+          "name": "standard_key",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Standard key type",
+          "default": "false"
+        },
+        "type": {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of service hs-crypto or kms"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_kmip_adapter",
+      "function": "ResourceIBMKmsKMIPAdapter",
+      "package": "kms",
+      "kind": "resource",
+      "description": "Manages ibm_kms_kmip_adapter. The name of the KMIP adapter",
+      "attributes": {
+        "adapter_id": {
+          "name": "adapter_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the KMIP adapter"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when a resource was created. The date format follows RFC 3339."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The unique identifier that is associated with the entity that created the adapter."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The description of the KMIP adapter"
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "public or private",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key protect Instance GUID"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The name of the KMIP adapter"
+        },
+        "profile": {
+          "name": "profile",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The profile of the KMIP adapter",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues"
+          }
+        },
+        "profile_data": {
+          "name": "profile_data",
+          "type": "map",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "The data specific to the KMIP Adapter profile"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when a resource was updated. The date format follows RFC 3339."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The unique identifier that is associated with the entity that updated the adapter."
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_kmip_client_cert",
+      "function": "ResourceIBMKmsKMIPClientCertificate",
+      "package": "kms",
+      "kind": "resource",
+      "description": "Manages ibm_kms_kmip_client_cert. The name of the KMIP client certificate",
+      "attributes": {
+        "adapter_id": {
+          "name": "adapter_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The name or UUID of the KMIP adapter that contains the cert"
+        },
+        "cert_id": {
+          "name": "cert_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The UUID of the KMIP cert"
+        },
+        "certificate": {
+          "name": "certificate",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "sensitive": true,
+          "description": "The PEM-encoded contents of the certificate"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when a resource was created. The date format follows RFC 3339."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The unique identifier that is associated with the entity that created the adapter."
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "public or private",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key protect Instance GUID"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The name of the KMIP client certificate"
+        }
+      }
+    },
+    {
+      "name": "ibm_kp_key",
+      "function": "ResourceIBMkey",
+      "package": "kms",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_kp_key resource.",
+      "attributes": {
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Crn of the key",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "encrypted_nonce": {
+          "name": "encrypted_nonce",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Only for imported root key"
+        },
+        "force_delete": {
+          "name": "force_delete",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "set to true to force delete the key",
+          "default": "false"
+        },
+        "iv_value": {
+          "name": "iv_value",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Only for imported root key"
+        },
+        "key_id": {
+          "name": "key_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Key ID"
+        },
+        "key_name": {
+          "name": "key_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key name"
+        },
+        "key_protect_id": {
+          "name": "key_protect_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key protect instance ID"
+        },
+        "payload": {
+          "name": "payload",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true
+        },
+        "resource_controller_url": {
+          "name": "resource_controller_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The URL of the IBM Cloud dashboard that can be used to explore and view details about the resource"
+        },
+        "resource_crn": {
+          "name": "resource_crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The crn of the resource",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "resource_group_name": {
+          "name": "resource_group_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group name in which resource is provisioned"
+        },
+        "resource_name": {
+          "name": "resource_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The name of the resource"
+        },
+        "resource_status": {
+          "name": "resource_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of the resource"
+        },
+        "standard_key": {
+          "name": "standard_key",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Standard key type",
+          "default": "false"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_instance_policies",
+      "function": "DataSourceIBMKmsInstancePolicies",
+      "package": "kms",
+      "kind": "data",
+      "description": "Schema validation for the ibm_kms_instance_policies data source.",
+      "attributes": {
+        "dual_auth_delete": {
+          "name": "dual_auth_delete",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Data associated with the dual auth delete policy for instance",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that created the policy."
+              },
+              "creation_date": {
+                "name": "creation_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date the policy was created. The date format follows RFC 3339."
+              },
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Data associated with enable/disable dual authorization policy for the instance."
+              },
+              "last_updated": {
+                "name": "last_updated",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Updates when the policy is replaced or modified. The date format follows RFC 3339."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that updated the policy."
+              }
+            }
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key protect or hpcs instance GUID or CRN"
+        },
+        "key_create_import_access": {
+          "name": "key_create_import_access",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Data associated with the key create import access policy for the instance",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "create_root_key": {
+                "name": "create_root_key",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "If set to true, Key Protect allows you or any authorized users to create root keys in the instance."
+              },
+              "create_standard_key": {
+                "name": "create_standard_key",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "If set to true, Key Protect allows you or any authorized users to create standard keys in the instance."
+              },
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that created the policy."
+              },
+              "creation_date": {
+                "name": "creation_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date the policy was created. The date format follows RFC 3339."
+              },
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Data associated with enable/disable KCIA policy for the instance."
+              },
+              "enforce_token": {
+                "name": "enforce_token",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "If set to true, the service prevents you or any authorized users from importing key material into the specified service instance without using an import token."
+              },
+              "import_root_key": {
+                "name": "import_root_key",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "If set to true, Key Protect allows you or any authorized users to import root keys into the instance."
+              },
+              "import_standard_key": {
+                "name": "import_standard_key",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "If set to true, Key Protect allows you or any authorized users to import standard keys into the instance."
+              },
+              "last_updated": {
+                "name": "last_updated",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Updates when the policy is replaced or modified. The date format follows RFC 3339."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that updated the policy."
+              }
+            }
+          }
+        },
+        "metrics": {
+          "name": "metrics",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Data associated with the metric policy for the instance",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that created the policy."
+              },
+              "creation_date": {
+                "name": "creation_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date the policy was created. The date format follows RFC 3339."
+              },
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Data associated with enable/disable metrics policy on the instance."
+              },
+              "last_updated": {
+                "name": "last_updated",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Updates when the policy is replaced or modified. The date format follows RFC 3339."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that updated the policy."
+              }
+            }
+          }
+        },
+        "policy_type": {
+          "name": "policy_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Type of Policy to be Retrieved",
+          "validate": {
+            "kind": "func",
+            "func_name": "ValidateAllowedPolicyType"
+          }
+        },
+        "rotation": {
+          "name": "rotation",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Data associated with the rotation policy for instance",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that created the policy."
+              },
+              "creation_date": {
+                "name": "creation_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date the policy was created. The date format follows RFC 3339."
+              },
+              "enabled": {
+                "name": "enabled",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Data associated with enable/disable of rotation policy for the instance"
+              },
+              "interval_month": {
+                "name": "interval_month",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Specifies the rotation time interval in months for the instance"
+              },
+              "last_updated": {
+                "name": "last_updated",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Updates when the policy is replaced or modified. The date format follows RFC 3339."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier for the resource that updated the policy."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_key",
+      "function": "DataSourceIBMKMSkey",
+      "package": "kms",
+      "kind": "data",
+      "description": "Schema validation for the ibm_kms_key data source.",
+      "attributes": {
+        "alias": {
+          "name": "alias",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The alias associated with the key"
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "public or private",
+          "default": "public",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Key protect or hpcs instance GUID"
+        },
+        "key_id": {
+          "name": "key_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false
+        },
+        "key_name": {
+          "name": "key_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The name of the key to be fetched"
+        },
+        "keys": {
+          "name": "keys",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "aliases": {
+                "name": "aliases",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "key_ring_id": {
+                "name": "key_ring_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The key ring id of the key to be fetched"
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "policies": {
+                "name": "policies",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "dual_auth_delete": {
+                      "name": "dual_auth_delete",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "created_by": {
+                            "name": "created_by",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "creation_date": {
+                            "name": "creation_date",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "crn": {
+                            "name": "crn",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Cloud Resource Name (CRN) that uniquely identifies your cloud resources.",
+                            "validate": {
+                              "kind": "crn",
+                              "func_name": "name_heuristic"
+                            }
+                          },
+                          "enabled": {
+                            "name": "enabled",
+                            "type": "bool",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "id": {
+                            "name": "id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "last_update_date": {
+                            "name": "last_update_date",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "updated_by": {
+                            "name": "updated_by",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          }
+                        }
+                      }
+                    },
+                    "rotation": {
+                      "name": "rotation",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "created_by": {
+                            "name": "created_by",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "creation_date": {
+                            "name": "creation_date",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "crn": {
+                            "name": "crn",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Cloud Resource Name (CRN) that uniquely identifies your cloud resources.",
+                            "validate": {
+                              "kind": "crn",
+                              "func_name": "name_heuristic"
+                            }
+                          },
+                          "enabled": {
+                            "name": "enabled",
+                            "type": "bool",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "id": {
+                            "name": "id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "interval_month": {
+                            "name": "interval_month",
+                            "type": "int",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "last_update_date": {
+                            "name": "last_update_date",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "updated_by": {
+                            "name": "updated_by",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "standard_key": {
+                "name": "standard_key",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        },
+        "limit": {
+          "name": "limit",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Limit till the keys to be fetched"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_key_policies",
+      "function": "DataSourceIBMKMSkeyPolicies",
+      "package": "kms",
+      "kind": "data",
+      "description": "Schema validation for the ibm_kms_key_policies data source.",
+      "attributes": {
+        "alias": {
+          "name": "alias",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Alias of the Key"
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "public or private",
+          "default": "public",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Key protect or hpcs instance GUID"
+        },
+        "key_id": {
+          "name": "key_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Key ID of the Key"
+        },
+        "policies": {
+          "name": "policies",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Creates or updates one or more policies for the specified key",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "dual_auth_delete": {
+                "name": "dual_auth_delete",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Data associated with the dual authorization delete policy.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "created_by": {
+                      "name": "created_by",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The unique identifier for the resource that created the policy."
+                    },
+                    "creation_date": {
+                      "name": "creation_date",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The date the policy was created. The date format follows RFC 3339."
+                    },
+                    "crn": {
+                      "name": "crn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Cloud Resource Name (CRN) that uniquely identifies your cloud resources.",
+                      "validate": {
+                        "kind": "crn",
+                        "func_name": "name_heuristic"
+                      }
+                    },
+                    "enabled": {
+                      "name": "enabled",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Specifies the dual authorization policy on a single key."
+                    },
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The v4 UUID used to uniquely identify the policy resource, as specified by RFC 4122."
+                    },
+                    "last_update_date": {
+                      "name": "last_update_date",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Updates when the policy is replaced or modified. The date format follows RFC 3339."
+                    },
+                    "updated_by": {
+                      "name": "updated_by",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The unique identifier for the resource that updated the policy."
+                    }
+                  }
+                }
+              },
+              "rotation": {
+                "name": "rotation",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Specifies the key rotation with enabled and time interval in months, with a minimum of 1, and a maximum of 12",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "created_by": {
+                      "name": "created_by",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The unique identifier for the resource that created the policy."
+                    },
+                    "creation_date": {
+                      "name": "creation_date",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The date the policy was created. The date format follows RFC 3339."
+                    },
+                    "crn": {
+                      "name": "crn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Cloud Resource Name (CRN) that uniquely identifies your cloud resources.",
+                      "validate": {
+                        "kind": "crn",
+                        "func_name": "name_heuristic"
+                      }
+                    },
+                    "enabled": {
+                      "name": "enabled",
+                      "type": "bool",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Specifies whether the key rotation policy is enabled."
+                    },
+                    "id": {
+                      "name": "id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The v4 UUID used to uniquely identify the policy resource, as specified by RFC 4122."
+                    },
+                    "interval_month": {
+                      "name": "interval_month",
+                      "type": "int",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Specifies the key rotation time interval in months"
+                    },
+                    "last_update_date": {
+                      "name": "last_update_date",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Updates when the policy is replaced or modified. The date format follows RFC 3339."
+                    },
+                    "updated_by": {
+                      "name": "updated_by",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The unique identifier for the resource that updated the policy."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_key_rings",
+      "function": "DataSourceIBMKMSkeyRings",
+      "package": "kms",
+      "kind": "data",
+      "description": "Schema validation for the ibm_kms_key_rings data source.",
+      "attributes": {
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "public or private",
+          "default": "public",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Key protect or hpcs instance GUID"
+        },
+        "key_rings": {
+          "name": "key_rings",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Key Rings for a particualer instance",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "creation_date": {
+                "name": "creation_date",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        }
+      },
+      "validators": [
+        {
+          "identifier": "key_ring_id",
+          "kind": "ValidateRegexpLen",
+          "regexp": "^[a-zA-Z0-9-]*$",
+          "min_len": 2,
+          "max_len": 100
+        }
+      ]
+    },
+    {
+      "name": "ibm_kms_keys",
+      "function": "DataSourceIBMKMSkeys",
+      "package": "kms",
+      "kind": "data",
+      "description": "Schema validation for the ibm_kms_keys data source.",
+      "attributes": {
+        "alias": {
+          "name": "alias",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The name of the key to be fetched",
+          "conflicts_with": [
+            "key_name",
+            "key_id"
+          ]
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "public or private",
+          "default": "public",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Key protect or hpcs instance GUID"
+        },
+        "key_id": {
+          "name": "key_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "conflicts_with": [
+            "alias",
+            "key_name"
+          ]
+        },
+        "key_name": {
+          "name": "key_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The name of the key to be fetched",
+          "conflicts_with": [
+            "alias",
+            "key_id"
+          ]
+        },
+        "keys": {
+          "name": "keys",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "aliases": {
+                "name": "aliases",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "key_ring_id": {
+                "name": "key_ring_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The key ring id of the key to be fetched"
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "policies": {
+                "name": "policies",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "dual_auth_delete": {
+                      "name": "dual_auth_delete",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "created_by": {
+                            "name": "created_by",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "creation_date": {
+                            "name": "creation_date",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "crn": {
+                            "name": "crn",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Cloud Resource Name (CRN) that uniquely identifies your cloud resources.",
+                            "validate": {
+                              "kind": "crn",
+                              "func_name": "name_heuristic"
+                            }
+                          },
+                          "enabled": {
+                            "name": "enabled",
+                            "type": "bool",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "id": {
+                            "name": "id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "last_update_date": {
+                            "name": "last_update_date",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "updated_by": {
+                            "name": "updated_by",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          }
+                        }
+                      }
+                    },
+                    "rotation": {
+                      "name": "rotation",
+                      "type": "list",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "elem": {
+                        "kind": "resource",
+                        "attributes": {
+                          "created_by": {
+                            "name": "created_by",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "creation_date": {
+                            "name": "creation_date",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "crn": {
+                            "name": "crn",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true,
+                            "description": "Cloud Resource Name (CRN) that uniquely identifies your cloud resources.",
+                            "validate": {
+                              "kind": "crn",
+                              "func_name": "name_heuristic"
+                            }
+                          },
+                          "enabled": {
+                            "name": "enabled",
+                            "type": "bool",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "id": {
+                            "name": "id",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "interval_month": {
+                            "name": "interval_month",
+                            "type": "int",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "last_update_date": {
+                            "name": "last_update_date",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          },
+                          "updated_by": {
+                            "name": "updated_by",
+                            "type": "string",
+                            "required": false,
+                            "optional": false,
+                            "computed": true
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "standard_key": {
+                "name": "standard_key",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        },
+        "limit": {
+          "name": "limit",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Limit till the keys to be fetched"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_kmip_adapter",
+      "function": "DataSourceIBMKMSKmipAdapter",
+      "package": "kms",
+      "kind": "data",
+      "description": "Reads ibm_kms_kmip_adapter. The name of the KMIP adapter to be fetched",
+      "attributes": {
+        "adapter_id": {
+          "name": "adapter_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The UUID of the KMIP adapter to be fetched"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when a resource was created. The date format follows RFC 3339."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The unique identifier that is associated with the entity that created the adapter."
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The description of the KMIP adapter to be fetched"
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "public or private",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Key protect or hpcs instance GUID"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The name of the KMIP adapter to be fetched"
+        },
+        "profile": {
+          "name": "profile",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The profile of the KMIP adapter to be fetched"
+        },
+        "profile_data": {
+          "name": "profile_data",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The data specific to the KMIP Adapter profile"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when a resource was updated. The date format follows RFC 3339."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The unique identifier that is associated with the entity that updated the adapter."
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_kmip_adapters",
+      "function": "DataSourceIBMKMSKmipAdapters",
+      "package": "kms",
+      "kind": "data",
+      "description": "Schema validation for the ibm_kms_kmip_adapters data source.",
+      "attributes": {
+        "adapters": {
+          "name": "adapters",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A collection of KMIP adapters",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "adapter_id": {
+                "name": "adapter_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The UUID of the KMIP adapter to be fetched"
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date when a resource was created. The date format follows RFC 3339."
+              },
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier that is associated with the entity that created the adapter."
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The description of the KMIP adapter to be fetched"
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the KMIP adapter to be fetched"
+              },
+              "profile": {
+                "name": "profile",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The profile of the KMIP adapter to be fetched"
+              },
+              "profile_data": {
+                "name": "profile_data",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The data specific to the KMIP Adapter profile"
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date when a resource was updated. The date format follows RFC 3339."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier that is associated with the entity that updated the adapter."
+              }
+            }
+          }
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "public or private",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Key protect or hpcs instance GUID"
+        },
+        "limit": {
+          "name": "limit",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Limit of how many adapters to be fetched"
+        },
+        "offset": {
+          "name": "offset",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Offset of adapters to be fetched"
+        },
+        "show_total_count": {
+          "name": "show_total_count",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Flag to return the count of how many adapters there are in total"
+        },
+        "total_count": {
+          "name": "total_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "If show_total_count is true, this will contain the total number of adapters after pagination"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_kmip_client_cert",
+      "function": "DataSourceIBMKmsKMIPClientCertificate",
+      "package": "kms",
+      "kind": "data",
+      "description": "Reads ibm_kms_kmip_client_cert. The name of the KMIP Client Certificate to be fetched",
+      "attributes": {
+        "adapter_id": {
+          "name": "adapter_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The id of the KMIP adapter that contains the cert"
+        },
+        "adapter_name": {
+          "name": "adapter_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The name of the KMIP adapter that contains the cert"
+        },
+        "cert_id": {
+          "name": "cert_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The id of the KMIP Client Certificate to be fetched"
+        },
+        "certificate": {
+          "name": "certificate",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "sensitive": true,
+          "description": "The PEM-encoded contents of the certificate"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when a resource was created. The date format follows RFC 3339."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The unique identifier that is associated with the entity that created the adapter."
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "public or private",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key protect Instance GUID"
+        },
+        "name": {
+          "name": "name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The name of the KMIP Client Certificate to be fetched"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_kmip_client_certs",
+      "function": "DataSourceIBMKmsKMIPClientCertificates",
+      "package": "kms",
+      "kind": "data",
+      "description": "Schema validation for the ibm_kms_kmip_client_certs data source.",
+      "attributes": {
+        "adapter_id": {
+          "name": "adapter_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The id of the KMIP adapter that contains the cert"
+        },
+        "adapter_name": {
+          "name": "adapter_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The name of the KMIP adapter that contains the cert"
+        },
+        "certificates": {
+          "name": "certificates",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The certificates contained in the specified adapter",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "cert_id": {
+                "name": "cert_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The id of the KMIP Client Certificate to be fetched"
+              },
+              "certificate": {
+                "name": "certificate",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "sensitive": true,
+                "description": "The PEM-encoded contents of the certificate"
+              },
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date when a resource was created. The date format follows RFC 3339."
+              },
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier that is associated with the entity that created the adapter."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the KMIP Client Certificate to be fetched"
+              }
+            }
+          }
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "public or private",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key protect Instance GUID"
+        },
+        "limit": {
+          "name": "limit",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Limit of how many adapters to be fetched"
+        },
+        "offset": {
+          "name": "offset",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Offset of adapters to be fetched"
+        },
+        "show_total_count": {
+          "name": "show_total_count",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Flag to return the count of how many adapters there are in total"
+        },
+        "total_count": {
+          "name": "total_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "If show_total_count is true, this will contain the total number of certificates."
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_kmip_object",
+      "function": "DataSourceIBMKMSKMIPObject",
+      "package": "kms",
+      "kind": "data",
+      "description": "Schema validation for the ibm_kms_kmip_object data source.",
+      "attributes": {
+        "adapter_id": {
+          "name": "adapter_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The id of the KMIP adapter that contains the kmip object"
+        },
+        "adapter_name": {
+          "name": "adapter_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The name of the KMIP adapter that contains the kmip object"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when a resource was created. The date format follows RFC 3339."
+        },
+        "created_by": {
+          "name": "created_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The unique identifier that is associated with the entity that created the adapter."
+        },
+        "created_by_cert_id": {
+          "name": "created_by_cert_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the certificate that created the object"
+        },
+        "destroyed_at": {
+          "name": "destroyed_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when a resource was destroyed. The date format follows RFC 3339."
+        },
+        "destroyed_by": {
+          "name": "destroyed_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The unique identifier that is associated with the entity that destroyed the adapter."
+        },
+        "destroyed_by_cert_id": {
+          "name": "destroyed_by_cert_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the certificate that destroyed the object"
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "public or private",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key protect Instance GUID"
+        },
+        "object_id": {
+          "name": "object_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": false,
+          "description": "The id of the KMIP Object to be fetched"
+        },
+        "object_state": {
+          "name": "object_state",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The state of the KMIP object"
+        },
+        "object_type": {
+          "name": "object_type",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The type of KMIP object"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The date when a resource was updated. The date format follows RFC 3339."
+        },
+        "updated_by": {
+          "name": "updated_by",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The unique identifier that is associated with the entity that updated the adapter."
+        },
+        "updated_by_cert_id": {
+          "name": "updated_by_cert_id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The ID of the certificate that updated the object"
+        }
+      }
+    },
+    {
+      "name": "ibm_kms_kmip_objects",
+      "function": "DataSourceIBMKMSKMIPObjects",
+      "package": "kms",
+      "kind": "data",
+      "description": "Schema validation for the ibm_kms_kmip_objects data source.",
+      "attributes": {
+        "adapter_id": {
+          "name": "adapter_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The id of the KMIP adapter that contains the cert"
+        },
+        "adapter_name": {
+          "name": "adapter_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The name of the KMIP adapter that contains the cert"
+        },
+        "endpoint_type": {
+          "name": "endpoint_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "description": "public or private",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValues",
+            "enum": [
+              "public",
+              "private"
+            ]
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "Key protect Instance GUID"
+        },
+        "limit": {
+          "name": "limit",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Limit of how many objects to be fetched"
+        },
+        "object_state_filter": {
+          "name": "object_state_filter",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "A list of integers representing Object States to filter for",
+          "elem": {
+            "kind": "schema",
+            "type": "int"
+          }
+        },
+        "objects": {
+          "name": "objects",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The objects contained in the specified adapter",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "created_at": {
+                "name": "created_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date when a resource was created. The date format follows RFC 3339."
+              },
+              "created_by": {
+                "name": "created_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier that is associated with the entity that created the adapter."
+              },
+              "created_by_cert_id": {
+                "name": "created_by_cert_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the certificate that created the object"
+              },
+              "destroyed_at": {
+                "name": "destroyed_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date when a resource was destroyed. The date format follows RFC 3339."
+              },
+              "destroyed_by": {
+                "name": "destroyed_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier that is associated with the entity that destroyed the adapter."
+              },
+              "destroyed_by_cert_id": {
+                "name": "destroyed_by_cert_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the certificate that destroyed the object"
+              },
+              "object_id": {
+                "name": "object_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": false,
+                "description": "The id of the KMIP Object to be fetched"
+              },
+              "object_state": {
+                "name": "object_state",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The state of the KMIP object"
+              },
+              "object_type": {
+                "name": "object_type",
+                "type": "int",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The type of KMIP object"
+              },
+              "updated_at": {
+                "name": "updated_at",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The date when a resource was updated. The date format follows RFC 3339."
+              },
+              "updated_by": {
+                "name": "updated_by",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier that is associated with the entity that updated the adapter."
+              },
+              "updated_by_cert_id": {
+                "name": "updated_by_cert_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The ID of the certificate that updated the object"
+              }
+            }
+          }
+        },
+        "offset": {
+          "name": "offset",
+          "type": "int",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Offset of objects to be fetched"
+        },
+        "show_total_count": {
+          "name": "show_total_count",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "Flag to return the count of how many objects there are in total after the filter"
+        },
+        "total_count": {
+          "name": "total_count",
+          "type": "int",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "If show_total_count is true, this will contain the total number of KMIP objects after pagination."
+        }
+      }
+    },
+    {
+      "name": "ibm_kp_key",
+      "function": "DataSourceIBMkey",
+      "package": "kms",
+      "kind": "data",
+      "description": "Schema validation for the ibm_kp_key data source.",
+      "attributes": {
+        "key_name": {
+          "name": "key_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false
+        },
+        "key_protect_id": {
+          "name": "key_protect_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false
+        },
+        "keys": {
+          "name": "keys",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "standard_key": {
+                "name": "standard_key",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 22,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package kms"
+}

@@ -1,0 +1,505 @@
+{
+  "package": "drautomationservice",
+  "specs": [
+    {
+      "slug": "dr-automation-powervs",
+      "title": "HA and DR Automation for IBM\u00ae Power\u00ae Virtual Server API reference",
+      "schema_count": 46,
+      "path_count": 19
+    }
+  ],
+  "matched": 10,
+  "resource_count": 19,
+  "overlay_attrs": 39,
+  "resources": [
+    {
+      "name": "ibm_pdr_managedr",
+      "kind": "resource",
+      "schema": "ServiceInstanceManageDRRequest",
+      "spec": "dr-automation-powervs",
+      "score": 0.62,
+      "attrs": {
+        "api_key": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The api Key of the service instance for deploying the disaster recovery service",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "client_id": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The Client Id created for MFA authentication API.",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "client_secret": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The client secret created for MFA authentication API.",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "guid": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The global unique identifier of the service instance.",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "location_id": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 32,
+          "description": "The location or data center identifier where the service instance is deployed.",
+          "api_required": true,
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "machine_type": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 32,
+          "description": "The machine type used for deploying orchestrator",
+          "api_required": true,
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "managed_apikey": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "APIKey used to manage the workloads by adding the PowerVS instances to the orchestrator.",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "orchestrator_ha": {
+          "description": "Indicates whether the orchestrator High Availability (HA) is enabled for the service instance.",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "orchestrator_location_type": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 32,
+          "description": "The cloud location where your orchestator need to be created.",
+          "api_required": true,
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "orchestrator_name": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The username used for the orchestrator",
+          "api_required": true,
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "orchestrator_network_ids": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 36,
+          "max_len": 64,
+          "description": "List of network IDs for primary orchestrator VM",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "orchestrator_password": {
+          "pattern": "^[\\x20-\\x7E]*$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The password that you can use to access your orchestrator.",
+          "api_required": true,
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "orchestrator_workspace_id": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The unique identifier orchestrator workspace.",
+          "api_required": true,
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "proxy_ip": {
+          "pattern": "^[a-zA-Z0-9.\\-_:]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "Proxy IP for the Communication between Orchestrator and Service broker",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "region_id": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 32,
+          "description": "The power virtual server region where the service instance is deployed.",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "resource_instance": {
+          "pattern": "^crn:v1:[a-zA-Z0-9\\-_]+:public:resource-controller:[a-zA-Z0-9\\-_]+:[a-zA-Z0-9\\-_\\/]+:[a-zA-Z0-9\\-_]+::$",
+          "min_len": 1,
+          "max_len": 512,
+          "description": "The uniquie identifier of the associated IBM Cloud resource instance.",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "secret": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The secret name or identifier used for retrieving credentials from secrets manager.",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "secret_group": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The secret group name in IBM Cloud Secrets Manager containing sensitive data for the service instance.",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "ssh_key_name": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The name of the SSH key used for deploying the orchestator",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "standby_machine_type": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 32,
+          "description": "The machine type used for deploying standby virtual machines.",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "standby_orchestrator_name": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The username for the standby orchestrator management interface.",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "standby_orchestrator_network_ids": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 36,
+          "max_len": 64,
+          "description": "List of network IDs for standby orchestrator VM",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "standby_orchestrator_workspace_id": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The unique identifier of the standby orchestrator workspace.",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "standby_ssh_key_name": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The name of the SSH key used for deploying the standby orchestator",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "standby_tier": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 32,
+          "description": "The storage tier used for deploying standby orchestrator.",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "tenant_name": {
+          "pattern": "^[a-zA-Z0-9.\\-]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "The tenant name for MFA authentication API",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "tier": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 32,
+          "description": "The storage tier used for deploying primary orchestrator.",
+          "source": "dr-automation-powervs",
+          "schema": "ServiceInstanceManageDRRequest"
+        },
+        "action": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 32,
+          "description": "Type of action for this event",
+          "api_required": true,
+          "source": "dr-automation-powervs",
+          "schema": "Event"
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_validate_apikey",
+      "kind": "resource",
+      "schema": "UpdateKeyRequest",
+      "spec": "dr-automation-powervs",
+      "score": 0.3133,
+      "attrs": {
+        "api_key": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 256,
+          "description": "The new API key value that will replace the existing one.",
+          "api_required": true,
+          "source": "dr-automation-powervs",
+          "schema": "UpdateKeyRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_dr_locations",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pdr_dr_summary_response",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pdr_event",
+      "kind": "data",
+      "schema": "Event",
+      "spec": "dr-automation-powervs",
+      "score": 0.2638,
+      "attrs": {
+        "event_id": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "ID of the Activity",
+          "api_required": true,
+          "source": "dr-automation-powervs",
+          "schema": "Event"
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_events",
+      "kind": "data",
+      "schema": "leaf-unique",
+      "spec": "dr-automation-powervs",
+      "score": 0.08,
+      "attrs": {
+        "time": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+\\-]\\d{2}:\\d{2})$",
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "Time of activity in ISO 8601 - RFC3339",
+          "api_required": true,
+          "source": "dr-automation-powervs",
+          "schema": "Event"
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_get_dr_locations",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pdr_get_dr_summary_response",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pdr_get_event",
+      "kind": "data",
+      "schema": "Event",
+      "spec": "dr-automation-powervs",
+      "score": 0.2638,
+      "attrs": {
+        "event_id": {
+          "pattern": "^[a-zA-Z0-9\\-_]+$",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "ID of the Activity",
+          "api_required": true,
+          "source": "dr-automation-powervs",
+          "schema": "Event"
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_get_events",
+      "kind": "data",
+      "schema": "leaf-unique",
+      "spec": "dr-automation-powervs",
+      "score": 0.08,
+      "attrs": {
+        "time": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+\\-]\\d{2}:\\d{2})$",
+          "kind": "datetime",
+          "format": "date-time",
+          "min_len": 1,
+          "max_len": 64,
+          "description": "Time of activity in ISO 8601 - RFC3339",
+          "api_required": true,
+          "source": "dr-automation-powervs",
+          "schema": "Event"
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_get_grs_location_pairs",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pdr_get_machine_types",
+      "kind": "data",
+      "schema": "leaf-unique",
+      "spec": "dr-automation-powervs",
+      "score": 0.08,
+      "attrs": {
+        "primary_workspace_name": {
+          "pattern": "^[A-Za-z0-9._:-]+$",
+          "min_len": 1,
+          "max_len": 16,
+          "description": "name of the primary workspace.",
+          "source": "dr-automation-powervs",
+          "schema": "PhaDeploymentResponse"
+        },
+        "standby_workspace_name": {
+          "pattern": "^[A-Za-z0-9._:-]+$",
+          "min_len": 1,
+          "max_len": 16,
+          "description": "name of the standby workspace.",
+          "source": "dr-automation-powervs",
+          "schema": "PhaDeploymentResponse"
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_get_managed_vm_list",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pdr_get_powervs_workspace",
+      "kind": "data",
+      "schema": "PhaDeploymentRequest",
+      "spec": "dr-automation-powervs",
+      "score": 0.1383,
+      "attrs": {
+        "location_id": {
+          "pattern": "^[a-zA-Z0-9._:-]+$",
+          "min_len": 1,
+          "max_len": 16,
+          "description": "Identifier for the deployment location.",
+          "api_required": true,
+          "source": "dr-automation-powervs",
+          "schema": "PhaDeploymentRequest"
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_grs_location_pairs",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pdr_last_operation",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pdr_machine_types",
+      "kind": "data",
+      "schema": "leaf-unique",
+      "spec": "dr-automation-powervs",
+      "score": 0.08,
+      "attrs": {
+        "primary_workspace_name": {
+          "pattern": "^[A-Za-z0-9._:-]+$",
+          "min_len": 1,
+          "max_len": 16,
+          "description": "name of the primary workspace.",
+          "source": "dr-automation-powervs",
+          "schema": "PhaDeploymentResponse"
+        },
+        "standby_workspace_name": {
+          "pattern": "^[A-Za-z0-9._:-]+$",
+          "min_len": 1,
+          "max_len": 16,
+          "description": "name of the standby workspace.",
+          "source": "dr-automation-powervs",
+          "schema": "PhaDeploymentResponse"
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_managed_vm_list",
+      "kind": "data",
+      "schema": "",
+      "spec": "",
+      "score": 0.08,
+      "attrs": {}
+    },
+    {
+      "name": "ibm_pdr_powervs_workspaces",
+      "kind": "data",
+      "schema": "PhaDeploymentRequest",
+      "spec": "dr-automation-powervs",
+      "score": 0.1383,
+      "attrs": {
+        "location_id": {
+          "pattern": "^[a-zA-Z0-9._:-]+$",
+          "min_len": 1,
+          "max_len": 16,
+          "description": "Identifier for the deployment location.",
+          "api_required": true,
+          "source": "dr-automation-powervs",
+          "schema": "PhaDeploymentRequest"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,3499 @@
+{
+  "package": "drautomationservice",
+  "resources": [
+    {
+      "name": "ibm_pdr_managedr",
+      "function": "ResourceIbmPdrManagedr",
+      "package": "drautomationservice",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_pdr_managedr resource.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "The language requested for the return document."
+        },
+        "accepts_incomplete": {
+          "name": "accepts_incomplete",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "A value of true indicates that both the IBM Cloud platform and the requesting client support asynchronous deprovisioning.",
+          "default": "true"
+        },
+        "action": {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Indicates whether to proceed with asynchronous operation after all configuration details are updated in the database."
+        },
+        "api_key": {
+          "name": "api_key",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "sensitive": true,
+          "description": "The API key associated with the IBM Cloud service instance."
+        },
+        "client_id": {
+          "name": "client_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Client ID for MFA Authentication."
+        },
+        "client_secret": {
+          "name": "client_secret",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "sensitive": true,
+          "description": "Client Secret for MFA Authentication."
+        },
+        "dashboard_url": {
+          "name": "dashboard_url",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "URL to the dashboard for managing the DR service instance in IBM Cloud."
+        },
+        "etag": {
+          "name": "etag",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "guid": {
+          "name": "guid",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The globally unique identifier of the service instance."
+        },
+        "id": {
+          "name": "id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The CRN (Cloud Resource Name) of the DR service instance."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "instance id of instance to provision."
+        },
+        "location_id": {
+          "name": "location_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The Location or data center identifier where the service instance is deployed."
+        },
+        "machine_type": {
+          "name": "machine_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The Machine type or flavor used for virtual machines in the service instance."
+        },
+        "managed_apikey": {
+          "name": "managed_apikey",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "sensitive": true,
+          "description": "APIKey used to manage the workloads by adding the PowerVS instances to the orchestrator."
+        },
+        "orchestrator_ha": {
+          "name": "orchestrator_ha",
+          "type": "bool",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "Flag to enable or disable High Availability (HA) for the service instance."
+        },
+        "orchestrator_location_type": {
+          "name": "orchestrator_location_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The Type of orchestrator cluster used in the service instance."
+        },
+        "orchestrator_name": {
+          "name": "orchestrator_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "Username for the orchestrator management interface."
+        },
+        "orchestrator_network_ids": {
+          "name": "orchestrator_network_ids",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "max_items": 10,
+          "description": "List of network IDs for primary orchestrator VM.",
+          "elem": {
+            "kind": "schema",
+            "type": "string",
+            "validate": {
+              "kind": "func",
+              "func_name": "All"
+            }
+          }
+        },
+        "orchestrator_password": {
+          "name": "orchestrator_password",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "sensitive": true,
+          "description": "Password for the orchestrator management interface."
+        },
+        "orchestrator_workspace_id": {
+          "name": "orchestrator_workspace_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "ID of the orchestrator workspace."
+        },
+        "proxy_ip": {
+          "name": "proxy_ip",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "Proxy IP for the Communication between Orchestrator and Service."
+        },
+        "region_id": {
+          "name": "region_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "Cloud region where the service instance is deployed."
+        },
+        "resource_instance": {
+          "name": "resource_instance",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "ID of the associated IBM Cloud resource instance."
+        },
+        "secret": {
+          "name": "secret",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The Secret name or identifier used for retrieving credentials from Secrets Manager."
+        },
+        "secret_group": {
+          "name": "secret_group",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The Secret group name in IBM Cloud Secrets Manager containing sensitive data for * the service instance."
+        },
+        "ssh_key_name": {
+          "name": "ssh_key_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The Name of the SSH key stored in the cloud provider."
+        },
+        "stand_by_redeploy": {
+          "name": "stand_by_redeploy",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "force_new": true,
+          "description": "Flag to indicate if standby should be redeployed (must be \"true\" or \"false\").",
+          "validate": {
+            "kind": "enum",
+            "func_name": "ValidateAllowedStringValue",
+            "enum": [
+              "false",
+              "true"
+            ]
+          }
+        },
+        "standby_machine_type": {
+          "name": "standby_machine_type",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The Machine type or flavor used for standby virtual machines."
+        },
+        "standby_orchestrator_name": {
+          "name": "standby_orchestrator_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "The Username for the standby orchestrator management interface."
+        },
+        "standby_orchestrator_network_ids": {
+          "name": "standby_orchestrator_network_ids",
+          "type": "list",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "max_items": 10,
+          "description": "List of network IDs for standby orchestrator VM.",
+          "elem": {
+            "kind": "schema",
+            "type": "string",
+            "validate": {
+              "kind": "func",
+              "func_name": "All"
+            }
+          }
+        },
+        "standby_orchestrator_workspace_id": {
+          "name": "standby_orchestrator_workspace_id",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "ID of the standby orchestrator workspace."
+        },
+        "standby_ssh_key_name": {
+          "name": "standby_ssh_key_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "standy ssh key name of the service instance."
+        },
+        "standby_tier": {
+          "name": "standby_tier",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "Tier of the standby service instance."
+        },
+        "tenant_name": {
+          "name": "tenant_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "Tenant Name for MFA Authentication."
+        },
+        "tier": {
+          "name": "tier",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": true,
+          "force_new": true,
+          "description": "Tier of the service instance."
+        }
+      },
+      "validators": [
+        {
+          "identifier": "stand_by_redeploy",
+          "kind": "ValidateAllowedStringValue",
+          "allowed": "false, true"
+        }
+      ]
+    },
+    {
+      "name": "ibm_pdr_validate_apikey",
+      "function": "ResourceIBMPdrValidateApikey",
+      "package": "drautomationservice",
+      "kind": "resource",
+      "description": "Schema validation for the ibm_pdr_validate_apikey resource.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "api_key": {
+          "name": "api_key",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "sensitive": true,
+          "description": "api key"
+        },
+        "description": {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Validation result message."
+        },
+        "etag": {
+          "name": "etag",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true
+        },
+        "id": {
+          "name": "id",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Unique identifier of the API key."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "force_new": true,
+          "description": "instance id of instance to provision."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Status of the API key."
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_dr_locations",
+      "function": "DataSourceIBMPdrDrLocations",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_dr_locations data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "dr_locations": {
+          "name": "dr_locations",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of disaster recovery locations available for the service.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique identifier of the DR location."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the Power virtual server DR location ."
+              }
+            }
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of instance to provision."
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_dr_summary_response",
+      "function": "DataSourceIBMPdrDrSummaryResponse",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_dr_summary_response data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of instance to provision."
+        },
+        "managed_vm_list": {
+          "name": "managed_vm_list",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "core": {
+                "name": "core",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "dr_average_time": {
+                "name": "dr_average_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "dr_region": {
+                "name": "dr_region",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "memory": {
+                "name": "memory",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "region": {
+                "name": "region",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "vm_id": {
+                "name": "vm_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "vm_name": {
+                "name": "vm_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "workgroup_name": {
+                "name": "workgroup_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "workspace_name": {
+                "name": "workspace_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        },
+        "orchestrator_details": {
+          "name": "orchestrator_details",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Contains details about the orchestrator configuration.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "last_updated_orchestrator_deployment_time": {
+                "name": "last_updated_orchestrator_deployment_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The deployment time of primary orchestrator VM."
+              },
+              "last_updated_standby_orchestrator_deployment_time": {
+                "name": "last_updated_standby_orchestrator_deployment_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The deployment time of StandBy orchestrator VM."
+              },
+              "latest_orchestrator_time": {
+                "name": "latest_orchestrator_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Latest Orchestrator Time in COS."
+              },
+              "location_id": {
+                "name": "location_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier of location."
+              },
+              "mfa_enabled": {
+                "name": "mfa_enabled",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "indicates if Multi Factor Authentication is enabled or not."
+              },
+              "orch_ext_connectivity_status": {
+                "name": "orch_ext_connectivity_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The external connectivity status of the orchestrator."
+              },
+              "orch_standby_node_addition_status": {
+                "name": "orch_standby_node_addition_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of standby node addition."
+              },
+              "orchestrator_cluster_message": {
+                "name": "orchestrator_cluster_message",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The message regarding orchestrator cluster status."
+              },
+              "orchestrator_config_status": {
+                "name": "orchestrator_config_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The configuration status of the orchestrator."
+              },
+              "orchestrator_group_leader": {
+                "name": "orchestrator_group_leader",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The leader node of the orchestrator group."
+              },
+              "orchestrator_location_type": {
+                "name": "orchestrator_location_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The type of orchestrator Location."
+              },
+              "orchestrator_name": {
+                "name": "orchestrator_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the primary orchestrator."
+              },
+              "orchestrator_status": {
+                "name": "orchestrator_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of the primary orchestrator."
+              },
+              "orchestrator_workspace_name": {
+                "name": "orchestrator_workspace_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the orchestrator workspace."
+              },
+              "proxy_ip": {
+                "name": "proxy_ip",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The IP address of the proxy."
+              },
+              "schematic_workspace_name": {
+                "name": "schematic_workspace_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the schematic workspace."
+              },
+              "schematic_workspace_status": {
+                "name": "schematic_workspace_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of the schematic workspace."
+              },
+              "ssh_key_name": {
+                "name": "ssh_key_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "SSH key name used for the orchestrator."
+              },
+              "standby_orchestrator_name": {
+                "name": "standby_orchestrator_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the standby orchestrator."
+              },
+              "standby_orchestrator_status": {
+                "name": "standby_orchestrator_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of the standby orchestrator."
+              },
+              "standby_orchestrator_workspace_name": {
+                "name": "standby_orchestrator_workspace_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the standby orchestrator workspace."
+              },
+              "standby_ssh_key_name": {
+                "name": "standby_ssh_key_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "SSH key name used for the standby orchestrator."
+              },
+              "transit_gateway_name": {
+                "name": "transit_gateway_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the transit gateway."
+              },
+              "vpc_name": {
+                "name": "vpc_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the VPC."
+              }
+            }
+          }
+        },
+        "service_details": {
+          "name": "service_details",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Contains details about the DR automation service.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The deployment crn.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "deployment_name": {
+                "name": "deployment_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the deployment."
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Service description."
+              },
+              "orchestrator_ha": {
+                "name": "orchestrator_ha",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The flag indicating whether orchestartor HA is enabled."
+              },
+              "plan_name": {
+                "name": "plan_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The plan name."
+              },
+              "primary_ip_address": {
+                "name": "primary_ip_address",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The service Orchestator primary IP address."
+              },
+              "primary_orchestrator_dashboard_url": {
+                "name": "primary_orchestrator_dashboard_url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Primary Orchestrator Dashboard URL."
+              },
+              "recovery_location": {
+                "name": "recovery_location",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The disaster recovery location."
+              },
+              "resource_group": {
+                "name": "resource_group",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Resource group name."
+              },
+              "standby_description": {
+                "name": "standby_description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The standby orchestrator current status details."
+              },
+              "standby_ip_address": {
+                "name": "standby_ip_address",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The service Orchestator standby IP address."
+              },
+              "standby_orchestrator_dashboard_url": {
+                "name": "standby_orchestrator_dashboard_url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Standby Orchestrator Dashboard URL."
+              },
+              "standby_status": {
+                "name": "standby_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The standby orchestrator current status."
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Status of the service."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_event",
+      "function": "DataSourceIBMPdrEvent",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_event data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "action": {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of action for this event."
+        },
+        "api_source": {
+          "name": "api_source",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Source of API when it being executed."
+        },
+        "event_id": {
+          "name": "event_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Event ID."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of the service."
+        },
+        "level": {
+          "name": "level",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Level of the event (notice, info, warning, error)."
+        },
+        "message": {
+          "name": "message",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The (translated) message of the event."
+        },
+        "message_data": {
+          "name": "message_data",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A flexible schema placeholder to allow any JSON value (aligns with interface{} in Go).",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "metadata": {
+          "name": "metadata",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A flexible schema placeholder to allow any JSON value (aligns with interface{} in Go).",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "resource": {
+          "name": "resource",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of resource for this event."
+        },
+        "time": {
+          "name": "time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Time of activity in ISO 8601 - RFC3339."
+        },
+        "timestamp": {
+          "name": "timestamp",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Time of activity in unix epoch."
+        },
+        "user": {
+          "name": "user",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Information about a user associated with an event.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "email": {
+                "name": "email",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Email of the User."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the User."
+              },
+              "user_id": {
+                "name": "user_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "ID of user who created/caused the event."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_events",
+      "function": "DataSourceIBMPdrEvents",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_events data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "event": {
+          "name": "event",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Events.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "action": {
+                "name": "action",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of action for this event."
+              },
+              "api_source": {
+                "name": "api_source",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Source of API when it being executed."
+              },
+              "event_id": {
+                "name": "event_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "ID of the Activity."
+              },
+              "level": {
+                "name": "level",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Level of the event (notice, info, warning, error)."
+              },
+              "message": {
+                "name": "message",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The (translated) message of the event."
+              },
+              "message_data": {
+                "name": "message_data",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A flexible schema placeholder to allow any JSON value (aligns with interface{} in Go).",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "metadata": {
+                "name": "metadata",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A flexible schema placeholder to allow any JSON value (aligns with interface{} in Go).",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "resource": {
+                "name": "resource",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of resource for this event."
+              },
+              "time": {
+                "name": "time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Time of activity in ISO 8601 - RFC3339."
+              },
+              "timestamp": {
+                "name": "timestamp",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Time of activity in unix epoch."
+              },
+              "user": {
+                "name": "user",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Information about a user associated with an event.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "email": {
+                      "name": "email",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Email of the User."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name of the User."
+                    },
+                    "user_id": {
+                      "name": "user_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "ID of user who created/caused the event."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "events": {
+          "name": "events",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Events.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "action": {
+                "name": "action",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of action for this event."
+              },
+              "api_source": {
+                "name": "api_source",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Source of API when it being executed."
+              },
+              "event_id": {
+                "name": "event_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "ID of the Activity."
+              },
+              "level": {
+                "name": "level",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Level of the event (notice, info, warning, error)."
+              },
+              "message": {
+                "name": "message",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The (translated) message of the event."
+              },
+              "message_data": {
+                "name": "message_data",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A flexible schema placeholder to allow any JSON value (aligns with interface{} in Go).",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "metadata": {
+                "name": "metadata",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A flexible schema placeholder to allow any JSON value (aligns with interface{} in Go).",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "resource": {
+                "name": "resource",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of resource for this event."
+              },
+              "time": {
+                "name": "time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Time of activity in ISO 8601 - RFC3339."
+              },
+              "timestamp": {
+                "name": "timestamp",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Time of activity in unix epoch."
+              },
+              "user": {
+                "name": "user",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Information about a user associated with an event.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "email": {
+                      "name": "email",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Email of the User."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name of the User."
+                    },
+                    "user_id": {
+                      "name": "user_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "ID of user who created/caused the event."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "from_time": {
+          "name": "from_time",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "A from query time in either ISO 8601 or unix epoch format."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of the service."
+        },
+        "time": {
+          "name": "time",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "(deprecated - use from_time) A time in either ISO 8601 or unix epoch format."
+        },
+        "to_time": {
+          "name": "to_time",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "A to query time in either ISO 8601 or unix epoch format."
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_get_dr_locations",
+      "function": "DataSourceIBMPdrGetDrLocations",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_get_dr_locations data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "dr_locations": {
+          "name": "dr_locations",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of disaster recovery locations available for the service.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Unique identifier of the DR location."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the Power virtual server DR location ."
+              }
+            }
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of instance to provision."
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_get_dr_summary_response",
+      "function": "DataSourceIBMPdrGetDrSummaryResponse",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_get_dr_summary_response data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of instance to provision."
+        },
+        "managed_vm_list": {
+          "name": "managed_vm_list",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "core": {
+                "name": "core",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "dr_average_time": {
+                "name": "dr_average_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "dr_region": {
+                "name": "dr_region",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "memory": {
+                "name": "memory",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "region": {
+                "name": "region",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "vm_id": {
+                "name": "vm_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "vm_name": {
+                "name": "vm_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "workgroup_name": {
+                "name": "workgroup_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "workspace_name": {
+                "name": "workspace_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        },
+        "orchestrator_details": {
+          "name": "orchestrator_details",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Contains details about the orchestrator configuration.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "last_updated_orchestrator_deployment_time": {
+                "name": "last_updated_orchestrator_deployment_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The deployment time of primary orchestrator VM."
+              },
+              "last_updated_standby_orchestrator_deployment_time": {
+                "name": "last_updated_standby_orchestrator_deployment_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The deployment time of StandBy orchestrator VM."
+              },
+              "latest_orchestrator_time": {
+                "name": "latest_orchestrator_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Latest Orchestrator Time in COS."
+              },
+              "location_id": {
+                "name": "location_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier of location."
+              },
+              "mfa_enabled": {
+                "name": "mfa_enabled",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "indicates if Multi Factor Authentication is enabled or not."
+              },
+              "orch_ext_connectivity_status": {
+                "name": "orch_ext_connectivity_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The external connectivity status of the orchestrator."
+              },
+              "orch_standby_node_addition_status": {
+                "name": "orch_standby_node_addition_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of standby node addition."
+              },
+              "orchestrator_cluster_message": {
+                "name": "orchestrator_cluster_message",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The message regarding orchestrator cluster status."
+              },
+              "orchestrator_config_status": {
+                "name": "orchestrator_config_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The configuration status of the orchestrator."
+              },
+              "orchestrator_group_leader": {
+                "name": "orchestrator_group_leader",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The leader node of the orchestrator group."
+              },
+              "orchestrator_location_type": {
+                "name": "orchestrator_location_type",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The type of orchestrator Location."
+              },
+              "orchestrator_name": {
+                "name": "orchestrator_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the primary orchestrator."
+              },
+              "orchestrator_status": {
+                "name": "orchestrator_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of the primary orchestrator."
+              },
+              "orchestrator_workspace_name": {
+                "name": "orchestrator_workspace_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the orchestrator workspace."
+              },
+              "proxy_ip": {
+                "name": "proxy_ip",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The IP address of the proxy."
+              },
+              "schematic_workspace_name": {
+                "name": "schematic_workspace_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the schematic workspace."
+              },
+              "schematic_workspace_status": {
+                "name": "schematic_workspace_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of the schematic workspace."
+              },
+              "ssh_key_name": {
+                "name": "ssh_key_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "SSH key name used for the orchestrator."
+              },
+              "standby_orchestrator_name": {
+                "name": "standby_orchestrator_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the standby orchestrator."
+              },
+              "standby_orchestrator_status": {
+                "name": "standby_orchestrator_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of the standby orchestrator."
+              },
+              "standby_orchestrator_workspace_name": {
+                "name": "standby_orchestrator_workspace_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the standby orchestrator workspace."
+              },
+              "standby_ssh_key_name": {
+                "name": "standby_ssh_key_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "SSH key name used for the standby orchestrator."
+              },
+              "transit_gateway_name": {
+                "name": "transit_gateway_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the transit gateway."
+              },
+              "vpc_name": {
+                "name": "vpc_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the VPC."
+              }
+            }
+          }
+        },
+        "service_details": {
+          "name": "service_details",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Contains details about the DR automation service.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "crn": {
+                "name": "crn",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The deployment crn.",
+                "validate": {
+                  "kind": "crn",
+                  "func_name": "name_heuristic"
+                }
+              },
+              "deployment_name": {
+                "name": "deployment_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the deployment."
+              },
+              "description": {
+                "name": "description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Service description."
+              },
+              "orchestrator_ha": {
+                "name": "orchestrator_ha",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The flag indicating whether orchestartor HA is enabled."
+              },
+              "plan_name": {
+                "name": "plan_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The plan name."
+              },
+              "primary_ip_address": {
+                "name": "primary_ip_address",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The service Orchestator primary IP address."
+              },
+              "primary_orchestrator_dashboard_url": {
+                "name": "primary_orchestrator_dashboard_url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Primary Orchestrator Dashboard URL."
+              },
+              "recovery_location": {
+                "name": "recovery_location",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The disaster recovery location."
+              },
+              "resource_group": {
+                "name": "resource_group",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Resource group name."
+              },
+              "standby_description": {
+                "name": "standby_description",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The standby orchestrator current status details."
+              },
+              "standby_ip_address": {
+                "name": "standby_ip_address",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The service Orchestator standby IP address."
+              },
+              "standby_orchestrator_dashboard_url": {
+                "name": "standby_orchestrator_dashboard_url",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Standby Orchestrator Dashboard URL."
+              },
+              "standby_status": {
+                "name": "standby_status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The standby orchestrator current status."
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The Status of the service."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_get_event",
+      "function": "DataSourceIBMPdrGetEvent",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_get_event data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "action": {
+          "name": "action",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of action for this event."
+        },
+        "api_source": {
+          "name": "api_source",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Source of API when it being executed."
+        },
+        "event_id": {
+          "name": "event_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Event ID."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of the service."
+        },
+        "level": {
+          "name": "level",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Level of the event (notice, info, warning, error)."
+        },
+        "message": {
+          "name": "message",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The (translated) message of the event."
+        },
+        "message_data": {
+          "name": "message_data",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A flexible schema placeholder to allow any JSON value (aligns with interface{} in Go).",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "metadata": {
+          "name": "metadata",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A flexible schema placeholder to allow any JSON value (aligns with interface{} in Go).",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        },
+        "resource": {
+          "name": "resource",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Type of resource for this event."
+        },
+        "time": {
+          "name": "time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Time of activity in ISO 8601 - RFC3339."
+        },
+        "timestamp": {
+          "name": "timestamp",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Time of activity in unix epoch."
+        },
+        "user": {
+          "name": "user",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Information about a user associated with an event.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "email": {
+                "name": "email",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Email of the User."
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Name of the User."
+              },
+              "user_id": {
+                "name": "user_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "ID of user who created/caused the event."
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_get_events",
+      "function": "DataSourceIBMPdrGetEvents",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_get_events data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "event": {
+          "name": "event",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Events.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "action": {
+                "name": "action",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of action for this event."
+              },
+              "api_source": {
+                "name": "api_source",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Source of API when it being executed."
+              },
+              "event_id": {
+                "name": "event_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "ID of the Activity."
+              },
+              "level": {
+                "name": "level",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Level of the event (notice, info, warning, error)."
+              },
+              "message": {
+                "name": "message",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The (translated) message of the event."
+              },
+              "message_data": {
+                "name": "message_data",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A flexible schema placeholder to allow any JSON value (aligns with interface{} in Go).",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "metadata": {
+                "name": "metadata",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A flexible schema placeholder to allow any JSON value (aligns with interface{} in Go).",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "resource": {
+                "name": "resource",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of resource for this event."
+              },
+              "time": {
+                "name": "time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Time of activity in ISO 8601 - RFC3339."
+              },
+              "timestamp": {
+                "name": "timestamp",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Time of activity in unix epoch."
+              },
+              "user": {
+                "name": "user",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Information about a user associated with an event.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "email": {
+                      "name": "email",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Email of the User."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name of the User."
+                    },
+                    "user_id": {
+                      "name": "user_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "ID of user who created/caused the event."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "events": {
+          "name": "events",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Events.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "action": {
+                "name": "action",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of action for this event."
+              },
+              "api_source": {
+                "name": "api_source",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Source of API when it being executed."
+              },
+              "event_id": {
+                "name": "event_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "ID of the Activity."
+              },
+              "level": {
+                "name": "level",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Level of the event (notice, info, warning, error)."
+              },
+              "message": {
+                "name": "message",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The (translated) message of the event."
+              },
+              "message_data": {
+                "name": "message_data",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A flexible schema placeholder to allow any JSON value (aligns with interface{} in Go).",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "metadata": {
+                "name": "metadata",
+                "type": "map",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "A flexible schema placeholder to allow any JSON value (aligns with interface{} in Go).",
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "resource": {
+                "name": "resource",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Type of resource for this event."
+              },
+              "time": {
+                "name": "time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Time of activity in ISO 8601 - RFC3339."
+              },
+              "timestamp": {
+                "name": "timestamp",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Time of activity in unix epoch."
+              },
+              "user": {
+                "name": "user",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Information about a user associated with an event.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "email": {
+                      "name": "email",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Email of the User."
+                    },
+                    "name": {
+                      "name": "name",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Name of the User."
+                    },
+                    "user_id": {
+                      "name": "user_id",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "ID of user who created/caused the event."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "from_time": {
+          "name": "from_time",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "A from query time in either ISO 8601 or unix epoch format."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of the service."
+        },
+        "time": {
+          "name": "time",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "(deprecated - use from_time) A time in either ISO 8601 or unix epoch format."
+        },
+        "to_time": {
+          "name": "to_time",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "A to query time in either ISO 8601 or unix epoch format."
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_get_grs_location_pairs",
+      "function": "DataSourceIBMPdrGetGrsLocationPairs",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_get_grs_location_pairs data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of instance to provision."
+        },
+        "location_pairs": {
+          "name": "location_pairs",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A map of GRS location pairs where each key is a primary location and the value is its paired location.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_get_machine_types",
+      "function": "DataSourceIBMPdrGetMachineTypes",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_get_machine_types data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of instance to provision."
+        },
+        "primary_workspace_name": {
+          "name": "primary_workspace_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The primary Power virtual server workspace name."
+        },
+        "standby_workspace_name": {
+          "name": "standby_workspace_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The standby Power virtual server workspace name."
+        },
+        "workspaces": {
+          "name": "workspaces",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of workspaces with their machine types.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "machine_types": {
+                "name": "machine_types",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_get_managed_vm_list",
+      "function": "DataSourceIBMPdrGetManagedVMList",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_get_managed_vm_list data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of instance to provision."
+        },
+        "managed_vm_list": {
+          "name": "managed_vm_list",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "core": {
+                "name": "core",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "dr_average_time": {
+                "name": "dr_average_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "dr_region": {
+                "name": "dr_region",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "memory": {
+                "name": "memory",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "region": {
+                "name": "region",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "vm_id": {
+                "name": "vm_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "vm_name": {
+                "name": "vm_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "workgroup_name": {
+                "name": "workgroup_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "workspace_name": {
+                "name": "workspace_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_get_powervs_workspace",
+      "function": "DataSourceIBMPdrGetPowervsWorkspace",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_get_powervs_workspace data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "dr_standby_workspace_description": {
+          "name": "dr_standby_workspace_description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Description of Standby Workspace."
+        },
+        "dr_standby_workspaces": {
+          "name": "dr_standby_workspaces",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The list of standby disaster recovery workspaces.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "details": {
+                "name": "details",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The detailed information of the standby DR workspace.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "crn": {
+                      "name": "crn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Cloud Resource Name (CRN) of the DR workspace.",
+                      "validate": {
+                        "kind": "crn",
+                        "func_name": "name_heuristic"
+                      }
+                    }
+                  }
+                }
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier of the standby workspace."
+              },
+              "location": {
+                "name": "location",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The location information of the standby workspace.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "region": {
+                      "name": "region",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The region identifier of the DR location."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The type of location (e.g., data-center, cloud-region)."
+                    },
+                    "url": {
+                      "name": "url",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The URL endpoint to access the DR location."
+                    }
+                  }
+                }
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the standby workspace."
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of the standby workspace."
+              }
+            }
+          }
+        },
+        "dr_workspace_description": {
+          "name": "dr_workspace_description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Description of Workspace."
+        },
+        "dr_workspaces": {
+          "name": "dr_workspaces",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The list of primary disaster recovery workspaces.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "default": {
+                "name": "default",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates if this is the default DR workspace."
+              },
+              "details": {
+                "name": "details",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The detailed information about the DR workspace.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "crn": {
+                      "name": "crn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Cloud Resource Name (CRN) of the DR workspace.",
+                      "validate": {
+                        "kind": "crn",
+                        "func_name": "name_heuristic"
+                      }
+                    }
+                  }
+                }
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier of the DR workspace."
+              },
+              "location": {
+                "name": "location",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The location information of the DR workspace.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "region": {
+                      "name": "region",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The region identifier of the DR location."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The type of location (e.g., data-center, cloud-region)."
+                    },
+                    "url": {
+                      "name": "url",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The URL endpoint to access the DR location."
+                    }
+                  }
+                }
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the DR workspace."
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of the DR workspace."
+              }
+            }
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of instance to provision."
+        },
+        "location_id": {
+          "name": "location_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Location ID value."
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_grs_location_pairs",
+      "function": "DataSourceIBMPdrGrsLocationPairs",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_grs_location_pairs data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of instance to provision."
+        },
+        "location_pairs": {
+          "name": "location_pairs",
+          "type": "map",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "A map of GRS location pairs where each key is a primary location and the value is its paired location.",
+          "elem": {
+            "kind": "schema",
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_last_operation",
+      "function": "DataSourceIBMPdrLastOperation",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_last_operation data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "crn": {
+          "name": "crn",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The service instance crn.",
+          "validate": {
+            "kind": "crn",
+            "func_name": "name_heuristic"
+          }
+        },
+        "deployment_name": {
+          "name": "deployment_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The name of the service instance deployment."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of instance to provision."
+        },
+        "is_api_key_expired": {
+          "name": "is_api_key_expired",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Indicates whether the API key used for the deployment is expired."
+        },
+        "last_updated_orchestrator_deployment_time": {
+          "name": "last_updated_orchestrator_deployment_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The deployment time of primary orchestrator VM."
+        },
+        "last_updated_standby_orchestrator_deployment_time": {
+          "name": "last_updated_standby_orchestrator_deployment_time",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The deployment time of StandBy orchestrator VM."
+        },
+        "mfa_enabled": {
+          "name": "mfa_enabled",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Indicated whether multi factor authentication is ennabled or not."
+        },
+        "orch_ext_connectivity_status": {
+          "name": "orch_ext_connectivity_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Status of standby node addition to the orchestrator cluster."
+        },
+        "orch_standby_node_addition_status": {
+          "name": "orch_standby_node_addition_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The status of standby node in the Orchestrator cluster."
+        },
+        "orchestrator_cluster_message": {
+          "name": "orchestrator_cluster_message",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The current status of the primary orchestrator VM."
+        },
+        "orchestrator_config_status": {
+          "name": "orchestrator_config_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The configuration status of the orchestrator cluster."
+        },
+        "orchestrator_ha": {
+          "name": "orchestrator_ha",
+          "type": "bool",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Indicates whether high availability (HA) is enabled for the orchestrator."
+        },
+        "plan_name": {
+          "name": "plan_name",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The name of the DR Automation plan."
+        },
+        "primary_description": {
+          "name": "primary_description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Indicates the progress details of primary orchestrator creation."
+        },
+        "primary_error_description": {
+          "name": "primary_error_description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Capture the error while creating primary orchestrator."
+        },
+        "primary_ip_address": {
+          "name": "primary_ip_address",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IP address of the primary orchestrator VM."
+        },
+        "primary_orchestrator_status": {
+          "name": "primary_orchestrator_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The configuration status of the orchestrator cluster."
+        },
+        "recovery_location": {
+          "name": "recovery_location",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The disaster recovery location associated with the instance."
+        },
+        "resource_group": {
+          "name": "resource_group",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The resource group to which the service instance belongs."
+        },
+        "standby_description": {
+          "name": "standby_description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Indicates the progress details of primary orchestrator creation."
+        },
+        "standby_error_description": {
+          "name": "standby_error_description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Capture the error while creating standby orchestrator."
+        },
+        "standby_ip_address": {
+          "name": "standby_ip_address",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The IP address of the standby orchestrator VM."
+        },
+        "standby_status": {
+          "name": "standby_status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The current state of the standby orchestrator."
+        },
+        "status": {
+          "name": "status",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The current state of the primary orchestrator."
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_machine_types",
+      "function": "DataSourceIBMPdrMachineTypes",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_machine_types data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of instance to provision."
+        },
+        "primary_workspace_name": {
+          "name": "primary_workspace_name",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "The primary Power virtual server workspace name."
+        },
+        "standby_workspace_name": {
+          "name": "standby_workspace_name",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The standby Power virtual server workspace name."
+        },
+        "workspaces": {
+          "name": "workspaces",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "List of workspaces with their machine types.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "machine_types": {
+                "name": "machine_types",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "elem": {
+                  "kind": "schema",
+                  "type": "string"
+                }
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_managed_vm_list",
+      "function": "DataSourceIBMPdrManagedVMList",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_managed_vm_list data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of instance to provision."
+        },
+        "managed_vm_list": {
+          "name": "managed_vm_list",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "core": {
+                "name": "core",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "dr_average_time": {
+                "name": "dr_average_time",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "dr_region": {
+                "name": "dr_region",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "memory": {
+                "name": "memory",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "region": {
+                "name": "region",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "vm_id": {
+                "name": "vm_id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "vm_name": {
+                "name": "vm_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "workgroup_name": {
+                "name": "workgroup_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              },
+              "workspace_name": {
+                "name": "workspace_name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "ibm_pdr_powervs_workspaces",
+      "function": "DataSourceIBMPdrPowervsWorkspace",
+      "package": "drautomationservice",
+      "kind": "data",
+      "description": "Schema validation for the ibm_pdr_powervs_workspaces data source.",
+      "attributes": {
+        "accept_language": {
+          "name": "accept_language",
+          "type": "string",
+          "required": false,
+          "optional": true,
+          "computed": false,
+          "description": "The language requested for the return document."
+        },
+        "dr_standby_workspace_description": {
+          "name": "dr_standby_workspace_description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Description of Standby Workspace."
+        },
+        "dr_standby_workspaces": {
+          "name": "dr_standby_workspaces",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The list of standby disaster recovery workspaces.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "details": {
+                "name": "details",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The detailed information of the standby DR workspace.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "crn": {
+                      "name": "crn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Cloud Resource Name (CRN) of the DR workspace.",
+                      "validate": {
+                        "kind": "crn",
+                        "func_name": "name_heuristic"
+                      }
+                    }
+                  }
+                }
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier of the standby workspace."
+              },
+              "location": {
+                "name": "location",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The location information of the standby workspace.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "region": {
+                      "name": "region",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The region identifier of the DR location."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The type of location (e.g., data-center, cloud-region)."
+                    },
+                    "url": {
+                      "name": "url",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The URL endpoint to access the DR location."
+                    }
+                  }
+                }
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the standby workspace."
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of the standby workspace."
+              }
+            }
+          }
+        },
+        "dr_workspace_description": {
+          "name": "dr_workspace_description",
+          "type": "string",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "Description of Workspace."
+        },
+        "dr_workspaces": {
+          "name": "dr_workspaces",
+          "type": "list",
+          "required": false,
+          "optional": false,
+          "computed": true,
+          "description": "The list of primary disaster recovery workspaces.",
+          "elem": {
+            "kind": "resource",
+            "attributes": {
+              "default": {
+                "name": "default",
+                "type": "bool",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "Indicates if this is the default DR workspace."
+              },
+              "details": {
+                "name": "details",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The detailed information about the DR workspace.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "crn": {
+                      "name": "crn",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "Cloud Resource Name (CRN) of the DR workspace.",
+                      "validate": {
+                        "kind": "crn",
+                        "func_name": "name_heuristic"
+                      }
+                    }
+                  }
+                }
+              },
+              "id": {
+                "name": "id",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The unique identifier of the DR workspace."
+              },
+              "location": {
+                "name": "location",
+                "type": "list",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The location information of the DR workspace.",
+                "elem": {
+                  "kind": "resource",
+                  "attributes": {
+                    "region": {
+                      "name": "region",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The region identifier of the DR location."
+                    },
+                    "type": {
+                      "name": "type",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The type of location (e.g., data-center, cloud-region)."
+                    },
+                    "url": {
+                      "name": "url",
+                      "type": "string",
+                      "required": false,
+                      "optional": false,
+                      "computed": true,
+                      "description": "The URL endpoint to access the DR location."
+                    }
+                  }
+                }
+              },
+              "name": {
+                "name": "name",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The name of the DR workspace."
+              },
+              "status": {
+                "name": "status",
+                "type": "string",
+                "required": false,
+                "optional": false,
+                "computed": true,
+                "description": "The status of the DR workspace."
+              }
+            }
+          }
+        },
+        "instance_id": {
+          "name": "instance_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "instance id of instance to provision."
+        },
+        "location_id": {
+          "name": "location_id",
+          "type": "string",
+          "required": true,
+          "optional": false,
+          "computed": false,
+          "description": "Location ID value."
+        }
+      }
+    }
+  ],
+  "skipped": [],
+  "extracted": 19,
+  "source_hint": "derived schema from IBM Cloud Terraform provider service package drautomationservice"
+}

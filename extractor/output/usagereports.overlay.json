@@ -1,0 +1,88 @@
+{
+  "package": "usagereports",
+  "specs": [
+    {
+      "slug": "metering-reporting",
+      "title": "Usage Reports",
+      "schema_count": 29,
+      "path_count": 11
+    },
+    {
+      "slug": "usage-metering",
+      "title": "Usage Metering",
+      "schema_count": 9,
+      "path_count": 2
+    }
+  ],
+  "matched": 2,
+  "resource_count": 2,
+  "overlay_attrs": 7,
+  "resources": [
+    {
+      "name": "ibm_billing_report_snapshot",
+      "kind": "resource",
+      "schema": "/v1/billing-reports-snapshot-config:patch",
+      "spec": "metering-reporting",
+      "score": 0.8,
+      "attrs": {
+        "cos_bucket": {
+          "description": "The name of the COS bucket to store the snapshot of the billing reports.",
+          "source": "metering-reporting",
+          "schema": "/v1/billing-reports-snapshot-config:patch"
+        },
+        "cos_location": {
+          "description": "Region of the COS instance.",
+          "source": "metering-reporting",
+          "schema": "/v1/billing-reports-snapshot-config:patch"
+        },
+        "cos_reports_folder": {
+          "description": "The billing reports root folder to store the billing reports snapshots.",
+          "source": "metering-reporting",
+          "schema": "/v1/billing-reports-snapshot-config:patch"
+        },
+        "interval": {
+          "enum": [
+            "daily"
+          ],
+          "description": "Frequency of taking the snapshot of the billing reports.",
+          "source": "metering-reporting",
+          "schema": "/v1/billing-reports-snapshot-config:patch"
+        },
+        "report_types": {
+          "enum": [
+            "account_summary",
+            "enterprise_summary",
+            "account_resource_instance_usage"
+          ],
+          "description": "The type of billing reports to take snapshot of. Possible values are [account_summary, enterprise_summary, account_resource_instance_usage].",
+          "source": "metering-reporting",
+          "schema": "/v1/billing-reports-snapshot-config:patch"
+        },
+        "versioning": {
+          "enum": [
+            "new",
+            "overwrite"
+          ],
+          "description": "A new version of report is created or the existing report version is overwritten with every update.",
+          "source": "metering-reporting",
+          "schema": "/v1/billing-reports-snapshot-config:patch"
+        }
+      }
+    },
+    {
+      "name": "ibm_billing_snapshot_list",
+      "kind": "data",
+      "schema": "/v1/billing-reports-snapshot-config:patch",
+      "spec": "metering-reporting",
+      "score": 0.29,
+      "attrs": {
+        "month": {
+          "pattern": "^\\d{4}\\-(0?[1-9]|1[012])$",
+          "description": "Month of captured snapshot.",
+          "source": "metering-reporting",
+          "schema": "SnapshotList"
+        }
+      }
+    }
+  ]
+}
